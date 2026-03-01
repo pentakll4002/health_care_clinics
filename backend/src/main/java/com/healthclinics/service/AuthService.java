@@ -10,6 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +30,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenUtil jwtTokenUtil;
     private final AuthenticationManager authenticationManager;
+    private final JavaMailSender mailSender;
     private final EmailService emailService;
 
     @Transactional
@@ -169,8 +172,18 @@ public class AuthService {
         return ApiResponse.success("OTP sent to your email", Map.of("email", email));
     }
 
-    public void logout() {
-        SecurityContextHolder.clearContext();
+    public ApiResponse<?> sendTestEmail(String toEmail) {
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom("hiroplayga@gmail.com");
+            message.setTo(toEmail);
+            message.setSubject("Test Email - Health Clinics");
+            message.setText("This is a test email to verify SMTP configuration.");
+            mailSender.send(message);
+            return ApiResponse.success("Test email sent to " + toEmail, null);
+        } catch (Exception e) {
+            return ApiResponse.error("Failed to send test email: " + e.getMessage());
+        }
     }
 
     @Transactional
@@ -268,5 +281,9 @@ public class AuthService {
         }
         
         return dto;
+    }
+
+    public void logout() {
+        SecurityContextHolder.clearContext();
     }
 }

@@ -34,12 +34,12 @@ import {
 const Sidebar = () => {
   const { roleCode, isLoading, canAccessRoute } = useRolePermissions();
   const can = (routeKey) => !!routeKey && canAccessRoute(routeKey);
-  const isDoctor = roleCode === '@doctors' || roleCode === '@admin';
-  const isDoctorOnly = roleCode === '@doctors';
-  const isPatient = roleCode === '@patient' || roleCode === 'patient';
-  const isReceptionist = roleCode === '@receptionists';
-  const isManager = roleCode === '@managers';
-  const isAdmin = roleCode === '@admin';
+  const isDoctor = roleCode === 'doctors' || roleCode === 'admin';
+  const isDoctorOnly = roleCode === 'doctors';
+  const isPatient = roleCode === 'patient';
+  const isReceptionist = roleCode === 'receptionists';
+  const isManager = roleCode === 'managers';
+  const isAdmin = roleCode === 'admin';
 
 
   if (isLoading) return null;

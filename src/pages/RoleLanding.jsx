@@ -4,12 +4,12 @@ import Spinner from '../ui/Spinner';
 import { useRolePermissions } from '../hooks/useRolePermissions';
 
 const ROLE_DEFAULT_ROUTES = {
-  '@admin': '/employees',
-  '@doctors': '/doctor/queue',
-  '@receptionists': '/reception',
-  '@managers': '/reports',
-  '@patient': '/patients/profile',
-  patient: '/patients/profile', // Tương thích ngược
+  admin: '/employees',
+  doctors: '/doctor/queue',
+  receptionists: '/reception',
+  managers: '/reports',
+  patient: '/patients/profile',
+  // Tương thích ngược
 };
 
 function RoleLanding() {

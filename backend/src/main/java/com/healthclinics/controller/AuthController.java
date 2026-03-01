@@ -5,6 +5,7 @@ import com.healthclinics.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,14 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
-        return ResponseEntity.ok(authService.login(request));
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
+        try {
+            return ResponseEntity.ok(authService.login(request));
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(401).body(ApiResponse.error("Invalid email or password"));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(ApiResponse.error(e.getMessage()));
+        }
     }
 
     @GetMapping("/login")
@@ -55,12 +62,13 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.success("OTP verified. You can now reset your password.", Map.of("email", email, "otpVerified", true)));
     }
 
-    @PostMapping("/reset-password")
-    public ResponseEntity<ApiResponse<?>> resetPassword(@RequestBody Map<String, String> body) {
+    @PostMapping("/test-mail")
+    public ResponseEntity<ApiResponse<?>> testMail(@RequestBody Map<String, String> body) {
         String email = body.get("email");
-        String otp = body.get("otp");
-        String newPassword = body.get("newPassword");
-        return ResponseEntity.ok(authService.resetPassword(email, otp, newPassword));
+        if (email == null || email.isEmpty()) {
+            return ResponseEntity.ok(ApiResponse.error("Email is required"));
+        }
+        return ResponseEntity.ok(authService.sendTestEmail(email));
     }
 
     @PostMapping("/logout")

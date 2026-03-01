@@ -16,10 +16,10 @@ export function useRolePermissions() {
     });
     
     if (nhanVien) {
-      // Backend returns maNhom (uppercase), convert to lowercase
+      // Backend returns maNhom, convert to lowercase
       const maNhom = nhanVien.maNhom || nhanVien.MaNhom;
       if (maNhom) {
-        const code = maNhom.startsWith('@') ? maNhom.toLowerCase() : `@${maNhom.toLowerCase()}`;
+        const code = maNhom.toLowerCase();
         console.log('Role từ nhanVien:', code);
         return code;
       }
@@ -29,7 +29,7 @@ export function useRolePermissions() {
     if (userNhanVien) {
       const maNhom = userNhanVien.maNhom || userNhanVien.MaNhom;
       if (maNhom) {
-        const code = maNhom.startsWith('@') ? maNhom.toLowerCase() : `@${maNhom.toLowerCase()}`;
+        const code = maNhom.toLowerCase();
         console.log('Role từ user.nhanVien:', code);
         return code;
       }
@@ -39,20 +39,20 @@ export function useRolePermissions() {
     if (user?.role) {
       const role = user.role.toLowerCase();
       if (role === 'admin') {
-        console.log('Role từ user.role: @admin');
-        return '@admin';
+        console.log('Role từ user.role: admin');
+        return 'admin';
       }
       if (role === 'doctor') {
-        console.log('Role từ user.role: @doctor');
-        return '@doctor';
+        console.log('Role từ user.role: doctors');
+        return 'doctors';
       }
       if (role === 'receptionist') {
-        console.log('Role từ user.role: @receptionist');
-        return '@receptionist';
+        console.log('Role từ user.role: receptionists');
+        return 'receptionists';
       }
       if (role === 'patient') {
-        console.log('Role từ user.role: @patient');
-        return '@patient';
+        console.log('Role từ user.role: patient');
+        return 'patient';
       }
     }
     

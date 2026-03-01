@@ -60,36 +60,10 @@ public class EmailService {
     }
 
     private String buildOtpEmailContent(String otp) {
-        return """
-                Kính chào Quý khách,
-                
-                Cảm ơn Quý khách đã đăng ký tài khoản tại Health Clinics.
-                
-                Mã xác thực của Quý khách là: %s
-                
-                Mã này có hiệu lực trong 5 phút.
-                
-                Nếu Quý khách không thực hiện yêu cầu này, vui lòng bỏ qua email này.
-                
-                Trân trọng,
-                Đội ngũ Health Clinics
-                """.formatted(otp);
+        return "Kính chào Quý khách,\n\nCảm ơn Quý khách đã đăng ký tài khoản tại Health Clinics.\n\nMã xác thực của Quý khách là: %s\n\nMã này có hiệu lực trong 5 phút.\n\nNếu Quý khách không thực hiện yêu cầu này, vui lòng bỏ qua email này.\n\nTrân trọng,\nĐội ngũ Health Clinics".formatted(otp);
     }
 
     private String buildPasswordResetEmailContent(String otp) {
-        return """
-                Kính chào Quý khách,
-                
-                Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản của Quý khách.
-                
-                Mã xác thực của Quý khách là: %s
-                
-                Mã này có hiệu lực trong 5 phút.
-                
-                Nếu Quý khách không thực hiện yêu cầu này, vui lòng bỏ qua email này.
-                
-                Trân trọng,
-                Đội ngũ Health Clinics
-                """.formatted(otp);
+        return "Kính chào Quý khách,\n\nChúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản của Quý khách.\n\nMã xác thực của Quý khách là: " + otp + "\n\nMã này có hiệu lực trong 5 phút.\n\nNếu Quý khách không thực hiện yêu cầu này, vui lòng bỏ qua email này.\n\nTrân trọng,\nĐội ngũ Health Clinics";
     }
 }

@@ -1,3 +1,4 @@
+com\healthclinics\controller\PatientController.class
 com\healthclinics\repository\ChiTietPhieuNhapThuocRepository.class
 com\healthclinics\security\JwtAuthenticationEntryPoint.class
 com\healthclinics\config\CustomUserDetailsService.class
@@ -46,6 +47,7 @@ com\healthclinics\dto\QuiDinhDTO$QuiDinhDTOBuilder.class
 com\healthclinics\repository\PhieuNhapThuocRepository.class
 com\healthclinics\entity\NhomNguoiDung$NhomNguoiDungBuilder.class
 com\healthclinics\dto\ToaThuocDTO$ToaThuocDTOBuilder.class
+com\healthclinics\repository\GioiTinhRepository.class
 com\healthclinics\dto\CtPhieuKhamDichVuDTO$CtPhieuKhamDichVuDTOBuilder.class
 com\healthclinics\service\NhanVienService.class
 com\healthclinics\dto\ApiResponse.class
@@ -70,6 +72,7 @@ com\healthclinics\service\NhomNguoiDungService.class
 com\healthclinics\dto\BenhNhanDTO$BenhNhanDTOBuilder.class
 com\healthclinics\dto\ToaThuocDTO.class
 com\healthclinics\dto\LoginRequest$LoginRequestBuilder.class
+com\healthclinics\entity\GioiTinh.class
 com\healthclinics\service\DichVuService.class
 com\healthclinics\repository\CtPhieuKhamDichVuRepository.class
 com\healthclinics\dto\UserProfileDTO.class
@@ -88,6 +91,7 @@ com\healthclinics\repository\BaoCaoSuDungThuocRepository.class
 com\healthclinics\dto\AuthResponse$AuthResponseBuilder.class
 com\healthclinics\repository\PhanQuyenRepository.class
 com\healthclinics\service\DanhSachTiepNhanService.class
+com\healthclinics\entity\GioiTinh$GioiTinhBuilder.class
 com\healthclinics\entity\ToaThuoc.class
 com\healthclinics\controller\HoaDonController.class
 com\healthclinics\dto\PhanQuyenDTO.class
@@ -141,6 +145,7 @@ com\healthclinics\entity\User$UserBuilder.class
 com\healthclinics\repository\ToaThuocRepository.class
 com\healthclinics\controller\NhanVienController.class
 com\healthclinics\entity\LichKham$LichKhamBuilder.class
+com\healthclinics\controller\GioiTinhController.class
 com\healthclinics\dto\HoaDonDTO$HoaDonDTOBuilder.class
 com\healthclinics\entity\ChiTietBaoCaoDoanhThu.class
 com\healthclinics\entity\PhanQuyen$PhanQuyenBuilder.class

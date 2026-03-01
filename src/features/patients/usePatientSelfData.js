@@ -32,17 +32,17 @@ const changePasswordRequest = async (payload) => {
 
 const fetchMedicalRecords = async () => {
   const response = await axiosInstance.get('/patient/medical-records');
-  return response.data;
+  return response.data.data;
 };
 
 const fetchInvoices = async () => {
   const response = await axiosInstance.get('/patient/invoices');
-  return response.data;
+  return response.data.data;
 };
 
 const fetchAppointments = async () => {
   const response = await axiosInstance.get('/patient/appointments');
-  return response.data;
+  return response.data.data;
 };
 
 const createAppointmentRequest = async (payload) => {
@@ -57,12 +57,12 @@ const cancelAppointmentRequest = async (appointmentId) => {
 
 const fetchNotifications = async () => {
   const response = await axiosInstance.get('/patient/notifications');
-  return response.data;
+  return response.data.data;
 };
 
 const fetchDashboard = async () => {
   const response = await axiosInstance.get('/patient/dashboard');
-  return response.data;
+  return response.data.data;
 };
 
 const fetchDoctors = async () => {

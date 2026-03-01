@@ -22,16 +22,21 @@ public class NhanVienController {
     @GetMapping
     public ResponseEntity<List<NhanVienDTO>> getAll(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "10") int limit,
             @RequestParam(defaultValue = "idNhanVien") String sortBy,
-            @RequestParam(defaultValue = "desc") String direction) {
+            @RequestParam(defaultValue = "desc") String direction,
+            @RequestParam(required = false) String ma_nhom) {
         
-        if (page == 0 && size == 10) {
+        if (ma_nhom != null && !ma_nhom.isEmpty()) {
+            return ResponseEntity.ok(nhanVienService.getByNhom(ma_nhom));
+        }
+        
+        if (page == 0 && limit == 10) {
             return ResponseEntity.ok(nhanVienService.getAll());
         }
         
         Sort.Direction dir = direction.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Page<NhanVienDTO> result = nhanVienService.getAll(PageRequest.of(page, size, Sort.by(dir, sortBy)));
+        Page<NhanVienDTO> result = nhanVienService.getAll(PageRequest.of(page, limit, Sort.by(dir, sortBy)));
         return ResponseEntity.ok(result.getContent());
     }
 

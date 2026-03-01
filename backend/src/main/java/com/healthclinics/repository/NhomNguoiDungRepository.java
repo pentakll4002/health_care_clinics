@@ -13,5 +13,5 @@ public interface NhomNguoiDungRepository extends JpaRepository<NhomNguoiDung, Lo
     
     Optional<NhomNguoiDung> findBySlug(String slug);
     
-    Boolean existsByMaNhom(String maNhom);
+    boolean existsByMaNhom(String maNhom);
 }

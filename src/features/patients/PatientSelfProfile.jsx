@@ -185,8 +185,8 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
     },
   });
 
-  const benhNhan = data?.benh_nhan;
-  const userInfo = data?.user;
+  const benhNhan = data?.data?.benhNhan || data?.data?.benh_nhan;
+  const userInfo = data?.data?.user || data?.data;
   const medicalRecords = medicalData?.data || [];
   const invoices = invoicesData?.data || [];
   const appointments = appointmentsData?.data || [];
@@ -295,7 +295,7 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
 
   if (isLoading) return <Spinner />;
 
-  if (!benhNhan || userInfo?.role !== 'patient') {
+  if (!benhNhan) {
     return (
       <section className='flex min-h-screen items-center justify-center bg-[#f5f6f8] px-6 py-10'>
         <div className='rounded-xl bg-white p-10 text-center text-grey-700 shadow-sm'>

@@ -27,39 +27,76 @@ public class DataInitializer implements CommandLineRunner {
     private final DVTRepository dvtRepository;
     private final CachDungRepository cachDungRepository;
     private final QuiDinhRepository quiDinhRepository;
+    private final GioiTinhRepository gioiTinhRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) {
+        // Always seed NhomNguoiDung and GioiTinh if they don't exist
+        if (nhomNguoiDungRepository.count() == 0) {
+            log.info("Seeding NhomNguoiDung data...");
+            seedNhomNguoiDung();
+        }
+
+        if (gioiTinhRepository.count() == 0) {
+            log.info("Seeding GioiTinh data...");
+            seedGioiTinh();
+        }
+
+        // Check if users exist before seeding user data
         if (userRepository.count() > 0) {
-            log.info("Database already initialized, skipping...");
+            log.info("Database already initialized, skipping user seeding...");
             return;
         }
 
         log.info("Initializing database with seed data...");
+        seedUsers();
+    }
 
-        // Create user groups
-        NhomNguoiDung adminGroup = nhomNguoiDungRepository.save(NhomNguoiDung.builder()
-                .maNhom("ADMIN")
+    private void seedNhomNguoiDung() {
+        // Create user groups based on Laravel seeder
+        nhomNguoiDungRepository.save(NhomNguoiDung.builder()
+                .maNhom("admin")
                 .tenNhom("Quản trị hệ thống")
                 .build());
 
-        NhomNguoiDung managerGroup = nhomNguoiDungRepository.save(NhomNguoiDung.builder()
-                .maNhom("MANAGERS")
-                .tenNhom("Quản lý")
-                .build());
-
-        NhomNguoiDung doctorGroup = nhomNguoiDungRepository.save(NhomNguoiDung.builder()
-                .maNhom("DOCTOR")
+        nhomNguoiDungRepository.save(NhomNguoiDung.builder()
+                .maNhom("doctors")
                 .tenNhom("Bác sĩ")
                 .build());
 
-        NhomNguoiDung receptionistGroup = nhomNguoiDungRepository.save(NhomNguoiDung.builder()
-                .maNhom("RECEPTIONIST")
-                .tenNhom("Tiếp tân")
+        nhomNguoiDungRepository.save(NhomNguoiDung.builder()
+                .maNhom("receptionists")
+                .tenNhom("Lễ tân – Thu ngân")
                 .build());
 
-        // Create admin user
+        nhomNguoiDungRepository.save(NhomNguoiDung.builder()
+                .maNhom("managers")
+                .tenNhom("Quản lý")
+                .build());
+
+        nhomNguoiDungRepository.save(NhomNguoiDung.builder()
+                .maNhom("patient")
+                .tenNhom("Bệnh nhân")
+                .build());
+
+        log.info("NhomNguoiDung seeding completed!");
+    }
+
+    private void seedGioiTinh() {
+        // Create gender options
+        gioiTinhRepository.save(GioiTinh.builder().tenGioiTinh("Nam").build());
+        gioiTinhRepository.save(GioiTinh.builder().tenGioiTinh("Nữ").build());
+        gioiTinhRepository.save(GioiTinh.builder().tenGioiTinh("Khác").build());
+        log.info("GioiTinh seeding completed!");
+    }
+
+    private void seedUsers() {
+        // Get the seeded groups
+        NhomNguoiDung adminGroup = nhomNguoiDungRepository.findByMaNhom("admin").orElseThrow();
+        NhomNguoiDung doctorGroup = nhomNguoiDungRepository.findByMaNhom("doctors").orElseThrow();
+        NhomNguoiDung receptionistGroup = nhomNguoiDungRepository.findByMaNhom("receptionists").orElseThrow();
+
         User adminUser = userRepository.save(User.builder()
                 .name("Admin")
                 .email("admin@healthclinic.com")

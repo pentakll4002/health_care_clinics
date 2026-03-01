@@ -27,13 +27,17 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: hiroplayga@gmail.com
-    password: tfac sjrm kfpu wppw
+    password: fvaeszhgfollhjsc
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
 
 server:
   port: 8080
@@ -52,5 +56,6 @@ app:
 logging:
   level:
     com.healthclinics: DEBUG
+    org.springframework.mail: DEBUG
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE

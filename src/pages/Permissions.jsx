@@ -49,8 +49,8 @@ function Permissions() {
     },
   });
 
-  const groups = groupsQuery.data || [];
-  const functions = functionsQuery.data || [];
+  const groups = groupsQuery.data?.data || [];
+  const functions = functionsQuery.data?.data || [];
 
   useEffect(() => {
     if (!selectedGroupId && groups.length > 0) {

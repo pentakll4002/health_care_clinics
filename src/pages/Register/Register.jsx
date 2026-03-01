@@ -31,6 +31,7 @@ import axiosInstance from '../../utils/axiosInstance';
 
 const schema = yup.object({
   name: yup.string().required('Vui lòng nhập tên tài khoản'),
+  phone: yup.string().required('Vui lòng nhập số điện thoại'),
   email: yup
     .string()
     .email('Invalid email address')
@@ -80,6 +81,7 @@ const Register = () => {
     try {
       setRegisterData({
         name: data.name,
+        phone: data.phone,
         email: data.email,
         password: data.password,
       });
@@ -96,8 +98,9 @@ const Register = () => {
     setCaptchaError(null);
     try {
       if (captchaValue === captchaText) {
-        await axiosInstance.post('/register/request-otp', {
+        await axiosInstance.post('/register', {
           name: registerData.name,
+          phone: registerData.phone,
           email: registerData.email,
           password: registerData.password,
         });
@@ -162,6 +165,15 @@ const Register = () => {
               type='name'
               placeholder='Enter name'
               icon={<UserIcon />}
+            />
+          </FormRow>
+
+          <FormRow label='Phone' name='phone' error={errors.phone?.message}>
+            <Input
+              control={control}
+              name='phone'
+              type='tel'
+              placeholder='Enter phone number'
             />
           </FormRow>
 
@@ -247,16 +259,26 @@ const Register = () => {
       )}
 
       {step === 2 && (
-        <div>
+        <div className='max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg border'>
+          <h2 className='text-xl font-semibold text-center mb-4 text-gray-800'>
+            Xác thực Captcha
+          </h2>
+          <p className='text-center text-gray-600 mb-6'>
+            Vui lòng nhập mã captcha để tiếp tục đăng ký.
+          </p>
           {captchaError && (
-            <p className='mb-4 text-center text-red-500'>{captchaError}</p>
+            <p className='mb-4 text-center text-red-500 bg-red-50 p-2 rounded'>
+              {captchaError}
+            </p>
           )}
-          <InputCaptcha onCaptchaSubmit={handleCaptchaSubmit} />
+          <div className='flex justify-center mb-4'>
+            <InputCaptcha onCaptchaSubmit={handleCaptchaSubmit} />
+          </div>
           <Button
             type='button'
             disabled={loading}
             onClick={() => setStep(1)}
-            className='w-full mt-4'
+            className='w-full bg-gray-500 hover:bg-gray-600 text-white'
           >
             Nhập lại thông tin
           </Button>

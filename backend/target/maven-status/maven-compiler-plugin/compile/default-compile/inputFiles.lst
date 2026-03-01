@@ -11,11 +11,13 @@ C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\Ch
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\DanhSachTiepNhanController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\DichVuController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\DVTController.java
+C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\GioiTinhController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\HoaDonController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\LichKhamController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\LoaiBenhController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\NhanVienController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\NhomNguoiDungController.java
+C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\PatientController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\PhanQuyenController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\PhieuKhamController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\QuiDinhController.java
@@ -52,6 +54,7 @@ C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\entity\CtPhie
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\entity\DanhSachTiepNhan.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\entity\DichVu.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\entity\DVT.java
+C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\entity\GioiTinh.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\entity\HoaDon.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\entity\LichKham.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\entity\LoaiBenh.java
@@ -79,6 +82,7 @@ C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\repository\Ct
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\repository\DanhSachTiepNhanRepository.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\repository\DichVuRepository.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\repository\DVTRepository.java
+C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\repository\GioiTinhRepository.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\repository\HoaDonRepository.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\repository\LichKhamRepository.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\repository\LoaiBenhRepository.java
