@@ -64,6 +64,7 @@ public class SecurityConfig {
                             "/loai-benh",
                             "/dvt",
                             "/cach-dung",
+                            "/qui-dinh",
                             "/bao-cao-doanh-thu",
                             "/bao-cao-su-dung-thuoc"
                     ).permitAll()

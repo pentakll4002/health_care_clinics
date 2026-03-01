@@ -221,22 +221,158 @@ public class DataInitializer implements CommandLineRunner {
                 .isDeleted(false)
                 .build());
 
-        // Create DichVu (services)
+        // Create DichVu (services) - from Laravel seeder
         dichVuRepository.save(DichVu.builder()
-                .tenDichVu("Khám tổng quát")
+                .tenDichVu("Khám thường")
+                .donGia(BigDecimal.valueOf(100000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Khám chuyên sâu")
                 .donGia(BigDecimal.valueOf(200000))
                 .isDeleted(false)
                 .build());
 
         dichVuRepository.save(DichVu.builder()
-                .tenDichVu("Khám chuyên khoa")
+                .tenDichVu("Tái khám")
+                .donGia(BigDecimal.valueOf(50000))
+                .isDeleted(false)
+                .build());
+
+        // Dịch vụ phụ - Xét nghiệm
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Xét nghiệm máu")
+                .donGia(BigDecimal.valueOf(150000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Xét nghiệm nước tiểu")
+                .donGia(BigDecimal.valueOf(50000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Xét nghiệm sinh hóa máu")
+                .donGia(BigDecimal.valueOf(200000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Xét nghiệm miễn dịch")
+                .donGia(BigDecimal.valueOf(250000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Xét nghiệm vi sinh")
+                .donGia(BigDecimal.valueOf(180000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Chụp X-quang ngực")
+                .donGia(BigDecimal.valueOf(200000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Chụp X-quang xương")
+                .donGia(BigDecimal.valueOf(180000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Siêu âm bụng")
+                .donGia(BigDecimal.valueOf(250000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Siêu âm tim")
                 .donGia(BigDecimal.valueOf(300000))
                 .isDeleted(false)
                 .build());
 
         dichVuRepository.save(DichVu.builder()
-                .tenDichVu("Xét nghiệm máu")
+                .tenDichVu("Siêu âm tuyến giáp")
+                .donGia(BigDecimal.valueOf(200000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Chụp CT scan")
+                .donGia(BigDecimal.valueOf(1500000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Chụp MRI")
+                .donGia(BigDecimal.valueOf(2500000))
+                .isDeleted(false)
+                .build());
+
+        // Dịch vụ phụ - Thăm dò chức năng
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Điện tim (ECG)")
                 .donGia(BigDecimal.valueOf(150000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Đo huyết áp 24h")
+                .donGia(BigDecimal.valueOf(500000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Đo mật độ xương")
+                .donGia(BigDecimal.valueOf(400000))
+                .isDeleted(false)
+                .build());
+
+        // Dịch vụ phụ - Nội soi
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Nội soi dạ dày")
+                .donGia(BigDecimal.valueOf(800000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Nội soi đại tràng")
+                .donGia(BigDecimal.valueOf(1000000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Nội soi tai mũi họng")
+                .donGia(BigDecimal.valueOf(300000))
+                .isDeleted(false)
+                .build());
+
+        // Dịch vụ phụ - Khác
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Tiêm phòng")
+                .donGia(BigDecimal.valueOf(200000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Truyền dịch")
+                .donGia(BigDecimal.valueOf(150000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Thay băng vết thương")
+                .donGia(BigDecimal.valueOf(50000))
+                .isDeleted(false)
+                .build());
+
+        dichVuRepository.save(DichVu.builder()
+                .tenDichVu("Khâu vết thương")
+                .donGia(BigDecimal.valueOf(200000))
                 .isDeleted(false)
                 .build());
 

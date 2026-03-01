@@ -1,5 +1,6 @@
 package com.healthclinics.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
@@ -19,13 +20,13 @@ public class DichVu {
     @Column(name = "ID_DichVu")
     private Long idDichVu;
 
-    @Column(name = "TenDichVu", nullable = false)
+    @Column(name = "ten_dich_vu", nullable = false)
     private String tenDichVu;
 
-    @Column(name = "DonGia", precision = 15, scale = 2)
+    @Column(name = "don_gia", precision = 15, scale = 2)
     private BigDecimal donGia;
 
-    @Column(name = "Is_Deleted")
+    @Column(name = "is_deleted")
     private Boolean isDeleted = false;
 
     @Column(name = "created_at", updatable = false)
@@ -35,9 +36,11 @@ public class DichVu {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "dichVu", cascade = CascadeType.ALL)
+    @JsonIgnore
     private java.util.List<PhieuKham> phieuKhams;
 
     @OneToMany(mappedBy = "dichVu", cascade = CascadeType.ALL)
+    @JsonIgnore
     private java.util.List<CtPhieuKhamDichVu> ctPhieuKhamDichVus;
 
     @PrePersist

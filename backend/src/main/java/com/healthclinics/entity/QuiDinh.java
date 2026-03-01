@@ -18,9 +18,9 @@ public class QuiDinh {
     @Column(name = "ID_QuyDinh")
     private Long idQuyDinh;
 
-    @Column(name = "TenQuyDinh", nullable = false)
+    @Column(name = "ten_quy_dinh", nullable = false)
     private String tenQuyDinh;
 
-    @Column(name = "GiaTri", precision = 15, scale = 2)
+    @Column(name = "gia_tri", precision = 15, scale = 2)
     private BigDecimal giaTri;
 }

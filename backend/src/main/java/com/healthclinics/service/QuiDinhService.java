@@ -39,8 +39,15 @@ public class QuiDinhService {
     public QuiDinhDTO update(Long id, QuiDinhDTO dto) {
         QuiDinh qd = quiDinhRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("QuiDinh not found"));
-        qd.setTenQuyDinh(dto.getTenQuyDinh());
-        qd.setGiaTri(dto.getGiaTri());
+        
+        // Only update non-null fields
+        if (dto.getTenQuyDinh() != null) {
+            qd.setTenQuyDinh(dto.getTenQuyDinh());
+        }
+        if (dto.getGiaTri() != null) {
+            qd.setGiaTri(dto.getGiaTri());
+        }
+        
         return mapToDTO(quiDinhRepository.save(qd));
     }
 

@@ -10,17 +10,17 @@ class NhomNguoiDungSeeder extends Seeder
     public function run(): void
     {
         $groups = [
-            ['TenNhom' => 'Quản trị hệ thống', 'MaNhom' => 'admin'],
-            ['TenNhom' => 'Bác sĩ', 'MaNhom' => 'doctors'],
-            ['TenNhom' => 'Lễ tân – Thu ngân', 'MaNhom' => 'receptionists'],
-            ['TenNhom' => 'Quản lý', 'MaNhom' => 'managers'],
-            ['TenNhom' => 'Bệnh nhân', 'MaNhom' => 'patient'],
+            ['ten_nhom' => 'Quản trị hệ thống', 'ma_nhom' => 'admin'],
+            ['ten_nhom' => 'Bác sĩ', 'ma_nhom' => 'doctors'],
+            ['ten_nhom' => 'Lễ tân – Thu ngân', 'ma_nhom' => 'receptionists'],
+            ['ten_nhom' => 'Quản lý', 'ma_nhom' => 'managers'],
+            ['ten_nhom' => 'Bệnh nhân', 'ma_nhom' => 'patient'],
         ];
 
         foreach ($groups as $group) {
             DB::table('nhom_nguoi_dung')->updateOrInsert(
-                ['MaNhom' => $group['MaNhom']],
-                ['TenNhom' => $group['TenNhom']]
+                ['ma_nhom' => $group['ma_nhom']],
+                ['ten_nhom' => $group['ten_nhom']]
             );
         }
     }

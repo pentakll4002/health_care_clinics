@@ -97,16 +97,28 @@ const RegulationsForm = () => {
   });
 
   function onSubmit(values) {
-    const payload = {};
+    const payload = [];
 
     if (values.SoBenhNhanToiDa !== '') {
-      payload.SoBenhNhanToiDa = parseInt(values.SoBenhNhanToiDa, 10);
+      payload.push({
+        idQuyDinh: 1,
+        tenQuyDinh: 'Số bệnh nhân tối đa trong ngày',
+        giaTri: parseInt(values.SoBenhNhanToiDa, 10)
+      });
     }
     if (values.TienKham !== '') {
-      payload.TienKham = parseFloat(values.TienKham);
+      payload.push({
+        idQuyDinh: 2,
+        tenQuyDinh: 'Giá khám cơ bản',
+        giaTri: parseFloat(values.TienKham)
+      });
     }
     if (values.TyLeGiaBan !== '') {
-      payload.TyLeGiaBan = parseFloat(values.TyLeGiaBan);
+      payload.push({
+        idQuyDinh: 3,
+        tenQuyDinh: 'Số thuốc tối đa trong toa',
+        giaTri: parseFloat(values.TyLeGiaBan)
+      });
     }
 
     const keys = [
@@ -118,10 +130,16 @@ const RegulationsForm = () => {
       'GioLamViec_Toi_KetThuc',
     ];
 
-    keys.forEach((k) => {
+    keys.forEach((k, index) => {
       if (values[k] !== '') {
         const minutes = timeToMinutes(values[k]);
-        if (minutes !== null) payload[k] = minutes;
+        if (minutes !== null) {
+          payload.push({
+            idQuyDinh: 4 + index,
+            tenQuyDinh: k,
+            giaTri: minutes
+          });
+        }
       }
     });
 

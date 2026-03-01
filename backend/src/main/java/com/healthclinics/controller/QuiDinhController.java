@@ -17,13 +17,13 @@ public class QuiDinhController {
     private final QuiDinhService quiDinhService;
 
     @GetMapping
-    public ResponseEntity<List<QuiDinhDTO>> getAll() {
-        return ResponseEntity.ok(quiDinhService.getAll());
+    public ResponseEntity<ApiResponse<List<QuiDinhDTO>>> getAll() {
+        return ResponseEntity.ok(ApiResponse.success("Success", quiDinhService.getAll()));
     }
 
     @GetMapping("/{tenQuyDinh}")
-    public ResponseEntity<QuiDinhDTO> getByTen(@PathVariable String tenQuyDinh) {
-        return ResponseEntity.ok(quiDinhService.getByTen(tenQuyDinh));
+    public ResponseEntity<ApiResponse<QuiDinhDTO>> getByTen(@PathVariable String tenQuyDinh) {
+        return ResponseEntity.ok(ApiResponse.success("Success", quiDinhService.getByTen(tenQuyDinh)));
     }
 
     @PutMapping

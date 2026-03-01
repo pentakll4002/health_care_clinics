@@ -1,5 +1,6 @@
 package com.healthclinics.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,5 +22,6 @@ public class DVT {
     private String tenDvt;
 
     @OneToMany(mappedBy = "dvt", cascade = CascadeType.ALL)
+    @JsonIgnore
     private java.util.List<Thuoc> thuocs;
 }

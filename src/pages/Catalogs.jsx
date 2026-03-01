@@ -22,9 +22,9 @@ function Catalogs() {
   const queryClient = useQueryClient();
   const [tab, setTab] = useState('loai-benh');
 
-  const [loaiBenhForm, setLoaiBenhForm] = useState({ TenLoaiBenh: '', TrieuChung: '', HuongDieuTri: '' });
-  const [dvtForm, setDvtForm] = useState({ TenDVT: '' });
-  const [cachDungForm, setCachDungForm] = useState({ MoTaCachDung: '' });
+  const [loaiBenhForm, setLoaiBenhForm] = useState({ tenLoaiBenh: '', trieuChung: '', huongDieuTri: '' });
+  const [dvtForm, setDvtForm] = useState({ tenDvt: '' });
+  const [cachDungForm, setCachDungForm] = useState({ moTaCachDung: '' });
 
   const [editingLoaiBenh, setEditingLoaiBenh] = useState(null);
   const [editingDvt, setEditingDvt] = useState(null);
@@ -55,8 +55,8 @@ function Catalogs() {
   });
 
   const loaiBenhList = useMemo(() => loaiBenhQuery.data?.data || [], [loaiBenhQuery.data]);
-  const dvtList = useMemo(() => dvtQuery.data || [], [dvtQuery.data]);
-  const cachDungList = useMemo(() => cachDungQuery.data || [], [cachDungQuery.data]);
+  const dvtList = useMemo(() => dvtQuery.data?.data || dvtQuery.data || [], [dvtQuery.data]);
+  const cachDungList = useMemo(() => cachDungQuery.data?.data || cachDungQuery.data || [], [cachDungQuery.data]);
 
   const createLoaiBenhMutation = useMutation({
     mutationFn: async (payload) => {
@@ -66,7 +66,7 @@ function Catalogs() {
     onSuccess: () => {
       toast.success('Tạo loại bệnh thành công');
       queryClient.invalidateQueries({ queryKey: ['catalogs', 'loai-benh'] });
-      setLoaiBenhForm({ TenLoaiBenh: '', TrieuChung: '', HuongDieuTri: '' });
+      setLoaiBenhForm({ tenLoaiBenh: '', trieuChung: '', huongDieuTri: '' });
     },
     onError: (error) => {
       toast.error(error.response?.data?.message || 'Tạo loại bệnh thất bại');
@@ -110,7 +110,7 @@ function Catalogs() {
     onSuccess: () => {
       toast.success('Tạo đơn vị tính thành công');
       queryClient.invalidateQueries({ queryKey: ['catalogs', 'dvt'] });
-      setDvtForm({ TenDVT: '' });
+      setDvtForm({ tenDvt: '' });
     },
     onError: (error) => {
       toast.error(error.response?.data?.message || 'Tạo đơn vị tính thất bại');
@@ -154,7 +154,7 @@ function Catalogs() {
     onSuccess: () => {
       toast.success('Tạo cách dùng thành công');
       queryClient.invalidateQueries({ queryKey: ['catalogs', 'cach-dung'] });
-      setCachDungForm({ MoTaCachDung: '' });
+      setCachDungForm({ moTaCachDung: '' });
     },
     onError: (error) => {
       toast.error(error.response?.data?.message || 'Tạo cách dùng thất bại');
@@ -236,20 +236,20 @@ function Catalogs() {
               <p className='text-sm font-semibold text-grey-900'>Thêm loại bệnh</p>
               <div className='flex flex-col gap-2 mt-2'>
                 <input
-                  value={loaiBenhForm.TenLoaiBenh}
-                  onChange={(e) => setLoaiBenhForm((p) => ({ ...p, TenLoaiBenh: e.target.value }))}
+                  value={loaiBenhForm.tenLoaiBenh}
+                  onChange={(e) => setLoaiBenhForm((p) => ({ ...p, tenLoaiBenh: e.target.value }))}
                   className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                   placeholder='Tên loại bệnh'
                 />
                 <input
-                  value={loaiBenhForm.TrieuChung}
-                  onChange={(e) => setLoaiBenhForm((p) => ({ ...p, TrieuChung: e.target.value }))}
+                  value={loaiBenhForm.trieuChung}
+                  onChange={(e) => setLoaiBenhForm((p) => ({ ...p, trieuChung: e.target.value }))}
                   className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                   placeholder='Triệu chứng'
                 />
                 <input
-                  value={loaiBenhForm.HuongDieuTri}
-                  onChange={(e) => setLoaiBenhForm((p) => ({ ...p, HuongDieuTri: e.target.value }))}
+                  value={loaiBenhForm.huongDieuTri}
+                  onChange={(e) => setLoaiBenhForm((p) => ({ ...p, huongDieuTri: e.target.value }))}
                   className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                   placeholder='Hướng điều trị'
                 />
@@ -270,33 +270,33 @@ function Catalogs() {
                 <p className='mt-2 text-sm text-grey-500'>Đang tải...</p>
               ) : (
                 <div className='mt-2 flex flex-col gap-2'>
-                  {loaiBenhList.map((item) => {
+                  {loaiBenhList.filter(item => item).map((item) => {
                     const isEditing = editingLoaiBenh?.ID_LoaiBenh === item.ID_LoaiBenh;
                     return (
                       <div key={item.ID_LoaiBenh} className='p-3 border rounded-md border-grey-transparent'>
                         {isEditing ? (
                           <div className='grid grid-cols-1 gap-2 md:grid-cols-3'>
                             <input
-                              value={editingLoaiBenh.TenLoaiBenh}
-                              onChange={(e) => setEditingLoaiBenh((p) => ({ ...p, TenLoaiBenh: e.target.value }))}
+                              value={editingLoaiBenh.tenLoaiBenh}
+                              onChange={(e) => setEditingLoaiBenh((p) => ({ ...p, tenLoaiBenh: e.target.value }))}
                               className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                             />
                             <input
-                              value={editingLoaiBenh.TrieuChung || ''}
-                              onChange={(e) => setEditingLoaiBenh((p) => ({ ...p, TrieuChung: e.target.value }))}
+                              value={editingLoaiBenh.trieuChung || ''}
+                              onChange={(e) => setEditingLoaiBenh((p) => ({ ...p, trieuChung: e.target.value }))}
                               className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                             />
                             <input
-                              value={editingLoaiBenh.HuongDieuTri || ''}
-                              onChange={(e) => setEditingLoaiBenh((p) => ({ ...p, HuongDieuTri: e.target.value }))}
+                              value={editingLoaiBenh.huongDieuTri || ''}
+                              onChange={(e) => setEditingLoaiBenh((p) => ({ ...p, huongDieuTri: e.target.value }))}
                               className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                             />
                           </div>
                         ) : (
                           <div>
-                            <p className='text-sm font-semibold text-grey-900'>{item.TenLoaiBenh}</p>
-                            <p className='text-xs text-grey-500'>{item.TrieuChung || '-'}</p>
-                            <p className='text-xs text-grey-500'>{item.HuongDieuTri || '-'}</p>
+                            <p className='text-sm font-semibold text-grey-900'>{item.tenLoaiBenh}</p>
+                            <p className='text-xs text-grey-500'>{item.trieuChung || '-'}</p>
+                            <p className='text-xs text-grey-500'>{item.huongDieuTri || '-'}</p>
                           </div>
                         )}
 
@@ -309,9 +309,9 @@ function Catalogs() {
                                   updateLoaiBenhMutation.mutate({
                                     id: item.ID_LoaiBenh,
                                     payload: {
-                                      TenLoaiBenh: editingLoaiBenh.TenLoaiBenh,
-                                      TrieuChung: editingLoaiBenh.TrieuChung,
-                                      HuongDieuTri: editingLoaiBenh.HuongDieuTri,
+                                      tenLoaiBenh: editingLoaiBenh.tenLoaiBenh,
+                                      trieuChung: editingLoaiBenh.trieuChung,
+                                      huongDieuTri: editingLoaiBenh.huongDieuTri,
                                     },
                                   })
                                 }
@@ -363,8 +363,8 @@ function Catalogs() {
               <p className='text-sm font-semibold text-grey-900'>Thêm đơn vị tính</p>
               <div className='flex flex-col gap-2 mt-2'>
                 <input
-                  value={dvtForm.TenDVT}
-                  onChange={(e) => setDvtForm({ TenDVT: e.target.value })}
+                  value={dvtForm.tenDvt}
+                  onChange={(e) => setDvtForm({ tenDvt: e.target.value })}
                   className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                   placeholder='Tên đơn vị tính'
                 />
@@ -385,25 +385,25 @@ function Catalogs() {
                 <p className='mt-2 text-sm text-grey-500'>Đang tải...</p>
               ) : (
                 <div className='mt-2 flex flex-col gap-2'>
-                  {dvtList.map((item) => {
+                  {dvtList.filter(item => item).map((item) => {
                     const isEditing = editingDvt?.ID_DVT === item.ID_DVT;
                     return (
                       <div key={item.ID_DVT} className='p-3 border rounded-md border-grey-transparent'>
-                        {isEditing ? (
+                        {isEditing && editingDvt ? (
                           <input
-                            value={editingDvt.TenDVT}
-                            onChange={(e) => setEditingDvt((p) => ({ ...p, TenDVT: e.target.value }))}
+                            value={editingDvt.tenDvt}
+                            onChange={(e) => setEditingDvt((p) => ({ ...p, tenDvt: e.target.value }))}
                             className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                           />
                         ) : (
-                          <p className='text-sm font-semibold text-grey-900'>{item.TenDVT}</p>
+                          <p className='text-sm font-semibold text-grey-900'>{item.tenDvt}</p>
                         )}
                         <div className='flex items-center justify-end gap-2 mt-3'>
                           {isEditing ? (
                             <>
                               <button
                                 type='button'
-                                onClick={() => updateDvtMutation.mutate({ id: item.ID_DVT, payload: { TenDVT: editingDvt.TenDVT } })}
+                                onClick={() => updateDvtMutation.mutate({ id: item.ID_DVT, payload: { tenDvt: editingDvt?.tenDvt || '' } })}
                                 disabled={updateDvtMutation.isPending}
                                 className='px-3 py-2 text-sm font-semibold text-white rounded-md bg-primary disabled:opacity-60'
                               >
@@ -452,8 +452,8 @@ function Catalogs() {
               <p className='text-sm font-semibold text-grey-900'>Thêm cách dùng</p>
               <div className='flex flex-col gap-2 mt-2'>
                 <input
-                  value={cachDungForm.MoTaCachDung}
-                  onChange={(e) => setCachDungForm({ MoTaCachDung: e.target.value })}
+                  value={cachDungForm.moTaCachDung}
+                  onChange={(e) => setCachDungForm({ moTaCachDung: e.target.value })}
                   className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                   placeholder='Mô tả cách dùng'
                 />
@@ -474,18 +474,18 @@ function Catalogs() {
                 <p className='mt-2 text-sm text-grey-500'>Đang tải...</p>
               ) : (
                 <div className='mt-2 flex flex-col gap-2'>
-                  {cachDungList.map((item) => {
+                  {cachDungList.filter(item => item).map((item) => {
                     const isEditing = editingCachDung?.ID_CachDung === item.ID_CachDung;
                     return (
                       <div key={item.ID_CachDung} className='p-3 border rounded-md border-grey-transparent'>
-                        {isEditing ? (
+                        {isEditing && editingCachDung ? (
                           <input
-                            value={editingCachDung.MoTaCachDung}
-                            onChange={(e) => setEditingCachDung((p) => ({ ...p, MoTaCachDung: e.target.value }))}
+                            value={editingCachDung.moTaCachDung}
+                            onChange={(e) => setEditingCachDung((p) => ({ ...p, moTaCachDung: e.target.value }))}
                             className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                           />
                         ) : (
-                          <p className='text-sm font-semibold text-grey-900'>{item.MoTaCachDung}</p>
+                          <p className='text-sm font-semibold text-grey-900'>{item.moTaCachDung}</p>
                         )}
                         <div className='flex items-center justify-end gap-2 mt-3'>
                           {isEditing ? (
@@ -495,7 +495,7 @@ function Catalogs() {
                                 onClick={() =>
                                   updateCachDungMutation.mutate({
                                     id: item.ID_CachDung,
-                                    payload: { MoTaCachDung: editingCachDung.MoTaCachDung },
+                                    payload: { moTaCachDung: editingCachDung?.moTaCachDung || '' },
                                   })
                                 }
                                 disabled={updateCachDungMutation.isPending}
