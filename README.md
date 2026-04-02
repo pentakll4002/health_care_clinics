@@ -33,7 +33,7 @@
 | :-- | :------- | :-------------------  | :---------------------------------- | :---------------------- |
 | 1   | 23520003 | Đặng Thiên Ân         | https://github.com/pentakll4002     | 23520003@gm.uit.edu.vn  |
 | 2   | 24521580 | Nguyễn Nhật Tân       | https://github.com/24521580         | 24521580@gm.uit.edu.vn  |
-| 3   | 23520534 | Đặng Nguyễn Đức Trung | https://github.com/24521874         | 24521874@gm.uit.edu.vn  |
+| 3   | 24521874 | Đặng Nguyễn Đức Trung | https://github.com/24521874         | 24521874@gm.uit.edu.vn  |
 | 4   | 23521795 | Đinh Vũ Minh Khôi     | https://github.com/24520857         | 24520857@gm.uit.edu.vn  |
 
 
