@@ -26,4 +26,5 @@ public class NhanVienDTO {
     private String tenNhom;
     private String maNhom;
     private Long userId;
+    private String password;
 }

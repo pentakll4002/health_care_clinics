@@ -20,8 +20,8 @@ const Header = styled.div`
 
 function Permissions() {
   const [selectedGroupId, setSelectedGroupId] = useState(null);
-  const [groupForm, setGroupForm] = useState({ TenNhom: '', MaNhom: '' });
-  const [funcForm, setFuncForm] = useState({ TenChucNang: '', TenManHinhTuongUong: '' });
+  const [groupForm, setGroupForm] = useState({ tenNhom: '', maNhom: '' });
+  const [funcForm, setFuncForm] = useState({ tenChucNang: '', tenManHinhTuongUong: '' });
   const [selectedFunctionIds, setSelectedFunctionIds] = useState([]);
 
   const groupsQuery = useQuery({
@@ -49,12 +49,12 @@ function Permissions() {
     },
   });
 
-  const groups = groupsQuery.data?.data || [];
-  const functions = functionsQuery.data?.data || [];
+  const groups = Array.isArray(groupsQuery.data) ? groupsQuery.data : groupsQuery.data?.data || [];
+  const functions = Array.isArray(functionsQuery.data) ? functionsQuery.data : functionsQuery.data?.data || [];
 
   useEffect(() => {
     if (!selectedGroupId && groups.length > 0) {
-      const firstId = groups[0].ID_Nhom ?? groups[0].ID_NhomNguoiDung ?? groups[0].id;
+      const firstId = groups[0].ID_Nhom ?? groups[0].idNhom ?? groups[0].id;
       if (firstId) setSelectedGroupId(firstId);
     }
   }, [groups, selectedGroupId]);
@@ -62,7 +62,7 @@ function Permissions() {
   const currentPermissionIds = useMemo(() => {
     const rows = permissionsQuery.data || [];
     return rows
-      .map((r) => r.ID_ChucNang || r.chucNang?.ID_ChucNang || r.chuc_nang?.ID_ChucNang)
+      .map((r) => r.ID_ChucNang || r.idChucNang || r.chucNang?.ID_ChucNang || r.chucNang?.idChucNang || r.chuc_nang?.ID_ChucNang)
       .filter(Boolean);
   }, [permissionsQuery.data]);
 
@@ -78,7 +78,7 @@ function Permissions() {
     onSuccess: () => {
       toast.success('Tạo nhóm người dùng thành công');
       groupsQuery.refetch();
-      setGroupForm({ TenNhom: '', MaNhom: '' });
+      setGroupForm({ tenNhom: '', maNhom: '' });
     },
     onError: (error) => {
       toast.error(error.response?.data?.message || 'Tạo nhóm người dùng thất bại');
@@ -93,7 +93,7 @@ function Permissions() {
     onSuccess: () => {
       toast.success('Tạo chức năng thành công');
       functionsQuery.refetch();
-      setFuncForm({ TenChucNang: '', TenManHinhTuongUong: '' });
+      setFuncForm({ tenChucNang: '', tenManHinhTuongUong: '' });
     },
     onError: (error) => {
       toast.error(error.response?.data?.message || 'Tạo chức năng thất bại');
@@ -103,7 +103,7 @@ function Permissions() {
   const assignPermissionsMutation = useMutation({
     mutationFn: async ({ idNhom, functionIds }) => {
       const res = await axiosInstance.post(`/phan-quyen/nhom/${idNhom}/assign-multiple`, {
-        chuc_nangs: functionIds,
+        idChucNangs: functionIds,
       });
       return res.data;
     },
@@ -126,7 +126,7 @@ function Permissions() {
 
   const selectedGroup = useMemo(() => {
     if (!selectedGroupId) return null;
-    return groups.find((g) => String(g.ID_Nhom) === String(selectedGroupId)) || null;
+    return groups.find((g) => String(g.ID_Nhom || g.idNhom) === String(selectedGroupId)) || null;
   }, [groups, selectedGroupId]);
 
   return (
@@ -148,21 +148,25 @@ function Permissions() {
             <p className='mt-3 text-sm text-grey-500'>Đang tải...</p>
           ) : (
             <div className='flex flex-col gap-2 mt-3'>
-              {groups.map((g) => (
+              {groups.map((g) => {
+                const id = g.ID_Nhom || g.idNhom;
+                const ten = g.TenNhom || g.tenNhom;
+                const ma = g.MaNhom || g.maNhom;
+                return (
                 <button
-                  key={g.ID_Nhom}
+                  key={id}
                   type='button'
-                  onClick={() => setSelectedGroupId(g.ID_Nhom)}
+                  onClick={() => setSelectedGroupId(id)}
                   className={`w-full text-left px-3 py-2 rounded-md border ${
-                    String(selectedGroupId) === String(g.ID_Nhom)
+                    String(selectedGroupId) === String(id)
                       ? 'border-primary bg-primary/5'
                       : 'border-grey-transparent hover:bg-grey-50'
                   }`}
                 >
-                  <p className='text-sm font-semibold text-grey-900'>{g.TenNhom}</p>
-                  <p className='text-xs text-grey-500'>{g.MaNhom}</p>
+                  <p className='text-sm font-semibold text-grey-900'>{ten}</p>
+                  <p className='text-xs text-grey-500'>{ma}</p>
                 </button>
-              ))}
+              )})}
             </div>
           )}
 
@@ -170,14 +174,14 @@ function Permissions() {
             <p className='text-sm font-semibold text-grey-900'>Thêm nhóm</p>
             <div className='flex flex-col gap-2 mt-2'>
               <input
-                value={groupForm.TenNhom}
-                onChange={(e) => setGroupForm((p) => ({ ...p, TenNhom: e.target.value }))}
+                value={groupForm.tenNhom}
+                onChange={(e) => setGroupForm((p) => ({ ...p, tenNhom: e.target.value }))}
                 className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                 placeholder='Tên nhóm'
               />
               <input
-                value={groupForm.MaNhom}
-                onChange={(e) => setGroupForm((p) => ({ ...p, MaNhom: e.target.value }))}
+                value={groupForm.maNhom}
+                onChange={(e) => setGroupForm((p) => ({ ...p, maNhom: e.target.value }))}
                 className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                 placeholder='Mã nhóm (vd: doctors)'
               />
@@ -201,12 +205,16 @@ function Permissions() {
             <p className='mt-3 text-sm text-grey-500'>Đang tải...</p>
           ) : (
             <div className='flex flex-col gap-2 mt-3 max-h-[420px] overflow-auto pr-1'>
-              {functions.map((f) => (
-                <div key={f.ID_ChucNang} className='px-3 py-2 border rounded-md border-grey-transparent'>
-                  <p className='text-sm font-semibold text-grey-900'>{f.TenChucNang}</p>
-                  <p className='text-xs text-grey-500'>{f.TenManHinhTuongUong}</p>
+              {functions.map((f) => {
+                const id = f.ID_ChucNang || f.idChucNang;
+                const ten = f.TenChucNang || f.tenChucNang;
+                const manHinh = f.TenManHinhTuongUong || f.tenManHinhTuongUong;
+                return (
+                <div key={id} className='px-3 py-2 border rounded-md border-grey-transparent'>
+                  <p className='text-sm font-semibold text-grey-900'>{ten}</p>
+                  <p className='text-xs text-grey-500'>{manHinh}</p>
                 </div>
-              ))}
+              )})}
             </div>
           )}
 
@@ -214,14 +222,14 @@ function Permissions() {
             <p className='text-sm font-semibold text-grey-900'>Thêm chức năng</p>
             <div className='flex flex-col gap-2 mt-2'>
               <input
-                value={funcForm.TenChucNang}
-                onChange={(e) => setFuncForm((p) => ({ ...p, TenChucNang: e.target.value }))}
+                value={funcForm.tenChucNang}
+                onChange={(e) => setFuncForm((p) => ({ ...p, tenChucNang: e.target.value }))}
                 className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                 placeholder='Tên chức năng'
               />
               <input
-                value={funcForm.TenManHinhTuongUong}
-                onChange={(e) => setFuncForm((p) => ({ ...p, TenManHinhTuongUong: e.target.value }))}
+                value={funcForm.tenManHinhTuongUong}
+                onChange={(e) => setFuncForm((p) => ({ ...p, tenManHinhTuongUong: e.target.value }))}
                 className='w-full px-3 py-2 text-sm border rounded-md border-grey-transparent'
                 placeholder='Screen code (vd: manage-drugs)'
               />
@@ -247,8 +255,8 @@ function Permissions() {
             <>
               <div className='flex items-center justify-between mt-3'>
                 <div>
-                  <p className='text-sm font-semibold text-grey-900'>{selectedGroup?.TenNhom}</p>
-                  <p className='text-xs text-grey-500'>{selectedGroup?.MaNhom}</p>
+                  <p className='text-sm font-semibold text-grey-900'>{selectedGroup?.TenNhom || selectedGroup?.tenNhom}</p>
+                  <p className='text-xs text-grey-500'>{selectedGroup?.MaNhom || selectedGroup?.maNhom}</p>
                 </div>
                 <button
                   type='button'
@@ -266,21 +274,24 @@ function Permissions() {
                 <div className='mt-3 max-h-[520px] overflow-auto pr-1'>
                   <div className='flex flex-col gap-2'>
                     {functions.map((f) => {
-                      const checked = selectedFunctionIds.includes(f.ID_ChucNang);
+                      const id = f.ID_ChucNang || f.idChucNang;
+                      const ten = f.TenChucNang || f.tenChucNang;
+                      const manHinh = f.TenManHinhTuongUong || f.tenManHinhTuongUong;
+                      const checked = selectedFunctionIds.includes(id);
                       return (
                         <label
-                          key={f.ID_ChucNang}
+                          key={id}
                           className='flex items-start gap-3 px-3 py-2 border rounded-md cursor-pointer border-grey-transparent hover:bg-grey-50'
                         >
                           <input
                             type='checkbox'
                             checked={checked}
-                            onChange={() => toggleFunction(f.ID_ChucNang)}
+                            onChange={() => toggleFunction(id)}
                             className='mt-1'
                           />
                           <span>
-                            <p className='text-sm font-semibold text-grey-900'>{f.TenChucNang}</p>
-                            <p className='text-xs text-grey-500'>{f.TenManHinhTuongUong}</p>
+                            <p className='text-sm font-semibold text-grey-900'>{ten}</p>
+                            <p className='text-xs text-grey-500'>{manHinh}</p>
                           </span>
                         </label>
                       );

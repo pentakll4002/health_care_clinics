@@ -28,6 +28,8 @@ public class DataInitializer implements CommandLineRunner {
     private final CachDungRepository cachDungRepository;
     private final QuiDinhRepository quiDinhRepository;
     private final GioiTinhRepository gioiTinhRepository;
+    private final ChucNangRepository chucNangRepository;
+    private final PhanQuyenRepository phanQuyenRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -41,6 +43,11 @@ public class DataInitializer implements CommandLineRunner {
         if (gioiTinhRepository.count() == 0) {
             log.info("Seeding GioiTinh data...");
             seedGioiTinh();
+        }
+
+        if (chucNangRepository.count() == 0) {
+            log.info("Seeding ChucNang and PhanQuyen data...");
+            seedChucNangVaPhanQuyen();
         }
 
         // Check if users exist before seeding user data
@@ -89,6 +96,87 @@ public class DataInitializer implements CommandLineRunner {
         gioiTinhRepository.save(GioiTinh.builder().tenGioiTinh("Nữ").build());
         gioiTinhRepository.save(GioiTinh.builder().tenGioiTinh("Khác").build());
         log.info("GioiTinh seeding completed!");
+    }
+
+    private void seedChucNangVaPhanQuyen() {
+        String[][] chucNangs = {
+            {"Quản lý nhân viên", "manage-employees"},
+            {"Phân quyền nhân viên", "manage-permissions"},
+            {"Quản lý bệnh nhân", "manage-patients"},
+            {"Quản lý thuốc", "manage-drugs"},
+            {"Quản lý hoá đơn", "manage-invoices"},
+            {"Quản lý báo cáo", "manage-reports"},
+            {"Cấu hình hệ thống", "configure-system"},
+            {"Khám và chẩn đoán", "examine-patients"},
+            {"Kê đơn thuốc", "prescribe-medicine"},
+            {"Xem lịch sử bệnh án", "view-medical-history"},
+            {"Đăng ký bệnh nhân", "register-patient"},
+            {"Tiếp nhận bệnh nhân", "intake-patient"},
+            {"Đặt lịch hẹn", "schedule-appointments"},
+            {"Tra cứu bệnh nhân", "search-patient"},
+            {"Thanh toán hoá đơn", "process-payments"},
+            {"Bán thuốc theo đơn", "dispense-medicine"},
+            {"In hoá đơn", "print-invoices"},
+            {"Quản lý danh sách hoá đơn", "invoice-list"},
+            {"Nhập thuốc vào kho", "import-inventory"},
+            {"Quản lý tồn kho", "manage-inventory"},
+            {"Cảnh báo tồn kho", "inventory-alerts"},
+            {"Xem báo cáo doanh thu", "view-revenue"},
+            {"Giám sát hoạt động", "monitor-operations"},
+            {"Theo dõi hiệu suất", "monitor-staff"}
+        };
+
+        for (String[] cn : chucNangs) {
+            chucNangRepository.save(ChucNang.builder()
+                .tenChucNang(cn[0])
+                .tenManHinhTuongUong(cn[1])
+                .build());
+        }
+
+        java.util.Map<String, String[]> rolePermissions = new java.util.HashMap<>();
+        rolePermissions.put("admin", new String[]{
+            "manage-employees", "manage-permissions", "manage-patients", "manage-drugs",
+            "manage-invoices", "manage-reports", "configure-system", "examine-patients",
+            "prescribe-medicine", "view-medical-history", "register-patient", "intake-patient",
+            "schedule-appointments", "search-patient", "process-payments", "dispense-medicine",
+            "print-invoices", "invoice-list", "import-inventory", "manage-inventory",
+            "inventory-alerts", "view-revenue", "monitor-operations", "monitor-staff"
+        });
+        rolePermissions.put("doctors", new String[]{
+            "examine-patients", "prescribe-medicine", "view-medical-history", "register-patient",
+            "intake-patient", "schedule-appointments", "search-patient"
+        });
+        rolePermissions.put("receptionists", new String[]{
+            "register-patient", "intake-patient", "schedule-appointments", "search-patient",
+            "manage-invoices", "process-payments", "dispense-medicine", "print-invoices", "invoice-list"
+        });
+        rolePermissions.put("managers", new String[]{
+            "import-inventory", "manage-inventory", "inventory-alerts", "manage-drugs",
+            "view-revenue", "manage-reports", "monitor-operations", "monitor-staff"
+        });
+        rolePermissions.put("patient", new String[]{
+            "view-medical-history", "invoice-list"
+        });
+
+        java.util.List<ChucNang> allFunctions = chucNangRepository.findAll();
+        java.util.List<NhomNguoiDung> allGroups = nhomNguoiDungRepository.findAll();
+
+        for (java.util.Map.Entry<String, String[]> entry : rolePermissions.entrySet()) {
+            String roleCode = entry.getKey();
+            NhomNguoiDung group = allGroups.stream().filter(g -> g.getMaNhom().equals(roleCode)).findFirst().orElse(null);
+            if (group != null) {
+                for (String screen : entry.getValue()) {
+                    ChucNang func = allFunctions.stream().filter(f -> f.getTenManHinhTuongUong().equals(screen)).findFirst().orElse(null);
+                    if (func != null) {
+                        phanQuyenRepository.save(PhanQuyen.builder()
+                            .idNhom(group.getIdNhom())
+                            .idChucNang(func.getIdChucNang())
+                            .build());
+                    }
+                }
+            }
+        }
+        log.info("ChucNang and PhanQuyen seeding completed!");
     }
 
     private void seedUsers() {

@@ -4,9 +4,9 @@ import CreateDoctorForm from '../doctors/CreateDoctorForm';
 import { useRolePermissions } from '../../hooks/useRolePermissions';
 
 function AddEmployee() {
-  const { isRole } = useRolePermissions();
+  const { canAccessRoute } = useRolePermissions();
 
-  if (!isRole('@admin')) return null;
+  if (!canAccessRoute('employees')) return null;
 
   return (
     <Modal>

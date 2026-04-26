@@ -240,7 +240,7 @@ const Register = () => {
             </Input>
           </FormRow>
 
-          <CheckBox name='term' onClick={handleSetChecked} checked={checked}>
+          <CheckBox className='mb-5' name='term' onClick={handleSetChecked} checked={checked}>
             I agree to the{' '}
             <Link className='underline text-primary'>
               Terms of Service & Privacy Policy

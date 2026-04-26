@@ -23,29 +23,34 @@ public class NhanVienService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    @Transactional(readOnly = true)
     public List<NhanVienDTO> getAll() {
         return nhanVienRepository.findAll().stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public Page<NhanVienDTO> getAll(Pageable pageable) {
         return nhanVienRepository.findAll(pageable)
                 .map(this::mapToDTO);
     }
 
+    @Transactional(readOnly = true)
     public NhanVienDTO getById(Long id) {
         NhanVien nv = nhanVienRepository.findByIdWithNhom(id)
                 .orElseThrow(() -> new RuntimeException("NhanVien not found"));
         return mapToDTO(nv);
     }
 
+    @Transactional(readOnly = true)
     public List<NhanVienDTO> search(String keyword) {
         return nhanVienRepository.searchByKeyword(keyword).stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public List<NhanVienDTO> getByNhom(String maNhom) {
         return nhanVienRepository.findByNhomMaNhom(maNhom).stream()
                 .map(this::mapToDTO)
@@ -55,11 +60,15 @@ public class NhanVienService {
     @Transactional
     public NhanVienDTO create(NhanVienDTO dto) {
         // Create user account
+        String rawPassword = (dto.getPassword() != null && !dto.getPassword().trim().isEmpty()) 
+                ? dto.getPassword() 
+                : "123456";
+
         User user = User.builder()
                 .name(dto.getHoTenNV())
                 .email(dto.getEmail())
-                .password(passwordEncoder.encode("123456")) // default password
-                .role("staff")
+                .password(passwordEncoder.encode(rawPassword)) // Use provided password or default
+                .role("staff") // Base role, actual permissions come from Nhom
                 .build();
         userRepository.save(user);
 

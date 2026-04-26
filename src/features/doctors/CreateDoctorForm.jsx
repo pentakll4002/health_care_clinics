@@ -60,7 +60,10 @@ const CreateDoctorForm = ({
 
   const [groups, setGroups] = useState([]);
   useEffect(() => {
-    fetchGroups().then((data) => setGroups(data || []));
+    fetchGroups().then((res) => {
+      const arr = Array.isArray(res) ? res : (res?.data || []);
+      setGroups(arr);
+    }).catch(() => setGroups([]));
   }, []);
 
   useEffect(() => {
@@ -85,14 +88,14 @@ const CreateDoctorForm = ({
     const payload = {
       email: data.email,
       password: data.password, 
-      HoTenNV: data.name,
-      NgaySinh: data.birthday,
-      GioiTinh: data.gender,
-      CCCD: data.cccd,
-      DienThoai: data.sdt,
-      DiaChi: data.address,
-      HinhAnh: data.avatarUrl || 'default_avatar.jpg',
-      ID_Nhom: Number(data.id_nhom),
+      hoTenNV: data.name,
+      ngaySinh: data.birthday,
+      gioiTinh: data.gender,
+      cccd: data.cccd,
+      dienThoai: data.sdt,
+      diaChi: data.address,
+      hinhAnh: data.avatarUrl || 'default_avatar.jpg',
+      idNhom: Number(data.id_nhom),
     };
     if (isEdit && !payload.password) delete payload.password; // Sửa không cần gửi password nếu bỏ trống
     mutate(payload);
@@ -217,11 +220,15 @@ const CreateDoctorForm = ({
             <option value='' disabled>
               -- Chọn nhóm --
             </option>
-            {groups.map(({ ID_Nhom, TenNhom }) => (
-              <option key={ID_Nhom} value={ID_Nhom}>
-                {TenNhom}
-              </option>
-            ))}
+            {groups.map((g) => {
+              const id = g.ID_Nhom || g.idNhom;
+              const name = g.TenNhom || g.tenNhom;
+              return (
+                <option key={id} value={id}>
+                  {name}
+                </option>
+              );
+            })}
           </Select>
         </FormRow>
 

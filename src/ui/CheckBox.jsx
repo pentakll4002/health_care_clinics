@@ -1,8 +1,8 @@
 import classNames from '../utils/classNames';
 
-const CheckBox = ({ checked, onClick, name, children }) => {
+const CheckBox = ({ checked, onClick, name, children, className }) => {
   return (
-    <div className='flex items-center mb-5 flex-center gap-x-3'>
+    <div className={classNames('flex items-center flex-center gap-x-3', className)}>
       <div
         className={classNames(
           'inline-flex justify-center items-center text-white p-1 w-4 h-4 border rounded cursor-pointer ',

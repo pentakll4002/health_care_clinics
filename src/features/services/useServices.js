@@ -7,5 +7,5 @@ export function useServices() {
     queryFn: getServices,
   });
 
-  return { isLoading, services: data?.data || [] };
+  return { isLoading, services: Array.isArray(data) ? data : (data?.data || []) };
 }

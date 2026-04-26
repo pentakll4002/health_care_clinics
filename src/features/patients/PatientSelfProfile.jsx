@@ -308,14 +308,15 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
   return (
     <section className='min-h-screen bg-[#f5f6f8] px-6 py-10 text-grey-900'>
       <div className='mx-auto flex max-w-6xl flex-col gap-8'>
-        <header className='rounded-xl bg-white px-8 py-6 shadow-sm'>
-          <p className='text-sm font-semibold uppercase text-primary'>Hồ sơ bệnh nhân</p>
-          <h1 className='text-2xl font-bold text-grey-900'>Xin chào, {benhNhan?.HoTenBN || 'Bệnh nhân'}</h1>
-          <p className='text-sm text-grey-500'>
-            Bạn có thể xem và quản lý hồ sơ cá nhân, lịch sử khám bệnh (PHIEUKHAM, LOAIBENH, TOATHUOC, THUOC) và các
-            hoá đơn đã phát hành (HOADON).
-          </p>
-        </header>
+        {(initialSection === 'all' || initialSection === 'profile') && (
+          <header className='rounded-xl bg-white px-8 py-6 shadow-sm'>
+            <p className='text-sm font-semibold text-primary'>Hồ sơ bệnh nhân</p>
+            <h1 className='text-2xl font-bold text-grey-900'>Xin chào, {benhNhan?.HoTenBN || 'Bệnh nhân'}</h1>
+            <p className='text-sm text-grey-500'>
+              Bạn có thể xem và quản lý hồ sơ cá nhân, lịch sử khám bệnh và các hoá đơn.
+            </p>
+          </header>
+        )}
 
         {(initialSection === 'all' || initialSection === 'profile') && (
           <>
@@ -461,7 +462,7 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
                   <Button
                     type='submit'
                     disabled={changePassword.isPending}
-                    className='bg-grey-900 px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-grey-300'
+                    className='bg-primary px-4 py-2 text-sm font-semibold text-white hover:opacity-90 transition-opacity disabled:cursor-not-allowed disabled:bg-grey-300'
                   >
                     {changePassword.isPending ? 'Đang xử lý...' : 'Đổi mật khẩu'}
                   </Button>
@@ -475,9 +476,9 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
         <section className='rounded-xl bg-white p-6 shadow-sm'>
           <div className='flex flex-col gap-2 border-b border-grey-transparent pb-4 md:flex-row md:items-center md:justify-between'>
             <div>
-              <h2 className='text-lg font-semibold'>B. Hồ sơ khám bệnh của chính mình</h2>
+              <h2 className='text-lg font-semibold'>Hồ sơ khám bệnh</h2>
               <p className='text-sm text-grey-500'>
-                Dữ liệu lấy từ PHIEUKHAM, LOAIBENH, TOATHUOC, THUOC – chỉ hiển thị các lượt khám của bạn.
+                Lịch sử các lần khám bệnh của bạn.
               </p>
             </div>
           </div>
@@ -487,7 +488,12 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
                 <Spinner />
               </div>
             ) : medicalRecords.length === 0 ? (
-              <p className='text-sm text-grey-500'>Bạn chưa có lịch sử khám bệnh nào.</p>
+              <div className="flex flex-col items-center justify-center py-10 text-grey-400 bg-grey-50 rounded-lg">
+                <svg className="w-12 h-12 mb-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <p className='text-sm'>Bạn chưa có lịch sử khám bệnh nào.</p>
+              </div>
             ) : (
               medicalRecords.map((record) => <MedicalRecordCard key={record.ID_PhieuKham} record={record} />)
             )}
@@ -499,8 +505,8 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
         <section className='rounded-xl bg-white p-6 shadow-sm'>
           <div className='flex flex-col gap-2 border-b border-grey-transparent pb-4 md:flex-row md:items-center md:justify-between'>
             <div>
-              <h2 className='text-lg font-semibold'>C. Hoá đơn của tôi</h2>
-              <p className='text-sm text-grey-500'>Danh sách hoá đơn (HOADON) chỉ đọc – xem chi tiết tiền khám và thuốc.</p>
+              <h2 className='text-lg font-semibold'>Hoá đơn của tôi</h2>
+              <p className='text-sm text-grey-500'>Danh sách hoá đơn thanh toán tiền khám và tiền thuốc.</p>
             </div>
           </div>
           {loadingInvoices ? (
@@ -508,7 +514,12 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
               <Spinner />
             </div>
           ) : invoices.length === 0 ? (
-            <p className='mt-6 text-sm text-grey-500'>Chưa có hoá đơn nào.</p>
+            <div className="mt-6 flex flex-col items-center justify-center py-10 text-grey-400 bg-grey-50 rounded-lg">
+              <svg className="w-12 h-12 mb-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              <p className='text-sm'>Chưa có hoá đơn nào.</p>
+            </div>
           ) : (
             <div className='mt-6 overflow-x-auto rounded-lg border border-grey-transparent'>
               <table className='min-w-full divide-y divide-grey-transparent text-sm'>
@@ -551,9 +562,9 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
         <section className='rounded-xl bg-white p-6 shadow-sm'>
           <div className='flex flex-col gap-2 border-b border-grey-transparent pb-4 md:flex-row md:items-center md:justify-between'>
             <div>
-              <h2 className='text-lg font-semibold'>D. Đặt lịch khám</h2>
+              <h2 className='text-lg font-semibold'>Đặt lịch khám</h2>
               <p className='text-sm text-grey-500'>
-                Tạo, huỷ và xem các lịch khám được lưu trong bảng tiếp nhận (`danh_sach_tiep_nhan`).
+                Tạo, huỷ và xem các lịch khám của bạn.
               </p>
             </div>
           </div>
@@ -584,7 +595,7 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
                 </select>
               </Field>
 
-              <Field label='Chọn bác sĩ phụ trách' tooltip='Danh sách lấy từ bảng nhân viên (NHANVIEN)'>
+              <Field label='Chọn bác sĩ phụ trách'>
                 <select
                   className={inputBaseClass}
                   {...appointmentForm.register('ID_NhanVien', {
@@ -625,7 +636,12 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
                   <Spinner />
                 </div>
               ) : appointments.length === 0 ? (
-                <p className='mt-4 text-sm text-grey-500'>Bạn chưa có lịch khám nào.</p>
+                <div className="mt-4 flex flex-col items-center justify-center py-8 text-grey-400 bg-grey-50 rounded-lg border border-dashed border-grey-200">
+                  <svg className="w-10 h-10 mb-2 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <p className='text-sm'>Bạn chưa có lịch khám nào.</p>
+                </div>
               ) : (
                 <div className='mt-4 space-y-3'>
                   {appointments.map((appointment) => {
@@ -677,9 +693,9 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
         <section className='rounded-xl bg-white p-6 shadow-sm'>
           <div className='flex flex-col gap-2 border-b border-grey-transparent pb-4 md:flex-row md:items-center md:justify-between'>
             <div>
-              <h2 className='text-lg font-semibold'>E. Thông báo</h2>
+              <h2 className='text-lg font-semibold'>Thông báo</h2>
               <p className='text-sm text-grey-500'>
-                Tự tổng hợp từ trạng thái lịch khám, lịch sử phiếu khám và toa thuốc hiện có.
+                Thông báo về trạng thái lịch khám, kết quả khám và các thông tin khác.
               </p>
             </div>
           </div>
@@ -689,7 +705,12 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
               <Spinner />
             </div>
           ) : notifications.length === 0 ? (
-            <p className='mt-6 text-sm text-grey-500'>Chưa có thông báo nào.</p>
+            <div className="mt-6 flex flex-col items-center justify-center py-10 text-grey-400 bg-grey-50 rounded-lg">
+              <svg className="w-12 h-12 mb-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+              <p className='text-sm'>Chưa có thông báo nào.</p>
+            </div>
           ) : (
             <div className='mt-6 space-y-4'>
               {notifications.map((notification, index) => (
@@ -714,9 +735,9 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
         <section className='rounded-xl bg-white p-6 shadow-sm'>
           <div className='flex flex-col gap-2 border-b border-grey-transparent pb-4 md:flex-row md:items-center md:justify-between'>
             <div>
-              <h2 className='text-lg font-semibold'>F. Dashboard cá nhân</h2>
+              <h2 className='text-lg font-semibold'>Thống kê cá nhân</h2>
               <p className='text-sm text-grey-500'>
-                Tự tổng hợp từ dữ liệu hiện có trong hệ thống: số lần khám, lịch sử bệnh, bác sĩ đã gặp.
+                Tổng hợp thông tin về số lần khám, lịch sử bệnh, bác sĩ đã gặp.
               </p>
             </div>
           </div>

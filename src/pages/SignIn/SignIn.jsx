@@ -66,16 +66,8 @@ const SignIn = () => {
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify({ id: userId, name, email, role }));
 
-      // Navigate based on role
-      if (role === 'patient') {
-        navigate('/benh-nhan');
-      } else if (role === 'DOCTOR' || role === 'RECEPTIONIST') {
-        navigate('/dashboard');
-      } else if (role === 'ADMIN' || role === 'admin') {
-        navigate('/admin');
-      } else {
-        navigate('/');
-      }
+      // Let RoleLanding handle the correct redirection based on the user's role
+      navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
     } finally {
@@ -143,7 +135,7 @@ const SignIn = () => {
           </Input>
         </FormRow>
 
-        <div className='flex justify-between'>
+        <div className='flex justify-between items-center mb-5'>
           <CheckBox name='term' onClick={handleSetChecked} checked={checked}>
             Remember Me
           </CheckBox>

@@ -15,11 +15,19 @@ export function useRolePermissions() {
       nhanVienData: nhanVien,
     });
     
+    const mapRole = (rawRole) => {
+      const code = rawRole.toLowerCase();
+      if (code === 'doctor') return 'doctors';
+      if (code === 'receptionist') return 'receptionists';
+      if (code === 'manager') return 'managers';
+      return code;
+    };
+
     if (nhanVien) {
-      // Backend returns maNhom, convert to lowercase
+      // Backend returns maNhom, convert to lowercase and map to plural if needed
       const maNhom = nhanVien.maNhom || nhanVien.MaNhom;
       if (maNhom) {
-        const code = maNhom.toLowerCase();
+        const code = mapRole(maNhom);
         console.log('Role từ nhanVien:', code);
         return code;
       }
@@ -29,7 +37,7 @@ export function useRolePermissions() {
     if (userNhanVien) {
       const maNhom = userNhanVien.maNhom || userNhanVien.MaNhom;
       if (maNhom) {
-        const code = maNhom.toLowerCase();
+        const code = mapRole(maNhom);
         console.log('Role từ user.nhanVien:', code);
         return code;
       }
@@ -71,10 +79,10 @@ export function useRolePermissions() {
     
     if (roleCode === '@admin') return true;
 
-    const perms = myPermData?.permissions;
+    const perms = myPermData?.data || myPermData?.permissions;
     const requiredPermission = ROUTE_PERMISSIONS[route];
     if (Array.isArray(perms) && requiredPermission) {
-      return perms.includes(requiredPermission);
+      if (perms.includes(requiredPermission)) return true;
     }
     
     const allowedRoles = ROUTE_ROLES[route] || [];
