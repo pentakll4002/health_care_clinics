@@ -18,7 +18,6 @@ public class NhomNguoiDungController {
     private final NhomNguoiDungService nhomNguoiDungService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<List<NhomNguoiDungDTO>>> getAll() {
         return ResponseEntity.ok(ApiResponse.success(nhomNguoiDungService.getAll()));
     }

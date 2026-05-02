@@ -9,7 +9,6 @@ com\healthclinics\entity\PhieuKham$PhieuKhamBuilder.class
 com\healthclinics\dto\DanhSachTiepNhanDTO.class
 com\healthclinics\entity\DichVu.class
 com\healthclinics\repository\NhanVienRepository.class
-com\healthclinics\service\ThuocService.class
 com\healthclinics\dto\PhanQuyenDTO$PhanQuyenDTOBuilder.class
 com\healthclinics\dto\ThuocDTO.class
 com\healthclinics\entity\QuiDinh$QuiDinhBuilder.class
@@ -117,7 +116,6 @@ com\healthclinics\entity\ChiTietBaoCaoDoanhThu$ChiTietBaoCaoDoanhThuBuilder.clas
 com\healthclinics\entity\BaoCaoDoanhThu.class
 com\healthclinics\service\QuiDinhService.class
 com\healthclinics\entity\NhanVien.class
-com\healthclinics\controller\ThuocController.class
 com\healthclinics\dto\ApiResponse$ApiResponseBuilder.class
 com\healthclinics\dto\QuiDinhDTO.class
 com\healthclinics\dto\LichKhamDTO.class

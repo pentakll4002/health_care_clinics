@@ -324,13 +324,13 @@ const CreateDrugImportForm = ({ onCloseModal }) => {
     queryKey: ['drugs-list'],
     queryFn: () => getDrugs(1, 1000),
   });
-  const drugs = drugsData?.data || [];
+  const drugs = Array.isArray(drugsData) ? drugsData : (drugsData?.data || []);
 
   const addChiTiet = () => {
     setChiTiet([
       ...chiTiet,
       {
-        ID_Thuoc: '',
+        idThuoc: '',
         SoLuongNhap: 1,
         DonGiaNhap: 0,
         HanSuDung: '',
@@ -347,10 +347,10 @@ const CreateDrugImportForm = ({ onCloseModal }) => {
     updated[index] = { ...updated[index], [field]: value };
     
     // Nếu chọn thuốc, tự động điền đơn giá nhập từ thuốc
-    if (field === 'ID_Thuoc') {
-      const selectedDrug = drugs.find((d) => d.ID_Thuoc === parseInt(value));
-      if (selectedDrug && selectedDrug.DonGiaNhap) {
-        updated[index].DonGiaNhap = selectedDrug.DonGiaNhap;
+    if (field === 'idThuoc') {
+      const selectedDrug = drugs.find((d) => d.idThuoc === parseInt(value));
+      if (selectedDrug && selectedDrug.donGiaNhap) {
+        updated[index].DonGiaNhap = selectedDrug.donGiaNhap;
       }
     }
     
@@ -372,7 +372,7 @@ const CreateDrugImportForm = ({ onCloseModal }) => {
     // Validate chi tiết
     for (let i = 0; i < chiTiet.length; i++) {
       const item = chiTiet[i];
-      if (!item.ID_Thuoc) {
+      if (!item.idThuoc) {
         toast.error(`Vui lòng chọn thuốc cho dòng ${i + 1}`);
         return;
       }
@@ -389,7 +389,7 @@ const CreateDrugImportForm = ({ onCloseModal }) => {
     const formData = {
       NgayNhap: data.NgayNhap,
       chi_tiet: chiTiet.map((item) => ({
-        ID_Thuoc: parseInt(item.ID_Thuoc),
+        ID_Thuoc: parseInt(item.idThuoc),
         SoLuongNhap: parseInt(item.SoLuongNhap),
         DonGiaNhap: parseFloat(item.DonGiaNhap),
         HanSuDung: item.HanSuDung || null,
@@ -454,14 +454,14 @@ const CreateDrugImportForm = ({ onCloseModal }) => {
                 <TableRow key={index}>
                   <TableCell>
                     <Select
-                      value={item.ID_Thuoc}
-                      onChange={(e) => updateChiTiet(index, 'ID_Thuoc', e.target.value)}
+                      value={item.idThuoc}
+                      onChange={(e) => updateChiTiet(index, 'idThuoc', e.target.value)}
                       style={{ width: '100%' }}
                     >
                       <option value=''>-- Chọn thuốc --</option>
                       {drugs.map((drug) => (
-                        <option key={drug.ID_Thuoc} value={drug.ID_Thuoc}>
-                          {drug.TenThuoc}
+                        <option key={drug.idThuoc} value={drug.idThuoc}>
+                          {drug.tenThuoc}
                         </option>
                       ))}
                     </Select>

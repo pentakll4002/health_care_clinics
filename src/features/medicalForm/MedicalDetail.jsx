@@ -99,7 +99,7 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
   const { data: drugsData } = useQuery({
     queryKey: ['thuoc-mini'],
     queryFn: async () => {
-      const res = await axiosInstance.get('/thuoc', { params: { page: 1, limit: 200 } });
+      const res = await axiosInstance.get('/thuoc', { params: { page: 0, size: 1000 } });
       return res.data;
     },
   });
@@ -109,8 +109,8 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
     queryFn: getCachDung,
   });
 
-  const drugs = drugsData?.data || [];
-  const cachDungList = cachDungData || [];
+  const drugs = Array.isArray(drugsData) ? drugsData : (drugsData?.data || []);
+  const cachDungList = Array.isArray(cachDungData) ? cachDungData : (cachDungData?.data || []);
 
   const updateMutation = useMutation({
     mutationFn: (payload) => updatePhieuKham(ID_PhieuKham, payload),
@@ -386,8 +386,8 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
               <select name='ID_Thuoc' className='w-full rounded-md border border-grey-transparent px-3 py-2 text-sm'>
                 <option value=''>-- Chọn thuốc --</option>
                 {drugs.map((d) => (
-                  <option key={d.ID_Thuoc} value={d.ID_Thuoc}>
-                    {d.TenThuoc}
+                  <option key={d.idThuoc} value={d.idThuoc}>
+                    {d.tenThuoc} {d.donGiaBan ? `- ${new Intl.NumberFormat('vi-VN').format(d.donGiaBan)}đ` : ''}
                   </option>
                 ))}
               </select>
@@ -410,8 +410,8 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
               >
                 <option value=''>-- Chọn cách dùng --</option>
                 {cachDungList.map((cachDung) => (
-                  <option key={cachDung.ID_CachDung} value={cachDung.MoTaCachDung}>
-                    {cachDung.MoTaCachDung}
+                  <option key={cachDung.idCachDung} value={cachDung.moTaCachDung}>
+                    {cachDung.moTaCachDung}
                   </option>
                 ))}
               </select>
@@ -429,8 +429,9 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
 
       <div className='mt-4 rounded-xl border border-grey-transparent bg-white p-5'>
         <h3 className='mb-4 text-sm font-bold uppercase tracking-wide text-grey-700'>Danh sách thuốc đã kê</h3>
-        <Table columns='2fr 1fr 1fr 2fr 1fr 1fr'>
+        <Table columns='1fr 2fr 1fr 1fr 2fr 1fr 1fr'>
           <Table.Header>
+            <div className='mx-auto'>Ảnh</div>
             <div className='mx-auto'>Tên thuốc</div>
             <div className='mx-auto'>ĐVT</div>
             <div className='mx-auto'>Số lượng</div>
@@ -446,13 +447,20 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
               const donGia = toa.DonGiaBan_LuocMua ?? thuoc?.DonGiaBan;
               return (
                 <Table.Row key={`${toa.ID_PhieuKham}-${toa.ID_Thuoc}`}>
-                  <Text>{thuoc?.TenThuoc || '—'}</Text>
-                  <Text>{thuoc?.dvt?.TenDVT || thuoc?.dvt?.TenDvt || '—'}</Text>
+                  <div className='mx-auto flex items-center justify-center'>
+                    {thuoc?.HinhAnh || thuoc?.hinhAnh ? (
+                      <img src={thuoc.HinhAnh || thuoc.hinhAnh} alt={thuoc.TenThuoc || thuoc.tenThuoc} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px' }} />
+                    ) : (
+                      <span className="text-xs text-grey-400">Không có</span>
+                    )}
+                  </div>
+                  <Text>{thuoc?.TenThuoc || thuoc?.tenThuoc || '—'}</Text>
+                  <Text>{thuoc?.dvt?.TenDVT || thuoc?.dvt?.TenDvt || thuoc?.tenDvt || '—'}</Text>
                   <Text>{toa.SoLuong}</Text>
                   <Text>{toa.CachDung || '—'}</Text>
-                  <Text>{donGia ?? 0}</Text>
+                  <Text>{formatCurrency(donGia ?? 0)}</Text>
                   <div className='flex items-center justify-end gap-2'>
-                    <Text>{toa.TienThuoc ?? 0}</Text>
+                    <Text>{formatCurrency(toa.TienThuoc ?? 0)}</Text>
                     {!readOnly && (
                       <button
                         type='button'

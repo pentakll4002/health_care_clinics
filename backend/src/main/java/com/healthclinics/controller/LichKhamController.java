@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/lich-kham")
@@ -63,7 +64,14 @@ public class LichKhamController {
     }
 
     @PostMapping("/{id}/confirm")
-    public ResponseEntity<LichKhamDTO> confirm(@PathVariable Long id) {
+    public ResponseEntity<LichKhamDTO> confirm(@PathVariable Long id, @RequestBody(required = false) Map<String, Object> body) {
+        Long idBacSi = null;
+        if (body != null && body.containsKey("ID_BacSi") && body.get("ID_BacSi") != null) {
+            idBacSi = Long.valueOf(body.get("ID_BacSi").toString());
+        }
+        if (idBacSi != null) {
+            return ResponseEntity.ok(lichKhamService.confirmWithDoctor(id, idBacSi));
+        }
         return ResponseEntity.ok(lichKhamService.confirm(id));
     }
 

@@ -27,8 +27,9 @@ const LichKhamTableContainer = ({ filterStatus, filterDate, filterRange }) => {
     const from = new Date(filterRange.from);
     const to = new Date(filterRange.to);
     return (rawLichKhams || []).filter((lk) => {
-      if (!lk.NgayKhamDuKien) return false;
-      const d = new Date(lk.NgayKhamDuKien);
+      const ngay = lk.ngayKhamDuKien || lk.NgayKhamDuKien;
+      if (!ngay) return false;
+      const d = new Date(ngay);
       return d >= from && d <= to;
     });
   }, [rawLichKhams, filterRange]);
@@ -59,7 +60,7 @@ const LichKhamTableContainer = ({ filterStatus, filterDate, filterRange }) => {
         <Table.Body
           data={lichKhams}
           render={(lichKham) => (
-            <LichKhamTableRow key={lichKham.ID_LichKham} lichKham={lichKham} />
+            <LichKhamTableRow key={lichKham.idLichKham || lichKham.ID_LichKham} lichKham={lichKham} />
           )}
         />
       </Table>

@@ -25,14 +25,14 @@ public class NhanVienService {
 
     @Transactional(readOnly = true)
     public List<NhanVienDTO> getAll() {
-        return nhanVienRepository.findAll().stream()
+        return nhanVienRepository.findAllWithNhom().stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
     public Page<NhanVienDTO> getAll(Pageable pageable) {
-        return nhanVienRepository.findAll(pageable)
+        return nhanVienRepository.findAllWithNhom(pageable)
                 .map(this::mapToDTO);
     }
 
@@ -45,14 +45,14 @@ public class NhanVienService {
 
     @Transactional(readOnly = true)
     public List<NhanVienDTO> search(String keyword) {
-        return nhanVienRepository.searchByKeyword(keyword).stream()
+        return nhanVienRepository.searchByKeywordWithNhom(keyword).stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
     public List<NhanVienDTO> getByNhom(String maNhom) {
-        return nhanVienRepository.findByNhomMaNhom(maNhom).stream()
+        return nhanVienRepository.findByNhomMaNhomWithNhom(maNhom).stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
@@ -81,12 +81,14 @@ public class NhanVienService {
                 .diaChi(dto.getDiaChi())
                 .email(dto.getEmail())
                 .hinhAnh(dto.getHinhAnh())
-                .trangThai(dto.getTrangThai() != null ? dto.getTrangThai() : "active")
+                .trangThai(dto.getTrangThai() != null ? dto.getTrangThai() : "Đang làm việc")
                 .idNhom(dto.getIdNhom())
                 .userId(user.getId())
                 .build();
         
-        return mapToDTO(nhanVienRepository.save(nv));
+        NhanVien saved = nhanVienRepository.save(nv);
+        // Re-fetch with nhom to return complete data
+        return mapToDTO(nhanVienRepository.findByIdWithNhom(saved.getIdNhanVien()).orElse(saved));
     }
 
     @Transactional
@@ -105,7 +107,9 @@ public class NhanVienService {
         nv.setTrangThai(dto.getTrangThai());
         nv.setIdNhom(dto.getIdNhom());
         
-        return mapToDTO(nhanVienRepository.save(nv));
+        NhanVien saved = nhanVienRepository.save(nv);
+        // Re-fetch with nhom to return complete data
+        return mapToDTO(nhanVienRepository.findByIdWithNhom(saved.getIdNhanVien()).orElse(saved));
     }
 
     @Transactional

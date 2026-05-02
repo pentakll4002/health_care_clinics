@@ -2,6 +2,7 @@ C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\Custom
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\DataInitializer.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\JwtAuthenticationFilter.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\JwtTokenUtil.java
+C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\PermissionFixer.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\SecurityConfig.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\UserPrincipal.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\AuthController.java

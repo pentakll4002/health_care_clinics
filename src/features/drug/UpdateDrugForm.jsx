@@ -20,30 +20,32 @@ const UpdateDrugForm = ({ drug, onCloseModal }) => {
   const { errors } = formState;
   const queryClient = useQueryClient();
 
-  const { data: dvtList = [] } = useQuery({
+  const { data: dvtData = [] } = useQuery({
     queryKey: ['dvt'],
     queryFn: getDVT,
   });
+  const dvtList = Array.isArray(dvtData) ? dvtData : (dvtData?.data || []);
 
-  const { data: cachDungList = [] } = useQuery({
+  const { data: cachDungData = [] } = useQuery({
     queryKey: ['cach-dung'],
     queryFn: getCachDung,
   });
+  const cachDungList = Array.isArray(cachDungData) ? cachDungData : (cachDungData?.data || []);
 
   // Set default values when drug data is loaded
   useEffect(() => {
     if (drug) {
       reset({
-        TenThuoc: drug.TenThuoc || '',
-        ID_DVT: drug.ID_DVT || '',
-        ID_CachDung: drug.ID_CachDung || '',
-        ThanhPhan: drug.ThanhPhan || '',
-        XuatXu: drug.XuatXu || '',
-        SoLuongTon: drug.SoLuongTon || 0,
-        DonGiaNhap: drug.DonGiaNhap || '',
-        TyLeGiaBan: drug.TyLeGiaBan || '',
-        DonGiaBan: drug.DonGiaBan || '',
-        HinhAnh: drug.HinhAnh || '',
+        tenThuoc: drug.tenThuoc || '',
+        idDvt: drug.idDvt || '',
+        idCachDung: drug.idCachDung || '',
+        thanhPhan: drug.thanhPhan || '',
+        xuatXu: drug.xuatXu || '',
+        soLuongTon: drug.soLuongTon || 0,
+        donGiaNhap: drug.donGiaNhap || '',
+        tyLeGiaBan: drug.tyLeGiaBan || '',
+        donGiaBan: drug.donGiaBan || '',
+        hinhAnh: drug.hinhAnh || '',
       });
     }
   }, [drug, reset]);
@@ -53,7 +55,7 @@ const UpdateDrugForm = ({ drug, onCloseModal }) => {
     onSuccess: () => {
       toast.success('Cập nhật thuốc thành công');
       queryClient.invalidateQueries({ queryKey: ['drugs'] });
-      queryClient.invalidateQueries({ queryKey: ['drug', drug?.ID_Thuoc] });
+      queryClient.invalidateQueries({ queryKey: ['drug', drug?.idThuoc] });
       if (onCloseModal) onCloseModal();
     },
     onError: (error) => {
@@ -65,18 +67,18 @@ const UpdateDrugForm = ({ drug, onCloseModal }) => {
 
   function onSubmit(data) {
     const formData = {
-      TenThuoc: data.TenThuoc,
-      ID_DVT: parseInt(data.ID_DVT),
-      ID_CachDung: parseInt(data.ID_CachDung),
-      ThanhPhan: data.ThanhPhan || null,
-      XuatXu: data.XuatXu || null,
-      SoLuongTon: parseInt(data.SoLuongTon) || 0,
-      DonGiaNhap: parseFloat(data.DonGiaNhap) || null,
-      HinhAnh: data.HinhAnh || null,
-      TyLeGiaBan: parseFloat(data.TyLeGiaBan) || null,
-      DonGiaBan: parseFloat(data.DonGiaBan) || null,
+      tenThuoc: data.tenThuoc,
+      idDvt: parseInt(data.idDvt),
+      idCachDung: parseInt(data.idCachDung),
+      thanhPhan: data.thanhPhan || null,
+      xuatXu: data.xuatXu || null,
+      soLuongTon: parseInt(data.soLuongTon) || 0,
+      donGiaNhap: parseFloat(data.donGiaNhap) || null,
+      hinhAnh: data.hinhAnh || null,
+      tyLeGiaBan: parseFloat(data.tyLeGiaBan) || null,
+      donGiaBan: parseFloat(data.donGiaBan) || null,
     };
-    updateDrugMutation({ id: drug.ID_Thuoc, data: formData });
+    updateDrugMutation({ id: drug.idThuoc, data: formData });
   }
 
   if (!drug) return null;
@@ -120,4 +122,3 @@ const UpdateDrugForm = ({ drug, onCloseModal }) => {
 };
 
 export default UpdateDrugForm;
-

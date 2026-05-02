@@ -33,15 +33,16 @@ const Image = styled.img`
 `;
 
 const DrugCard = ({ drug }) => {
+  // Backend returns camelCase: idThuoc, tenThuoc, tenDvt, moTaCachDung, etc.
   const {
-    ID_Thuoc,
-    TenThuoc,
-    SoLuongTon,
-    DonGiaBan,
-    DonGiaNhap,
-    HinhAnh,
-    dvt,
-    cach_dung: cachDung,
+    idThuoc,
+    tenThuoc,
+    soLuongTon,
+    donGiaBan,
+    donGiaNhap,
+    hinhAnh,
+    tenDvt,
+    moTaCachDung,
   } = drug;
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -58,7 +59,7 @@ const DrugCard = ({ drug }) => {
   });
 
   function handleDelete() {
-    deleteDrugMutation(ID_Thuoc);
+    deleteDrugMutation(idThuoc);
   }
 
   return (
@@ -66,45 +67,45 @@ const DrugCard = ({ drug }) => {
       <div className='flex items-start justify-between w-full'>
         <div className='flex items-center gap-x-4'>
           <Image
-            src={HinhAnh || '/placeholder-drug.jpg'}
-            alt={TenThuoc}
+            src={hinhAnh || '/placeholder-drug.jpg'}
+            alt={tenThuoc}
             onError={(e) => {
               e.target.src = '/placeholder-drug.jpg';
             }}
           />
           <div className='flex flex-col items-start justify-center gap-1'>
             <h3 className='text-base font-semibold text-grey-900'>
-              {TenThuoc}
+              {tenThuoc}
             </h3>
             <p className='text-sm text-grey-500'>
-              Đơn vị: {dvt?.TenDVT || 'N/A'}
+              Đơn vị: {tenDvt || 'N/A'}
             </p>
             <p className='text-sm text-grey-500'>
-              Cách dùng: {cachDung?.MoTaCachDung || 'N/A'}
+              Cách dùng: {moTaCachDung || 'N/A'}
             </p>
           </div>
         </div>
         <ModalCenter>
           <Menus>
             <Menus.Menu>
-              <Menus.Toggle id={ID_Thuoc} />
+              <Menus.Toggle id={idThuoc} />
 
-              <Menus.List id={ID_Thuoc}>
+              <Menus.List id={idThuoc}>
                 <Menus.Button
                   icon={<PencilIcon className='w-4 h-4' />}
-                  onClick={() => navigate(`/drugs/${ID_Thuoc}`)}
+                  onClick={() => navigate(`/drugs/${idThuoc}`)}
                 >
                   Chi tiết
                 </Menus.Button>
 
-                <ModalCenter.Open opens={`delete-${ID_Thuoc}`}>
+                <ModalCenter.Open opens={`delete-${idThuoc}`}>
                   <Menus.Button icon={<TrashIcon className='w-4 h-4' />}>
                     Xoá
                   </Menus.Button>
                 </ModalCenter.Open>
               </Menus.List>
 
-              <ModalCenter.Window name={`delete-${ID_Thuoc}`}>
+              <ModalCenter.Window name={`delete-${idThuoc}`}>
                 <ConfirmDelete
                   resourceName='Thuốc'
                   disabled={isDeleting}
@@ -121,28 +122,28 @@ const DrugCard = ({ drug }) => {
         <div className='flex flex-col gap-1'>
           <span className='text-xs text-grey-500'>Số lượng tồn</span>
           <span className='text-sm font-semibold text-grey-900'>
-            {SoLuongTon || 0}
+            {soLuongTon || 0}
           </span>
         </div>
         <div className='flex flex-col gap-1'>
           <span className='text-xs text-grey-500'>Giá bán</span>
           <span className='text-sm font-semibold text-primary'>
-            {DonGiaBan
+            {donGiaBan
               ? new Intl.NumberFormat('vi-VN', {
                   style: 'currency',
                   currency: 'VND',
-                }).format(DonGiaBan)
+                }).format(donGiaBan)
               : 'N/A'}
           </span>
         </div>
         <div className='flex flex-col gap-1'>
           <span className='text-xs text-grey-500'>Giá nhập</span>
           <span className='text-sm font-semibold text-grey-900'>
-            {DonGiaNhap
+            {donGiaNhap
               ? new Intl.NumberFormat('vi-VN', {
                   style: 'currency',
                   currency: 'VND',
-                }).format(DonGiaNhap)
+                }).format(donGiaNhap)
               : 'N/A'}
           </span>
         </div>
@@ -152,4 +153,3 @@ const DrugCard = ({ drug }) => {
 };
 
 export default DrugCard;
-

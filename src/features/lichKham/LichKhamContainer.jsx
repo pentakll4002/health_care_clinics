@@ -26,7 +26,7 @@ const LichKhamContainer = ({ filterStatus }) => {
   return (
     <Container>
       {lichKhams.map((lichKham) => (
-        <LichKhamCard key={lichKham.ID_LichKham} lichKham={lichKham} />
+        <LichKhamCard key={lichKham.idLichKham || lichKham.ID_LichKham} lichKham={lichKham} />
       ))}
     </Container>
   );

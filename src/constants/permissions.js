@@ -20,7 +20,7 @@ export const ROUTE_ROLES = {
   
   reception: ['admin', 'receptionists'],
   
-  drugs: ['admin', 'managers'],
+  drugs: ['admin', 'managers', 'doctors'],
   
   medicalForms: ['admin', 'doctors'],
 

@@ -42,11 +42,19 @@ const ActionsCell = styled.div`
 `;
 
 function EmployeeRow({ employee }) {
-  const group = employee?.nhom_nguoi_dung || employee?.nhomNguoiDung;
+  // Support both camelCase (from DTO) and PascalCase (legacy) field names
+  const empId = employee?.idNhanVien || employee?.ID_NhanVien;
+  const empName = employee?.hoTenNV || employee?.HoTenNV;
+  const empAddress = employee?.diaChi || employee?.DiaChi;
+  const empPhone = employee?.dienThoai || employee?.DienThoai;
+  const empEmail = employee?.email || employee?.Email;
+  const empStatus = employee?.trangThai || employee?.TrangThai;
+  const empGroupName = employee?.tenNhom || employee?.TenNhom;
+
   const queryClient = useQueryClient();
 
   const { mutateAsync: handleDelete, isLoading: isDeleting } = useMutation({
-    mutationFn: () => deleteDoctor(employee.ID_NhanVien),
+    mutationFn: () => deleteDoctor(empId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['employees'] });
       queryClient.invalidateQueries({ queryKey: ['doctors'] });
@@ -56,21 +64,21 @@ function EmployeeRow({ employee }) {
   return (
     <Table.Row>
       <EmployeeName>
-        <span>{employee?.HoTenNV}</span>
-        <span>{employee?.DiaChi}</span>
+        <span>{empName}</span>
+        <span>{empAddress}</span>
       </EmployeeName>
 
-      <Badge>{group?.TenNhom ?? 'Chưa gán nhóm'}</Badge>
+      <Badge>{empGroupName ?? 'Chưa gán nhóm'}</Badge>
 
-      <span className='text-sm text-grey-600'>{employee?.DienThoai || '—'}</span>
-      <span className='text-sm text-grey-600 break-all'>{employee?.Email}</span>
-      <span className='text-sm font-medium text-grey-700'>{employee?.TrangThai ?? 'Đang làm việc'}</span>
+      <span className='text-sm text-grey-600'>{empPhone || '—'}</span>
+      <span className='text-sm text-grey-600 break-all'>{empEmail}</span>
+      <span className='text-sm font-medium text-grey-700'>{empStatus ?? 'Đang làm việc'}</span>
       <ActionsCell>
         <Modal>
           <Menus>
             <Menus.Menu>
-              <Menus.Toggle id={`emp-${employee.ID_NhanVien}`} />
-              <Menus.List id={`emp-${employee.ID_NhanVien}`}>
+              <Menus.Toggle id={`emp-${empId}`} />
+              <Menus.List id={`emp-${empId}`}>
                 <Modal.Open opens='edit-employee'>
                   <Menus.Button icon={<PencilIcon className='w-4 h-4' />}>Chỉnh sửa</Menus.Button>
                 </Modal.Open>
@@ -107,4 +115,3 @@ function EmployeeRow({ employee }) {
 }
 
 export default EmployeeRow;
-

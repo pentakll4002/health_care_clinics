@@ -193,10 +193,11 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
   const notifications = notificationsData?.data || [];
   const dashboard = dashboardData || {};
   const doctors = useMemo(() => {
-    const items = doctorOptionsData?.data || [];
+    const items = Array.isArray(doctorOptionsData) ? doctorOptionsData : (doctorOptionsData?.data || []);
     return items.filter((nv) => {
-      const nhom = nv?.nhomNguoiDung || nv?.nhom_nguoi_dung;
-      return nhom?.MaNhom === '@doctors' || nhom?.MaNhom === 'doctors';
+      const nhom = nv?.nhomNguoiDung || nv?.nhom_nguoi_dung || nv;
+      const maNhom = nhom?.maNhom || nhom?.MaNhom;
+      return maNhom === 'DOCTOR' || maNhom === '@doctors' || maNhom === 'doctors';
     });
   }, [doctorOptionsData]);
 
@@ -606,11 +607,15 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
                   {loadingDoctors ? (
                     <option>Đang tải danh sách bác sĩ...</option>
                   ) : (
-                    doctors.map((doctor) => (
-                      <option key={doctor.ID_NhanVien} value={doctor.ID_NhanVien}>
-                        {doctor.HoTenNV}
-                      </option>
-                    ))
+                    doctors.map((doctor) => {
+                      const id = doctor.idNhanVien || doctor.ID_NhanVien;
+                      const name = doctor.hoTenNV || doctor.HoTenNV;
+                      return (
+                        <option key={id} value={id}>
+                          {name}
+                        </option>
+                      );
+                    })
                   )}
                 </select>
                 {appointmentForm.formState.errors?.ID_NhanVien && (
@@ -645,33 +650,41 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
               ) : (
                 <div className='mt-4 space-y-3'>
                   {appointments.map((appointment) => {
-                    const appointmentDate = new Date(appointment.NgayTN);
+                    const appointmentDate = new Date(appointment.ngayKhamDuKien || appointment.NgayTN);
                     const isPast = Number.isNaN(appointmentDate.getTime())
                       ? false
                       : appointmentDate.getTime() < Date.now();
-                    const status = appointment.TrangThai
+                    const statusText = appointment.trangThai || appointment.TrangThai;
+                    const status = (statusText === 'DaXacNhan' || statusText === 'Đã xác nhận')
                       ? 'Đã xác nhận'
+                      : (statusText === 'Huy' || statusText === 'Đã hủy') 
+                      ? 'Đã huỷ'
                       : isPast
                       ? 'Đang chờ kết quả'
                       : 'Chờ xác nhận';
 
+                    const keyId = appointment.idLichKham || appointment.ID_TiepNhan;
+                    const caKham = appointment.caKham || appointment.CaTN;
+                    const tenBacSi = appointment.tenBacSi || appointment.nhanVien?.HoTenNV || 'Đang phân công';
+                    const dateStr = appointment.ngayKhamDuKien || appointment.NgayTN;
+
                     return (
                       <div
-                        key={appointment.ID_TiepNhan}
+                        key={keyId}
                         className='rounded-lg border border-grey-transparent bg-grey-50 p-4'
                       >
                         <p className='text-sm font-semibold text-grey-900'>
-                          {formatDate(appointment.NgayTN)} – Ca {appointment.CaTN}
+                          {formatDate(dateStr)} – Ca {caKham}
                         </p>
                         <p className='text-sm text-grey-600'>
-                          Bác sĩ: {appointment.nhanVien?.HoTenNV || 'Đang phân công'}
+                          Bác sĩ: {tenBacSi}
                         </p>
                         <p className='text-xs font-semibold uppercase text-primary'>{status}</p>
 
-                        {!appointment.TrangThai && !isPast && (
+                        {(statusText === 'ChoXacNhan' || !statusText) && !isPast && (
                           <Button
                             type='button'
-                            onClick={() => handleCancelAppointment(appointment.ID_TiepNhan)}
+                            onClick={() => handleCancelAppointment(keyId)}
                             disabled={cancelAppointment.isPending}
                             className='mt-3 bg-red-500 px-3 py-2 text-xs font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60'
                           >

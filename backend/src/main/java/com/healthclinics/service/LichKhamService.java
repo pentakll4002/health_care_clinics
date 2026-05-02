@@ -23,8 +23,7 @@ public class LichKhamService {
     private final BenhNhanRepository benhNhanRepository;
 
     public List<LichKhamDTO> getAll() {
-        return lichKhamRepository.findAll().stream()
-                .filter(lk -> !lk.getIsDeleted())
+        return lichKhamRepository.findAllWithRelations().stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
@@ -40,7 +39,7 @@ public class LichKhamService {
     }
 
     public List<LichKhamDTO> getByBenhNhan(Long benhNhanId) {
-        return lichKhamRepository.findByIdBenhNhanAndIsDeletedFalse(benhNhanId).stream()
+        return lichKhamRepository.findByBenhNhanWithRelations(benhNhanId).stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
@@ -66,12 +65,15 @@ public class LichKhamService {
                 .idBacSi(dto.getIdBacSi())
                 .ngayKhamDuKien(dto.getNgayKhamDuKien())
                 .caKham(dto.getCaKham())
-                .trangThai("cho_xac_nhan")
+                .trangThai("ChoXacNhan")
                 .ghiChu(dto.getGhiChu())
                 .isDeleted(false)
                 .build();
         
-        return mapToDTO(lichKhamRepository.save(lk));
+        LichKham saved = lichKhamRepository.save(lk);
+        // Re-fetch with relations for complete data
+        LichKham refetched = lichKhamRepository.findByIdWithBenhNhan(saved.getIdLichKham());
+        return mapToDTO(refetched != null ? refetched : saved);
     }
 
     @Transactional
@@ -79,10 +81,21 @@ public class LichKhamService {
         LichKham lk = lichKhamRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("LichKham not found"));
         
-        lk.setIdBacSi(dto.getIdBacSi());
-        lk.setNgayKhamDuKien(dto.getNgayKhamDuKien());
-        lk.setCaKham(dto.getCaKham());
-        lk.setGhiChu(dto.getGhiChu());
+        if (dto.getIdBacSi() != null) {
+            lk.setIdBacSi(dto.getIdBacSi());
+        }
+        if (dto.getNgayKhamDuKien() != null) {
+            lk.setNgayKhamDuKien(dto.getNgayKhamDuKien());
+        }
+        if (dto.getCaKham() != null) {
+            lk.setCaKham(dto.getCaKham());
+        }
+        if (dto.getTrangThai() != null) {
+            lk.setTrangThai(dto.getTrangThai());
+        }
+        if (dto.getGhiChu() != null) {
+            lk.setGhiChu(dto.getGhiChu());
+        }
         
         return mapToDTO(lichKhamRepository.save(lk));
     }
@@ -92,7 +105,19 @@ public class LichKhamService {
         LichKham lk = lichKhamRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("LichKham not found"));
         
-        lk.setTrangThai("da_xac_nhan");
+        lk.setTrangThai("DaXacNhan");
+        return mapToDTO(lichKhamRepository.save(lk));
+    }
+
+    @Transactional
+    public LichKhamDTO confirmWithDoctor(Long id, Long idBacSi) {
+        LichKham lk = lichKhamRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("LichKham not found"));
+        
+        lk.setTrangThai("DaXacNhan");
+        if (idBacSi != null) {
+            lk.setIdBacSi(idBacSi);
+        }
         return mapToDTO(lichKhamRepository.save(lk));
     }
 
@@ -101,7 +126,7 @@ public class LichKhamService {
         LichKham lk = lichKhamRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("LichKham not found"));
         
-        lk.setTrangThai("da_huy");
+        lk.setTrangThai("Huy");
         lk.setIsDeleted(true);
         return mapToDTO(lichKhamRepository.save(lk));
     }

@@ -27,28 +27,19 @@ async function getPatientsList() {
     return response.data;
   } catch (error) {
     console.error('Error fetching patients:', error);
-    return {
-      data: [],
-      totalCount: 0,
-    };
+    return [];
   }
 }
 
 async function getNhanVienList() {
   try {
-    const response = await axiosInstance.get('/nhanvien', {
-      params: { 
-        limit: 100,
-        page: 1
-      },
+    const response = await axiosInstance.get('/nhanvien', { 
+      params: { page: 0, limit: 10 },
     });
     return response.data;
   } catch (error) {
     console.error('Error fetching nhan vien:', error);
-    return {
-      data: [],
-      totalCount: 0,
-    };
+    return [];
   }
 }
 
@@ -67,30 +58,37 @@ const EditAppointmentForm = ({ appointment, onCloseModal }) => {
     queryFn: getNhanVienList,
   });
 
-  // Lọc chỉ bệnh nhân chưa bị xóa
-  const patients = (patientsData?.data || []).filter(
-    (patient) => !patient.Is_Deleted
+  // Normalize data - API returns List directly (not wrapped)
+  const patientsRaw = Array.isArray(patientsData) ? patientsData : (patientsData?.data || []);
+  const patients = patientsRaw.filter(
+    (patient) => !patient.isDeleted && !patient.Is_Deleted
   );
   
-  // Lọc chỉ nhân viên đang làm việc
-  const nhanVienList = (nhanVienData?.data || []).filter(
-    (nv) => nv.TrangThai === 'Đang làm việc'
-  );
+  // Normalize nhanvien data
+  const nhanVienRaw = Array.isArray(nhanVienData) ? nhanVienData : (nhanVienData?.data || []);
+  const nhanVienList = nhanVienRaw.filter((nv) => {
+    const status = nv.trangThai || nv.TrangThai;
+    return status === 'Đang làm việc' || status === 'active' || !status;
+  });
 
   // Set default values when appointment data is loaded
   useEffect(() => {
     if (appointment) {
-      // Format datetime for input
-      const ngayTN = appointment.NgayTN 
-        ? new Date(appointment.NgayTN).toISOString().slice(0, 16)
+      const apptNgayTN = appointment.ngayTN || appointment.NgayTN;
+      const ngayTN = apptNgayTN 
+        ? new Date(apptNgayTN).toISOString().slice(0, 16)
         : '';
+      const apptIdBN = appointment.idBenhNhan || appointment.ID_BenhNhan;
+      const apptIdNV = appointment.idNhanVien || appointment.ID_NhanVien;
+      const apptCaTN = appointment.caTN || appointment.CaTN;
+      const apptTrangThai = appointment.trangThaiTiepNhan || appointment.TrangThaiTiepNhan;
       
       reset({
-        ID_BenhNhan: appointment.ID_BenhNhan?.toString() || '',
+        ID_BenhNhan: apptIdBN?.toString() || '',
         NgayTN: ngayTN,
-        CaTN: appointment.CaTN || '',
-        ID_NhanVien: appointment.ID_NhanVien?.toString() || '',
-        TrangThaiTiepNhan: appointment.TrangThaiTiepNhan || 'CHO_KHAM',
+        CaTN: apptCaTN || '',
+        ID_NhanVien: apptIdNV?.toString() || '',
+        TrangThaiTiepNhan: apptTrangThai || 'CHO_KHAM',
       });
     }
   }, [appointment, reset]);
@@ -118,7 +116,8 @@ const EditAppointmentForm = ({ appointment, onCloseModal }) => {
       ID_NhanVien: parseInt(data.ID_NhanVien),
       TrangThaiTiepNhan: data.TrangThaiTiepNhan,
     };
-    updateAppointmentMutation({ id: appointment.ID_TiepNhan, data: formData });
+    const apptId = appointment.idTiepNhan || appointment.ID_TiepNhan;
+    updateAppointmentMutation({ id: apptId, data: formData });
   }
 
   return (
@@ -136,11 +135,16 @@ const EditAppointmentForm = ({ appointment, onCloseModal }) => {
             disabled={isLoadingPatients}
           >
             <option value=''>Chọn bệnh nhân</option>
-            {patients.map((patient) => (
-              <option key={patient.ID_BenhNhan} value={patient.ID_BenhNhan}>
-                {patient.HoTenBN} {patient.DienThoai ? `- ${patient.DienThoai}` : ''}
-              </option>
-            ))}
+            {patients.map((patient) => {
+              const id = patient.idBenhNhan || patient.ID_BenhNhan;
+              const name = patient.hoTenBN || patient.HoTenBN;
+              const phone = patient.dienThoai || patient.DienThoai;
+              return (
+                <option key={id} value={id}>
+                  {name} {phone ? `- ${phone}` : ''}
+                </option>
+              );
+            })}
           </Select>
         </FormRow>
 
@@ -158,11 +162,16 @@ const EditAppointmentForm = ({ appointment, onCloseModal }) => {
                 Không có nhân viên nào
               </option>
             ) : (
-              nhanVienList.map((nv) => (
-                <option key={nv.ID_NhanVien} value={nv.ID_NhanVien}>
-                  {nv.HoTenNV} {nv.nhomNguoiDung ? `(${nv.nhomNguoiDung.TenNhom})` : ''}
-                </option>
-              ))
+              nhanVienList.map((nv) => {
+                const id = nv.idNhanVien || nv.ID_NhanVien;
+                const name = nv.hoTenNV || nv.HoTenNV;
+                const groupName = nv.tenNhom || nv.TenNhom;
+                return (
+                  <option key={id} value={id}>
+                    {name} {groupName ? `(${groupName})` : ''}
+                  </option>
+                );
+              })
             )}
           </Select>
         </FormRow>

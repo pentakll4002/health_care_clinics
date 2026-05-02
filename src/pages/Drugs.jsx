@@ -221,8 +221,8 @@ const Drugs = () => {
                   >
                     <option value=''>Tất cả thuốc</option>
                     {drugs.map((drug) => (
-                      <option key={drug.ID_Thuoc} value={drug.ID_Thuoc}>
-                        {drug.TenThuoc}
+                      <option key={drug.idThuoc} value={drug.idThuoc}>
+                        {drug.tenThuoc}
                       </option>
                     ))}
                   </Select>

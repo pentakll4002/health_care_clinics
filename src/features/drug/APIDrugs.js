@@ -1,7 +1,8 @@
 import axiosInstance from '../../utils/axiosInstance';
 
 export async function getDrugs(page = 1, limit = 7, keyword = "") {
-  const params = { page, limit };
+  // Spring Boot pagination is 0-indexed and uses 'size'
+  const params = { page: page > 0 ? page - 1 : 0, size: limit };
   if (keyword) {
     params.keyword = keyword;
     params.search = keyword;

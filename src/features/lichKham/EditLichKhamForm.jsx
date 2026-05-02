@@ -19,29 +19,37 @@ const EditLichKhamForm = ({ lichKham, onCloseModal, onSuccess }) => {
   const { errors } = formState;
   const { mutate: updateLichKham, isLoading } = useUpdateLichKham();
 
+  // Support both camelCase (DTO) and PascalCase (legacy) field names
+  const lkId = lichKham?.idLichKham || lichKham?.ID_LichKham;
+  const lkNgayKham = lichKham?.ngayKhamDuKien || lichKham?.NgayKhamDuKien;
+  const lkCaKham = lichKham?.caKham || lichKham?.CaKham || '';
+  const lkTrangThai = lichKham?.trangThai || lichKham?.TrangThai || 'ChoXacNhan';
+  const lkGhiChu = lichKham?.ghiChu || lichKham?.GhiChu || '';
+
   useEffect(() => {
     if (lichKham) {
       reset({
-        NgayKhamDuKien: lichKham.NgayKhamDuKien ? new Date(lichKham.NgayKhamDuKien).toISOString().split('T')[0] : '',
-        CaKham: lichKham.CaKham || '',
-        TrangThai: lichKham.TrangThai || 'ChoXacNhan',
-        GhiChu: lichKham.GhiChu || '',
+        NgayKhamDuKien: lkNgayKham ? new Date(lkNgayKham).toISOString().split('T')[0] : '',
+        CaKham: lkCaKham,
+        TrangThai: lkTrangThai,
+        GhiChu: lkGhiChu,
       });
     }
-  }, [lichKham, reset]);
+  }, [lichKham, reset, lkNgayKham, lkCaKham, lkTrangThai, lkGhiChu]);
 
-  // Lấy ngày hôm nay làm min date
-  const today = new Date().toISOString().split('T')[0];
+  // Lấy ngày hôm nay theo local timezone làm min date
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 
   function onSubmit(data) {
     updateLichKham(
       {
-        id: lichKham.ID_LichKham,
+        id: lkId,
         data: {
-          NgayKhamDuKien: data.NgayKhamDuKien,
-          CaKham: data.CaKham,
-          TrangThai: data.TrangThai,
-          GhiChu: data.GhiChu || null,
+          ngayKhamDuKien: data.NgayKhamDuKien,
+          caKham: data.CaKham,
+          trangThai: data.TrangThai,
+          ghiChu: data.GhiChu || null,
         },
       },
       {
@@ -58,7 +66,7 @@ const EditLichKhamForm = ({ lichKham, onCloseModal, onSuccess }) => {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <h2 className='text-xl font-bold text-grey-900 mb-4'>
-        Chỉnh sửa lịch khám #{lichKham.ID_LichKham}
+        Chỉnh sửa lịch khám #{lkId}
       </h2>
 
       <FormRow label='Ngày khám dự kiến' error={errors.NgayKhamDuKien?.message}>
@@ -147,4 +155,3 @@ const EditLichKhamForm = ({ lichKham, onCloseModal, onSuccess }) => {
 };
 
 export default EditLichKhamForm;
-

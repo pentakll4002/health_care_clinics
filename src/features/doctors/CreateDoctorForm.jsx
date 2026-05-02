@@ -26,17 +26,30 @@ const CreateDoctorForm = ({
   submitLabel = 'Thêm Bác sĩ',
 }) => {
   const isEdit = !!doctor;
+
+  // Normalize field names - support both camelCase (from DTO) and PascalCase (legacy)
+  const docId = doctor?.idNhanVien || doctor?.ID_NhanVien;
+  const docName = doctor?.hoTenNV || doctor?.HoTenNV || '';
+  const docBirthday = doctor?.ngaySinh || doctor?.NgaySinh || '';
+  const docPhone = doctor?.dienThoai || doctor?.DienThoai || '';
+  const docCccd = doctor?.cccd || doctor?.CCCD || '';
+  const docAddress = doctor?.diaChi || doctor?.DiaChi || '';
+  const docGender = doctor?.gioiTinh || doctor?.GioiTinh || '';
+  const docEmail = doctor?.email || doctor?.Email || '';
+  const docAvatar = doctor?.hinhAnh || doctor?.HinhAnh || 'default_avatar.jpg';
+  const docGroupId = doctor?.idNhom || doctor?.ID_Nhom;
+
   const { register, handleSubmit, reset, setValue, formState } = useForm({
     defaultValues: doctor ? {
-      name: doctor.HoTenNV || '',
-      birthday: doctor.NgaySinh || '',
-      sdt: doctor.DienThoai || '',
-      cccd: doctor.CCCD || '',
-      address: doctor.DiaChi || '',
-      gender: doctor.GioiTinh || '',
-      email: doctor.Email || '',
-      avatarUrl: doctor.HinhAnh || 'default_avatar.jpg',
-      id_nhom: doctor.ID_Nhom ? String(doctor.ID_Nhom) : '',
+      name: docName,
+      birthday: docBirthday,
+      sdt: docPhone,
+      cccd: docCccd,
+      address: docAddress,
+      gender: docGender,
+      email: docEmail,
+      avatarUrl: docAvatar,
+      id_nhom: docGroupId ? String(docGroupId) : '',
     } : {},
   });
 
@@ -46,7 +59,7 @@ const CreateDoctorForm = ({
 
   const { mutate, isLoading } = useMutation({
     mutationFn: isEdit
-      ? (data) => updateDoctor(doctor.ID_NhanVien, data)
+      ? (data) => updateDoctor(docId, data)
       : createDoctor,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['doctors'] });
@@ -61,6 +74,7 @@ const CreateDoctorForm = ({
   const [groups, setGroups] = useState([]);
   useEffect(() => {
     fetchGroups().then((res) => {
+      // NhomNguoiDungController wraps in ApiResponse: { success, data, message }
       const arr = Array.isArray(res) ? res : (res?.data || []);
       setGroups(arr);
     }).catch(() => setGroups([]));
@@ -68,21 +82,21 @@ const CreateDoctorForm = ({
 
   useEffect(() => {
     if (isEdit && doctor) {
-      // Map dữ liệu từ API sang form fields
-      setValue('name', doctor.HoTenNV || '');
-      setValue('birthday', doctor.NgaySinh || '');
-      setValue('sdt', doctor.DienThoai || '');
-      setValue('cccd', doctor.CCCD || '');
-      setValue('address', doctor.DiaChi || '');
-      setValue('gender', doctor.GioiTinh || '');
-      setValue('email', doctor.Email || '');
-      setValue('avatarUrl', doctor.HinhAnh || 'default_avatar.jpg');
-      if (doctor.ID_Nhom) {
-        setValue('id_nhom', String(doctor.ID_Nhom));
+      // Map dữ liệu từ API sang form fields (support both camelCase and PascalCase)
+      setValue('name', docName);
+      setValue('birthday', docBirthday);
+      setValue('sdt', docPhone);
+      setValue('cccd', docCccd);
+      setValue('address', docAddress);
+      setValue('gender', docGender);
+      setValue('email', docEmail);
+      setValue('avatarUrl', docAvatar);
+      if (docGroupId) {
+        setValue('id_nhom', String(docGroupId));
       }
       // Password không set khi edit (để trống, chỉ required khi tạo mới)
     }
-  }, [isEdit, doctor, setValue]);
+  }, [isEdit, doctor, setValue, docName, docBirthday, docPhone, docCccd, docAddress, docGender, docEmail, docAvatar, docGroupId]);
 
   function onSubmit(data) {
     const payload = {
@@ -221,8 +235,8 @@ const CreateDoctorForm = ({
               -- Chọn nhóm --
             </option>
             {groups.map((g) => {
-              const id = g.ID_Nhom || g.idNhom;
-              const name = g.TenNhom || g.tenNhom;
+              const id = g.idNhom || g.ID_Nhom;
+              const name = g.tenNhom || g.TenNhom;
               return (
                 <option key={id} value={id}>
                   {name}

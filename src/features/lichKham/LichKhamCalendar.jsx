@@ -79,7 +79,8 @@ function LichKhamCalendar({ onSelectDate }) {
   const groupedByDate = useMemo(() => {
     const map = {};
     (lichKhams || []).forEach((lk) => {
-      const key = lk.NgayKhamDuKien?.split('T')[0] || lk.NgayKhamDuKien;
+      const ngayKham = lk.ngayKhamDuKien || lk.NgayKhamDuKien;
+      const key = ngayKham?.split('T')[0] || ngayKham;
       if (!key) return;
       if (!map[key]) map[key] = [];
       map[key].push(lk);
@@ -171,10 +172,10 @@ function LichKhamCalendar({ onSelectDate }) {
             const key = formatDateKey(cellDate);
             const list = groupedByDate[key] || [];
             const waitingCount = list.filter(
-              (lk) => lk.TrangThai === 'ChoXacNhan',
+              (lk) => (lk.trangThai || lk.TrangThai) === 'ChoXacNhan',
             ).length;
             const confirmedCount = list.filter(
-              (lk) => lk.TrangThai === 'DaXacNhan',
+              (lk) => (lk.trangThai || lk.TrangThai) === 'DaXacNhan',
             ).length;
             const isToday = key === todayKey;
 

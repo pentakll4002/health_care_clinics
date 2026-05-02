@@ -65,4 +65,10 @@ public class ThuocController {
         thuocService.delete(id);
         return ResponseEntity.ok(ApiResponse.success("Thuoc deleted successfully", null));
     }
+
+    @PostMapping("/import")
+    public ResponseEntity<ApiResponse<?>> importThuoc() {
+        thuocService.importFromJson();
+        return ResponseEntity.ok(ApiResponse.success("Imported Thuoc successfully", null));
+    }
 }

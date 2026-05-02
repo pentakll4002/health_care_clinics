@@ -26,10 +26,7 @@ async function getPatientsList() {
     return response.data;
   } catch (error) {
     console.error('Error fetching patients:', error);
-    return {
-      data: [],
-      totalCount: 0,
-    };
+    return [];
   }
 }
 
@@ -38,41 +35,35 @@ async function getNhanVienList() {
   try {
     const response = await axiosInstance.get('/nhanvien', {
       params: { 
-        limit: 100,
-        page: 1
+        page: 0,
+        limit: 10
       },
     });
     return response.data;
   } catch (error) {
     console.error('Error fetching nhan vien:', error);
-    return {
-      data: [],
-      totalCount: 0,
-    };
-  }
-}
-
-// Lấy danh sách bác sĩ (doctors) - có thể dùng sau này
-async function getDoctorsList() {
-  try {
-    const response = await axiosInstance.get('/nhanvien', {
-      params: { 
-        limit: 100,
-        ma_nhom: '@doctors' // Lọc theo mã nhóm bác sĩ
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching doctors:', error);
-    return {
-      data: [],
-      totalCount: 0,
-    };
+    return [];
   }
 }
 
 const CreateAppointmentForm = ({ onCloseModal }) => {
-  const { register, handleSubmit, reset, formState } = useForm();
+  // Default ngày giờ = now theo local timezone
+  const now = new Date();
+  const defaultDateTime = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}T${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+  // Default ca based on current hour
+  const currentHour = now.getHours();
+  let defaultCa = 'Sáng';
+  if (currentHour >= 12 && currentHour < 17) defaultCa = 'Chiều';
+  else if (currentHour >= 17) defaultCa = 'Tối';
+
+  const { register, handleSubmit, reset, formState } = useForm({
+    defaultValues: {
+      NgayTN: defaultDateTime,
+      CaTN: defaultCa,
+      TrangThaiTiepNhan: 'CHO_KHAM',
+    },
+  });
   const { errors } = formState;
   const queryClient = useQueryClient();
 
@@ -86,15 +77,20 @@ const CreateAppointmentForm = ({ onCloseModal }) => {
     queryFn: getNhanVienList,
   });
 
-  // Lọc chỉ bệnh nhân chưa bị xóa
-  const patients = (patientsData?.data || []).filter(
-    (patient) => !patient.Is_Deleted
+  // Normalize data - API returns List directly (not wrapped)
+  const patientsRaw = Array.isArray(patientsData) ? patientsData : (patientsData?.data || []);
+  // Lọc chỉ bệnh nhân chưa bị xóa (support both camelCase and PascalCase)
+  const patients = patientsRaw.filter(
+    (patient) => !patient.isDeleted && !patient.Is_Deleted
   );
   
-  // Lọc chỉ nhân viên đang làm việc
-  const nhanVienList = (nhanVienData?.data || []).filter(
-    (nv) => nv.TrangThai === 'Đang làm việc'
-  );
+  // Normalize nhanvien data
+  const nhanVienRaw = Array.isArray(nhanVienData) ? nhanVienData : (nhanVienData?.data || []);
+  // Lọc nhân viên đang làm việc (support both 'Đang làm việc' and 'active')
+  const nhanVienList = nhanVienRaw.filter((nv) => {
+    const status = nv.trangThai || nv.TrangThai;
+    return status === 'Đang làm việc' || status === 'active' || !status;
+  });
 
   const { mutate: createAppointmentMutation, isLoading } = useMutation({
     mutationFn: createAppointment,
@@ -137,11 +133,16 @@ const CreateAppointmentForm = ({ onCloseModal }) => {
             disabled={isLoadingPatients}
           >
             <option value=''>Chọn bệnh nhân</option>
-            {patients.map((patient) => (
-              <option key={patient.ID_BenhNhan} value={patient.ID_BenhNhan}>
-                {patient.HoTenBN} {patient.DienThoai ? `- ${patient.DienThoai}` : ''}
-              </option>
-            ))}
+            {patients.map((patient) => {
+              const id = patient.idBenhNhan || patient.ID_BenhNhan;
+              const name = patient.hoTenBN || patient.HoTenBN;
+              const phone = patient.dienThoai || patient.DienThoai;
+              return (
+                <option key={id} value={id}>
+                  {name} {phone ? `- ${phone}` : ''}
+                </option>
+              );
+            })}
           </Select>
         </FormRow>
 
@@ -159,11 +160,16 @@ const CreateAppointmentForm = ({ onCloseModal }) => {
                 Không có nhân viên nào
               </option>
             ) : (
-              nhanVienList.map((nv) => (
-                <option key={nv.ID_NhanVien} value={nv.ID_NhanVien}>
-                  {nv.HoTenNV} {nv.nhomNguoiDung ? `(${nv.nhomNguoiDung.TenNhom})` : ''}
-                </option>
-              ))
+              nhanVienList.map((nv) => {
+                const id = nv.idNhanVien || nv.ID_NhanVien;
+                const name = nv.hoTenNV || nv.HoTenNV;
+                const groupName = nv.tenNhom || nv.TenNhom;
+                return (
+                  <option key={id} value={id}>
+                    {name} {groupName ? `(${groupName})` : ''}
+                  </option>
+                );
+              })
             )}
           </Select>
         </FormRow>
@@ -185,7 +191,6 @@ const CreateAppointmentForm = ({ onCloseModal }) => {
               required: 'Bắt buộc !',
             })}
           >
-            <option value=''>Chọn ca</option>
             <option value='Sáng'>Sáng</option>
             <option value='Chiều'>Chiều</option>
             <option value='Tối'>Tối</option>
@@ -228,4 +233,3 @@ const CreateAppointmentForm = ({ onCloseModal }) => {
 };
 
 export default CreateAppointmentForm;
-

@@ -19,15 +19,17 @@ const CreateDrugForm = ({ onCloseModal }) => {
   const { errors } = formState;
   const queryClient = useQueryClient();
 
-  const { data: dvtList = [] } = useQuery({
+  const { data: dvtData = [] } = useQuery({
     queryKey: ['dvt'],
     queryFn: getDVT,
   });
+  const dvtList = Array.isArray(dvtData) ? dvtData : (dvtData?.data || []);
 
-  const { data: cachDungList = [] } = useQuery({
+  const { data: cachDungData = [] } = useQuery({
     queryKey: ['cach-dung'],
     queryFn: getCachDung,
   });
+  const cachDungList = Array.isArray(cachDungData) ? cachDungData : (cachDungData?.data || []);
 
   const { mutate: createDrugMutation, isLoading } = useMutation({
     mutationFn: createDrug,
@@ -46,16 +48,16 @@ const CreateDrugForm = ({ onCloseModal }) => {
 
   function onSubmit(data) {
     const formData = {
-      TenThuoc: data.TenThuoc,
-      ID_DVT: parseInt(data.ID_DVT),
-      ID_CachDung: parseInt(data.ID_CachDung),
-      ThanhPhan: data.ThanhPhan || null,
-      XuatXu: data.XuatXu || null,
-      SoLuongTon: parseInt(data.SoLuongTon) || 0,
-      DonGiaNhap: parseFloat(data.DonGiaNhap) || null,
-      HinhAnh: data.HinhAnh || null,
-      TyLeGiaBan: parseFloat(data.TyLeGiaBan) || null,
-      DonGiaBan: parseFloat(data.DonGiaBan) || null,
+      tenThuoc: data.tenThuoc,
+      idDvt: parseInt(data.idDvt),
+      idCachDung: parseInt(data.idCachDung),
+      thanhPhan: data.thanhPhan || null,
+      xuatXu: data.xuatXu || null,
+      soLuongTon: parseInt(data.soLuongTon) || 0,
+      donGiaNhap: parseFloat(data.donGiaNhap) || null,
+      hinhAnh: data.hinhAnh || null,
+      tyLeGiaBan: parseFloat(data.tyLeGiaBan) || null,
+      donGiaBan: parseFloat(data.donGiaBan) || null,
     };
     createDrugMutation(formData);
   }
@@ -99,4 +101,3 @@ const CreateDrugForm = ({ onCloseModal }) => {
 };
 
 export default CreateDrugForm;
-

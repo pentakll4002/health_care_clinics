@@ -25,6 +25,14 @@ const StatusBadge = styled.span`
 const LichKhamCard = ({ lichKham }) => {
   const { mutate: cancelLichKham, isLoading } = useCancelLichKham();
 
+  // Support both camelCase (DTO) and PascalCase (legacy) field names
+  const lkId = lichKham.idLichKham || lichKham.ID_LichKham;
+  const lkNgayKham = lichKham.ngayKhamDuKien || lichKham.NgayKhamDuKien;
+  const lkCaKham = lichKham.caKham || lichKham.CaKham;
+  const lkTrangThai = lichKham.trangThai || lichKham.TrangThai;
+  const lkGhiChu = lichKham.ghiChu || lichKham.GhiChu;
+  const lkTenBacSi = lichKham.tenBacSi || lichKham.TenBacSi;
+
   const getStatusBadge = (trangThai) => {
     switch (trangThai) {
       case 'ChoXacNhan':
@@ -46,7 +54,7 @@ const LichKhamCard = ({ lichKham }) => {
           </StatusBadge>
         );
       default:
-        return null;
+        return <StatusBadge className='bg-grey-100 text-grey-700'>{trangThai || '—'}</StatusBadge>;
     }
   };
 
@@ -63,7 +71,7 @@ const LichKhamCard = ({ lichKham }) => {
 
   const handleCancel = () => {
     if (window.confirm('Bạn có chắc chắn muốn hủy lịch khám này?')) {
-      cancelLichKham(lichKham.ID_LichKham);
+      cancelLichKham(lkId);
     }
   };
 
@@ -73,33 +81,38 @@ const LichKhamCard = ({ lichKham }) => {
         <div className='flex-1'>
           <div className='flex items-center gap-2 mb-2'>
             <h3 className='text-lg font-semibold text-grey-900'>
-              Lịch khám #{lichKham.ID_LichKham}
+              Lịch khám #{lkId}
             </h3>
-            {getStatusBadge(lichKham.TrangThai)}
+            {getStatusBadge(lkTrangThai)}
           </div>
 
           <div className='flex flex-col gap-2 text-sm text-grey-600'>
             <div className='flex items-center gap-2'>
               <CalendarIcon className='w-5 h-5 text-primary' />
-              <span>{formatDate(lichKham.NgayKhamDuKien)}</span>
+              <span>{formatDate(lkNgayKham)}</span>
             </div>
             <div className='flex items-center gap-2'>
               <ClockIcon className='w-5 h-5 text-primary' />
-              <span>Ca: {lichKham.CaKham}</span>
+              <span>Ca: {lkCaKham}</span>
             </div>
+            {lkTenBacSi && (
+              <div className='flex items-center gap-2'>
+                <span className='text-sm text-grey-600'>Bác sĩ: <strong>{lkTenBacSi}</strong></span>
+              </div>
+            )}
           </div>
 
-          {lichKham.GhiChu && (
+          {lkGhiChu && (
             <div className='mt-3 p-3 bg-grey-50 rounded-md'>
               <p className='text-sm text-grey-700'>
-                <strong>Ghi chú:</strong> {lichKham.GhiChu}
+                <strong>Ghi chú:</strong> {lkGhiChu}
               </p>
             </div>
           )}
         </div>
       </div>
 
-      {lichKham.TrangThai === 'ChoXacNhan' && (
+      {lkTrangThai === 'ChoXacNhan' && (
         <div className='flex justify-end pt-2 border-t border-grey-transparent'>
           <Button
             onClick={handleCancel}
@@ -116,18 +129,3 @@ const LichKhamCard = ({ lichKham }) => {
 };
 
 export default LichKhamCard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

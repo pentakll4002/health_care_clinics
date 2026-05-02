@@ -27,7 +27,7 @@ const DrugCardContainer = ({ searchKeyword = '' }) => {
     <>
       <ContainerGrid>
         {drugs.map((drug) => (
-          <DrugCard key={drug.ID_Thuoc} drug={drug} />
+          <DrugCard key={drug.idThuoc} drug={drug} />
         ))}
       </ContainerGrid>
 

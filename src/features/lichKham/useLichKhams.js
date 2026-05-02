@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { getLichKhams } from './APILichKham';
+import { getAllLichKhams } from './APILichKham';
 
 export function useLichKhams(params = {}) {
   const { isLoading, data, refetch } = useQuery({
     queryKey: ['lichKhams', params],
-    queryFn: () => getLichKhams(params),
+    queryFn: () => getAllLichKhams(params),
   });
 
   return {

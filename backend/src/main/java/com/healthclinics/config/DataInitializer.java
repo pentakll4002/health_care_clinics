@@ -31,6 +31,7 @@ public class DataInitializer implements CommandLineRunner {
     private final ChucNangRepository chucNangRepository;
     private final PhanQuyenRepository phanQuyenRepository;
     private final PasswordEncoder passwordEncoder;
+    private final com.healthclinics.service.ThuocService thuocService;
 
     @Override
     public void run(String... args) {
@@ -51,13 +52,17 @@ public class DataInitializer implements CommandLineRunner {
         }
 
         // Check if users exist before seeding user data
-        if (userRepository.count() > 0) {
+        if (userRepository.count() == 0) {
+            log.info("Initializing database with seed data...");
+            seedUsers();
+        } else {
             log.info("Database already initialized, skipping user seeding...");
-            return;
         }
 
-        log.info("Initializing database with seed data...");
-        seedUsers();
+        if (thuocRepository.count() <= 3) {
+            log.info("Importing drugs from JSON...");
+            thuocService.importFromJson();
+        }
     }
 
     private void seedNhomNguoiDung() {

@@ -9,108 +9,108 @@ const DrugFormFields = ({ register, errors, dvtList = [], cachDungList = [] }) =
       <InputImage />
       <div />
 
-      <FormRow label='Tên thuốc*' error={errors.TenThuoc?.message}>
+      <FormRow label='Tên thuốc*' error={errors.tenThuoc?.message}>
         <InputNew
           type='text'
-          id='TenThuoc'
-          {...register('TenThuoc', {
+          id='tenThuoc'
+          {...register('tenThuoc', {
             required: 'Bắt buộc !',
           })}
         />
       </FormRow>
 
-      <FormRow label='Đơn vị tính*' error={errors.ID_DVT?.message}>
+      <FormRow label='Đơn vị tính*' error={errors.idDvt?.message}>
         <Select
-          id='ID_DVT'
-          {...register('ID_DVT', {
+          id='idDvt'
+          {...register('idDvt', {
             required: 'Bắt buộc !',
           })}
         >
           <option value=''>Chọn đơn vị tính</option>
           {dvtList.map((dvt) => (
-            <option key={dvt.ID_DVT} value={dvt.ID_DVT}>
-              {dvt.TenDVT}
+            <option key={dvt.idDvt} value={dvt.idDvt}>
+              {dvt.tenDvt}
             </option>
           ))}
         </Select>
       </FormRow>
 
-      <FormRow label='Cách dùng*' error={errors.ID_CachDung?.message}>
+      <FormRow label='Cách dùng*' error={errors.idCachDung?.message}>
         <Select
-          id='ID_CachDung'
-          {...register('ID_CachDung', {
+          id='idCachDung'
+          {...register('idCachDung', {
             required: 'Bắt buộc !',
           })}
         >
           <option value=''>Chọn cách dùng</option>
           {cachDungList.map((cachDung) => (
-            <option key={cachDung.ID_CachDung} value={cachDung.ID_CachDung}>
-              {cachDung.MoTaCachDung}
+            <option key={cachDung.idCachDung} value={cachDung.idCachDung}>
+              {cachDung.moTaCachDung}
             </option>
           ))}
         </Select>
       </FormRow>
 
-      <FormRow label='Thành phần' error={errors.ThanhPhan?.message}>
+      <FormRow label='Thành phần' error={errors.thanhPhan?.message}>
         <InputNew
           type='text'
-          id='ThanhPhan'
-          {...register('ThanhPhan')}
+          id='thanhPhan'
+          {...register('thanhPhan')}
         />
       </FormRow>
 
-      <FormRow label='Xuất xứ' error={errors.XuatXu?.message}>
+      <FormRow label='Xuất xứ' error={errors.xuatXu?.message}>
         <InputNew
           type='text'
-          id='XuatXu'
-          {...register('XuatXu')}
+          id='xuatXu'
+          {...register('xuatXu')}
         />
       </FormRow>
 
-      <FormRow label='Số lượng tồn' error={errors.SoLuongTon?.message}>
+      <FormRow label='Số lượng tồn' error={errors.soLuongTon?.message}>
         <InputNew
           type='number'
-          id='SoLuongTon'
+          id='soLuongTon'
           min='0'
-          {...register('SoLuongTon')}
+          {...register('soLuongTon')}
         />
       </FormRow>
 
-      <FormRow label='Giá nhập' error={errors.DonGiaNhap?.message}>
+      <FormRow label='Giá nhập' error={errors.donGiaNhap?.message}>
         <InputNew
           type='number'
-          id='DonGiaNhap'
-          min='0'
-          step='0.01'
-          {...register('DonGiaNhap')}
-        />
-      </FormRow>
-
-      <FormRow label='Tỷ lệ giá bán' error={errors.TyLeGiaBan?.message}>
-        <InputNew
-          type='number'
-          id='TyLeGiaBan'
+          id='donGiaNhap'
           min='0'
           step='0.01'
-          {...register('TyLeGiaBan')}
+          {...register('donGiaNhap')}
         />
       </FormRow>
 
-      <FormRow label='Giá bán' error={errors.DonGiaBan?.message}>
+      <FormRow label='Tỷ lệ giá bán' error={errors.tyLeGiaBan?.message}>
         <InputNew
           type='number'
-          id='DonGiaBan'
+          id='tyLeGiaBan'
           min='0'
           step='0.01'
-          {...register('DonGiaBan')}
+          {...register('tyLeGiaBan')}
         />
       </FormRow>
 
-      <FormRow label='Hình ảnh (URL)' error={errors.HinhAnh?.message}>
+      <FormRow label='Giá bán' error={errors.donGiaBan?.message}>
+        <InputNew
+          type='number'
+          id='donGiaBan'
+          min='0'
+          step='0.01'
+          {...register('donGiaBan')}
+        />
+      </FormRow>
+
+      <FormRow label='Hình ảnh (URL)' error={errors.hinhAnh?.message}>
         <InputNew
           type='text'
-          id='HinhAnh'
-          {...register('HinhAnh')}
+          id='hinhAnh'
+          {...register('hinhAnh')}
         />
       </FormRow>
     </>
@@ -118,4 +118,3 @@ const DrugFormFields = ({ register, errors, dvtList = [], cachDungList = [] }) =
 };
 
 export default DrugFormFields;
-
