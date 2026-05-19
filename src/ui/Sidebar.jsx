@@ -1,12 +1,9 @@
-import Dropdown from './Dropdown';
 import SidebarLink from './SidebarLink';
 import ButtonToggle from './ButtonToggle';
 import { useRolePermissions } from '../hooks/useRolePermissions';
 import LogoBenhVien from '../assets/logo-benh-vien.jpg';
 
-
 import {
-  ApplicationSvg,
   AppointmentsSvg,
   DashboardSvg,
   DoctorsSvg,
@@ -18,14 +15,10 @@ import {
 
 import {
   CalendarDaysIcon,
-  ChatBubbleLeftRightIcon,
   Cog8ToothIcon,
   CurrencyDollarIcon,
-  EnvelopeIcon,
   MapPinIcon,
-  MoonIcon,
   PresentationChartLineIcon,
-  QuestionMarkCircleIcon,
   ShieldExclamationIcon,
   UserCircleIcon,
   UserGroupIcon,
@@ -40,7 +33,6 @@ const Sidebar = () => {
   const isReceptionist = roleCode === 'receptionists';
   const isManager = roleCode === 'managers';
   const isAdmin = roleCode === 'admin';
-
 
   if (isLoading) return null;
 
@@ -62,12 +54,13 @@ const Sidebar = () => {
     ];
 
     const availableFeatures = features.filter(f => !excludeKeys.includes(f.key) && can(f.key));
-
     if (availableFeatures.length === 0) return null;
 
     return (
-      <div className='flex flex-col mb-6 pt-4 border-t border-grey-transparent'>
-        <p className='px-2 mb-2 text-xs font-bold text-blue-500 uppercase tracking-wider'>Chức năng mở rộng</p>
+      <div className='mt-3 pt-3' style={{ borderTop: '1px solid var(--border-light)' }}>
+        <p className='px-4 mb-1.5 text-[10px] font-bold uppercase tracking-widest' style={{ color: 'var(--accent)' }}>
+          Chức năng mở rộng
+        </p>
         {availableFeatures.map(f => (
           <SidebarLink key={f.key} to={f.to} icon={f.icon} label={f.label} />
         ))}
@@ -75,86 +68,89 @@ const Sidebar = () => {
     );
   };
 
+  const SidebarSection = ({ title, children }) => (
+    <div className='mb-1'>
+      <p className='px-4 mb-1.5 text-[10px] font-bold uppercase tracking-widest' style={{ color: 'var(--text-muted)' }}>
+        {title}
+      </p>
+      {children}
+    </div>
+  );
+
+  const DarkModeToggle = () => (
+    <div
+      className='flex items-center justify-between px-4 py-2.5 mx-2 rounded-xl border transition-colors duration-200'
+      style={{
+        backgroundColor: 'var(--bg-secondary)',
+        borderColor: 'var(--border-color)',
+      }}
+    >
+      <span className='text-sm font-medium' style={{ color: 'var(--text-primary)' }}>
+        Giao diện tối
+      </span>
+      <ButtonToggle />
+    </div>
+  );
+
+  const SidebarWrapper = ({ children }) => (
+    <aside
+      className='w-full h-full flex flex-col overflow-y-auto transition-colors duration-300'
+      style={{ backgroundColor: 'var(--bg-sidebar)' }}
+    >
+      {/* Logo */}
+      <div className='flex items-center justify-center py-3 px-4' style={{ borderBottom: '1px solid var(--border-light)' }}>
+        <img src={LogoBenhVien} alt='Logo bệnh viện' className='h-10 object-contain' />
+      </div>
+
+      {/* Navigation - grows to fill space */}
+      <div className='flex-1 overflow-y-auto py-2 px-1'>
+        {children}
+
+        {/* Dark Mode Toggle - right after menu items */}
+        <div className='mt-4 px-1 pt-3' style={{ borderTop: '1px solid var(--border-light)' }}>
+          <DarkModeToggle />
+        </div>
+      </div>
+    </aside>
+  );
+
   if (isAdmin) {
     return (
-      <aside className='w-full h-full p-4 overflow-y-auto bg-white border-r border-grey-transparent'>
-        <div className="flex items-center justify-center mb-4 mt-2">
-          <img src={LogoBenhVien} alt="Logo bệnh viện" className="h-16 object-contain" />
-        </div>
-
-        <div className='flex flex-col mb-6'>
-          <p className='px-2 mb-2 text-sm font-semibold text-grey-400 text-center'>Quản trị hệ thống</p>
+      <SidebarWrapper>
+        <SidebarSection title='Quản trị'>
           <SidebarLink to='/' icon={DashboardSvg} label='Dashboard' />
           {can('employees') && <SidebarLink to='/employees' icon={UserGroupIcon} label='Nhân viên' />}
           {can('permissions') && <SidebarLink to='/permissions' icon={ShieldExclamationIcon} label='Phân quyền' />}
           {can('regulations') && <SidebarLink to='/regulations' icon={Cog8ToothIcon} label='Tham số hệ thống' />}
           {can('services') && <SidebarLink to='/services' icon={Cog8ToothIcon} label='Dịch vụ khám' />}
           {can('catalogs') && <SidebarLink to='/catalogs' icon={LeavesSvg} label='Danh mục nền' />}
-        </div>
-
+        </SidebarSection>
         {renderExtendedFeatures(['employees', 'permissions', 'regulations', 'services', 'catalogs'])}
-
-        <div className='border border-grey-transparent'></div>
-
-        <div className='flex items-center justify-between px-3 py-4 mt-5 border rounded-md border-grey-transparent shadow-1 gap-x-5'>
-          <span>
-            <MoonIcon className='w-5 h-5' />
-          </span>
-
-          <span>Dark Mode</span>
-
-          <ButtonToggle />
-        </div>
-      </aside>
+      </SidebarWrapper>
     );
   }
 
   if (isDoctorOnly) {
     return (
-      <aside className='w-full h-full p-4 overflow-y-auto bg-white border-r border-grey-transparent'>
-        <div className="flex items-center justify-center mb-4 mt-2">
-          <img src={LogoBenhVien} alt="Logo bệnh viện" className="h-16 object-contain" />
-        </div>
-        <div className='flex flex-col mb-6'>
-          <p className='px-2 mb-2 text-sm font-semibold text-grey-400 text-center'>Bác sĩ</p>
+      <SidebarWrapper>
+        <SidebarSection title='Bác sĩ'>
           <SidebarLink to='/doctor/queue' icon={DashboardSvg} label='Trang chủ' />
-
           <SidebarLink to='/doctor/queue' icon={UserGroupIcon} label='Danh sách chờ khám' />
           <SidebarLink to='/medical-forms' icon={MedicalFormSvg} label='Phiếu khám' />
           <SidebarLink to='/medical-forms' icon={DrugSvg} label='Kê toa thuốc' />
           <SidebarLink to='/medical-forms' icon={PresentationChartLineIcon} label='Lịch sử khám bệnh' />
           <SidebarLink to='/lich-kham-doctor' icon={CalendarDaysIcon} label='Lịch khám đã xác nhận' />
-
-          {can('patients') && (
-            <SidebarLink to='/patients' icon={PatientsSvg} label='Bệnh nhân' />
-          )}
-        </div>
-
+          {can('patients') && <SidebarLink to='/patients' icon={PatientsSvg} label='Bệnh nhân' />}
+        </SidebarSection>
         {renderExtendedFeatures(['doctorQueue', 'medicalForms', 'patients'])}
-
-        <div className='border border-grey-transparent'></div>
-
-        <div className='flex items-center justify-between px-3 py-4 mt-5 border rounded-md border-grey-transparent shadow-1 gap-x-5'>
-          <span>
-            <MoonIcon className='w-5 h-5' />
-          </span>
-
-          <span>Dark Mode</span>
-
-          <ButtonToggle />
-        </div>
-      </aside>
+      </SidebarWrapper>
     );
   }
 
   if (isManager) {
     return (
-      <aside className='w-full h-full p-4 overflow-y-auto bg-white border-r border-grey-transparent'>
-        <div className="flex items-center justify-center mb-4 mt-2">
-          <img src={LogoBenhVien} alt="Logo bệnh viện" className="h-16 object-contain" />
-        </div>
-        <div className='flex flex-col mb-6'>
-          <p className='px-2 mb-2 text-sm font-semibold text-grey-400 text-center'>Quản lý</p>
+      <SidebarWrapper>
+        <SidebarSection title='Quản lý'>
           <SidebarLink to='/' icon={DashboardSvg} label='Dashboard' />
           {can('reports') && <SidebarLink to='/reports' icon={PresentationChartLineIcon} label='Thống kê tổng hợp' />}
           {can('reports') && <SidebarLink to='/reports/staff' icon={UserGroupIcon} label='Hiệu suất nhân viên' />}
@@ -163,33 +159,16 @@ const Sidebar = () => {
           {can('regulations') && <SidebarLink to='/regulations' icon={Cog8ToothIcon} label='Tham số hệ thống' />}
           {can('services') && <SidebarLink to='/services' icon={Cog8ToothIcon} label='Dịch vụ khám' />}
           {can('catalogs') && <SidebarLink to='/catalogs' icon={LeavesSvg} label='Danh mục nền' />}
-        </div>
-
+        </SidebarSection>
         {renderExtendedFeatures(['reports', 'patients', 'drugs', 'regulations', 'services', 'catalogs'])}
-
-        <div className='border border-grey-transparent'></div>
-
-        <div className='flex items-center justify-between px-3 py-4 mt-5 border rounded-md border-grey-transparent shadow-1 gap-x-5'>
-          <span>
-            <MoonIcon className='w-5 h-5' />
-          </span>
-
-          <span>Dark Mode</span>
-
-          <ButtonToggle />
-        </div>
-      </aside>
+      </SidebarWrapper>
     );
   }
 
   if (isReceptionist) {
     return (
-      <aside className='w-full h-full p-4 overflow-y-auto bg-white border-r border-grey-transparent'>
-        <div className="flex items-center justify-center mb-4 mt-2">
-          <img src={LogoBenhVien} alt="Logo bệnh viện" className="h-16 object-contain" />
-        </div>
-        <div className='flex flex-col mb-6'>
-          <p className='px-2 mb-2 text-sm font-semibold text-grey-400 text-center'>Lễ tân – Thu ngân</p>
+      <SidebarWrapper>
+        <SidebarSection title='Lễ tân – Thu ngân'>
           <SidebarLink to='/' icon={DashboardSvg} label='Trang chủ' />
           {can('patients') && <SidebarLink to='/patients' icon={PatientsSvg} label='Quản lý bệnh nhân' />}
           {can('reception') && <SidebarLink to='/reception?tab=reception' icon={MapPinIcon} label='Tiếp nhận bệnh nhân' />}
@@ -198,33 +177,16 @@ const Sidebar = () => {
           {can('invoices') && <SidebarLink to='/invoices' icon={CurrencyDollarIcon} label='Thanh toán' />}
           {can('catalogs') && <SidebarLink to='/catalogs' icon={LeavesSvg} label='Danh mục nền' />}
           {can('services') && <SidebarLink to='/services' icon={Cog8ToothIcon} label='Dịch vụ khám' />}
-        </div>
-
+        </SidebarSection>
         {renderExtendedFeatures(['patients', 'reception', 'appointments', 'invoices', 'catalogs', 'services'])}
-
-        <div className='border border-grey-transparent'></div>
-
-        <div className='flex items-center justify-between px-3 py-4 mt-5 border rounded-md border-grey-transparent shadow-1 gap-x-5'>
-          <span>
-            <MoonIcon className='w-5 h-5' />
-          </span>
-
-          <span>Dark Mode</span>
-
-          <ButtonToggle />
-        </div>
-      </aside>
+      </SidebarWrapper>
     );
   }
 
   if (isPatient) {
     return (
-      <aside className='w-full h-full p-4 overflow-y-auto bg-white border-r border-grey-transparent'>
-        <div className="flex items-center justify-center mb-4 mt-2">
-          <img src={LogoBenhVien} alt="Logo bệnh viện" className="h-16 object-contain" />
-        </div>
-        <div className='flex flex-col mb-6'>
-          <p className='px-2 mb-2 text-sm font-semibold text-grey-400 text-center'>Cổng Bệnh Nhân</p>
+      <SidebarWrapper>
+        <SidebarSection title='Cổng Bệnh Nhân'>
           <SidebarLink to='/patients/profile' icon={UserCircleIcon} label='Trang chủ' />
           {can('patientAppointments') && (
             <SidebarLink to='/patients/appointments' icon={AppointmentsSvg} label='Đặt lịch khám' />
@@ -239,180 +201,44 @@ const Sidebar = () => {
             <SidebarLink to='/patients/invoices' icon={CurrencyDollarIcon} label='Hóa đơn' />
           )}
           <SidebarLink to='/patients/profile' icon={UserCircleIcon} label='Thông tin cá nhân' />
-        </div>
-
-        <div className='border border-grey-transparent'></div>
-
-        <div className='flex items-center justify-between px-3 py-4 mt-5 border rounded-md border-grey-transparent shadow-1 gap-x-5'>
-          <span>
-            <MoonIcon className='w-5 h-5' />
-          </span>
-
-          <span>Dark Mode</span>
-
-          <ButtonToggle />
-        </div>
-      </aside>
+        </SidebarSection>
+      </SidebarWrapper>
     );
   }
 
+  // Default fallback sidebar
   return (
-    <aside className='w-full h-full p-4 overflow-y-auto bg-white border-r border-grey-transparent'>
-      {/* Main Menu */}
-      <div className='mb-6'>
-        <p className='px-2 mb-2 text-sm font-semibold text-grey-400'>
-          Main Menu
-        </p>
+    <SidebarWrapper>
+      <SidebarSection title='Menu'>
+        {can('employees') && <SidebarLink to='/employees' icon={UserGroupIcon} label='Employees' />}
+        {can('doctors') && <SidebarLink to='/doctors' icon={DoctorsSvg} label='Doctors' />}
+        {can('patients') && <SidebarLink to='/patients' icon={PatientsSvg} label='Patients' />}
+        {can('reception') && <SidebarLink to='/reception' icon={MapPinIcon} label='Reception' />}
+        {can('medicalForms') && <SidebarLink to='/medical-forms' icon={MedicalFormSvg} label='Medical Forms' />}
+        {can('appointments') && <SidebarLink to='/appointments' icon={AppointmentsSvg} label='Appointments' />}
+        {can('drugs') && <SidebarLink to='/drugs' icon={DrugSvg} label='Drug Management' />}
+        {can('invoices') && <SidebarLink to='/invoices' icon={CurrencyDollarIcon} label='Invoices' />}
+        {can('reports') && <SidebarLink to='/reports' icon={PresentationChartLineIcon} label='Reports' />}
+        {can('regulations') && <SidebarLink to='/regulations' icon={Cog8ToothIcon} label='Regulations' />}
+      </SidebarSection>
 
-        {/* Dashboard - Tạm thời ẩn vì chưa có route */}
-        {/* <Dropdown
-          icon={DashboardSvg}
-          label='Dashboard'
-          items={[
-            { label: 'Admin Dashboard', to: '/admin-dashboard' },
-            { label: 'Doctor Dashboard', to: '/doctor-dashboard' },
-            { label: 'Patient Dashboard', to: '/patient-dashboard' },
-          ]}
-        /> */}
-
-        {/* Application - Tạm thời ẩn vì chưa có route */}
-        {/* <Dropdown
-          icon={ApplicationSvg}
-          label='Application'
-          items={[
-            { label: 'Chat', to: '/admin-dashboard' },
-            { label: 'Call', to: '/doctor-dashboard' },
-            { label: 'Invoices', to: '/patient-dashboard' },
-          ]}
-        /> */}
-      </div>
-
-      {/* Clinic */}
-      <div className='flex flex-col mb-6'>
-        <p className='px-2 mb-2 text-sm font-semibold text-grey-400'>Clinic</p>
-
-        {/* Employees */}
-        {can('employees') && (
-          <SidebarLink to='/employees' icon={UserGroupIcon} label='Employees' />
-        )}
-
-        {/* Doctors */}
-        {can('doctors') && (
-          <SidebarLink to='/doctors' icon={DoctorsSvg} label='Doctors' />
-        )}
-
-        {/* Patients */}
-        {can('patients') && (
-          <SidebarLink to='/patients' icon={PatientsSvg} label='Patients' />
-        )}
-
-        {/* Doctor quick links - chỉ hiện cho bác sĩ/admin để gọn UI */}
-        {isDoctor && (
-          <Dropdown
-            icon={DoctorsSvg}
-            label='Doctor'
-            items={[
-              { label: 'Bệnh nhân trong ngày', to: '/patients/today' },
-              { label: 'Lịch khám đã xác nhận', to: '/lich-kham-doctor' },
-              { label: 'Phiếu khám', to: '/medical-forms' },
-            ]}
-          />
-        )}
-
-        {/* Reception */}
-        {can('reception') && (
-          <SidebarLink to='/reception' icon={MapPinIcon} label='Reception' />
-        )}
-
-        {/* Medical Forms */}
-        {can('medicalForms') && (
-          <SidebarLink to='/medical-forms' icon={MedicalFormSvg} label='Medical Forms' />
-        )}
-
-        {/* Appointments */}
-        {can('appointments') && (
-          <SidebarLink to='/appointments' icon={AppointmentsSvg} label='Appointments' />
-        )}
-
-        {/* Drug Management */}
-        {can('drugs') && (
-          <SidebarLink to='/drugs' icon={DrugSvg} label='Drug Management' />
-        )}
-
-        {/* Invoices */}
-        {can('invoices') && (
-          <SidebarLink to='/invoices' icon={CurrencyDollarIcon} label='Invoices' />
-        )}
-
-        {/* Reports */}
-        {can('reports') && (
-          <SidebarLink to='/reports' icon={PresentationChartLineIcon} label='Reports' />
-        )}
-
-        {/* Regulations */}
-        {can('regulations') && (
-          <SidebarLink to='/regulations' icon={Cog8ToothIcon} label='Regulations' />
-        )}
-      </div>
-
-      {/* Patient-specific menu: hiển thị khi role là BỆNH NHÂN hoặc role được phép truy cập patientProfile */}
       {(isPatient || can('patientProfile')) && (
-        <div className='flex flex-col mb-6'>
-          <p className='px-2 mb-2 text-sm font-semibold text-grey-400'>Bệnh nhân</p>
+        <SidebarSection title='Bệnh nhân'>
           <SidebarLink to='/patients/profile' icon={UserCircleIcon} label='Trang chủ' />
-          {can('patientAppointments') && (
-            <SidebarLink to='/patients/appointments' icon={AppointmentsSvg} label='Đặt lịch khám' />
-          )}
-          {can('patientAppointments') && (
-            <SidebarLink to='/patients/appointments' icon={CalendarDaysIcon} label='Lịch sử đặt lịch' />
-          )}
-          {can('patientMedicalRecords') && (
-            <SidebarLink to='/patients/medical-records' icon={MedicalFormSvg} label='Lịch sử khám bệnh' />
-          )}
-          {can('patientInvoices') && (
-            <SidebarLink to='/patients/invoices' icon={CurrencyDollarIcon} label='Hóa đơn' />
-          )}
-          <SidebarLink to='/patients/profile' icon={UserCircleIcon} label='Thông tin cá nhân' />
-        </div>
+          {can('patientAppointments') && <SidebarLink to='/patients/appointments' icon={AppointmentsSvg} label='Đặt lịch khám' />}
+          {can('patientMedicalRecords') && <SidebarLink to='/patients/medical-records' icon={MedicalFormSvg} label='Lịch sử khám bệnh' />}
+          {can('patientInvoices') && <SidebarLink to='/patients/invoices' icon={CurrencyDollarIcon} label='Hóa đơn' />}
+        </SidebarSection>
       )}
 
-      {/* Doctor-specific menu: hiển thị cho Bác sĩ và Admin */}
       {isDoctor && (
-        <div className='flex flex-col mb-6'>
-          <p className='px-2 mb-2 text-sm font-semibold text-grey-400'>Bác sĩ</p>
+        <SidebarSection title='Bác sĩ'>
           <SidebarLink to='/doctor/queue' icon={DashboardSvg} label='Trang chủ' />
           <SidebarLink to='/doctor/queue' icon={UserGroupIcon} label='Danh sách chờ khám' />
           <SidebarLink to='/medical-forms' icon={MedicalFormSvg} label='Phiếu khám' />
-          <SidebarLink to='/medical-forms' icon={DrugSvg} label='Kê toa thuốc' />
-          <SidebarLink to='/medical-forms' icon={PresentationChartLineIcon} label='Lịch sử khám bệnh' />
-        </div>
+        </SidebarSection>
       )}
-
-      
-
-      {/* Support - luôn hiển thị, RoleGuard/backend sẽ chặn nếu role không phù hợp */}
-      <div className='flex flex-col mb-6'>
-        <p className='px-2 mb-2 text-sm font-semibold text-grey-400'>Support</p>
-        {can('patientProfile') && (
-          <SidebarLink to='/patients/profile' icon={UserCircleIcon} label='My Profile' />
-        )}
-        {can('appointments') && (
-          <SidebarLink to='/lich-kham' icon={CalendarDaysIcon} label='Lịch khám của tôi' />
-        )}
-      </div>
-
-      <div className='border border-grey-transparent'></div>
-
-      <div className='flex items-center justify-between px-3 py-4 mt-5 border rounded-md border-grey-transparent shadow-1 gap-x-5'>
-        <span>
-          <MoonIcon className='w-5 h-5' />
-        </span>
-
-        <span>Dark Mode</span>
-
-        <ButtonToggle />
-      </div>
-    </aside>
+    </SidebarWrapper>
   );
 };
 

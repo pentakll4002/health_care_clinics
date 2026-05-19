@@ -1,63 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
-import styled from 'styled-components';
 import { PAGE_SIZE } from '../constants/Global';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/16/solid';
-
-const StyledPagination = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-`;
-
-const P = styled.p`
-  font-size: 14px;
-  margin-left: 8px;
-
-  & span {
-    font-weight: 600;
-  }
-`;
-
-const Buttons = styled.div`
-  display: flex;
-  gap: 6px;
-`;
-
-const PaginationButton = styled.button`
-  background-color: ${(props) => (props.active ? '#2E37A4' : '#CED1D7')};
-  color: ${(props) => (props.active ? '#CED1D7' : 'inherit')};
-  border: none;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 14px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 6px 12px;
-  transition: all 0.3s;
-
-  &:has(span:last-child) {
-    padding-left: 4px;
-  }
-
-  &:has(span:first-child) {
-    padding-right: 4px;
-  }
-
-  & svg {
-    height: 18px;
-    width: 18px;
-  }
-
-  &:hover:not(:disabled) {
-    background-color: #2e37a4;
-    color: #fff;
-  }
-`;
 
 const Pagination = ({ count }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -69,13 +12,12 @@ const Pagination = ({ count }) => {
 
   function nextPage() {
     const next = currentPage === pageCount ? currentPage : currentPage + 1;
-
     searchParams.set('page', next);
     setSearchParams(searchParams);
   }
+
   function prevPage() {
     const prev = currentPage === 1 ? currentPage : currentPage - 1;
-
     searchParams.set('page', prev);
     setSearchParams(searchParams);
   }
@@ -83,26 +25,71 @@ const Pagination = ({ count }) => {
   if (pageCount <= 1) return null;
 
   return (
-    <StyledPagination>
-      <P>
-        Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{' '}
-        <span>
+    <div className='w-full flex items-center justify-between mt-4'>
+      <p className='text-sm ml-2' style={{ color: 'var(--text-secondary)' }}>
+        Hiển thị{' '}
+        <span className='font-semibold' style={{ color: 'var(--text-primary)' }}>
+          {(currentPage - 1) * PAGE_SIZE + 1}
+        </span>{' '}
+        đến{' '}
+        <span className='font-semibold' style={{ color: 'var(--text-primary)' }}>
           {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
         </span>{' '}
-        of <span>{count}</span> results
-      </P>
-      <Buttons>
-        <PaginationButton onClick={prevPage} disabled={currentPage === 1}>
-          <ChevronLeftIcon /> <span>Previous</span>
-        </PaginationButton>
-        <PaginationButton
+        trong{' '}
+        <span className='font-semibold' style={{ color: 'var(--text-primary)' }}>
+          {count}
+        </span>{' '}
+        kết quả
+      </p>
+
+      <div className='flex gap-2'>
+        <button
+          onClick={prevPage}
+          disabled={currentPage === 1}
+          className='flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-40'
+          style={{
+            backgroundColor: 'var(--bg-card)',
+            color: 'var(--text-primary)',
+            border: '1px solid var(--border-color)',
+          }}
+          onMouseEnter={(e) => {
+            if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
+          }}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-card)'}
+        >
+          <ChevronLeftIcon className='w-4 h-4' />
+          <span>Trước</span>
+        </button>
+
+        <div
+          className='flex items-center px-3 py-1.5 rounded-lg text-sm font-semibold'
+          style={{
+            backgroundColor: 'var(--accent-light)',
+            color: 'var(--accent)',
+          }}
+        >
+          {currentPage} / {pageCount}
+        </div>
+
+        <button
           onClick={nextPage}
           disabled={currentPage === pageCount}
+          className='flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 disabled:opacity-40'
+          style={{
+            backgroundColor: 'var(--bg-card)',
+            color: 'var(--text-primary)',
+            border: '1px solid var(--border-color)',
+          }}
+          onMouseEnter={(e) => {
+            if (!e.currentTarget.disabled) e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
+          }}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-card)'}
         >
-          <ChevronRightIcon /> <span>Next</span>
-        </PaginationButton>
-      </Buttons>
-    </StyledPagination>
+          <span>Sau</span>
+          <ChevronRightIcon className='w-4 h-4' />
+        </button>
+      </div>
+    </div>
   );
 };
 

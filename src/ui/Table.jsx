@@ -1,60 +1,21 @@
 import { createContext, useContext } from 'react';
-import styled from 'styled-components';
-
-const StyledTable = styled.div`
-  border: 1px solid var(--color-grey-200);
-
-  font-size: 14px;
-  background-color: var(--color-grey-0);
-  border-radius: 7px;
-  overflow: hidden;
-`;
-
-const CommonRow = styled.header`
-  display: grid;
-  grid-template-columns: ${(props) => props.$columns};
-  background-color: #fff;
-  column-gap: 24px;
-  align-items: center;
-  transition: none;
-`;
-
-const StyledHeader = styled(CommonRow)`
-  padding: 16px 24px;
-
-  background-color: #fff;
-  border-bottom: 1px solid #f3f4f6;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  font-weight: 600;
-  color: #0A1B39;
-`;
-
-const StyledBody = styled.section`
-  margin: 4px 0;
-`;
-
-const StyledRow = styled(CommonRow)`
-  padding: 12px 24px;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid #f3f4f6;
-  }
-`;
-
-const Empty = styled.p`
-  font-size: 16px;
-  font-weight: 500;
-  text-align: center;
-  margin: 24px;
-`;
 
 const TableContext = createContext();
 
 function Table({ columns, children }) {
   return (
     <TableContext.Provider value={{ columns }}>
-      <StyledTable role='table'>{children}</StyledTable>
+      <div
+        role='table'
+        className='rounded-xl overflow-hidden border transition-colors duration-200'
+        style={{
+          backgroundColor: 'var(--bg-card)',
+          borderColor: 'var(--border-color)',
+          boxShadow: 'var(--shadow-sm)',
+        }}
+      >
+        {children}
+      </div>
     </TableContext.Provider>
   );
 }
@@ -63,24 +24,58 @@ function Header({ children }) {
   const { columns } = useContext(TableContext);
 
   return (
-    <StyledHeader role='row' $columns={columns} as='header'>
+    <header
+      role='row'
+      className='grid items-center gap-x-6 px-6 py-3.5'
+      style={{
+        gridTemplateColumns: columns,
+        backgroundColor: 'var(--bg-table-header)',
+        borderBottom: '1px solid var(--border-light)',
+        color: 'var(--text-secondary)',
+        fontSize: '12px',
+        fontWeight: 600,
+        textTransform: 'uppercase',
+        letterSpacing: '0.5px',
+      }}
+    >
       {children}
-    </StyledHeader>
+    </header>
   );
 }
+
 function Row({ children }) {
   const { columns } = useContext(TableContext);
 
   return (
-    <StyledRow role='row' $columns={columns}>
+    <div
+      role='row'
+      className='grid items-center gap-x-6 px-6 py-3 transition-colors duration-150 cursor-default'
+      style={{
+        gridTemplateColumns: columns,
+        borderBottom: '1px solid var(--border-light)',
+        color: 'var(--text-primary)',
+        fontSize: '14px',
+      }}
+      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-table-row-hover)'}
+      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+    >
       {children}
-    </StyledRow>
+    </div>
   );
 }
-function Body({ data = [], render }) {
-  if (!data.length) return <Empty>Không có dữ liệu</Empty>;
 
-  return <StyledBody>{data.map(render)}</StyledBody>;
+function Body({ data = [], render }) {
+  if (!data.length)
+    return (
+      <p
+        className='text-center py-10 text-sm font-medium'
+        style={{ color: 'var(--text-muted)' }}
+      >
+        Không có dữ liệu
+      </p>
+    );
+
+  return <section>{data.map(render)}</section>;
 }
 
 Table.Header = Header;

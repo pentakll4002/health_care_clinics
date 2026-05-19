@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"cd backend && mvn spring-boot:run\" \"cd python-chatbot && python start_chatbot.py\"",
+    "dev": "concurrently --names \"frontend,backend,ai\" --prefix-colors \"cyan,green,magenta\" \"vite\" \"cd backend && mvn spring-boot:run -DskipTests\" \"cd ai-service && node src/app.js\"",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"

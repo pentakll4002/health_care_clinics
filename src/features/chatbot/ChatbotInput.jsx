@@ -17,15 +17,25 @@ const ChatbotInput = ({ onSend, isLoading }) => {
   };
 
   return (
-    <div className=' relative p-3 flex bg-white border-t border-grey-transparent min-h-[56px]'>
+    <div
+      className='relative p-3 flex min-h-[56px]'
+      style={{
+        backgroundColor: 'var(--bg-card)',
+        borderTop: '1px solid var(--border-color)',
+      }}
+    >
       <input
         type='text'
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={handleKeyDown}
-        className={` relative flex-1 px-[20px] py-[22px] text-[18px] border-none rounded-lg outline-none bg-light ${
+        className={`relative flex-1 px-4 py-3 text-sm border-none rounded-lg outline-none ${
           isLoading ? ' opacity-0' : ''
         }`}
+        style={{
+          backgroundColor: 'var(--bg-secondary)',
+          color: 'var(--text-primary)',
+        }}
         placeholder='Nhập câu hỏi'
       />
 
@@ -37,11 +47,11 @@ const ChatbotInput = ({ onSend, isLoading }) => {
 
       <button
         onClick={handleSend}
-        className={`absolute cursor-pointer bottom-9 right-6 ${
+        className={`absolute cursor-pointer bottom-7 right-6 ${
           isLoading ? ' opacity-0' : ''
         }`}
       >
-        <img src={buttonIcon} className='w-6 h-6 ' />
+        <img src={buttonIcon} className='w-5 h-5' alt='Send' />
       </button>
     </div>
   );

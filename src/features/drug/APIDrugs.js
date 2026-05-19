@@ -1,13 +1,10 @@
 import axiosInstance from '../../utils/axiosInstance';
 
-export async function getDrugs(page = 1, limit = 7, keyword = "") {
-  // Spring Boot pagination is 0-indexed and uses 'size'
+export async function getDrugs(page = 1, limit = 12, keyword = "") {
+  // Spring Boot pagination is 0-indexed
   const params = { page: page > 0 ? page - 1 : 0, size: limit };
   if (keyword) {
     params.keyword = keyword;
-    params.search = keyword;
-    params.ten = keyword;
-    params.name = keyword;
   }
   const response = await axiosInstance.get('/thuoc', { params });
   return response.data;
@@ -93,4 +90,3 @@ export async function deleteDrugImport(id) {
   const response = await axiosInstance.delete(`/phieu-nhap-thuoc/${id}`);
   return response.data;
 }
-

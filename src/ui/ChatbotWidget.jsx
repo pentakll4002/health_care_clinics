@@ -25,12 +25,12 @@ const ChatbotWidget = () => {
       const res = await axiosChatbot.post('/', {
         message: text,
         conversation_history,
-        use_rag: true, // Enable RAG to use roles data
+        use_rag: true,
       });
 
       setMessages((prev) => [
         ...prev,
-        { from: 'bot', text: res.data.answer },
+        { from: 'bot', text: res.data.answer || res.data.response?.[0]?.message || 'Không có phản hồi.' },
       ]);
     } catch (e) {
       console.error('Chatbot error:', e);
@@ -38,18 +38,11 @@ const ChatbotWidget = () => {
 
       if (e.code === 'ERR_NETWORK' || e.message?.includes('ECONNREFUSED')) {
         errorMsg =
-          'Không thể kết nối đến chatbot server. Vui lòng kiểm tra backend Python (port 8002). Đảm bảo chatbot server đang chạy: cd python-chatbot && python start_chatbot.py';
+          '⚠️ Không thể kết nối đến AI service. Hãy chạy: cd ai-service && npm start';
       } else if (e.response?.data?.detail) {
         errorMsg = `Lỗi: ${e.response.data.detail}`;
       } else if (e.response?.status === 500) {
-        errorMsg = `Lỗi server (500): ${
-          e.response?.data?.detail || 'Vui lòng kiểm tra log backend'
-        }`;
-      } else if (e.response?.status === 400) {
-        errorMsg = `Lỗi cấu hình: ${
-          e.response?.data?.detail ||
-          'Vui lòng kiểm tra API keys trong file .env'
-        }`;
+        errorMsg = `Lỗi server: ${e.response?.data?.error || 'Vui lòng kiểm tra ai-service log'}`;
       }
 
       setMessages((prev) => [...prev, { from: 'bot', text: errorMsg }]);
@@ -59,19 +52,25 @@ const ChatbotWidget = () => {
   };
 
   return (
-    <div style={{ position: 'absolute', bottom: 24, right: 24, zIndex: 9999 }}>
+    <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 9999 }}>
       {open ? (
-        <ChatbotFrame>
-          <ChatbotHeader onClose={() => setOpen(false)} />
-          <ChatbotOutput messages={messages} />
-          <ChatbotInput onSend={handleSend} isLoading={loading} />
-        </ChatbotFrame>
+        <div className='animate-scale-in'>
+          <ChatbotFrame>
+            <ChatbotHeader onClose={() => setOpen(false)} />
+            <ChatbotOutput messages={messages} />
+            <ChatbotInput onSend={handleSend} isLoading={loading} />
+          </ChatbotFrame>
+        </div>
       ) : (
         <button
           onClick={() => setOpen((v) => !v)}
-          className='p-2 rounded-full outline-none cursor-pointer shadow-1 bg-primary'
+          className='p-2.5 rounded-full outline-none cursor-pointer transition-transform duration-200 hover:scale-110'
+          style={{
+            background: 'linear-gradient(135deg, var(--accent) 0%, #0e9384 100%)',
+            boxShadow: 'var(--shadow-lg)',
+          }}
         >
-          <img src={chatbotIcon} alt='Chatbot' className='w-10 h-10' />
+          <img src={chatbotIcon} alt='Chatbot' className='w-9 h-9' />
         </button>
       )}
     </div>

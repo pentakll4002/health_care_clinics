@@ -5,6 +5,7 @@ C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\JwtTok
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\PermissionFixer.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\SecurityConfig.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\UserPrincipal.java
+C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\WebConfig.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\AuthController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\BenhNhanController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\CachDungController.java

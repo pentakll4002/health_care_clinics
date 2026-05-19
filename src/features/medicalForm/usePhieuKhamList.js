@@ -12,13 +12,15 @@ export function usePhieuKhamList() {
     queryFn: getPhieuKhamList,
   });
 
-  const totalCount = data?.totalCount || 0;
+  // Backend returns either a flat array or {data, totalCount}
+  const rawData = Array.isArray(data) ? data : (data?.data || []);
+  const totalCount = Array.isArray(data) ? data.length : (data?.totalCount || 0);
 
   useEffect(() => {
-    if (!data?.data) return;
-    const slice = data.data.slice(0, page * PAGE_SIZE_LOAD_MORE);
+    if (!rawData || rawData.length === 0) return;
+    const slice = rawData.slice(0, page * PAGE_SIZE_LOAD_MORE);
     setPhieuKhams(slice);
-  }, [data, page]);
+  }, [rawData, page]);
 
   function loadMore() {
     setPage((prev) => prev + 1);
@@ -28,4 +30,3 @@ export function usePhieuKhamList() {
 
   return { isLoading, phieuKhams, totalCount, hasMore, loadMore };
 }
-

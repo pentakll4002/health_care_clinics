@@ -1,5 +1,4 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { useDrug } from './useDrug';
 import Spinner from '../../ui/Spinner';
 import Button from '../../ui/Button';
@@ -11,53 +10,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteDrug } from './APIDrugs';
 import toast from 'react-hot-toast';
 import { PencilIcon, TrashIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
-
-const Container = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  padding: 20px;
-  background-color: #f5f6f8;
-`;
-
-const Card = styled.div`
-  background: #fff;
-  border-radius: 8px;
-  padding: 24px;
-  border: 1px solid #e7e8eb;
-`;
-
-const Image = styled.img`
-  width: 200px;
-  height: 200px;
-  border-radius: 8px;
-  object-fit: cover;
-  background: #f5f6f8;
-`;
-
-const InfoGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-top: 24px;
-`;
-
-const InfoItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-const Label = styled.span`
-  font-size: 14px;
-  color: #6b7280;
-  font-weight: 500;
-`;
-
-const Value = styled.span`
-  font-size: 16px;
-  color: #111827;
-  font-weight: 600;
-`;
 
 const DrugDetail = () => {
   const { id } = useParams();
@@ -85,53 +37,75 @@ const DrugDetail = () => {
 
   if (!drug) {
     return (
-      <Container>
-        <Card>
-          <div className='text-center py-10 text-grey-500'>
+      <div className='w-full h-full p-5' style={{ backgroundColor: 'var(--bg-secondary)' }}>
+        <div
+          className='rounded-xl p-6 border'
+          style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+        >
+          <div className='text-center py-10' style={{ color: 'var(--text-muted)' }}>
             Không tìm thấy thuốc
           </div>
-        </Card>
-      </Container>
+        </div>
+      </div>
     );
   }
 
-  const {
-    TenThuoc,
-    SoLuongTon,
-    DonGiaBan,
-    DonGiaNhap,
-    HinhAnh,
-    ThanhPhan,
-    XuatXu,
-    TyLeGiaBan,
-    dvt,
-    cach_dung: cachDung,
-  } = drug;
+  // Support both camelCase (DTO) and PascalCase (legacy)
+  const tenThuoc = drug.tenThuoc || drug.TenThuoc || 'N/A';
+  const soLuongTon = drug.soLuongTon ?? drug.SoLuongTon ?? 0;
+  const donGiaBan = drug.donGiaBan || drug.DonGiaBan;
+  const donGiaNhap = drug.donGiaNhap || drug.DonGiaNhap;
+  const hinhAnh = drug.hinhAnh || drug.HinhAnh;
+  const thanhPhan = drug.thanhPhan || drug.ThanhPhan;
+  const xuatXu = drug.xuatXu || drug.XuatXu;
+  const tyLeGiaBan = drug.tyLeGiaBan || drug.TyLeGiaBan;
+  const tenDvt = drug.tenDvt || drug.dvt?.TenDVT || drug.dvt?.tenDvt || 'N/A';
+  const moTaCachDung = drug.moTaCachDung || drug.cach_dung?.MoTaCachDung || drug.cachDung?.moTaCachDung || 'N/A';
+
+  const formatPrice = (price) => {
+    if (!price) return 'N/A';
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  };
 
   return (
-    <Container>
+    <div className='w-full h-full p-5' style={{ backgroundColor: 'var(--bg-secondary)' }}>
+      {/* Back button */}
       <div className='mb-4'>
-        <Button
-          className='flex items-center gap-2 bg-white text-grey-900 px-4 py-2 border border-grey-transparent'
+        <button
+          className='flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border transition-colors'
+          style={{
+            backgroundColor: 'var(--bg-card)',
+            borderColor: 'var(--border-color)',
+            color: 'var(--text-primary)',
+          }}
           onClick={() => navigate('/drugs')}
         >
-          <ArrowLeftIcon className='w-5 h-5' />
+          <ArrowLeftIcon className='w-4 h-4' />
           <span>Quay lại</span>
-        </Button>
+        </button>
       </div>
 
-      <Card>
+      {/* Drug Detail Card */}
+      <div
+        className='rounded-xl p-6 border'
+        style={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border-color)' }}
+      >
+        {/* Header */}
         <div className='flex items-start justify-between mb-6'>
-          <h1 className='text-2xl font-bold text-grey-900'>{TenThuoc}</h1>
+          <h1 className='text-xl font-bold' style={{ color: 'var(--text-primary)' }}>
+            {tenThuoc}
+          </h1>
           <div className='flex items-center gap-2'>
             <Modal>
               <Modal.Open opens='edit-drug'>
-                <Button className='flex items-center gap-2 bg-primary text-white px-4 py-2'>
-                  <PencilIcon className='w-5 h-5' />
+                <button
+                  className='flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg text-white'
+                  style={{ backgroundColor: 'var(--accent)' }}
+                >
+                  <PencilIcon className='w-4 h-4' />
                   <span>Chỉnh sửa</span>
-                </Button>
+                </button>
               </Modal.Open>
-
               <Modal.Window name='edit-drug'>
                 <UpdateDrugForm drug={drug} />
               </Modal.Window>
@@ -139,12 +113,11 @@ const DrugDetail = () => {
 
             <ModalCenter>
               <ModalCenter.Open opens='delete-drug'>
-                <Button className='flex items-center gap-2 bg-red-500 text-white px-4 py-2'>
-                  <TrashIcon className='w-5 h-5' />
+                <button className='flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg text-white bg-red-500'>
+                  <TrashIcon className='w-4 h-4' />
                   <span>Xóa</span>
-                </Button>
+                </button>
               </ModalCenter.Open>
-
               <ModalCenter.Window name='delete-drug'>
                 <ConfirmDelete
                   resourceName='Thuốc'
@@ -157,77 +130,58 @@ const DrugDetail = () => {
           </div>
         </div>
 
+        {/* Content */}
         <div className='flex gap-8'>
-          <Image
-            src={HinhAnh || '/placeholder-drug.jpg'}
-            alt={TenThuoc}
-            onError={(e) => {
-              e.target.src = '/placeholder-drug.jpg';
-            }}
-          />
+          {/* Image */}
+          <div
+            className='w-48 h-48 rounded-xl overflow-hidden flex-shrink-0 flex items-center justify-center'
+            style={{ backgroundColor: 'var(--bg-secondary)' }}
+          >
+            <img
+              src={hinhAnh || '/placeholder-drug.jpg'}
+              alt={tenThuoc}
+              className='w-full h-full object-contain p-3'
+              onError={(e) => { e.target.src = '/placeholder-drug.jpg'; }}
+            />
+          </div>
 
-          <div className='flex-1'>
-            <InfoGrid>
-              <InfoItem>
-                <Label>Đơn vị tính</Label>
-                <Value>{dvt?.TenDVT || 'N/A'}</Value>
-              </InfoItem>
-
-              <InfoItem>
-                <Label>Cách dùng</Label>
-                <Value>{cachDung?.MoTaCachDung || 'N/A'}</Value>
-              </InfoItem>
-
-              <InfoItem>
-                <Label>Thành phần</Label>
-                <Value>{ThanhPhan || 'N/A'}</Value>
-              </InfoItem>
-
-              <InfoItem>
-                <Label>Xuất xứ</Label>
-                <Value>{XuatXu || 'N/A'}</Value>
-              </InfoItem>
-
-              <InfoItem>
-                <Label>Số lượng tồn</Label>
-                <Value>{SoLuongTon || 0}</Value>
-              </InfoItem>
-
-              <InfoItem>
-                <Label>Giá nhập</Label>
-                <Value>
-                  {DonGiaNhap
-                    ? new Intl.NumberFormat('vi-VN', {
-                        style: 'currency',
-                        currency: 'VND',
-                      }).format(DonGiaNhap)
-                    : 'N/A'}
-                </Value>
-              </InfoItem>
-
-              <InfoItem>
-                <Label>Tỷ lệ giá bán</Label>
-                <Value>{TyLeGiaBan ? `${TyLeGiaBan}%` : 'N/A'}</Value>
-              </InfoItem>
-
-              <InfoItem>
-                <Label>Giá bán</Label>
-                <Value className='text-primary'>
-                  {DonGiaBan
-                    ? new Intl.NumberFormat('vi-VN', {
-                        style: 'currency',
-                        currency: 'VND',
-                      }).format(DonGiaBan)
-                    : 'N/A'}
-                </Value>
-              </InfoItem>
-            </InfoGrid>
+          {/* Info Grid */}
+          <div className='flex-1 grid grid-cols-2 gap-5'>
+            <InfoItem label='Đơn vị tính' value={tenDvt} />
+            <InfoItem label='Cách dùng' value={moTaCachDung} />
+            <InfoItem label='Thành phần' value={thanhPhan || 'N/A'} />
+            <InfoItem label='Xuất xứ' value={xuatXu || 'N/A'} />
+            <InfoItem label='Số lượng tồn' value={soLuongTon} highlight={soLuongTon <= 10 ? 'error' : 'success'} />
+            <InfoItem label='Giá nhập' value={formatPrice(donGiaNhap)} />
+            <InfoItem label='Tỷ lệ giá bán' value={tyLeGiaBan ? `${tyLeGiaBan}%` : 'N/A'} />
+            <InfoItem label='Giá bán' value={formatPrice(donGiaBan)} highlight='accent' />
           </div>
         </div>
-      </Card>
-    </Container>
+      </div>
+    </div>
+  );
+};
+
+const InfoItem = ({ label, value, highlight }) => {
+  const colorMap = {
+    accent: 'var(--accent)',
+    success: 'var(--success)',
+    error: 'var(--error)',
+  };
+
+  return (
+    <div className='flex flex-col gap-1'>
+      <span className='text-sm font-medium' style={{ color: 'var(--text-muted)' }}>
+        {label}
+      </span>
+      <span
+        className='text-base font-semibold'
+        style={{ color: highlight ? colorMap[highlight] : 'var(--text-primary)' }}
+      >
+        {value}
+      </span>
+    </div>
   );
 };
 
 export default DrugDetail;
-

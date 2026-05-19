@@ -16,17 +16,23 @@ const fetchPatientProfile = async () => {
 };
 
 const updatePatientProfileRequest = async (formData) => {
-  // PHP/Laravel may not parse multipart/form-data payloads for PATCH/PUT.
-  // Use method spoofing with POST to ensure server receives FormData fields.
-  if (formData instanceof FormData && !formData.has('_method')) {
-    formData.append('_method', 'PATCH');
-  }
-  const response = await axiosInstance.post('/patient/profile', formData);
+  // Send FormData directly (multipart/form-data) for avatar file upload support
+  const response = await axiosInstance.post('/patient/profile', formData, {
+    headers: formData instanceof FormData
+      ? { 'Content-Type': 'multipart/form-data' }
+      : { 'Content-Type': 'application/json' },
+  });
   return response.data;
 };
 
 const changePasswordRequest = async (payload) => {
-  const response = await axiosInstance.post('/patient/change-password', payload);
+  // Ensure JSON content type
+  const data = payload instanceof FormData
+    ? Object.fromEntries(payload.entries())
+    : payload;
+  const response = await axiosInstance.post('/patient/change-password', data, {
+    headers: { 'Content-Type': 'application/json' },
+  });
   return response.data;
 };
 
@@ -92,6 +98,8 @@ export function useUpdatePatientSelfProfile() {
     onSuccess: async () => {
       toast.success('Đã lưu thay đổi hồ sơ');
       await queryClient.invalidateQueries({ queryKey: PROFILE_QUERY_KEY });
+      // Also refresh the global user profile so header avatar/name updates
+      await queryClient.invalidateQueries({ queryKey: ['user-profile'] });
     },
     onError: (error) => {
       const serverErrors = error?.response?.data?.errors;

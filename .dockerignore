@@ -1,0 +1,65 @@
+# ============================================================
+# .dockerignore - Exclude unnecessary files from Docker context
+# ============================================================
+
+# Version control
+.git
+.gitignore
+
+# IDE files
+.vscode
+.idea
+*.iml
+.claude
+
+# Node dependencies (rebuilt inside container)
+node_modules
+ai-service/node_modules
+
+# Build outputs (rebuilt inside container)
+dist
+backend/target
+
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+ai-service/**/__pycache__
+
+# Environment files (passed via docker-compose)
+.env
+ai-service/.env
+
+# Docker files (no recursion)
+docker-compose.yaml
+docker-compose*.yaml
+
+# Terraform & CI/CD
+terraform/
+Jenkinsfile
+
+# Test & coverage
+coverage
+*.test.js
+*.spec.js
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+*.md
+!backend/README.md
+
+# Misc
+crawl_test_final_with_price.json
+json.json
+test.py

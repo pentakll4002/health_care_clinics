@@ -10,7 +10,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/thuoc")
@@ -20,19 +22,36 @@ public class ThuocController {
     private final ThuocService thuocService;
 
     @GetMapping
-    public ResponseEntity<List<ThuocDTO>> getAll(
+    public ResponseEntity<?> getAll(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "12") int size,
             @RequestParam(defaultValue = "idThuoc") String sortBy,
-            @RequestParam(defaultValue = "desc") String direction) {
+            @RequestParam(defaultValue = "desc") String direction,
+            @RequestParam(required = false) String keyword) {
         
-        if (page == 0 && size == 10) {
-            return ResponseEntity.ok(thuocService.getAll());
+        // If keyword is provided, use search
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            List<ThuocDTO> results = thuocService.search(keyword.trim());
+            Map<String, Object> response = new HashMap<>();
+            response.put("data", results);
+            response.put("totalCount", results.size());
+            response.put("page", 0);
+            response.put("size", results.size());
+            response.put("totalPages", 1);
+            return ResponseEntity.ok(response);
         }
         
         Sort.Direction dir = direction.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
         Page<ThuocDTO> result = thuocService.getAll(PageRequest.of(page, size, Sort.by(dir, sortBy)));
-        return ResponseEntity.ok(result.getContent());
+        
+        Map<String, Object> response = new HashMap<>();
+        response.put("data", result.getContent());
+        response.put("totalCount", result.getTotalElements());
+        response.put("page", result.getNumber());
+        response.put("size", result.getSize());
+        response.put("totalPages", result.getTotalPages());
+        
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")

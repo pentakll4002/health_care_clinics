@@ -49,40 +49,71 @@ const NotificationBell = () => {
           setOpen(next);
           if (next) refresh();
         }}
-        className='relative p-[8px] rounded-[20px] shadow-1 bg-white border border-grey-transparent'
+        className='relative p-2 rounded-lg transition-colors duration-200'
+        style={{
+          backgroundColor: 'var(--bg-secondary)',
+          color: 'var(--text-secondary)',
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-hover)'}
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-secondary)'}
       >
-        <BellIcon className='w-6 h-6' />
+        <BellIcon className='w-5 h-5' />
         {unreadCount > 0 && (
-          <span className='absolute -top-[2px] -right-[2px] w-3 h-3 rounded-full bg-red-500 border-2 border-white' />
+          <span
+            className='absolute top-1 right-1 w-2.5 h-2.5 rounded-full border-2'
+            style={{
+              backgroundColor: 'var(--error)',
+              borderColor: 'var(--bg-header)',
+            }}
+          />
         )}
       </button>
 
       {open && (
-        <div className='absolute right-0 top-full mt-2 w-[360px] bg-white border border-gray-200 rounded-md shadow-lg z-20 overflow-hidden'>
-          <div className='flex items-center justify-between px-4 py-3 border-b border-gray-100'>
+        <div
+          className='absolute right-0 top-full mt-2 w-[360px] rounded-xl border overflow-hidden z-20 animate-scale-in'
+          style={{
+            backgroundColor: 'var(--bg-card)',
+            borderColor: 'var(--border-color)',
+            boxShadow: 'var(--shadow-lg)',
+          }}
+        >
+          <div
+            className='flex items-center justify-between px-4 py-3 border-b'
+            style={{ borderColor: 'var(--border-light)' }}
+          >
             <div className='flex flex-col'>
-              <span className='text-sm font-semibold text-grey-900'>Thông báo nghiệp vụ</span>
-              <span className='text-xs text-grey-500'>Những việc cần xử lý theo vai trò của bạn</span>
+              <span className='text-sm font-semibold' style={{ color: 'var(--text-primary)' }}>
+                Thông báo
+              </span>
+              <span className='text-xs' style={{ color: 'var(--text-muted)' }}>
+                Những việc cần xử lý
+              </span>
             </div>
-            <div className='flex items-center gap-2'>
-              <button
-                type='button'
-                className='text-xs font-semibold text-grey-700 hover:text-grey-900'
-                onClick={markAllRead}
-                disabled={unreadCount === 0}
-              >
-                Đã xem hết
-              </button>
-            </div>
+            <button
+              type='button'
+              className='text-xs font-semibold transition-colors'
+              style={{ color: 'var(--accent)' }}
+              onClick={markAllRead}
+              disabled={unreadCount === 0}
+            >
+              Đã xem hết
+            </button>
           </div>
 
           <div className='max-h-[360px] overflow-y-auto'>
             {isLoading ? (
-              <div className='px-4 py-6 text-sm text-grey-500'>Đang tải...</div>
+              <div className='px-4 py-6 text-sm' style={{ color: 'var(--text-muted)' }}>
+                Đang tải...
+              </div>
             ) : error ? (
-              <div className='px-4 py-6 text-sm text-red-500'>Không thể tải thông báo.</div>
+              <div className='px-4 py-6 text-sm' style={{ color: 'var(--error)' }}>
+                Không thể tải thông báo.
+              </div>
             ) : notifications.length === 0 ? (
-              <div className='px-4 py-6 text-sm text-grey-500'>Không có việc cần xử lý.</div>
+              <div className='px-4 py-6 text-sm text-center' style={{ color: 'var(--text-muted)' }}>
+                Không có việc cần xử lý.
+              </div>
             ) : (
               notifications.map((item) => {
                 const isUnread = !isRead(item.id);
@@ -91,15 +122,27 @@ const NotificationBell = () => {
                     key={item.id}
                     type='button'
                     onClick={() => handleItemClick(item)}
-                    className='w-full text-left px-4 py-3 border-b border-gray-100 hover:bg-grey-50'
+                    className='w-full text-left px-4 py-3 border-b transition-colors duration-150'
+                    style={{ borderColor: 'var(--border-light)' }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-hover)'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                   >
                     <div className='flex items-start gap-3'>
-                      <div className={`mt-1 w-2 h-2 rounded-full ${isUnread ? 'bg-primary' : 'bg-grey-300'}`} />
-                      <div className='flex flex-col gap-1'>
-                        <div className='text-xs uppercase text-primary'>{item.title}</div>
-                        <div className='text-sm font-semibold text-grey-900'>{item.message}</div>
+                      <div
+                        className='mt-1.5 w-2 h-2 rounded-full flex-shrink-0'
+                        style={{ backgroundColor: isUnread ? 'var(--accent)' : 'var(--border-color)' }}
+                      />
+                      <div className='flex flex-col gap-0.5'>
+                        <div className='text-[10px] uppercase font-bold tracking-wider' style={{ color: 'var(--accent)' }}>
+                          {item.title}
+                        </div>
+                        <div className='text-sm font-medium' style={{ color: 'var(--text-primary)' }}>
+                          {item.message}
+                        </div>
                         {item.createdAt ? (
-                          <div className='text-xs text-grey-500'>{new Date(item.createdAt).toLocaleString()}</div>
+                          <div className='text-xs' style={{ color: 'var(--text-muted)' }}>
+                            {new Date(item.createdAt).toLocaleString()}
+                          </div>
                         ) : null}
                       </div>
                     </div>

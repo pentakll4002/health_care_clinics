@@ -1,0 +1,123 @@
+# ============================================================
+# Docker Compose - Health Clinics Management System
+# Services: PostgreSQL, Backend (Spring Boot), AI Service, Frontend (Nginx)
+# ============================================================
+
+services:
+  # ---- PostgreSQL Database ----
+  postgres:
+    image: postgres:16-alpine
+    container_name: hc-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-health_clinics}
+      POSTGRES_USER: ${POSTGRES_USER:-health_clinics}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123456}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - hc-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-health_clinics} -d ${POSTGRES_DB:-health_clinics}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # ---- Spring Boot Backend ----
+  backend:
+    build:
+      context: .
+      dockerfile: docker/dockerfiles/backend.Dockerfile
+    container_name: hc-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-health_clinics}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-health_clinics}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-123456}
+      JWT_SECRET: ${JWT_SECRET:-healthClinicsSecretKeyForJWT2025VeryLongSecretKey}
+      SPRING_MAIL_USERNAME: ${MAIL_USERNAME:-}
+      SPRING_MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      JAVA_OPTS: "-Xmx512m -Xms256m"
+    ports:
+      - "${BACKEND_PORT:-8080}:8080"
+    networks:
+      - hc-network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/api/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # ---- AI Service (Python FastAPI) ----
+  ai-service:
+    build:
+      context: .
+      dockerfile: docker/dockerfiles/ai-service.Dockerfile
+    container_name: hc-ai-service
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      LANGCHAIN_API_KEY: ${LANGCHAIN_API_KEY:-}
+      MODEL_TYPE: ${MODEL_TYPE:-groq}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-120b}
+      GROQ_TIMEOUT: ${GROQ_TIMEOUT:-120}
+      LANGCHAIN_TRACING_V2: ${LANGCHAIN_TRACING_V2:-true}
+      LANGCHAIN_PROJECT: ${LANGCHAIN_PROJECT:-nt118-chatbot}
+      BACKEND_URL: http://backend:8080/api
+    ports:
+      - "${AI_SERVICE_PORT:-8000}:8000"
+    volumes:
+      - ai_vectorstore:/app/chatbot/vectorstore
+    networks:
+      - hc-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 120s
+
+  # ---- Frontend (React/Vite + Nginx) ----
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/dockerfiles/frontend.Dockerfile
+      args:
+        VITE_API_URL: /api
+        VITE_AI_SERVICE_URL: /ai
+    container_name: hc-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-80}:80"
+    networks:
+      - hc-network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  postgres_data:
+    driver: local
+  ai_vectorstore:
+    driver: local
+
+networks:
+  hc-network:
+    driver: bridge

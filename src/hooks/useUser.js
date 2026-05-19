@@ -6,7 +6,6 @@ async function getUserProfile() {
     const response = await axiosInstance.get('/user-profile');
     return response.data;
   } catch (error) {
-    console.error('Error fetching user profile:', error);
     // Nếu lỗi 401, clear token và redirect về login
     if (error?.response?.status === 401) {
       localStorage.removeItem('auth_token');
@@ -35,27 +34,10 @@ export function useUser() {
   });
 
   // Backend returns UserProfileDTO directly, not wrapped in {user: ...}
-  const user = data; // data IS the user profile
+  const user = data;
   
-  // Check both snake_case and camelCase
   const nhanVien = user?.nhanVien;
-  // Check if user has nhanVien relationship OR role is nhan_vien
   const isNhanVien = (nhanVien !== null && nhanVien !== undefined) || user?.role === 'nhan_vien';
-
-  // Debug log để kiểm tra
-  if (!isLoading && user) {
-    console.log('👤 useUser - User data:', {
-      hasUser: !!user,
-      userData: user,
-      hasNhanVien: !!nhanVien,
-      nhanVienKeys: nhanVien ? Object.keys(nhanVien) : null,
-      nhanVienData: nhanVien,
-    });
-  }
-  
-  if (error) {
-    console.error('❌ Error fetching user profile:', error);
-  }
 
   return {
     user,
@@ -65,4 +47,3 @@ export function useUser() {
     error,
   };
 }
-

@@ -8,13 +8,6 @@ export function useRolePermissions() {
   const { data: myPermData, isLoading: isPermLoading } = useMyPermissions();
 
   const roleCode = useMemo(() => {
-    console.log('🔍 useRolePermissions - Debug:', {
-      hasUser: !!user,
-      hasNhanVien: !!nhanVien,
-      userData: user,
-      nhanVienData: nhanVien,
-    });
-    
     const mapRole = (rawRole) => {
       const code = rawRole.toLowerCase();
       if (code === 'doctor') return 'doctors';
@@ -24,55 +17,27 @@ export function useRolePermissions() {
     };
 
     if (nhanVien) {
-      // Backend returns maNhom, convert to lowercase and map to plural if needed
       const maNhom = nhanVien.maNhom || nhanVien.MaNhom;
-      if (maNhom) {
-        const code = mapRole(maNhom);
-        console.log('Role từ nhanVien:', code);
-        return code;
-      }
+      if (maNhom) return mapRole(maNhom);
     }
     
     const userNhanVien = user?.nhan_vien || user?.nhanVien;
     if (userNhanVien) {
       const maNhom = userNhanVien.maNhom || userNhanVien.MaNhom;
-      if (maNhom) {
-        const code = mapRole(maNhom);
-        console.log('Role từ user.nhanVien:', code);
-        return code;
-      }
+      if (maNhom) return mapRole(maNhom);
     }
     
     // Fallback: use user.role directly
     if (user?.role) {
       const role = user.role.toLowerCase();
-      if (role === 'admin') {
-        console.log('Role từ user.role: admin');
-        return 'admin';
-      }
-      if (role === 'doctor') {
-        console.log('Role từ user.role: doctors');
-        return 'doctors';
-      }
-      if (role === 'receptionist') {
-        console.log('Role từ user.role: receptionists');
-        return 'receptionists';
-      }
-      if (role === 'patient') {
-        console.log('Role từ user.role: patient');
-        return 'patient';
-      }
+      if (role === 'admin') return 'admin';
+      if (role === 'doctor') return 'doctors';
+      if (role === 'receptionist') return 'receptionists';
+      if (role === 'patient') return 'patient';
     }
     
-    console.warn('Không tìm thấy role code');
     return null;
   }, [user, nhanVien]);
-
-  if (!isLoading && roleCode) {
-    console.log('Role Code:', roleCode);
-    console.log('User:', user);
-    console.log('Nhan Vien:', nhanVien);
-  }
 
   const canAccessRoute = (route) => {
     if (!roleCode || !route) return false;
@@ -86,14 +51,7 @@ export function useRolePermissions() {
     }
     
     const allowedRoles = ROUTE_ROLES[route] || [];
-    const hasAccess = allowedRoles.includes(roleCode);
-    
-    if (!hasAccess && roleCode) {
-      console.log(`❌ Role ${roleCode} không có quyền truy cập route: ${route}`);
-      console.log(`   Allowed roles:`, allowedRoles);
-    }
-    
-    return hasAccess;
+    return allowedRoles.includes(roleCode);
   };
 
   const canAccessAnyRoute = (routes) => {
@@ -119,4 +77,3 @@ export function useRolePermissions() {
     isAnyRole,
   };
 }
-

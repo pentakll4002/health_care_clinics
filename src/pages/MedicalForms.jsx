@@ -1,25 +1,10 @@
-import styled from 'styled-components';
 import MedicalFormsContainer from '../features/medicalForm/MedicalFormsContainer';
-import { FunnelIcon } from '@heroicons/react/24/outline';
 import { usePhieuKhamList } from '../features/medicalForm/usePhieuKhamList';
-import Spinner from '../ui/Spinner'
+import Spinner from '../ui/Spinner';
 import Search from '../features/Search/Search';
 import { useState } from 'react';
 import Filter from '../ui/Filter';
-
-const LayoutMedicalForms = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  background-color: #f5f6f8;
-`;
-
-const LayoutFlex = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-`;
+import { DocumentTextIcon } from '@heroicons/react/24/outline';
 
 const MedicalForms = () => {
   const [searchKeyword, setSearchKeyword] = useState("");
@@ -28,25 +13,23 @@ const MedicalForms = () => {
   if (isLoading) return <Spinner />;
 
   return (
-    <LayoutMedicalForms>
-      <LayoutFlex>
-        <div className='flex items-center justify-center gap-x-3'>
-          <h2 className='text-xl font-bold leading-6 text-grey-900'>
+    <div className='w-full h-full p-5' style={{ backgroundColor: 'var(--bg-secondary)' }}>
+      <div className='flex items-center justify-between mb-5'>
+        <div className='flex items-center gap-3'>
+          <h2 className='text-lg font-bold' style={{ color: 'var(--text-primary)' }}>
             Phiếu Khám
           </h2>
-
-          <div className='flex items-center justify-center gap-1 px-2 py-1 text-xs font-medium border rounded-md text-primary border-primary bg-primary-transparent'>
+          <div
+            className='flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-md'
+            style={{ backgroundColor: 'var(--accent-light)', color: 'var(--accent)' }}
+          >
             <span>Tổng phiếu khám:</span>
             <span>{totalCount}</span>
           </div>
-
-          <div className='ml-4'>
-            <Search onSearch={setSearchKeyword} />
-          </div>
+          <Search onSearch={setSearchKeyword} />
         </div>
 
-        <div className='flex items-center justify-center gap-x-4'>
-          {/* Filter */}
+        <div className='flex items-center gap-3'>
           <Filter
             filterField='status'
             options={[
@@ -55,12 +38,34 @@ const MedicalForms = () => {
             ]}
           />
         </div>
-      </LayoutFlex>
+      </div>
 
-      <MedicalFormsContainer searchKeyword={searchKeyword} />
-    </LayoutMedicalForms>
+      {totalCount === 0 ? (
+        <div
+          className='flex flex-col items-center justify-center py-20 rounded-xl border'
+          style={{
+            backgroundColor: 'var(--bg-card)',
+            borderColor: 'var(--border-color)',
+          }}
+        >
+          <div
+            className='w-16 h-16 rounded-full flex items-center justify-center mb-4'
+            style={{ backgroundColor: 'var(--accent-light)' }}
+          >
+            <DocumentTextIcon className='w-8 h-8' style={{ color: 'var(--accent)' }} />
+          </div>
+          <h3 className='text-base font-semibold mb-1' style={{ color: 'var(--text-primary)' }}>
+            Không có phiếu khám nào
+          </h3>
+          <p className='text-sm max-w-md text-center' style={{ color: 'var(--text-muted)' }}>
+            Phiếu khám sẽ được tạo khi bác sĩ khám bệnh nhân. Bạn có thể tìm kiếm hoặc lọc phiếu khám ở trên.
+          </p>
+        </div>
+      ) : (
+        <MedicalFormsContainer searchKeyword={searchKeyword} />
+      )}
+    </div>
   );
 };
 
 export default MedicalForms;
-

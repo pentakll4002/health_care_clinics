@@ -28,4 +28,8 @@ dist-ssr
 /python-chatbot/venv
 /python-chatbot/.venv
 
+/ai-service/.env
+
+/.claude
+
 /python-chatbot/.env

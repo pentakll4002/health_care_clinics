@@ -80,6 +80,9 @@ public class SecurityConfig {
                     // Error endpoint
                     .requestMatchers("/error").permitAll()
                     
+                    // Static uploads (avatars, etc.)
+                    .requestMatchers("/uploads/**").permitAll()
+                    
                     // Admin only
                     .requestMatchers("/nhom-nguoi-dung/**", "/chuc-nang/**", "/phan-quyen/**")
                     .hasAnyRole("ADMIN")

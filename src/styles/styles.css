@@ -2,48 +2,416 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── CSS Custom Properties for Dark Mode ── */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f6f8;
+  --bg-card: #ffffff;
+  --bg-sidebar: #ffffff;
+  --bg-header: #ffffff;
+  --bg-input: #ffffff;
+  --bg-hover: #f3f4f6;
+  --bg-modal-overlay: rgba(255, 255, 255, 0.5);
+  --bg-table-header: #fafbfc;
+  --bg-table-row-hover: #f8f9fb;
+  --bg-badge: #ecedf7;
+
+  --text-primary: #0A1B39;
+  --text-secondary: #6C7688;
+  --text-muted: #9DA4B0;
+  --text-link: #2E37A4;
+
+  --border-color: #e7e8eb;
+  --border-light: #f3f4f6;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+
+  --accent: #2E37A4;
+  --accent-hover: #252e8a;
+  --accent-light: #ecedf7;
+
+  --success: #27AE60;
+  --error: #EF1E1E;
+  --warning: #E2B93B;
+}
+
+html.dark {
+  --bg-primary: #111111;
+  --bg-secondary: #1a1a1a;
+  --bg-card: #1e1e1e;
+  --bg-sidebar: #161616;
+  --bg-header: #161616;
+  --bg-input: #1e1e1e;
+  --bg-hover: #2a2a2a;
+  --bg-modal-overlay: rgba(0, 0, 0, 0.6);
+  --bg-table-header: #1a1a1a;
+  --bg-table-row-hover: #252525;
+  --bg-badge: #2a2a2a;
+
+  --text-primary: #f0f0f0;
+  --text-secondary: #a0a0a0;
+  --text-muted: #707070;
+  --text-link: #8e93ce;
+
+  --border-color: #2e2e2e;
+  --border-light: #252525;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.4);
+
+  --accent: #8e93ce;
+  --accent-hover: #a1a5d6;
+  --accent-light: #2a2a3e;
+
+  --success: #3db670;
+  --error: #f46262;
+  --warning: #e5c04f;
+}
+
+/* ── Base ── */
 body {
   @apply text-base font-normal font-body;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 input {
   outline: none;
 }
 
+/* ══════════════════════════════════════════════════════════════
+   DARK MODE: Global overrides for styled-components & Tailwind
+   These rules ensure dark mode works across ALL pages without
+   needing to rewrite every page component.
+   ══════════════════════════════════════════════════════════════ */
+
+/* --- Override ALL styled-components with background-color: #f5f6f8 (page layouts) --- */
+html.dark [style*="background-color: rgb(245, 246, 248)"],
+html.dark div[class*="sc-"] {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* --- Override bg-white used everywhere --- */
+html.dark .bg-white {
+  background-color: var(--bg-card) !important;
+}
+
+html.dark .bg-light {
+  background-color: var(--bg-secondary) !important;
+}
+
+html.dark .bg-grey-50,
+html.dark .bg-grey-100 {
+  background-color: var(--bg-hover) !important;
+}
+
+/* --- Override text colors --- */
+html.dark .text-grey-900,
+html.dark .text-grey-800,
+html.dark .text-grey-700 {
+  color: var(--text-primary) !important;
+}
+
+html.dark .text-grey-600,
+html.dark .text-grey-500 {
+  color: var(--text-secondary) !important;
+}
+
+html.dark .text-grey-400,
+html.dark .text-grey-300 {
+  color: var(--text-muted) !important;
+}
+
+html.dark .text-dark {
+  color: var(--text-primary) !important;
+}
+
+/* --- Override borders --- */
+html.dark .border-grey-transparent,
+html.dark .border-grey-200,
+html.dark .border-grey-100,
+html.dark .border-gray-200,
+html.dark .border-gray-100 {
+  border-color: var(--border-color) !important;
+}
+
+/* --- Override primary-transparent badges --- */
+html.dark .bg-primary-transparent {
+  background-color: var(--accent-light) !important;
+}
+
+html.dark .text-primary {
+  color: var(--accent) !important;
+}
+
+html.dark .border-primary {
+  border-color: var(--accent) !important;
+}
+
+/* --- Override styled-component backgrounds for page wrappers --- */
+html.dark section,
+html.dark header[role="row"],
+html.dark div[role="row"],
+html.dark div[role="table"] {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+html.dark div[role="table"] header[role="row"] {
+  background-color: var(--bg-table-header) !important;
+  color: var(--text-secondary) !important;
+}
+
+html.dark div[role="row"]:hover {
+  background-color: var(--bg-table-row-hover) !important;
+}
+
+/* --- Styled-components Tab buttons --- */
+html.dark button[class*="sc-"] {
+  color: var(--text-secondary) !important;
+}
+
+html.dark button[class*="sc-"][style*="color: rgb(59, 130, 246)"] {
+  color: var(--accent) !important;
+}
+
+/* --- Styled-components header divs (Layout, Header, etc.) --- */
+html.dark div[class*="sc-"] h2,
+html.dark div[class*="sc-"] h3,
+html.dark div[class*="sc-"] p,
+html.dark div[class*="sc-"] span,
+html.dark div[class*="sc-"] label,
+html.dark div[class*="sc-"] td,
+html.dark div[class*="sc-"] th {
+  color: inherit !important;
+}
+
+/* --- Global input/select/textarea dark mode --- */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: var(--bg-input) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: var(--text-muted) !important;
+}
+
+/* --- Cards and containers --- */
+html.dark .shadow-1 {
+  box-shadow: var(--shadow-sm) !important;
+}
+
+html.dark .bg-button--header {
+  background: linear-gradient(135deg, #4a50c7 0%, #15a896 100%) !important;
+}
+
+/* --- Table specific --- */
+html.dark table,
+html.dark thead,
+html.dark tbody,
+html.dark tr,
+html.dark td,
+html.dark th {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+html.dark thead tr,
+html.dark th {
+  background-color: var(--bg-table-header) !important;
+  color: var(--text-secondary) !important;
+}
+
+html.dark tbody tr:hover {
+  background-color: var(--bg-table-row-hover) !important;
+}
+
+/* --- Status badges --- */
+html.dark .bg-success-transparent { background-color: rgba(39, 174, 96, 0.15) !important; }
+html.dark .bg-error-transparent { background-color: rgba(239, 30, 30, 0.15) !important; }
+html.dark .bg-warning-transparent { background-color: rgba(226, 185, 59, 0.15) !important; }
+html.dark .bg-warning-100 { background-color: rgba(226, 185, 59, 0.15) !important; }
+html.dark .bg-cyan-transparent { background-color: rgba(6, 174, 212, 0.15) !important; }
+html.dark .bg-indigo-transparent { background-color: var(--accent-light) !important; }
+
+/* --- Hover states --- */
+html.dark .hover\:bg-grey-100:hover,
+html.dark .hover\:bg-gray-100:hover {
+  background-color: var(--bg-hover) !important;
+}
+
+/* --- Reception styled-components --- */
+html.dark div[class*="LayoutReception"],
+html.dark div[class*="LayoutDoctorQueue"],
+html.dark div[class*="LayoutDrug"],
+html.dark div[class*="Layout"] {
+  background-color: var(--bg-secondary) !important;
+}
+
+/* --- Menus, Buttons, Lists (styled-components) --- */
+html.dark ul[class*="sc-"] {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+html.dark ul[class*="sc-"] button[class*="sc-"] {
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+html.dark ul[class*="sc-"] button[class*="sc-"]:hover {
+  background-color: var(--bg-hover) !important;
+}
+
+html.dark ul[class*="sc-"] button[class*="sc-"] svg {
+  color: var(--text-secondary) !important;
+}
+
+/* --- Toggle buttons (styled-components) --- */
+html.dark button[class*="sc-"] {
+  border-color: var(--border-color) !important;
+}
+
+html.dark button[class*="sc-"]:hover {
+  background-color: var(--bg-hover) !important;
+}
+
+html.dark button[class*="sc-"] svg {
+  color: var(--text-primary) !important;
+}
+
+/* --- Cards, containers (styled-components) --- */
+html.dark div[class*="Container"][class*="sc-"],
+html.dark div[class*="Card"][class*="sc-"] {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* --- Badges (styled-components) --- */
+html.dark span[class*="sc-"] {
+  background-color: var(--accent-light) !important;
+  color: var(--accent) !important;
+}
+
+/* --- Styled component inner text spans (EmployeeName etc.) --- */
+html.dark div[class*="sc-"] span {
+  color: inherit !important;
+}
+
+/* --- Chat-related components --- */
+html.dark .bg-indigo-50 {
+  background-color: var(--accent-light) !important;
+}
+
+
+/* ── Utility classes ── */
 .shadow-1 {
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-2 {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-3 {
+  box-shadow: var(--shadow-lg);
 }
 
 .bg-button--header {
-  background: linear-gradient(90deg, #2e37a4 0%, #0e9384 100%);
+  background: linear-gradient(135deg, #2e37a4 0%, #0e9384 100%);
 }
 
 .bg-user {
   background: url('../assets/default-user.jpg') lightgray 50% / cover no-repeat;
 }
 
+/* ── OTP Input ── */
 .otpInput {
   width: 60px;
   height: 60px;
   margin: 16px;
   text-align: center;
   font-size: 16px;
-  border: 2px solid #000;
-  border-radius: 5px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease;
 }
 
 .otpInput:focus {
-  border: 2px solid #2e37a4;
+  border-color: var(--accent);
 }
 
+/* ── Scrollbar ── */
 aside::-webkit-scrollbar {
   display: none;
 }
 
 aside {
   scrollbar-width: none;
-  -ms-overflow-style: none; /* IE, Edge */
+  -ms-overflow-style: none;
   scrollbar-gutter: stable both-edges;
+}
+
+/* Custom scrollbar for main content */
+main::-webkit-scrollbar {
+  width: 6px;
+}
+main::-webkit-scrollbar-track {
+  background: transparent;
+}
+main::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+main::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideInRight 0.35s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out;
 }

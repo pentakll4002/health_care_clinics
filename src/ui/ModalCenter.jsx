@@ -1,58 +1,7 @@
 import { cloneElement, createContext, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
-import styled from 'styled-components';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import useClickOutSide from '../hooks/useClickOutSide';
-
-const StyledModal = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  box-shadow: 0 24px 32px rgba(0, 0, 0, 0.12);
-  padding: 32px 40px;
-  transition: all 0.5s;
-  max-height: 90vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  width: min(1200px, 92vw);
-  border-radius: 12px;
-`;
-
-const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
-  transition: all 0.5s;
-`;
-
-const Button = styled.button`
-  background: none;
-  border: none;
-  padding: 4px;
-  border-radius: 5px;
-  transform: translateX(8px);
-  transition: all 0.2s;
-  position: absolute;
-  top: 12px;
-  right: 19px;
-
-  &:hover {
-    background-color:  #f3f4f6;
-  }
-
-  & svg {
-    width: 24px;
-    height: 24px;
-    color: #6b7280;
-  }
-`;
 
 const ModalContext = createContext();
 
@@ -71,7 +20,6 @@ function ModalCenter({ children }) {
 
 function Open({ children, opens: opensWindowName }) {
   const { open } = useContext(ModalContext);
-
   return cloneElement(children, { onClick: () => open(opensWindowName) });
 }
 
@@ -81,14 +29,32 @@ function Window({ children, name }) {
   if (name !== openName) return null;
 
   return createPortal(
-    <Overlay>
-      <StyledModal ref={ref}>
-        <Button onClick={close}>
-          <XMarkIcon />
-        </Button>
+    <div
+      className='fixed inset-0 z-[1000] flex items-center justify-center'
+      style={{ backgroundColor: 'var(--bg-modal-overlay)', backdropFilter: 'blur(4px)' }}
+    >
+      <div
+        ref={ref}
+        className='relative max-h-[90vh] overflow-y-auto overflow-x-hidden rounded-xl animate-scale-in'
+        style={{
+          backgroundColor: 'var(--bg-card)',
+          boxShadow: 'var(--shadow-lg)',
+          padding: '32px 40px',
+          width: 'min(1200px, 92vw)',
+        }}
+      >
+        <button
+          onClick={close}
+          className='absolute top-3 right-4 p-1.5 rounded-lg transition-colors duration-200 z-10'
+          style={{ color: 'var(--text-muted)' }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-hover)'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+        >
+          <XMarkIcon className='w-5 h-5' />
+        </button>
         <div>{cloneElement(children, { onCloseModal: close })}</div>
-      </StyledModal>
-    </Overlay>,
+      </div>
+    </div>,
     document.body
   );
 }

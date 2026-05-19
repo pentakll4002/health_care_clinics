@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -29,12 +30,109 @@ public class PatientController {
     private final AuthService authService;
     private final LichKhamService lichKhamService;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/profile")
     public ResponseEntity<ApiResponse<UserProfileDTO>> getProfile() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         return ResponseEntity.ok(ApiResponse.success(authService.getUserProfile(email)));
+    }
+
+    @PostMapping(value = "/profile", consumes = {"application/json", "multipart/form-data"})
+    public ResponseEntity<ApiResponse<UserProfileDTO>> updateProfile(
+            @RequestParam(value = "avatar", required = false) org.springframework.web.multipart.MultipartFile avatarFile,
+            @RequestParam(value = "DienThoai", required = false) String dienThoai,
+            @RequestParam(value = "Email", required = false) String email,
+            @RequestParam(value = "DiaChi", required = false) String diaChi,
+            @RequestParam(value = "hoTenBN", required = false) String hoTenBN,
+            @RequestParam(value = "gioiTinh", required = false) String gioiTinh,
+            @RequestParam(value = "name", required = false) String name) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = auth.getName();
+        
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        
+        // Update user name
+        if (name != null && !name.isEmpty()) {
+            user.setName(name);
+        }
+        
+        // Update BenhNhan fields
+        BenhNhan bn = user.getBenhNhan();
+        if (bn != null) {
+            if (hoTenBN != null && !hoTenBN.isEmpty()) bn.setHoTenBN(hoTenBN);
+            if (dienThoai != null) bn.setDienThoai(dienThoai);
+            if (diaChi != null) bn.setDiaChi(diaChi);
+            if (email != null) bn.setEmail(email);
+            if (gioiTinh != null) bn.setGioiTinh(gioiTinh);
+            
+            // Handle avatar file upload
+            if (avatarFile != null && !avatarFile.isEmpty()) {
+                try {
+                    String uploadDir = System.getProperty("user.dir") + "/uploads/avatars/";
+                    java.io.File dir = new java.io.File(uploadDir);
+                    if (!dir.exists()) dir.mkdirs();
+                    
+                    String fileName = "patient_" + bn.getIdBenhNhan() + "_" + System.currentTimeMillis() 
+                            + getFileExtension(avatarFile.getOriginalFilename());
+                    java.nio.file.Path filePath = java.nio.file.Paths.get(uploadDir, fileName);
+                    avatarFile.transferTo(filePath.toFile());
+                    
+                    // Store relative URL for frontend access
+                    bn.setAvatar("/uploads/avatars/" + fileName);
+                } catch (Exception e) {
+                    // Log but don't fail the entire update
+                    System.err.println("Avatar upload failed: " + e.getMessage());
+                }
+            }
+        }
+        
+        userRepository.save(user);
+        
+        return ResponseEntity.ok(ApiResponse.success("Cập nhật thành công", authService.getUserProfile(userEmail)));
+    }
+    
+    private String getFileExtension(String filename) {
+        if (filename == null) return ".jpg";
+        int dot = filename.lastIndexOf('.');
+        return dot > 0 ? filename.substring(dot) : ".jpg";
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<ApiResponse<?>> changePassword(@RequestBody Map<String, String> payload) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        
+        String currentPassword = payload.get("current_password");
+        // Frontend sends 'password', backend also supports 'new_password'
+        String newPassword = payload.get("password") != null ? payload.get("password") : payload.get("new_password");
+        String confirmPassword = payload.get("password_confirmation") != null ? payload.get("password_confirmation") : payload.get("new_password_confirmation");
+        
+        if (currentPassword == null || currentPassword.isEmpty() || newPassword == null || newPassword.isEmpty()) {
+            return ResponseEntity.badRequest().body(ApiResponse.error("Vui lòng nhập đầy đủ thông tin"));
+        }
+        
+        if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
+            return ResponseEntity.badRequest().body(ApiResponse.error("Mật khẩu hiện tại không đúng"));
+        }
+        
+        if (newPassword.length() < 8) {
+            return ResponseEntity.badRequest().body(ApiResponse.error("Mật khẩu mới phải ít nhất 8 ký tự"));
+        }
+        
+        if (confirmPassword != null && !confirmPassword.isEmpty() && !newPassword.equals(confirmPassword)) {
+            return ResponseEntity.badRequest().body(ApiResponse.error("Xác nhận mật khẩu không khớp"));
+        }
+        
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+        
+        return ResponseEntity.ok(ApiResponse.success("Đổi mật khẩu thành công", null));
     }
 
     @GetMapping("/medical-records")
