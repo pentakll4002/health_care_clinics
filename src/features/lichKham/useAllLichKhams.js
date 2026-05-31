@@ -5,6 +5,7 @@ export function useAllLichKhams(params = {}) {
   const { isLoading, data, refetch } = useQuery({
     queryKey: ['allLichKhams', params],
     queryFn: () => getAllLichKhams(params),
+    refetchInterval: 5000,
   });
 
   return {

@@ -5,7 +5,7 @@ export function useReceptions(params = {}) {
   const { isLoading, data, refetch } = useQuery({
     queryKey: ['receptions', params],
     queryFn: () => getReceptions(params),
-    staleTime: 1000 * 60 * 2, 
+    refetchInterval: 5000,
   });
 
   return {

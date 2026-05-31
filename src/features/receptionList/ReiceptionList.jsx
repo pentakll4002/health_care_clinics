@@ -59,6 +59,8 @@ const ReiceptionList = () => {
               case 'CHO_XAC_NHAN':
                 return 'Chờ xác nhận';
               case 'CHO_KHAM':
+              case 'da_duyet':
+              case 'cho_duyet':
                 return 'Chờ khám';
               case 'DANG_KHAM':
                 return 'Đang khám';
@@ -76,6 +78,8 @@ const ReiceptionList = () => {
               case 'CHO_XAC_NHAN':
                 return 'bg-warning-100 text-warning-900';
               case 'CHO_KHAM':
+              case 'da_duyet':
+              case 'cho_duyet':
                 return 'bg-warning-100 text-warning-900';
               case 'DANG_KHAM':
                 return 'bg-info-100 text-info-900';

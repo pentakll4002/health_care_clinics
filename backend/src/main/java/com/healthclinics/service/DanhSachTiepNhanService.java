@@ -56,7 +56,7 @@ public class DanhSachTiepNhanService {
                 .idNhanVien(dto.getIdNhanVien())
                 .idLeTanDuyet(dto.getIdLeTanDuyet())
                 .isDeleted(false)
-                .trangThaiTiepNhan("cho_duyet")
+                .trangThaiTiepNhan("CHO_KHAM")
                 .build();
         
         return mapToDTO(danhSachTiepNhanRepository.save(dstn));
@@ -75,7 +75,7 @@ public class DanhSachTiepNhanService {
                 .caTN(lichKham.getCaKham())
                 .idNhanVien(lichKham.getIdBacSi())
                 .isDeleted(false)
-                .trangThaiTiepNhan("da_duyet")
+                .trangThaiTiepNhan("CHO_KHAM")
                 .build();
         
         // Update lich kham status
