@@ -1,7 +1,7 @@
 import Table from '../../ui/Table';
 import Spinner from '../../ui/Spinner';
 import styled from 'styled-components';
-import { useReceptions } from './useReceptions';
+import { useAllLichKhams } from '../lichKham/useAllLichKhams';
 import PendingOnlineAppointmentsTableRow from './PendingOnlineAppointmentsTableRow';
 
 const Container = styled.div`
@@ -12,18 +12,22 @@ const Container = styled.div`
 `;
 
 const PendingOnlineAppointmentsTable = ({ filterDate }) => {
-  const params = {
-    page: 1,
-    limit: 100,
-    TrangThaiTiepNhan: 'CHO_XAC_NHAN',
-  };
-  if (filterDate) params.ngay = filterDate;
-
-  const { isLoading, data: receptions } = useReceptions(params);
+  const { isLoading, lichKhams } = useAllLichKhams();
 
   if (isLoading) return <Spinner />;
 
-  if (!receptions || receptions.length === 0) {
+  // Filter lich khams that are pending online approval
+  let pendingLichKhams = (lichKhams || []).filter(
+    (lk) => lk.trangThai === 'ChoXacNhan' || lk.TrangThai === 'ChoXacNhan'
+  );
+
+  if (filterDate) {
+    pendingLichKhams = pendingLichKhams.filter(
+      (lk) => lk.ngayKhamDuKien === filterDate || lk.NgayKhamDuKien === filterDate
+    );
+  }
+
+  if (pendingLichKhams.length === 0) {
     return (
       <div className='text-center py-10 text-grey-500 bg-white rounded-lg border border-grey-transparent'>
         Không có lịch hẹn online chờ duyệt
@@ -44,9 +48,9 @@ const PendingOnlineAppointmentsTable = ({ filterDate }) => {
         </Table.Header>
 
         <Table.Body
-          data={receptions}
-          render={(tiepNhan) => (
-            <PendingOnlineAppointmentsTableRow key={tiepNhan.ID_TiepNhan} tiepNhan={tiepNhan} />
+          data={pendingLichKhams}
+          render={(lichKham) => (
+            <PendingOnlineAppointmentsTableRow key={lichKham.idLichKham || lichKham.ID_LichKham} lichKham={lichKham} />
           )}
         />
       </Table>

@@ -32,6 +32,7 @@ export async function getReceptionsToday(params = {}) {
 export async function createReceptionFromLichKham(ID_LichKham, ID_NhanVien) {
   const res = await axiosInstance.post('/appointments/from-lich-kham', {
     ID_LichKham,
+    lichKhamId: ID_LichKham,
     ID_NhanVien,
   });
   return res.data;

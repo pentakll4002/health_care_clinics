@@ -54,6 +54,20 @@ public class PatientController {
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         
+        // --- Server-side validation ---
+        if (dienThoai == null || dienThoai.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body(ApiResponse.error("Số điện thoại không được bỏ trống"));
+        }
+        if (!dienThoai.trim().matches("^(0[3|5|7|8|9])([0-9]{8})$")) {
+            return ResponseEntity.badRequest().body(ApiResponse.error("Số điện thoại không hợp lệ (phải gồm 10 chữ số, bắt đầu bằng 03, 05, 07, 08, 09)"));
+        }
+        if (email == null || email.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body(ApiResponse.error("Email không được bỏ trống"));
+        }
+        if (diaChi == null || diaChi.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body(ApiResponse.error("Địa chỉ không được bỏ trống"));
+        }
+        
         // Update user name
         if (name != null && !name.isEmpty()) {
             user.setName(name);
@@ -63,9 +77,9 @@ public class PatientController {
         BenhNhan bn = user.getBenhNhan();
         if (bn != null) {
             if (hoTenBN != null && !hoTenBN.isEmpty()) bn.setHoTenBN(hoTenBN);
-            if (dienThoai != null) bn.setDienThoai(dienThoai);
-            if (diaChi != null) bn.setDiaChi(diaChi);
-            if (email != null) bn.setEmail(email);
+            bn.setDienThoai(dienThoai.trim());
+            bn.setDiaChi(diaChi.trim());
+            bn.setEmail(email.trim());
             if (gioiTinh != null) bn.setGioiTinh(gioiTinh);
             
             // Handle avatar file upload

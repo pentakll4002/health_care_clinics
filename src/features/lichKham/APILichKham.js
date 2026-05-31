@@ -37,6 +37,12 @@ export async function cancelLichKham(id) {
   return res.data;
 }
 
+// Từ chối lịch khám (cho admin/lễ tân)
+export async function rejectLichKham(id) {
+  const res = await axiosInstance.post(`/lich-kham/${id}/cancel`);
+  return res.data;
+}
+
 // Lấy tất cả lịch khám (cho admin/lễ tân)
 export async function getAllLichKhams(params = {}) {
   const res = await axiosInstance.get('/lich-kham', { params });

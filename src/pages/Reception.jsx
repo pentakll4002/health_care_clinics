@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import AddReception from '../features/receptionList/AddReception';
 import ReiceptionList from '../features/receptionList/ReiceptionList';
 import { useReceptions } from '../features/receptionList/useReceptions';
+import { useAllLichKhams } from '../features/lichKham/useAllLichKhams';
 import PendingOnlineAppointmentsTable from '../features/receptionList/PendingOnlineAppointmentsTable';
 import ReceptionsCardContainer from '../features/receptionList/ReceptionsCardContainer';
 
@@ -58,11 +59,10 @@ const Reception = () => {
     setActiveTab(tab);
   }, [searchParams]);
 
-  const { totalCount: pendingCount } = useReceptions({
-    page: 1,
-    limit: 1,
-    TrangThaiTiepNhan: 'CHO_XAC_NHAN',
-  });
+  const { lichKhams } = useAllLichKhams();
+  const pendingCount = (lichKhams || []).filter(
+    (lk) => lk.trangThai === 'ChoXacNhan' || lk.TrangThai === 'ChoXacNhan'
+  ).length;
 
   const { totalCount: totalReceptions } = useReceptions();
 

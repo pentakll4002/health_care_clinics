@@ -13,6 +13,7 @@ COPY postcss.config.js ./
 COPY eslint.config.js ./
 COPY public/ ./public/
 COPY src/ ./src/
+COPY cities.json districts.json wards.json ./
 
 ARG VITE_API_URL=/api
 ARG VITE_AI_SERVICE_URL=/ai

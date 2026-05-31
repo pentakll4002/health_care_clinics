@@ -252,6 +252,7 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
   const [selectedDistrict, setSelectedDistrict] = useState('');
   const [selectedWard, setSelectedWard] = useState('');
   const [detailedAddress, setDetailedAddress] = useState('');
+  const [addressError, setAddressError] = useState('');
 
   const filteredDistricts = useMemo(() => {
     if (!selectedCity) return [];
@@ -297,6 +298,7 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
         setSelectedWard('');
         setDetailedAddress('');
       }
+      setAddressError('');
     }
   }, [benhNhan, userInfo, profileForm]);
 
@@ -318,11 +320,29 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
   }, [watchedNgayTN, appointmentForm]);
 
   const handleProfileSubmit = profileForm.handleSubmit((values) => {
+    if (!selectedCity) {
+      setAddressError('Vui lòng chọn Tỉnh/Thành phố');
+      return;
+    }
+    if (!selectedDistrict) {
+      setAddressError('Vui lòng chọn Quận/Huyện');
+      return;
+    }
+    if (!selectedWard) {
+      setAddressError('Vui lòng chọn Phường/Xã');
+      return;
+    }
+    if (!detailedAddress.trim()) {
+      setAddressError('Vui lòng nhập địa chỉ chi tiết (Số nhà, tên đường...)');
+      return;
+    }
+    setAddressError('');
+
     const formData = new FormData();
-    if (values.DienThoai?.trim() || values.DienThoai === '') {
+    if (values.DienThoai?.trim()) {
       formData.append('DienThoai', values.DienThoai.trim());
     }
-    if (values.Email?.trim() || values.Email === '') {
+    if (values.Email?.trim()) {
       formData.append('Email', values.Email.trim());
     }
 
@@ -460,7 +480,11 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
                       type='tel'
                       className={inputBaseClass}
                       {...profileForm.register('DienThoai', {
-                        minLength: { value: 8, message: 'Số điện thoại tối thiểu 8 ký tự' },
+                        required: 'Số điện thoại không được bỏ trống',
+                        pattern: {
+                          value: /^(0[3|5|7|8|9])+([0-9]{8})$/,
+                          message: 'Số điện thoại không hợp lệ (phải gồm 10 chữ số bắt đầu bằng 03, 05, 07, 08, 09)'
+                        }
                       })}
                       placeholder='Ví dụ: 0900000000'
                     />
@@ -551,6 +575,11 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
                       onChange={(e) => setDetailedAddress(e.target.value)}
                       placeholder='Ví dụ: 123 Nguyễn Huệ'
                     />
+                    {addressError && (
+                      <span className='text-xs text-red-500 block mt-1'>
+                        {addressError}
+                      </span>
+                    )}
                   </Field>
 
                   <Button

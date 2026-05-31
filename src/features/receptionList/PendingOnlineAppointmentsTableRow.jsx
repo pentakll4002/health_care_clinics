@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Table from '../../ui/Table';
 import Button from '../../ui/Button';
-import { useUpdateReception } from './useUpdateReception';
+import { useCreateReceptionFromLichKham } from './useCreateReceptionFromLichKham';
+import { useRejectLichKham } from './useRejectLichKham';
 
 const Text = styled.span`
   color: #0a1b39;
@@ -10,61 +11,51 @@ const Text = styled.span`
   margin: auto;
 `;
 
-const PendingOnlineAppointmentsTableRow = ({ tiepNhan }) => {
-  const { mutate: updateReception, isLoading } = useUpdateReception();
+const PendingOnlineAppointmentsTableRow = ({ lichKham }) => {
+  const { mutate: createReception, isPending: isConfirming } = useCreateReceptionFromLichKham();
+  const { mutate: rejectLichKham, isPending: isRejecting } = useRejectLichKham();
 
-  const benhNhan = tiepNhan.benhNhan || tiepNhan.benh_nhan;
-  const nhanVien = tiepNhan.nhanVien || tiepNhan.nhan_vien;
+  const isWorking = isConfirming || isRejecting;
 
-  const formatDateTime = (dateString) => {
+  const formatDate = (dateString) => {
     if (!dateString) return '—';
     const date = new Date(dateString);
-    return date.toLocaleString('vi-VN');
+    return date.toLocaleDateString('vi-VN');
   };
 
   const handleConfirm = () => {
-    if (window.confirm(`Xác nhận lịch hẹn #${tiepNhan.ID_TiepNhan} của bệnh nhân ${benhNhan?.HoTenBN || 'N/A'}?`)) {
-      updateReception({
-        id: tiepNhan.ID_TiepNhan,
-        data: {
-          TrangThaiTiepNhan: 'CHO_KHAM',
-        },
-      });
+    if (window.confirm(`Xác nhận lịch hẹn #${lichKham.idLichKham || lichKham.ID_LichKham} của bệnh nhân ${lichKham.tenBenhNhan || 'N/A'}?`)) {
+      createReception(lichKham.idLichKham || lichKham.ID_LichKham);
     }
   };
 
   const handleReject = () => {
-    if (window.confirm(`Không xác nhận (từ chối) lịch hẹn #${tiepNhan.ID_TiepNhan} của bệnh nhân ${benhNhan?.HoTenBN || 'N/A'}?`)) {
-      updateReception({
-        id: tiepNhan.ID_TiepNhan,
-        data: {
-          TrangThaiTiepNhan: 'HUY',
-        },
-      });
+    if (window.confirm(`Không xác nhận (từ chối) lịch hẹn #${lichKham.idLichKham || lichKham.ID_LichKham} của bệnh nhân ${lichKham.tenBenhNhan || 'N/A'}?`)) {
+      rejectLichKham(lichKham.idLichKham || lichKham.ID_LichKham);
     }
   };
 
   return (
     <Table.Row>
-      <Text className='text-center'>#{tiepNhan.ID_TiepNhan}</Text>
-      <Text className='text-center'>{benhNhan?.HoTenBN || '—'}</Text>
-      <Text className='text-center'>{formatDateTime(tiepNhan.NgayTN)}</Text>
-      <Text className='text-center'>{tiepNhan.CaTN || '—'}</Text>
-      <Text className='text-center'>{nhanVien?.HoTenNV || '—'}</Text>
+      <Text className='text-center'>#{lichKham.idLichKham || lichKham.ID_LichKham}</Text>
+      <Text className='text-center'>{lichKham.tenBenhNhan || '—'}</Text>
+      <Text className='text-center'>{formatDate(lichKham.ngayKhamDuKien)}</Text>
+      <Text className='text-center'>{lichKham.caKham || '—'}</Text>
+      <Text className='text-center'>{lichKham.tenBacSi || '—'}</Text>
       <div className='flex items-center justify-center gap-2'>
         <Button
           className='bg-success-600 text-white text-sm px-3 py-1.5'
-          disabled={isLoading}
+          disabled={isWorking}
           onClick={handleConfirm}
         >
-          {isLoading ? '...' : 'Xác nhận'}
+          {isConfirming ? '...' : 'Xác nhận'}
         </Button>
         <Button
           className='bg-error-600 text-white text-sm px-3 py-1.5'
-          disabled={isLoading}
+          disabled={isWorking}
           onClick={handleReject}
         >
-          {isLoading ? '...' : 'Không xác nhận'}
+          {isRejecting ? '...' : 'Không xác nhận'}
         </Button>
       </div>
     </Table.Row>
