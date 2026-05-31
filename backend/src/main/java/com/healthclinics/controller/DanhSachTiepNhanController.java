@@ -54,8 +54,26 @@ public class DanhSachTiepNhanController {
     }
 
     @PostMapping("/from-lich-kham")
-    public ResponseEntity<DanhSachTiepNhanDTO> createFromLichKham(@RequestBody Map<String, Long> body) {
-        Long lichKhamId = body.get("lichKhamId");
+    public ResponseEntity<DanhSachTiepNhanDTO> createFromLichKham(@RequestBody Map<String, Object> body) {
+        // Extract lichKhamId safely from any payload structure
+        Object raw = body.get("lichKhamId");
+        if (raw == null) raw = body.get("ID_LichKham");
+        Long lichKhamId = null;
+        if (raw instanceof Number) {
+            lichKhamId = ((Number) raw).longValue();
+        } else if (raw instanceof String) {
+            lichKhamId = Long.parseLong((String) raw);
+        } else if (raw instanceof Map) {
+            // Handle nested object case: { lichKhamId: { ID_LichKham: 123 } }
+            Map<?, ?> nested = (Map<?, ?>) raw;
+            Object nestedId = nested.get("ID_LichKham");
+            if (nestedId == null) nestedId = nested.get("lichKhamId");
+            if (nestedId instanceof Number) lichKhamId = ((Number) nestedId).longValue();
+            else if (nestedId instanceof String) lichKhamId = Long.parseLong((String) nestedId);
+        }
+        if (lichKhamId == null) {
+            throw new IllegalArgumentException("lichKhamId is required. Received body: " + body);
+        }
         return ResponseEntity.ok(danhSachTiepNhanService.createFromLichKham(lichKhamId));
     }
 
