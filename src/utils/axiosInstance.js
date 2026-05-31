@@ -41,7 +41,9 @@ axiosInstance.interceptors.response.use(
 );
 
 export const axiosChatbot = axios.create({
-  baseURL: import.meta.env.VITE_AI_SERVICE_URL || '/ai/api/chat',
+  baseURL: import.meta.env.VITE_AI_SERVICE_URL 
+    ? `${import.meta.env.VITE_AI_SERVICE_URL}/api/chat` 
+    : '/ai/api/chat',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
