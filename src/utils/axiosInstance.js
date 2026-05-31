@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: import.meta.env.VITE_API_URL || '/api',
 });
 
 axiosInstance.interceptors.request.use(
@@ -41,7 +41,7 @@ axiosInstance.interceptors.response.use(
 );
 
 export const axiosChatbot = axios.create({
-  baseURL: 'http://localhost:3002/api/chat',
+  baseURL: import.meta.env.VITE_AI_SERVICE_URL || '/ai/api/chat',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json'

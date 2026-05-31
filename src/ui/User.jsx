@@ -8,7 +8,7 @@ import {
   ChevronDownIcon,
 } from '@heroicons/react/24/outline';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '';
 
 function getAvatarUrl(user) {
   const raw = user?.benhNhan?.avatar || user?.nhanVien?.hinhAnh || user?.avatar;

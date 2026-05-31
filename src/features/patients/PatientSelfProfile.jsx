@@ -17,7 +17,7 @@ import {
   useCancelPatientAppointment,
 } from './usePatientSelfData';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 const currencyFormatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
 
 function buildAvatarUrl(path) {
