@@ -29,11 +29,22 @@ export async function getReceptionsToday(params = {}) {
   };
 }
 
-export async function createReceptionFromLichKham(ID_LichKham, ID_NhanVien) {
+export async function createReceptionFromLichKham(arg1, arg2) {
+  let id = null;
+  let nhanVienId = null;
+
+  if (typeof arg1 === 'object' && arg1 !== null) {
+    id = arg1.ID_LichKham || arg1.lichKhamId;
+    nhanVienId = arg1.ID_NhanVien;
+  } else {
+    id = arg1;
+    nhanVienId = arg2;
+  }
+
   const res = await axiosInstance.post('/appointments/from-lich-kham', {
-    ID_LichKham,
-    lichKhamId: ID_LichKham,
-    ID_NhanVien,
+    ID_LichKham: id,
+    lichKhamId: id,
+    ID_NhanVien: nhanVienId,
   });
   return res.data;
 }
