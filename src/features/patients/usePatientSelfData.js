@@ -75,7 +75,7 @@ const fetchDoctors = async () => {
   const response = await axiosInstance.get('/nhanvien', {
     params: {
       limit: 100,
-      ma_nhom: 'DOCTOR',
+      ma_nhom: 'doctors',
     },
   });
   return response.data;

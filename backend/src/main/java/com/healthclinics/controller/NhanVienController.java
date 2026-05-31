@@ -28,7 +28,15 @@ public class NhanVienController {
             @RequestParam(required = false) String ma_nhom) {
         
         if (ma_nhom != null && !ma_nhom.isEmpty()) {
-            return ResponseEntity.ok(nhanVienService.getByNhom(ma_nhom));
+            String mappedNhom = ma_nhom.toLowerCase();
+            if (mappedNhom.equals("doctor") || mappedNhom.equals("doctors")) {
+                mappedNhom = "doctors";
+            } else if (mappedNhom.equals("receptionist") || mappedNhom.equals("receptionists")) {
+                mappedNhom = "receptionists";
+            } else if (mappedNhom.equals("manager") || mappedNhom.equals("managers")) {
+                mappedNhom = "managers";
+            }
+            return ResponseEntity.ok(nhanVienService.getByNhom(mappedNhom));
         }
         
         if (page == 0 && limit == 10) {

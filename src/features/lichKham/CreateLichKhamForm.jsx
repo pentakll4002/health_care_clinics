@@ -45,7 +45,7 @@ const CreateLichKhamForm = ({ onCloseModal, onSuccess }) => {
     queryKey: ['doctors-for-booking'],
     queryFn: async () => {
       const res = await axiosInstance.get('/nhanvien', {
-        params: { ma_nhom: 'DOCTOR' },
+        params: { ma_nhom: 'doctors' },
       });
       return res.data;
     },
