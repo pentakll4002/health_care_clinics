@@ -38,19 +38,27 @@ class ChatResponse(BaseModel):
     products: Optional[List[dict]] = None
 
 
-BACKEND_URL = config.BACKEND_URL
+BACKEND_URL = config.BACKEND_URL.rstrip('/')
+if BACKEND_URL.endswith('/api'):
+    API_NHANVIEN = f"{BACKEND_URL}/nhanvien"
+    API_THUOC = f"{BACKEND_URL}/thuoc"
+    API_LOAIBENH = f"{BACKEND_URL}/loai-benh"
+else:
+    API_NHANVIEN = f"{BACKEND_URL}/api/nhanvien"
+    API_THUOC = f"{BACKEND_URL}/api/thuoc"
+    API_LOAIBENH = f"{BACKEND_URL}/api/loai-benh"
 
 async def fetch_doctors() -> str:
     try:
         async with httpx.AsyncClient(timeout=8.0) as client:
-            response = await client.get(f"{BACKEND_URL}/api/nhanvien")
+            response = await client.get(API_NHANVIEN)
             if response.status_code == 200:
                 data = response.json()
                 doctors = []
                 for nv in data:
                     ma_nhom = (nv.get("maNhom") or nv.get("ma_nhom") or "").upper()
                     ten_nhom = (nv.get("tenNhom") or nv.get("ten_nhom") or "").lower()
-                    if ma_nhom == "DOCTOR" or "bác sĩ" in ten_nhom or "bac si" in ten_nhom or "bác sỹ" in ten_nhom:
+                    if ma_nhom == "DOCTOR" or "bác sĩ" in ten_nhom or "bac si" in ten_nhom or "bác sỹ" in ten_nhom or "doctors" in ma_nhom.lower():
                         doctors.append(nv)
                 
                 if not doctors:
@@ -76,9 +84,9 @@ async def fetch_drugs(keyword: str) -> str:
     try:
         async with httpx.AsyncClient(timeout=8.0) as client:
             if keyword:
-                response = await client.get(f"{BACKEND_URL}/api/thuoc/search", params={"keyword": keyword})
+                response = await client.get(f"{API_THUOC}/search", params={"keyword": keyword})
             else:
-                response = await client.get(f"{BACKEND_URL}/api/thuoc", params={"page": 0, "size": 30})
+                response = await client.get(API_THUOC, params={"page": 0, "size": 30})
             
             if response.status_code == 200:
                 data = response.json()
@@ -105,7 +113,7 @@ async def fetch_drugs(keyword: str) -> str:
 async def fetch_diseases() -> str:
     try:
         async with httpx.AsyncClient(timeout=8.0) as client:
-            response = await client.get(f"{BACKEND_URL}/api/loai-benh")
+            response = await client.get(API_LOAIBENH)
             if response.status_code == 200:
                 data = response.json()
                 if not data:
