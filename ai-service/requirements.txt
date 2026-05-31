@@ -1,3 +1,4 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
 fastapi
 uvicorn[standard]
 langchain
@@ -7,6 +8,7 @@ langchain-chroma
 langchain_community
 langchain-core
 faiss-cpu
+torch
 transformers
 sentence-transformers
 python-dotenv

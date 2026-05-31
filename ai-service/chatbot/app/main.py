@@ -46,8 +46,8 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(
-    title="ShopeeLite E-Commerce Chatbot API",
-    description="AI-powered e-commerce consultant and customer care chatbot",
+    title="Health Clinics AI Assistant API",
+    description="AI-powered medical assistant and customer care chatbot for Health Clinics",
     version="2.0.0",
     lifespan=lifespan
 )
@@ -77,7 +77,7 @@ app.include_router(suggest_api.router)
 @app.get("/")
 async def root():
     return {
-        "message": "ShopeeLite E-Commerce Chatbot API",
+        "message": "Health Clinics AI Assistant API",
         "model_type": config.MODEL_TYPE,
         "version": "2.0.0"
     }
