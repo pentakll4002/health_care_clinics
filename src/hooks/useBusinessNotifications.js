@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '../utils/axiosInstance';
 import { useRolePermissions } from './useRolePermissions';
@@ -150,23 +150,66 @@ async function fetchManagerNotifications() {
   ];
 }
 
+export function addActivityNotification({ title, message, actionTo }) {
+  try {
+    const key = 'system_activity_notifications_v1';
+    const raw = localStorage.getItem(key);
+    const list = raw ? JSON.parse(raw) : [];
+
+    const newNotif = {
+      id: `activity|${Date.now()}|${Math.random()}`,
+      title: title || 'Hệ thống',
+      message: message || '',
+      createdAt: new Date().toISOString(),
+      action: actionTo ? { to: actionTo } : null,
+    };
+
+    const updatedList = [newNotif, ...list].slice(0, 50);
+    localStorage.setItem(key, JSON.stringify(updatedList));
+    window.dispatchEvent(new CustomEvent('system-activity-updated'));
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 async function fetchBusinessNotificationsByRole(roleCode) {
   if (!roleCode) return [];
 
-  if (roleCode === '@patient') return fetchPatientNotifications();
-  if (roleCode === '@receptionists') return fetchReceptionistNotifications();
-  if (roleCode === '@doctors') return fetchDoctorNotifications();
-  if (roleCode === '@managers') return fetchManagerNotifications();
-  if (roleCode === '@admin') {
+  const cleanRole = roleCode.startsWith('@') ? roleCode.slice(1) : roleCode;
+
+  let roleNotifs = [];
+  if (cleanRole === 'patient') roleNotifs = await fetchPatientNotifications();
+  else if (cleanRole === 'receptionists') roleNotifs = await fetchReceptionistNotifications();
+  else if (cleanRole === 'doctors') roleNotifs = await fetchDoctorNotifications();
+  else if (cleanRole === 'managers') roleNotifs = await fetchManagerNotifications();
+  else if (cleanRole === 'admin') {
     const [reception, doctors, manager] = await Promise.all([
       fetchReceptionistNotifications(),
       fetchDoctorNotifications(),
       fetchManagerNotifications(),
     ]);
-    return [...reception, ...doctors, ...manager];
+    roleNotifs = [...reception, ...doctors, ...manager];
   }
 
-  return [];
+  // Load activities from local storage
+  let activityNotifs = [];
+  try {
+    const raw = localStorage.getItem('system_activity_notifications_v1');
+    if (raw) {
+      activityNotifs = JSON.parse(raw);
+    }
+  } catch (e) {}
+
+  const combined = [...activityNotifs, ...roleNotifs];
+
+  // Sort by date (descending)
+  combined.sort((a, b) => {
+    if (!a.createdAt) return 1;
+    if (!b.createdAt) return -1;
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
+
+  return combined;
 }
 
 export function useBusinessNotifications({ refetchIntervalMs = 60000 } = {}) {
@@ -194,6 +237,7 @@ export function useBusinessNotifications({ refetchIntervalMs = 60000 } = {}) {
     refetchInterval: refetchIntervalMs,
   });
 
+  const [updateTrigger, setUpdateTrigger] = useState(0);
   const notifications = data || [];
 
   const isRead = useCallback(
@@ -201,19 +245,20 @@ export function useBusinessNotifications({ refetchIntervalMs = 60000 } = {}) {
       const readSet = readReadSet(storageKey);
       return readSet.has(id);
     },
-    [storageKey],
+    [storageKey, updateTrigger],
   );
 
   const unreadCount = useMemo(() => {
     const readSet = readReadSet(storageKey);
     return notifications.reduce((acc, n) => (readSet.has(n.id) ? acc : acc + 1), 0);
-  }, [notifications, storageKey]);
+  }, [notifications, storageKey, updateTrigger]);
 
   const markRead = useCallback(
     (id) => {
       const readSet = readReadSet(storageKey);
       readSet.add(id);
       writeReadSet(storageKey, readSet);
+      setUpdateTrigger((prev) => prev + 1);
       queryClient.invalidateQueries({ queryKey: [...QUERY_KEY, roleCode] });
     },
     [queryClient, roleCode, storageKey],
@@ -223,12 +268,23 @@ export function useBusinessNotifications({ refetchIntervalMs = 60000 } = {}) {
     const readSet = readReadSet(storageKey);
     notifications.forEach((n) => readSet.add(n.id));
     writeReadSet(storageKey, readSet);
+    setUpdateTrigger((prev) => prev + 1);
     queryClient.invalidateQueries({ queryKey: [...QUERY_KEY, roleCode] });
   }, [notifications, queryClient, roleCode, storageKey]);
 
   const refresh = useCallback(() => {
     queryClient.invalidateQueries({ queryKey: [...QUERY_KEY, roleCode] });
   }, [queryClient, roleCode]);
+
+  // Sync listener for direct updates
+  useEffect(() => {
+    const handleUpdate = () => {
+      setUpdateTrigger((prev) => prev + 1);
+      refresh();
+    };
+    window.addEventListener('system-activity-updated', handleUpdate);
+    return () => window.removeEventListener('system-activity-updated', handleUpdate);
+  }, [refresh]);
 
   return {
     roleCode,

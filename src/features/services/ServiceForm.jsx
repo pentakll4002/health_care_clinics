@@ -25,13 +25,15 @@ function ServiceForm({ initialValues, onSubmit, isSubmitting, onCloseModal }) {
   useEffect(() => {
     if (!initialValues) return;
     reset({
-      TenDichVu: initialValues.TenDichVu ?? '',
-      DonGia: initialValues.DonGia ?? '',
+      TenDichVu: initialValues.TenDichVu ?? initialValues.tenDichVu ?? '',
+      DonGia: initialValues.DonGia ?? initialValues.donGia ?? '',
     });
   }, [initialValues, reset]);
 
   function submit(values) {
     const payload = {
+      tenDichVu: values.TenDichVu,
+      donGia: parseFloat(values.DonGia),
       TenDichVu: values.TenDichVu,
       DonGia: parseFloat(values.DonGia),
     };

@@ -64,6 +64,11 @@ public class ThuocController {
         return ResponseEntity.ok(thuocService.search(keyword));
     }
 
+    @GetMapping("/packagings")
+    public ResponseEntity<List<ThuocDTO>> getPackagings(@RequestParam String name) {
+        return ResponseEntity.ok(thuocService.getPackagingsByName(name));
+    }
+
     @GetMapping("/low-stock")
     public ResponseEntity<List<ThuocDTO>> getLowStock(@RequestParam(defaultValue = "10") Integer minQuantity) {
         return ResponseEntity.ok(thuocService.getLowStock(minQuantity));

@@ -35,6 +35,7 @@ public class BaoCaoSuDungThuoc {
     @Column(name = "SoLanDung")
     private Integer soLanDung;
 
+    @com.fasterxml.jackson.annotation.JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_Thuoc", insertable = false, updatable = false)
     private Thuoc thuoc;

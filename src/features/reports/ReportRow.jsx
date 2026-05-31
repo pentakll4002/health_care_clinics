@@ -17,10 +17,10 @@ const Text = styled.span`
 
 const ReportRow = ({ report }) => {
   const {
-    ID_BCDT,
-    Thang,
-    Nam,
-    TongDoanhThu,
+    idBcdt: ID_BCDT,
+    thang: Thang,
+    nam: Nam,
+    tongDoanhThu: TongDoanhThu,
   } = report;
 
   const queryClient = useQueryClient();

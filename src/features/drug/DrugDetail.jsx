@@ -6,8 +6,8 @@ import Modal from '../../ui/Modal';
 import UpdateDrugForm from './UpdateDrugForm';
 import ModalCenter from '../../ui/ModalCenter';
 import ConfirmDelete from '../../ui/ConfirmDelete';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteDrug } from './APIDrugs';
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
+import { deleteDrug, getDrugPackagings } from './APIDrugs';
 import toast from 'react-hot-toast';
 import { PencilIcon, TrashIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
 
@@ -16,6 +16,12 @@ const DrugDetail = () => {
   const navigate = useNavigate();
   const { isLoading, drug } = useDrug(id);
   const queryClient = useQueryClient();
+
+  const { data: packagings = [] } = useQuery({
+    queryKey: ['drug-packagings', drug?.tenThuoc],
+    queryFn: () => getDrugPackagings(drug.tenThuoc),
+    enabled: !!drug?.tenThuoc,
+  });
 
   const { mutate: deleteDrugMutation, isLoading: isDeleting } = useMutation({
     mutationFn: deleteDrug,
@@ -147,7 +153,32 @@ const DrugDetail = () => {
 
           {/* Info Grid */}
           <div className='flex-1 grid grid-cols-2 gap-5'>
-            <InfoItem label='Đơn vị tính' value={tenDvt} />
+            {packagings.length > 1 ? (
+              <div className='flex flex-col gap-1'>
+                <span className='text-sm font-medium' style={{ color: 'var(--text-muted)' }}>
+                  Đơn vị tính
+                </span>
+                <select
+                  value={id}
+                  onChange={(e) => navigate(`/drugs/${e.target.value}`)}
+                  className='px-3 py-1.5 text-sm font-semibold rounded-lg border focus:outline-none focus:ring-1 focus:ring-accent transition-colors'
+                  style={{
+                    backgroundColor: 'var(--bg-input)',
+                    borderColor: 'var(--border-color)',
+                    color: 'var(--text-primary)',
+                    maxWidth: '220px'
+                  }}
+                >
+                  {packagings.map((pkg) => (
+                    <option key={pkg.idThuoc} value={pkg.idThuoc}>
+                      {pkg.tenDvt || pkg.TenDvt || 'N/A'} ({formatPrice(pkg.donGiaBan)})
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : (
+              <InfoItem label='Đơn vị tính' value={tenDvt} />
+            )}
             <InfoItem label='Cách dùng' value={moTaCachDung} />
             <InfoItem label='Thành phần' value={thanhPhan || 'N/A'} />
             <InfoItem label='Xuất xứ' value={xuatXu || 'N/A'} />

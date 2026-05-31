@@ -37,7 +37,7 @@ public class ThuocService {
     }
 
     public Page<ThuocDTO> getAll(Pageable pageable) {
-        return thuocRepository.findByIsDeletedFalse(pageable)
+        return thuocRepository.findUniqueDrugsByIsDeletedFalse(pageable)
                 .map(this::mapToDTO);
     }
 
@@ -128,17 +128,17 @@ public class ThuocService {
     @Transactional
     public void importFromJson() {
         try {
-            java.io.File jsonFile = new java.io.File("c:/DoAnJava/health_clinics/crawl_test_final_with_price.json");
-            if (!jsonFile.exists()) {
-                jsonFile = new java.io.File("c:/Dự án công ty/crawl/crawl_test_final_with_price.json");
-            }
-            if (!jsonFile.exists()) {
-                log.warn("JSON drug seed file not found at local paths. Skipping JSON drug import. Default seeds will be used.");
+            org.springframework.core.io.ClassPathResource resource = new org.springframework.core.io.ClassPathResource("crawl_test_final_with_price.json");
+            if (!resource.exists()) {
+                log.warn("JSON drug seed file not found in classpath. Skipping JSON drug import.");
                 return;
             }
 
             ObjectMapper mapper = new ObjectMapper();
-            JsonNode root = mapper.readTree(jsonFile);
+            JsonNode root;
+            try (java.io.InputStream inputStream = resource.getInputStream()) {
+                root = mapper.readTree(inputStream);
+            }
             JsonNode drugs = root.get("drugs");
 
             if (drugs != null && drugs.isArray()) {
@@ -154,7 +154,7 @@ public class ThuocService {
                     String name = drug.has("name") ? drug.get("name").asText() : "Unknown";
                     String packaging = drug.has("packaging") ? drug.get("packaging").asText() : "Hộp";
                     String priceStr = drug.has("price") ? drug.get("price").asText() : "0";
-                    String img = drug.has("img") ? drug.get("img").asText() : "";
+                    String img = drug.has("image") ? drug.get("image").asText() : "";
 
                     DVT dvt = allDvts.stream()
                             .filter(d -> d.getTenDvt().equalsIgnoreCase(packaging))
@@ -173,11 +173,87 @@ public class ThuocService {
 
                     Long finalDvtId = dvt.getIdDvt();
 
-                    // Check if Thuoc already exists by name
-                    boolean exists = thuocRepository.findAll().stream()
-                            .anyMatch(t -> t.getTenThuoc().equalsIgnoreCase(name) && t.getIdDvt().equals(finalDvtId));
+                    // Determine origin, ingredients, and image: reuse existing if database already has any packaging of the same drug name
+                    List<Thuoc> sameNameDrugs = thuocRepository.findAll().stream()
+                            .filter(t -> t.getTenThuoc().equalsIgnoreCase(name))
+                            .collect(Collectors.toList());
 
-                    if (!exists) {
+                    String origin = null;
+                    String ingredients = null;
+                    String finalImg = (img != null && !img.trim().isEmpty()) ? img : null;
+
+                    for (Thuoc existing : sameNameDrugs) {
+                        if (origin == null && existing.getXuatXu() != null && !existing.getXuatXu().trim().isEmpty() && !existing.getXuatXu().equalsIgnoreCase("N/A") && !existing.getXuatXu().equalsIgnoreCase("Unknown")) {
+                            origin = existing.getXuatXu();
+                        }
+                        if (ingredients == null && existing.getThanhPhan() != null && !existing.getThanhPhan().trim().isEmpty() && !existing.getThanhPhan().equalsIgnoreCase("N/A") && !existing.getThanhPhan().equalsIgnoreCase("Unknown")) {
+                            ingredients = existing.getThanhPhan();
+                        }
+                        if (finalImg == null && existing.getHinhAnh() != null && !existing.getHinhAnh().trim().isEmpty()) {
+                            finalImg = existing.getHinhAnh();
+                        }
+                    }
+
+                    // Fallback to random generation if not found in database
+                    if (origin == null) {
+                        String[] origins = {"Việt Nam", "Pháp", "Mỹ", "Đức", "Nhật Bản", "Thụy Sĩ", "Ấn Độ", "Hàn Quốc", "Anh", "Ý"};
+                        origin = origins[new java.util.Random().nextInt(origins.length)];
+                    }
+
+                    if (ingredients == null) {
+                        String lowerName = name.toLowerCase();
+                        if (lowerName.contains("calci") || lowerName.contains("canxi")) {
+                            ingredients = "Calci carbonat 500mg, Vitamin D3 200IU";
+                        } else if (lowerName.contains("vitamin c")) {
+                            ingredients = "Vitamin C (Acid ascorbic) 1000mg";
+                        } else if (lowerName.contains("tóc") || lowerName.contains("hair")) {
+                            ingredients = "Biotin 5000mcg, Collagen peptide 1000mg, L-Cystine 250mg";
+                        } else if (lowerName.contains("ho ") || lowerName.contains("cough") || lowerName.contains("siro")) {
+                            ingredients = "Cao lá Thường xuân 35mg, Tinh dầu Tràm 100mg";
+                        } else if (lowerName.contains("sâm") || lowerName.contains("ginseng")) {
+                            ingredients = "Cao Nhân sâm Triều Tiên 100mg, Vitamin tổng hợp";
+                        } else if (lowerName.contains("gan") || lowerName.contains("liver")) {
+                            ingredients = "Silymarin 140mg, L-Arginine HCl 200mg, Vitamin B";
+                        } else if (lowerName.contains("omega") || lowerName.contains("dầu cá")) {
+                            ingredients = "Omega-3 1000mg (EPA 180mg, DHA 120mg)";
+                        } else {
+                            String[] generalIngredients = {
+                                "Paracetamol 500mg, Codein phosphat 30mg",
+                                "Amoxicillin trihydrat tương đương Amoxicillin 500mg",
+                                "Glucosamin sulfat 1500mg, Chondroitin sulfat 100mg",
+                                "Kẽm gluconat 50mg, Vitamin E 400IU",
+                                "Sắt fumarat 150mg, Acid folic 0.4mg",
+                                "Lactobacillus acidophilus 10^8 CFU, Bifidobacterium 10^8 CFU",
+                                "Cao thảo dược tự nhiên, Tinh chất trà xanh, Curcumin 95%"
+                            };
+                            ingredients = generalIngredients[new java.util.Random().nextInt(generalIngredients.length)];
+                        }
+                    }
+
+                    List<Thuoc> existingList = sameNameDrugs.stream()
+                            .filter(t -> t.getIdDvt().equals(finalDvtId))
+                            .collect(Collectors.toList());
+
+                    if (!existingList.isEmpty()) {
+                        for (Thuoc existing : existingList) {
+                            boolean updated = false;
+                            if (finalImg != null && (existing.getHinhAnh() == null || existing.getHinhAnh().trim().isEmpty())) {
+                                existing.setHinhAnh(finalImg);
+                                updated = true;
+                            }
+                            if (existing.getXuatXu() == null || existing.getXuatXu().trim().isEmpty() || existing.getXuatXu().equalsIgnoreCase("N/A") || existing.getXuatXu().equalsIgnoreCase("Unknown")) {
+                                existing.setXuatXu(origin);
+                                updated = true;
+                            }
+                            if (existing.getThanhPhan() == null || existing.getThanhPhan().trim().isEmpty() || existing.getThanhPhan().equalsIgnoreCase("N/A") || existing.getThanhPhan().equalsIgnoreCase("Unknown")) {
+                                existing.setThanhPhan(ingredients);
+                                updated = true;
+                            }
+                            if (updated) {
+                                thuocRepository.save(existing);
+                            }
+                        }
+                    } else {
                         thuocRepository.save(Thuoc.builder()
                                 .tenThuoc(name)
                                 .idDvt(dvt.getIdDvt())
@@ -186,17 +262,79 @@ public class ThuocService {
                                 .tyLeGiaBan(BigDecimal.valueOf(25))
                                 .donGiaBan(price)
                                 .soLuongTon(100)
-                                .hinhAnh(img)
+                                .hinhAnh(finalImg)
+                                .xuatXu(origin)
+                                .thanhPhan(ingredients)
                                 .isDeleted(false)
                                 .build());
                     }
                 }
-                log.info("Successfully imported Thuoc from JSON");
+
+                // Post-import synchronization sweep across all drugs in the database
+                List<Thuoc> allDrugs = thuocRepository.findAll();
+                java.util.Map<String, List<Thuoc>> groupedByName = allDrugs.stream()
+                        .collect(Collectors.groupingBy(t -> t.getTenThuoc().trim().toLowerCase()));
+
+                for (List<Thuoc> group : groupedByName.values()) {
+                    if (group.size() <= 1) continue;
+
+                    String masterOrigin = null;
+                    String masterIngredients = null;
+                    String masterImg = null;
+
+                    // Find the best master metadata values from the group
+                    for (Thuoc t : group) {
+                        if (masterOrigin == null && t.getXuatXu() != null && !t.getXuatXu().trim().isEmpty() && !t.getXuatXu().equalsIgnoreCase("N/A") && !t.getXuatXu().equalsIgnoreCase("Unknown")) {
+                            masterOrigin = t.getXuatXu();
+                        }
+                        if (masterIngredients == null && t.getThanhPhan() != null && !t.getThanhPhan().trim().isEmpty() && !t.getThanhPhan().equalsIgnoreCase("N/A") && !t.getThanhPhan().equalsIgnoreCase("Unknown")) {
+                            masterIngredients = t.getThanhPhan();
+                        }
+                        if (masterImg == null && t.getHinhAnh() != null && !t.getHinhAnh().trim().isEmpty() && !t.getHinhAnh().contains("placeholder-drug")) {
+                            masterImg = t.getHinhAnh();
+                        }
+                    }
+
+                    // Apply master values to all members of the group
+                    for (Thuoc t : group) {
+                        boolean updated = false;
+                        if (masterOrigin != null && (t.getXuatXu() == null || t.getXuatXu().equalsIgnoreCase("N/A") || t.getXuatXu().equalsIgnoreCase("Unknown") || !t.getXuatXu().equals(masterOrigin))) {
+                            t.setXuatXu(masterOrigin);
+                            updated = true;
+                        }
+                        if (masterIngredients != null && (t.getThanhPhan() == null || t.getThanhPhan().equalsIgnoreCase("N/A") || t.getThanhPhan().equalsIgnoreCase("Unknown") || !t.getThanhPhan().equals(masterIngredients))) {
+                            t.setThanhPhan(masterIngredients);
+                            updated = true;
+                        }
+                        if (masterImg != null && (t.getHinhAnh() == null || t.getHinhAnh().trim().isEmpty() || t.getHinhAnh().contains("placeholder-drug"))) {
+                            t.setHinhAnh(masterImg);
+                            updated = true;
+                        }
+                        if (updated) {
+                            thuocRepository.save(t);
+                        }
+                    }
+                }
+
+                log.info("Successfully imported and synchronized Thuoc from JSON");
             }
         } catch (Exception e) {
             log.error("Failed to import from JSON", e);
             throw new RuntimeException("Failed to import from JSON: " + e.getMessage(), e);
         }
+    }
+
+    public List<ThuocDTO> getPackagingsByName(String name) {
+        java.util.Map<String, Thuoc> uniquePackagings = new java.util.LinkedHashMap<>();
+        thuocRepository.findByTenThuocIgnoreCaseAndIsDeletedFalse(name).forEach(t -> {
+            String dvtName = t.getDvt() != null ? t.getDvt().getTenDvt().trim().toLowerCase() : "n/a";
+            if (!uniquePackagings.containsKey(dvtName)) {
+                uniquePackagings.put(dvtName, t);
+            }
+        });
+        return uniquePackagings.values().stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
     }
 
     private ThuocDTO mapToDTO(Thuoc thuoc) {

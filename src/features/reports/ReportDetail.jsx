@@ -44,6 +44,20 @@ const ReportDetail = ({ ID_BCDT }) => {
   if (isLoading) return <Spinner />;
   if (!report) return <div>Không tìm thấy báo cáo</div>;
 
+  const normalizedReport = {
+    ID_BCDT: report.idBcdt ?? report.ID_BCDT,
+    Thang: report.thang ?? report.Thang,
+    Nam: report.nam ?? report.Nam,
+    TongDoanhThu: report.tongDoanhThu ?? report.TongDoanhThu,
+    chi_tiet: (report.chiTiets ?? report.chi_tiet ?? []).map(ct => ({
+      ID_CTBCDT: ct.idCtbcdt ?? ct.ID_CTBCDT,
+      Ngay: ct.ngay ?? ct.Ngay,
+      SoBenhNhan: ct.soBenhNhan ?? ct.SoBenhNhan,
+      DoanhThu: ct.doanhThu ?? ct.DoanhThu,
+      TyLe: ct.tyLe ?? ct.TyLe,
+    }))
+  };
+
   const formatCurrency = (amount) =>
     new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(
       amount || 0
@@ -54,19 +68,19 @@ const ReportDetail = ({ ID_BCDT }) => {
   };
 
   // Sắp xếp chi tiết theo ngày
-  const sortedChiTiet = [...(report.chi_tiet || [])].sort((a, b) => a.Ngay - b.Ngay);
+  const sortedChiTiet = [...(normalizedReport.chi_tiet || [])].sort((a, b) => a.Ngay - b.Ngay);
 
   return (
     <LayoutReportDetail>
       <h2 className='mb-5 text-xl font-bold leading-6 text-grey-900'>
-        Báo Cáo Doanh Thu Tháng {report.Thang}/{report.Nam}
+        Báo Cáo Doanh Thu Tháng {normalizedReport.Thang}/{normalizedReport.Nam}
       </h2>
 
       <Grid2Col>
-        <Row label='ID Báo Cáo' value={report.ID_BCDT} />
-        <Row label='Tháng' value={report.Thang} />
-        <Row label='Năm' value={report.Nam} />
-        <Row label='Tổng Doanh Thu' value={formatCurrency(report.TongDoanhThu)} />
+        <Row label='ID Báo Cáo' value={normalizedReport.ID_BCDT} />
+        <Row label='Tháng' value={normalizedReport.Thang} />
+        <Row label='Năm' value={normalizedReport.Nam} />
+        <Row label='Tổng Doanh Thu' value={formatCurrency(normalizedReport.TongDoanhThu)} />
       </Grid2Col>
 
       <div className='mt-6'>

@@ -27,6 +27,7 @@ public class BaoCaoDoanhThu {
     @Column(name = "TongDoanhThu", precision = 15, scale = 2)
     private BigDecimal tongDoanhThu;
 
+    @com.fasterxml.jackson.annotation.JsonIgnore
     @OneToMany(mappedBy = "baoCaoDoanhThu", cascade = CascadeType.ALL)
     private java.util.List<ChiTietBaoCaoDoanhThu> chiTiets;
 }

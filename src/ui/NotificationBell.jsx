@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BellIcon } from '@heroicons/react/24/outline';
 import { useBusinessNotifications } from '../hooks/useBusinessNotifications';
+import { useTranslation } from 'react-i18next';
 
 const NotificationBell = () => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef(null);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const {
     notifications,
@@ -17,7 +19,7 @@ const NotificationBell = () => {
     markRead,
     markAllRead,
     refresh,
-  } = useBusinessNotifications({ refetchIntervalMs: 60000 });
+  } = useBusinessNotifications({ refetchIntervalMs: 5000 });
 
   useEffect(() => {
     function handlePointerDown(event) {
@@ -84,10 +86,10 @@ const NotificationBell = () => {
           >
             <div className='flex flex-col'>
               <span className='text-sm font-semibold' style={{ color: 'var(--text-primary)' }}>
-                Thông báo
+                {t('notifications')}
               </span>
               <span className='text-xs' style={{ color: 'var(--text-muted)' }}>
-                Những việc cần xử lý
+                {t('pending_tasks')}
               </span>
             </div>
             <button
@@ -97,14 +99,14 @@ const NotificationBell = () => {
               onClick={markAllRead}
               disabled={unreadCount === 0}
             >
-              Đã xem hết
+              {t('mark_all_read')}
             </button>
           </div>
 
           <div className='max-h-[360px] overflow-y-auto'>
             {isLoading ? (
               <div className='px-4 py-6 text-sm' style={{ color: 'var(--text-muted)' }}>
-                Đang tải...
+                {t('loading')}
               </div>
             ) : error ? (
               <div className='px-4 py-6 text-sm' style={{ color: 'var(--error)' }}>
@@ -112,7 +114,7 @@ const NotificationBell = () => {
               </div>
             ) : notifications.length === 0 ? (
               <div className='px-4 py-6 text-sm text-center' style={{ color: 'var(--text-muted)' }}>
-                Không có việc cần xử lý.
+                {t('no_pending_tasks')}
               </div>
             ) : (
               notifications.map((item) => {

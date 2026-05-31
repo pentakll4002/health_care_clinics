@@ -15,6 +15,11 @@ export async function getDrug(id) {
   return response.data;
 }
 
+export async function getDrugPackagings(name) {
+  const response = await axiosInstance.get('/thuoc/packagings', { params: { name } });
+  return response.data;
+}
+
 export async function createDrug(data) {
   const response = await axiosInstance.post('/thuoc', data);
   return response.data;

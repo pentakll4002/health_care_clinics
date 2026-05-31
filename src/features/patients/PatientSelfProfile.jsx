@@ -3,6 +3,54 @@ import { useForm } from 'react-hook-form';
 import Button from '../../ui/Button';
 import Spinner from '../../ui/Spinner';
 import defaultAvatar from '../../assets/default-user.jpg';
+
+import cities from '../../../cities.json';
+import districts from '../../../districts.json';
+import wards from '../../../wards.json';
+
+const parseAddress = (fullAddress) => {
+  if (!fullAddress) return { cityCode: '', districtCode: '', wardCode: '', detail: '' };
+  const parts = fullAddress.split(',').map(p => p.trim());
+  if (parts.length < 3) return { cityCode: '', districtCode: '', wardCode: '', detail: fullAddress };
+
+  const cityPart = parts[parts.length - 1];
+  const districtPart = parts[parts.length - 2];
+  const wardPart = parts[parts.length - 3];
+  const detailParts = parts.slice(0, parts.length - 3);
+  const detail = detailParts.join(', ');
+
+  const city = cities.find(c => 
+    c.name.toLowerCase().includes(cityPart.toLowerCase()) || 
+    cityPart.toLowerCase().includes(c.name.toLowerCase()) ||
+    (c.name_with_type && (c.name_with_type.toLowerCase().includes(cityPart.toLowerCase()) || cityPart.toLowerCase().includes(c.name_with_type.toLowerCase())))
+  );
+
+  if (!city) return { cityCode: '', districtCode: '', wardCode: '', detail: fullAddress };
+
+  const cityDistricts = districts.filter(d => d.parent_code === city.code);
+  const district = cityDistricts.find(d => 
+    d.name.toLowerCase().includes(districtPart.toLowerCase()) || 
+    districtPart.toLowerCase().includes(d.name.toLowerCase()) ||
+    (d.name_with_type && (d.name_with_type.toLowerCase().includes(districtPart.toLowerCase()) || districtPart.toLowerCase().includes(d.name_with_type.toLowerCase())))
+  );
+
+  if (!district) return { cityCode: city.code, districtCode: '', wardCode: '', detail: parts.slice(0, parts.length - 1).join(', ') };
+
+  const districtWards = wards.filter(w => w.parent_code === district.code);
+  const ward = districtWards.find(w => 
+    w.name.toLowerCase().includes(wardPart.toLowerCase()) || 
+    wardPart.toLowerCase().includes(w.name.toLowerCase()) ||
+    (w.name_with_type && (w.name_with_type.toLowerCase().includes(wardPart.toLowerCase()) || wardPart.toLowerCase().includes(w.name_with_type.toLowerCase())))
+  );
+
+  return {
+    cityCode: city.code,
+    districtCode: district.code,
+    wardCode: ward ? ward.code : '',
+    detail: detail || wardPart
+  };
+};
+
 import {
   useChangePatientPassword,
   useCreatePatientAppointment,
@@ -194,15 +242,26 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
   const dashboard = dashboardData || {};
   const doctors = useMemo(() => {
     const items = Array.isArray(doctorOptionsData) ? doctorOptionsData : (doctorOptionsData?.data || []);
-    return items.filter((nv) => {
-      const nhom = nv?.nhomNguoiDung || nv?.nhom_nguoi_dung || nv;
-      const maNhom = nhom?.maNhom || nhom?.MaNhom;
-      return maNhom === 'DOCTOR' || maNhom === '@doctors' || maNhom === 'doctors';
-    });
+    return items;
   }, [doctorOptionsData]);
 
   const [avatarPreview, setAvatarPreview] = useState(defaultAvatar);
   const [avatarFile, setAvatarFile] = useState(null);
+
+  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedDistrict, setSelectedDistrict] = useState('');
+  const [selectedWard, setSelectedWard] = useState('');
+  const [detailedAddress, setDetailedAddress] = useState('');
+
+  const filteredDistricts = useMemo(() => {
+    if (!selectedCity) return [];
+    return districts.filter((d) => d.parent_code === selectedCity);
+  }, [selectedCity]);
+
+  const filteredWards = useMemo(() => {
+    if (!selectedDistrict) return [];
+    return wards.filter((w) => w.parent_code === selectedDistrict);
+  }, [selectedDistrict]);
 
   const readOnlyItems = useMemo(
     () => [
@@ -225,8 +284,38 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
       });
       setAvatarPreview(buildAvatarUrl(benhNhan.Avatar));
       setAvatarFile(null);
+
+      if (benhNhan.DiaChi) {
+        const parsed = parseAddress(benhNhan.DiaChi);
+        setSelectedCity(parsed.cityCode);
+        setSelectedDistrict(parsed.districtCode);
+        setSelectedWard(parsed.wardCode);
+        setDetailedAddress(parsed.detail);
+      } else {
+        setSelectedCity('');
+        setSelectedDistrict('');
+        setSelectedWard('');
+        setDetailedAddress('');
+      }
     }
   }, [benhNhan, userInfo, profileForm]);
+
+  const watchedNgayTN = appointmentForm.watch('NgayTN');
+  useEffect(() => {
+    if (watchedNgayTN) {
+      const date = new Date(watchedNgayTN);
+      if (!Number.isNaN(date.getTime())) {
+        const hours = date.getHours();
+        let ca = 'Sáng';
+        if (hours >= 12 && hours < 17) {
+          ca = 'Chiều';
+        } else if (hours >= 17) {
+          ca = 'Tối';
+        }
+        appointmentForm.setValue('CaTN', ca);
+      }
+    }
+  }, [watchedNgayTN, appointmentForm]);
 
   const handleProfileSubmit = profileForm.handleSubmit((values) => {
     const formData = new FormData();
@@ -236,16 +325,30 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
     if (values.Email?.trim() || values.Email === '') {
       formData.append('Email', values.Email.trim());
     }
-    if (values.DiaChi?.trim() || values.DiaChi === '') {
-      formData.append('DiaChi', values.DiaChi.trim());
-    }
+
+    const cityObj = cities.find((c) => c.code === selectedCity);
+    const districtObj = districts.find((d) => d.code === selectedDistrict);
+    const wardObj = wards.find((w) => w.code === selectedWard);
+
+    const fullAddressParts = [];
+    if (detailedAddress.trim()) fullAddressParts.push(detailedAddress.trim());
+    if (wardObj) fullAddressParts.push(wardObj.name_with_type || wardObj.name);
+    if (districtObj) fullAddressParts.push(districtObj.name_with_type || districtObj.name);
+    if (cityObj) fullAddressParts.push(cityObj.name_with_type || cityObj.name);
+
+    const fullAddress = fullAddressParts.join(', ');
+    formData.append('DiaChi', fullAddress);
+
     if (avatarFile) {
       formData.append('avatar', avatarFile);
     }
 
     updateProfile.mutate(formData, {
       onSuccess: () => {
-        profileForm.reset(values);
+        profileForm.reset({
+          ...values,
+          DiaChi: fullAddress,
+        });
         setAvatarFile(null);
       },
     });
@@ -384,12 +487,69 @@ export default function PatientSelfProfile({ initialSection = 'all' }) {
                     )}
                   </Field>
 
-                  <Field label='Địa chỉ'>
-                    <textarea
-                      rows={3}
-                      className={`${inputBaseClass} resize-none`}
-                      {...profileForm.register('DiaChi')}
-                      placeholder='Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành'
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <Field label='Tỉnh/Thành phố'>
+                      <select
+                        className={inputBaseClass}
+                        value={selectedCity}
+                        onChange={(e) => {
+                          setSelectedCity(e.target.value);
+                          setSelectedDistrict('');
+                          setSelectedWard('');
+                        }}
+                      >
+                        <option value="">-- Chọn Tỉnh/Thành phố --</option>
+                        {cities.map((c) => (
+                          <option key={c.code} value={c.code}>
+                            {c.name}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+
+                    <Field label='Quận/Huyện'>
+                      <select
+                        className={inputBaseClass}
+                        value={selectedDistrict}
+                        onChange={(e) => {
+                          setSelectedDistrict(e.target.value);
+                          setSelectedWard('');
+                        }}
+                        disabled={!selectedCity}
+                      >
+                        <option value="">-- Chọn Quận/Huyện --</option>
+                        {filteredDistricts.map((d) => (
+                          <option key={d.code} value={d.code}>
+                            {d.name}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+
+                    <Field label='Phường/Xã'>
+                      <select
+                        className={inputBaseClass}
+                        value={selectedWard}
+                        onChange={(e) => setSelectedWard(e.target.value)}
+                        disabled={!selectedDistrict}
+                      >
+                        <option value="">-- Chọn Phường/Xã --</option>
+                        {filteredWards.map((w) => (
+                          <option key={w.code} value={w.code}>
+                            {w.name}
+                          </option>
+                        ))}
+                      </select>
+                    </Field>
+                  </div>
+
+                  <Field label='Địa chỉ chi tiết (Số nhà, tên đường...)'>
+                    <input
+                      type='text'
+                      className={inputBaseClass}
+                      value={detailedAddress}
+                      onChange={(e) => setDetailedAddress(e.target.value)}
+                      placeholder='Ví dụ: 123 Nguyễn Huệ'
                     />
                   </Field>
 

@@ -1,0 +1,2433 @@
+{
+  "drugs": [
+    {
+      "name": "Thuốc bột uống Meza-Calci Hataphar điều trị hỗ trợ loãng xương (30 gói x 2g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/meza-calci-31680.html",
+      "packaging": "Hộp",
+      "price": "42000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00031540_meza_calci_3510_62cd_large_92afb80c35.jpg"
+    },
+    {
+      "name": "Thuốc bột uống Meza-Calci Hataphar điều trị hỗ trợ loãng xương (30 gói x 2g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/meza-calci-31680.html",
+      "packaging": "Gói",
+      "price": "1400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00031540_meza_calci_3510_62cd_large_92afb80c35.jpg"
+    },
+    {
+      "name": "Viên uống giúp tóc chắc khỏe, đẹp tóc, hạn chế rụng tóc Hair Volume New Nordic (30 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/hair-volume-vien-uong-duong-toc-102.html",
+      "packaging": "Hộp",
+      "price": "630000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00345353_hair_volume_vien_uong_duong_toc_7952_62af_large_46a5a99e57.jpg"
+    },
+    {
+      "name": "Viên uống bổ thận, hỗ trợ giảm nguy cơ viêm đường tiết niệu Kidney Cleanser Support Vitamins For Life (30 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/vien-uong-bo-than-kidney-cleanser-support-vitamins-for-life-30v-33486.html",
+      "packaging": "Hộp",
+      "price": "415000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00033381_vien_uong_bo_than_kidney_cleanser_support_vitamins_for_life_30v_5225_6359_large_3f3617741f.jpg"
+    },
+    {
+      "name": "Thuốc Acerovax-20 điều trị giảm cholesterol toàn phần, rối loạn betalipoprotein máu (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/acerovax-20-aprogen-3x10-38002.html",
+      "packaging": "Hộp",
+      "price": "303000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/acerovax_20_1b137bd00e.jpg"
+    },
+    {
+      "name": "Thuốc Acerovax-20 điều trị giảm cholesterol toàn phần, rối loạn betalipoprotein máu (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/acerovax-20-aprogen-3x10-38002.html",
+      "packaging": "Vỉ",
+      "price": "101000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/acerovax_20_1b137bd00e.jpg"
+    },
+    {
+      "name": "Thuốc Acerovax-20 điều trị giảm cholesterol toàn phần, rối loạn betalipoprotein máu (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/acerovax-20-aprogen-3x10-38002.html",
+      "packaging": "Viên",
+      "price": "10100",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/acerovax_20_1b137bd00e.jpg"
+    },
+    {
+      "name": "Túi đựng nước tiểu An Phú (10 cái)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/tui-dung-nuoc-tieu-16800.html",
+      "packaging": "Gói",
+      "price": "70000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00007572_tui_dung_nuoc_tieu_5382_5f73_large_4baeb55c4e.JPG"
+    },
+    {
+      "name": "Túi đựng nước tiểu An Phú (10 cái)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/tui-dung-nuoc-tieu-16800.html",
+      "packaging": "Cái",
+      "price": "7000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00007572_tui_dung_nuoc_tieu_5382_5f73_large_4baeb55c4e.JPG"
+    },
+    {
+      "name": "Viên uống giúp nhuận tràng, giảm táo bón, tốt cho tiêu hóa Colon Care Vitamins For Life (60 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/colon-care-vien-uong-nhuan-trang-117.html",
+      "packaging": "Hộp",
+      "price": "312000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00345421_colon_care_vien_uong_nhuan_trang_8278_63e1_large_24e0f02a41.jpg"
+    },
+    {
+      "name": "Viên nang mềm Teburap 120mg Dongkoo điều trị rối loạn tuần hoàn ngoại biên (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/teburap-120mg-dongkoo-10x10-29782.html",
+      "packaging": "Hộp",
+      "price": "640000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00029346_teburap_120mg_dongkoo_10x10_5076_60af_large_2712737258.jpg"
+    },
+    {
+      "name": "Viên nang mềm Teburap 120mg Dongkoo điều trị rối loạn tuần hoàn ngoại biên (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/teburap-120mg-dongkoo-10x10-29782.html",
+      "packaging": "Vỉ",
+      "price": "64000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00029346_teburap_120mg_dongkoo_10x10_5076_60af_large_2712737258.jpg"
+    },
+    {
+      "name": "Viên nang mềm Teburap 120mg Dongkoo điều trị rối loạn tuần hoàn ngoại biên (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/teburap-120mg-dongkoo-10x10-29782.html",
+      "packaging": "Viên",
+      "price": "6400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00029346_teburap_120mg_dongkoo_10x10_5076_60af_large_2712737258.jpg"
+    },
+    {
+      "name": "Cao Sao Vàng TW3 điều trị cảm gió, nhức đầu (8g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/cao-sao-vang-tw3-8g-31938.html",
+      "packaging": "Hộp",
+      "price": "180000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/cao_sao_vang_f905395e9f.png"
+    },
+    {
+      "name": "Cao Sao Vàng TW3 điều trị cảm gió, nhức đầu (8g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/cao-sao-vang-tw3-8g-31938.html",
+      "packaging": "Lọ",
+      "price": "15000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/cao_sao_vang_f905395e9f.png"
+    },
+    {
+      "name": "Dung dịch uống Decogamin 600mg Medisun dùng cho đột quỵ, chấn thương sọ não, sa sút trí tuệ (30 ống x 7ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/decogamin-medisun-30-ong-37264.html",
+      "packaging": "Hộp",
+      "price": "561000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00502968_f1020aeb5c.jpg"
+    },
+    {
+      "name": "Dung dịch uống Decogamin 600mg Medisun dùng cho đột quỵ, chấn thương sọ não, sa sút trí tuệ (30 ống x 7ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/decogamin-medisun-30-ong-37264.html",
+      "packaging": "Ống",
+      "price": "18700",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00502968_f1020aeb5c.jpg"
+    },
+    {
+      "name": "Thuốc Vinocyclin 100 Medisun điều trị mụn trứng cá, nhiễm trùng đường hô hấp (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/vinocyclin-100-medisun-3-vi-x-10-vien-32722.html",
+      "packaging": "Hộp",
+      "price": "450000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/vinocyclin_100_3x10_medisun_00032605_fa27485c55.png"
+    },
+    {
+      "name": "Thuốc Vinocyclin 100 Medisun điều trị mụn trứng cá, nhiễm trùng đường hô hấp (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/vinocyclin-100-medisun-3-vi-x-10-vien-32722.html",
+      "packaging": "Vỉ",
+      "price": "150000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/vinocyclin_100_3x10_medisun_00032605_fa27485c55.png"
+    },
+    {
+      "name": "Thuốc Vinocyclin 100 Medisun điều trị mụn trứng cá, nhiễm trùng đường hô hấp (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/vinocyclin-100-medisun-3-vi-x-10-vien-32722.html",
+      "packaging": "Viên",
+      "price": "15000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/vinocyclin_100_3x10_medisun_00032605_fa27485c55.png"
+    },
+    {
+      "name": "Thuốc Authisix Meyer-Bpc giúp ngăn ngừa tình trạng thiếu hụt canxi và vitamin D3 (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/authisix-meyer-bpc-6-x10.html",
+      "packaging": "Hộp",
+      "price": "275000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/auth_750f0b257a.jpg"
+    },
+    {
+      "name": "Thuốc Authisix Meyer-Bpc giúp ngăn ngừa tình trạng thiếu hụt canxi và vitamin D3 (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/authisix-meyer-bpc-6-x10.html",
+      "packaging": "Vỉ",
+      "price": "45833",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/auth_750f0b257a.jpg"
+    },
+    {
+      "name": "Thuốc Authisix Meyer-Bpc giúp ngăn ngừa tình trạng thiếu hụt canxi và vitamin D3 (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/authisix-meyer-bpc-6-x10.html",
+      "packaging": "Viên",
+      "price": "4583",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/auth_750f0b257a.jpg"
+    },
+    {
+      "name": "Viên uống giảm thoái hóa khớp viêm khớp Tâm Bình (60 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/vien-khop-tam-binh-903.html",
+      "packaging": "Hộp",
+      "price": "130000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/IMG_3765_f9eada7dcb.jpg"
+    },
+    {
+      "name": "Viên tăng cường chức năng giải độc của gan Cà Gai Leo Tuệ Linh (60 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/ca-gai-leo-ho-tro-dieu-tri-cac-benh-ve-gan-489.html",
+      "packaging": "Hộp",
+      "price": "154000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00001459_ca_gai_leo_ho_tro_dieu_tri_cac_benh_ve_gan_3510_62ae_large_c64a9eb921.jpg"
+    },
+    {
+      "name": "Kem bôi giảm nứt gót chân gót sen Thái Dương, dưỡng ẩm, mềm da 20g",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/got-sen-thai-duong-16703.html",
+      "packaging": "Tuýp",
+      "price": "25000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00008358_got_sen_thai_duong_4010_62af_large_a1a344ac65.jpg"
+    },
+    {
+      "name": "Lotion bôi da Oxy10 Rohto điều trị mụn bọc và mụn sưng đỏ (10g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/oxy-10-2732.html",
+      "packaging": "Tuýp",
+      "price": "49000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/lotion_boi_da_oxy10_10g_rohto_00005678_040cefd681.jpg"
+    },
+    {
+      "name": "Dung dịch vệ sinh phụ nữ Dạ Hương Xanh Lô Hội giúp làm sạch nhẹ nhàng, khử mùi hôi (100ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/dung-dich-ve-sinh-phu-nu-da-huong-xanh-lo-hoi-giup-lam-sach-nhe-nhang-khu-mui-hoi-hop-100-ml.html",
+      "packaging": "Hộp",
+      "price": "42000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_02225_efcc009575.jpg"
+    },
+    {
+      "name": "Viên nén Panactol 500mg Khapharco giảm đau, hạ sốt, điều trị đau đầu, đau răng (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/panactol-500mg-khanh-hoa-10x10-33672.html",
+      "packaging": "Hộp",
+      "price": "40000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_panactol_500mg_khanh_hoa_10x10_00033576_9d2006dbed.png"
+    },
+    {
+      "name": "Viên nén Panactol 500mg Khapharco giảm đau, hạ sốt, điều trị đau đầu, đau răng (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/panactol-500mg-khanh-hoa-10x10-33672.html",
+      "packaging": "Vỉ",
+      "price": "4000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_panactol_500mg_khanh_hoa_10x10_00033576_9d2006dbed.png"
+    },
+    {
+      "name": "Viên nén Panactol 500mg Khapharco giảm đau, hạ sốt, điều trị đau đầu, đau răng (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/panactol-500mg-khanh-hoa-10x10-33672.html",
+      "packaging": "Viên",
+      "price": "400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_panactol_500mg_khanh_hoa_10x10_00033576_9d2006dbed.png"
+    },
+    {
+      "name": "Máy xông khí dung Omron NE C28 hỗ trợ điều trị bệnh lý về đường hô hấp",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/omron-ne-c28-may-xong-khi-dung-30937.html",
+      "packaging": "Hộp",
+      "price": "1480000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/compair_0ba018c74c.jpg"
+    },
+    {
+      "name": "Thuốc MedSkin Acyclovir 200 DHG Pharma điều trị các trường hợp nhiễm Herpes (5 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/medskin-200-dhg-5x10-22601.html",
+      "packaging": "Hộp",
+      "price": "58000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022242_medskin_200_dhg_5x10_3424_6098_large_282dd49558.jpeg"
+    },
+    {
+      "name": "Thuốc MedSkin Acyclovir 200 DHG Pharma điều trị các trường hợp nhiễm Herpes (5 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/medskin-200-dhg-5x10-22601.html",
+      "packaging": "Vỉ",
+      "price": "11600",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022242_medskin_200_dhg_5x10_3424_6098_large_282dd49558.jpeg"
+    },
+    {
+      "name": "Thuốc MedSkin Acyclovir 200 DHG Pharma điều trị các trường hợp nhiễm Herpes (5 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/medskin-200-dhg-5x10-22601.html",
+      "packaging": "Viên",
+      "price": "1160",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022242_medskin_200_dhg_5x10_3424_6098_large_282dd49558.jpeg"
+    },
+    {
+      "name": "Muối rửa mũi xoang Sinufresh Cát Linh (50 gói) giúp làm sạch, giảm ngạt mũi, sổ mũi",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/cham-soc-mui-xoang-sinufresh-cat-linh-50-goi-22818.html",
+      "packaging": "Hộp",
+      "price": "136000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022492_cham_soc_mui_xoang_sinufresh_cat_linh_50_goi_3875_63ab_large_3b6da34e61.jpg"
+    },
+    {
+      "name": "Muối rửa mũi xoang Sinufresh Cát Linh (50 gói) giúp làm sạch, giảm ngạt mũi, sổ mũi",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/cham-soc-mui-xoang-sinufresh-cat-linh-50-goi-22818.html",
+      "packaging": "Gói",
+      "price": "3400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022492_cham_soc_mui_xoang_sinufresh_cat_linh_50_goi_3875_63ab_large_3b6da34e61.jpg"
+    },
+    {
+      "name": "Thuốc Toropi 10mg Torrent điều trị tăng huyết áp (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/toropi-10-torrent-10x10-23103.html",
+      "packaging": "Hộp",
+      "price": "350000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022784_d13f3c186a.jpg"
+    },
+    {
+      "name": "Thuốc Toropi 10mg Torrent điều trị tăng huyết áp (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/toropi-10-torrent-10x10-23103.html",
+      "packaging": "Vỉ",
+      "price": "35000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022784_d13f3c186a.jpg"
+    },
+    {
+      "name": "Thuốc Toropi 10mg Torrent điều trị tăng huyết áp (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/toropi-10-torrent-10x10-23103.html",
+      "packaging": "Viên",
+      "price": "3500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022784_d13f3c186a.jpg"
+    },
+    {
+      "name": "Băng keo thun Urgocrepe 6cm x 4.5m giúp cố định phẫu thuật chỉnh hình, dự phòng chấn thương cơ khớp",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/urgocrepe-6x45-16374.html",
+      "packaging": "Hộp",
+      "price": "107000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00010652_urgocrepe_6x45_4207_5caa_large_d2eb5c7478.JPG"
+    },
+    {
+      "name": "Kit test cúm A/B Genesign (25 kít)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/bo-test-nhanh-cum-a-b-genesign-hop-25-kit.html",
+      "packaging": "Hộp",
+      "price": "1000000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_03149_21572d29d6.jpg"
+    },
+    {
+      "name": "Kit test cúm A/B Genesign (25 kít)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/bo-test-nhanh-cum-a-b-genesign-hop-25-kit.html",
+      "packaging": "Kít",
+      "price": "40000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_03149_21572d29d6.jpg"
+    },
+    {
+      "name": "Gel rửa tay khô Natural Hand Sanitizer sát khuẩn, làm sạch tay (250ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/gel-rua-tay-kho-natural-hand-sanitizer-sat-khuan-lam-sach-tay-250-ml.html",
+      "packaging": "Chai",
+      "price": "60000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/gel_rua_tay_kho_natural_hand_sanitizer_sat_khuan_lam_sach_tay_250ml_00031658_1_2c1c64b096.png"
+    },
+    {
+      "name": "Thuốc pms-Zanimex 500mg Imexpharm điều trị nhiễm trùng tai mũi họng (2 vỉ x 5 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/zanimex-500-1698.html",
+      "packaging": "Hộp",
+      "price": "140000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00008194_zanimex_500_4832_609d_large_83b20a3e4c.jpg"
+    },
+    {
+      "name": "Thuốc pms-Zanimex 500mg Imexpharm điều trị nhiễm trùng tai mũi họng (2 vỉ x 5 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/zanimex-500-1698.html",
+      "packaging": "Vỉ",
+      "price": "70000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00008194_zanimex_500_4832_609d_large_83b20a3e4c.jpg"
+    },
+    {
+      "name": "Thuốc pms-Zanimex 500mg Imexpharm điều trị nhiễm trùng tai mũi họng (2 vỉ x 5 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/zanimex-500-1698.html",
+      "packaging": "Viên",
+      "price": "14000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00008194_zanimex_500_4832_609d_large_83b20a3e4c.jpg"
+    },
+    {
+      "name": "Kit test Covid Flowflex khay thử xét nghiệm kháng nguyên Sars Cov-2 (25 kit)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/kit-test-covid-flowflex-khay-thu-xet-nghiem-khang-nguyen-sars-cov-2-hop-25-kit.html",
+      "packaging": "Hộp",
+      "price": "1125000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09865_879e9a94e5.jpg"
+    },
+    {
+      "name": "Kit test Covid Flowflex khay thử xét nghiệm kháng nguyên Sars Cov-2 (25 kit)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/kit-test-covid-flowflex-khay-thu-xet-nghiem-khang-nguyen-sars-cov-2-hop-25-kit.html",
+      "packaging": "Kít",
+      "price": "45000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09865_879e9a94e5.jpg"
+    },
+    {
+      "name": "Thuốc Hi-tavic Danapha điều trị các cơn đau từ trung bình đến nặng (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/hi-tavic-danapha-6x10-30510.html",
+      "packaging": "Hộp",
+      "price": "80000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/hitavic_671f8e6f1d.jpg"
+    },
+    {
+      "name": "Thuốc Hi-tavic Danapha điều trị các cơn đau từ trung bình đến nặng (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/hi-tavic-danapha-6x10-30510.html",
+      "packaging": "Vỉ",
+      "price": "80000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/hitavic_671f8e6f1d.jpg"
+    },
+    {
+      "name": "Thuốc Hi-tavic Danapha điều trị các cơn đau từ trung bình đến nặng (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/hi-tavic-danapha-6x10-30510.html",
+      "packaging": "Viên",
+      "price": "8000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/hitavic_671f8e6f1d.jpg"
+    },
+    {
+      "name": "Gạc Bảo Thạch 10x10cm x 6 lớp (100 miếng)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/gac-y-te-bao-thach-10cm-x-10cm-x-6-lop-100-mieng-19231.html",
+      "packaging": "Gói",
+      "price": "78000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00017878_gac_y_te_bao_thach_10cm_x_10cm_x_6_lop_100_mieng_8498_636e_large_38a53aeeae.jpg"
+    },
+    {
+      "name": "Siro hỗ trợ hạn chế đau đầu sốt ho Datadu Kingphar (4 vỉ x 5 ống x 10ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/siro-datadu-kingphar-ho-tro-han-che-dau-dau-sot-ho-10ml-33673.html",
+      "packaging": "Hộp",
+      "price": "90000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00033587_siro_datadu_kingphar_hop_4_vi_x_5_ong_10ml_ho_tro_han_che_dau_dau_sot_ho_7515_6230_large_77dc78b98a.jpg"
+    },
+    {
+      "name": "Siro hỗ giúp giảm ho, giảm đờm, giảm đau họng Bổ Phế Lábebé (120ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/siro-giup-giam-ho-bo-phe-labebe-120-ml.html",
+      "packaging": "Hộp",
+      "price": "75000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09352_ae155b3fe6.jpg"
+    },
+    {
+      "name": "Găng tay y tế có bột, phủ Latex size S (100 cái) Powder Disposable",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/gang-tay-cao-su-y-te-co-bot-phu-latex-powder-disposable-best-gloves-size-s-hop-100-cai-1.html",
+      "packaging": "Hộp",
+      "price": "94000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09677_92bdd97acf.jpg"
+    },
+    {
+      "name": "Găng tay y tế có bột, phủ Latex size S (100 cái) Powder Disposable",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/gang-tay-cao-su-y-te-co-bot-phu-latex-powder-disposable-best-gloves-size-s-hop-100-cai-1.html",
+      "packaging": "Cái",
+      "price": "940",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09677_92bdd97acf.jpg"
+    },
+    {
+      "name": "Sữa tắm Norinse Body Bath làm sạch da không cần dùng nước (473.1ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/sua-tam-khong-dung-nuoc-no-rinse-4731ml-599.html",
+      "packaging": "Chai",
+      "price": "256000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00009909_sua_tam_khong_dung_nuoc_no_rinse_4731ml_6434_6425_large_ac149e9e4a.jpg"
+    },
+    {
+      "name": "Sữa tắm Norinse Body Bath làm sạch da không cần dùng nước (473.1ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/sua-tam-khong-dung-nuoc-no-rinse-4731ml-599.html",
+      "packaging": "Hộp",
+      "price": "256000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00009909_sua_tam_khong_dung_nuoc_no_rinse_4731ml_6434_6425_large_ac149e9e4a.jpg"
+    },
+    {
+      "name": "Giúp tăng lưu thông khí huyết Viên Vai Gáy Thái Dương (2 vỉ x 15 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/vien-vai-gay-thai-duong-2x15-35424.html",
+      "packaging": "Hộp",
+      "price": "108000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/IMG_9286_8cbb3ac21d.jpg"
+    },
+    {
+      "name": "Dung dịch Castelani Quabluepharma phòng ngừa mụn mủ, lở loét, nấm da (17ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/castelani-quabluepharma-17-ml.html",
+      "packaging": "Chai",
+      "price": "22000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09042_d751cf2d5e.jpg"
+    },
+    {
+      "name": "Nước tẩy trang Cocoon bí đao giúp làm sạch, loại bỏ bã nhờn (140ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/nuoc-tay-trang-bi-dao-cocoon-140ml-37757.html",
+      "packaging": "Chai",
+      "price": "116000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00503437_nuoc_tay_trang_bi_dao_cocoon_140ml_3964_640f_large_9245991b58.jpg"
+    },
+    {
+      "name": "Kem dưỡng ẩm Fixderma Moisturizing cho da mềm mịn và khỏe mạnh (60g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/kem-duong-am-cho-da-fixderma-957.html",
+      "packaging": "Tuýp",
+      "price": "233100",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00014288_kem_duong_am_cho_da_fixderma_1242_5c88_large_cec047800a.jpg"
+    },
+    {
+      "name": "Viên Giải Độc Gan Tuệ Linh Plus (60 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/giai-doc-gan-tue-linh-plus-60v-34270.html",
+      "packaging": "Hộp",
+      "price": "242000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00500187_giai_doc_gan_tue_linh_plus_60v_3964_629f_large_c1abde5cf0.jpg"
+    },
+    {
+      "name": "Sữa rửa mặt Eucerin pH5 Facial Cleanser Sensitive Skin làm sạch sâu cho da nhạy cảm (400ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/eucerin-ph5-facial-cleanser-sensitive-skin-sua-rua-mat-cho-da-nhay-cam-400ml-30476.html",
+      "packaging": "Chai",
+      "price": "352000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00030325_eucerin_ph5_facial_cleanser_sensitive_skin_sua_rua_mat_cho_da_nhay_cam_400ml_7460_63db_large_50312ccd17.jpg"
+    },
+    {
+      "name": "Viên hỗ trợ hoạt huyết NattoEnzym DHG (90 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/nattoenzym-lo-90v-dhgpharma-14460.html",
+      "packaging": "Hộp",
+      "price": "350000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00016236_nattoenzym_lo_90v_dhgpharma_2268_62ae_large_113cb63c6c.jpg"
+    },
+    {
+      "name": "Viên hỗ trợ giảm nguy cơ viêm khớp Bách Niên Kiện Fobic (80 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/bach-nien-kien-lotus-hop-80-vien-28966.html",
+      "packaging": "Hộp",
+      "price": "699000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00028663_bach_nien_kien_lotus_hop_80_vien_1947_62bd_large_c821434498.jpg"
+    },
+    {
+      "name": "Sáp dưỡng ẩm Vaseline Fobelife làm mềm da, ngăn ngừa nứt nẻ (50g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/sap-duong-am-lam-mem-da-vaseline-fobelife-50-g.html",
+      "packaging": "Hũ",
+      "price": "68000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/vaseline_50g_4_03428700c2.jpg"
+    },
+    {
+      "name": "Kem bôi Fixderma Scar Gel hỗ trợ làm mờ vết sẹo, dưỡng ẩm da (7ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/kem-boi-seo-fixderma-scar-gel-7-ml.html",
+      "packaging": "Tuýp",
+      "price": "154400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_04121_98d624a190.jpg"
+    },
+    {
+      "name": "Kem dưỡng ẩm cho da khô Cerave Moisturising Cream 340g",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/kem-duong-am-danh-cho-da-kho-cerave-moisturising-cream-mb112202-340g-36477.html",
+      "packaging": "Hũ",
+      "price": "405000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00502233_kem_duong_am_danh_cho_da_kho_cerave_moisturising_cream_mb112202_340g_7326_6346_large_5b19f96f40.jpg"
+    },
+    {
+      "name": "Kem dưỡng ẩm cho da khô Cerave Moisturising Cream 340g",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/kem-duong-am-danh-cho-da-kho-cerave-moisturising-cream-mb112202-340g-36477.html",
+      "packaging": "Tuýp",
+      "price": "439000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00502233_kem_duong_am_danh_cho_da_kho_cerave_moisturising_cream_mb112202_340g_7326_6346_large_5b19f96f40.jpg"
+    },
+    {
+      "name": "Tấm đệm lót người lớn Caryn siêu thấm size L10 - 42 x 72cm (10 miếng)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/tam-diem-lot-cho-nguoi-lon-caryn-loai-sieu-tham-size-l10-goi-10-mieng-42x72cm-31183.html",
+      "packaging": "Gói",
+      "price": "56000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00031053_tam_diem_lot_cho_nguoi_lon_caryn_loai_sieu_tham_size_l10_goi_10_mieng_42x72cm_1742_60c1_large_03845c67f7.jpg"
+    },
+    {
+      "name": "Khăn giấy ướt Living Chok Chok Aloe Vera mềm mại, không xơ, an toàn (80 miếng)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/khan-uot-em-be-living-chok-chok-aloe-vera-80-to-22376.html",
+      "packaging": "Gói",
+      "price": "39000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022034_khan_uot_em_be_living_chok_chok_aloe_vera_80_to_2637_62ad_large_30b1fec10d.jpg"
+    },
+    {
+      "name": "Băng vệ sinh Laurier Super Slimguard Cool Kao kháng khuẩn 99,99%, ngăn nấm Candida (1mm - 8 miếng)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/bvs-laurier-super-slimguard-cool-sieu-mong-mat-lanh-1mm-8-mieng-33508.html",
+      "packaging": "Gói",
+      "price": "38000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_02541_1dd82efed7.jpg"
+    },
+    {
+      "name": "Dầu gội sạch gàu, giảm ngứa Nazorel shampoo 50ml",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/dau-goi-tri-gau-nazorel-shampoo-ciclopirox-olamine-50-ml.html",
+      "packaging": "Hộp",
+      "price": "74000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/12_eb7d12ecc6.jpg"
+    },
+    {
+      "name": "Đường Ăn Kiêng Tropicana Slim Classic (50 gói x 2g)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/duong-an-kieng-tropicana-slim-814.html",
+      "packaging": "Hộp",
+      "price": "73000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/tropicaslim_802ee6cbc9.png"
+    },
+    {
+      "name": "Bông trang điểm Silcot Nhật Bản không xù bông, thấm hút dung dịch giúp tiết kiệm mỹ phẩm dưỡng da (82 miếng)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/bong-trang-diem-silcot-82m-16416.html",
+      "packaging": "Hộp",
+      "price": "38000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00010542_bong_trang_diem_silcot_82m_3144_62ae_large_87b923ba40.jpg"
+    },
+    {
+      "name": "Viên uống hỗ trợ giảm nguy cơ tắc mạch, tăng tuần hoàn não Hoạt Huyết Thông Mạch Gold TW3 Foripharm (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/hoat-huyet-thong-mach-gold-tw-3-3-x10.html",
+      "packaging": "Hộp",
+      "price": "120000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_05151_0c39e73eec.png"
+    },
+    {
+      "name": "Sữa tắm cho da chàm và da khô Cetaphil Pro Ad Derma Skin Restoring Wash 295ml",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/cetaphil-body-wash-295ml-16087.html",
+      "packaging": "Chai",
+      "price": "352000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/sua_tam_cetaphil_pro_ad_derma_skin_restoring_wash_295ml_00011283_198911cfc0.png"
+    },
+    {
+      "name": "Dầu gội nhuộm đen tóc Matrix gội là đen (10 gói x 25ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/dau-goi-nhuom-toc-goi-la-den-matrix-595.html",
+      "packaging": "Hộp",
+      "price": "270000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_01372_589af18023.jpg"
+    },
+    {
+      "name": "Dầu gội nhuộm đen tóc Matrix gội là đen (10 gói x 25ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/dau-goi-nhuom-toc-goi-la-den-matrix-595.html",
+      "packaging": "Gói",
+      "price": "27000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_01372_589af18023.jpg"
+    },
+    {
+      "name": "Miếng dán hạ sốt Lion Hiepita for child (8 gói x 2 miếng) dùng cho trẻ trên 2 tuổi",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/mieng-dan-ha-sot-lion-hiepita-for-child-8-goi-x-2-mieng-22035.html",
+      "packaging": "Hộp",
+      "price": "130000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00021682_mieng_dan_ha_sot_lion_hiepita_for_child_8_goi_x_2_mieng_6522_62ba_large_a8e2b6db0f.jpg"
+    },
+    {
+      "name": "Miếng dán hạ sốt Lion Hiepita for child (8 gói x 2 miếng) dùng cho trẻ trên 2 tuổi",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/mieng-dan-ha-sot-lion-hiepita-for-child-8-goi-x-2-mieng-22035.html",
+      "packaging": "Gói",
+      "price": "16250",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00021682_mieng_dan_ha_sot_lion_hiepita_for_child_8_goi_x_2_mieng_6522_62ba_large_a8e2b6db0f.jpg"
+    },
+    {
+      "name": "Cao Ống Actisô Ladophar (10 ống x 10ml)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/cao-ong-actiso-ladophar-10-ong-x-10ml-35715.html",
+      "packaging": "Hộp",
+      "price": "42000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00501564_cao_ong_ladoactiso_10_ong_x_10ml_8732_6389_large_19490192fd.jpg"
+    },
+    {
+      "name": "Sáp dưỡng ẩm Vaseline Rosy Lotus Fobelife làm mềm da, chống khô da (7g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/sap-duong-am-vaseline-rosy-lotus-fobelife-7g-37378.html",
+      "packaging": "Hũ",
+      "price": "35000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00503081_sap_duong_am_vaseline_rosy_lotus_fobelife_7g_7560_6406_large_6e95a96e0c.jpg"
+    },
+    {
+      "name": "Kim luồn tĩnh mạch Braun 22G hỗ trợ truyền dịch, nước vào cơ thể",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/kim-luon-22-braun-14686.html",
+      "packaging": "Cái",
+      "price": "19000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00016007_9a0b3bae72.jpg"
+    },
+    {
+      "name": "Gel ngậm họng Otosan Throat Gel Forte 14 gói x 10ml hỗ trợ điều trị viêm họng cấp tính",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/gel-ngam-hong-otosan-throat-gel-forte-14-goi-x-10ml-37299.html",
+      "packaging": "Hộp",
+      "price": "290000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/1_73cfb5cdd8.png"
+    },
+    {
+      "name": "Gel ngậm họng Otosan Throat Gel Forte 14 gói x 10ml hỗ trợ điều trị viêm họng cấp tính",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/gel-ngam-hong-otosan-throat-gel-forte-14-goi-x-10ml-37299.html",
+      "packaging": "Gói",
+      "price": "20714",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/1_73cfb5cdd8.png"
+    },
+    {
+      "name": "Dung dịch dùng ngoài Povidon Iod Quapharco sát trùng da, niêm mạc trước khi phẫu thuật (20ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/povidon-iod-hoa-duoc-vn-20ml-22587.html",
+      "packaging": "Chai",
+      "price": "5000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022288_povidon_iod_hoa_duoc_vn_20ml_2794_6092_large_441b5fe9cb.jpg"
+    },
+    {
+      "name": "Dung dịch dùng ngoài Povidon Iod Quapharco sát trùng da, niêm mạc trước khi phẫu thuật (20ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/povidon-iod-hoa-duoc-vn-20ml-22587.html",
+      "packaging": "Hộp",
+      "price": "5000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022288_povidon_iod_hoa_duoc_vn_20ml_2794_6092_large_441b5fe9cb.jpg"
+    },
+    {
+      "name": "Dung dịch uống Solufemo Hataphar điều trị và dự phòng thiếu máu (20 ống)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/dung-dich-uong-solufemo-hataypharma-20-ong-34487.html",
+      "packaging": "Hộp",
+      "price": "185000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00500367_e26244dcc7.jpg"
+    },
+    {
+      "name": "Dung dịch uống Solufemo Hataphar điều trị và dự phòng thiếu máu (20 ống)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/dung-dich-uong-solufemo-hataypharma-20-ong-34487.html",
+      "packaging": "Ống",
+      "price": "9250",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00500367_e26244dcc7.jpg"
+    },
+    {
+      "name": "Thuốc Taromentin 1000mg Polfarmex điều trị viêm xoang cạnh mũi (2 vỉ x 7 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/taromentin-1000mg-polfa-tarchomin-sa-2x7-30312.html",
+      "packaging": "Hộp",
+      "price": "238000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/taromentin_1000mg_2x7_polfa_tarchomin_00030159_f5d88bf33c.png"
+    },
+    {
+      "name": "Thuốc Taromentin 1000mg Polfarmex điều trị viêm xoang cạnh mũi (2 vỉ x 7 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/taromentin-1000mg-polfa-tarchomin-sa-2x7-30312.html",
+      "packaging": "Vỉ",
+      "price": "119000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/taromentin_1000mg_2x7_polfa_tarchomin_00030159_f5d88bf33c.png"
+    },
+    {
+      "name": "Thuốc Taromentin 1000mg Polfarmex điều trị viêm xoang cạnh mũi (2 vỉ x 7 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/taromentin-1000mg-polfa-tarchomin-sa-2x7-30312.html",
+      "packaging": "Viên",
+      "price": "17000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/taromentin_1000mg_2x7_polfa_tarchomin_00030159_f5d88bf33c.png"
+    },
+    {
+      "name": "Siro Pectolvan Ivy Farmak điều trị viêm đường hô hấp, viêm phế quản mạn tính (100ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/pectolvan-ivy-farmak-100ml-siro-ho-cho-nguoi-lon-va-tre-em-20050.html",
+      "packaging": "Chai",
+      "price": "76000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/pectolvan_2c2d3d20a7.jpg"
+    },
+    {
+      "name": "Xịt mũi trẻ em Otosan Nasal Spray Baby 20ml hỗ trợ điều trị viêm mũi,xoang cho trẻ",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/xit-mui-ho-tro-dieu-tri-viem-mui-xoang-cho-tre-otosan-nasal-spray-baby-20-ml.html",
+      "packaging": "Hộp",
+      "price": "295000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_04572_d319c1a099.jpg"
+    },
+    {
+      "name": "Thuốc Flepgo 100mg Điều trị rối loạn cương dương ở nam giới trưởng thành (1 vỉ x 4 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/flepgo-100-mg-medbolide-1-x4.html",
+      "packaging": "Hộp",
+      "price": "464000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/4_0f993817c1.png"
+    },
+    {
+      "name": "Hỗn dịch uống Simegaz Plus OPV vị bạc hà, điều trị viêm loét dạ dày , tăng acid dạ dày (20 gói x 10ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/simegaz-plus-opv-20-goi-x-10-ml-mui-bac-ha-1.html",
+      "packaging": "Hộp",
+      "price": "80000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_00155_d98cbaedee.jpg"
+    },
+    {
+      "name": "Hỗn dịch uống Simegaz Plus OPV vị bạc hà, điều trị viêm loét dạ dày , tăng acid dạ dày (20 gói x 10ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/simegaz-plus-opv-20-goi-x-10-ml-mui-bac-ha-1.html",
+      "packaging": "Gói",
+      "price": "4000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_00155_d98cbaedee.jpg"
+    },
+    {
+      "name": "Thuốc Cephalexin MKP 500 điều trị nhiễm khuẩn (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/cephalexin-500mg-mekophar-4295.html",
+      "packaging": "Hộp",
+      "price": "124000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00001784_cephalexin_500mg_mekophar_7293_5bdd_large_015aa49ef3.JPG"
+    },
+    {
+      "name": "Thuốc Cephalexin MKP 500 điều trị nhiễm khuẩn (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/cephalexin-500mg-mekophar-4295.html",
+      "packaging": "Vỉ",
+      "price": "12400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00001784_cephalexin_500mg_mekophar_7293_5bdd_large_015aa49ef3.JPG"
+    },
+    {
+      "name": "Thuốc Cephalexin MKP 500 điều trị nhiễm khuẩn (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/cephalexin-500mg-mekophar-4295.html",
+      "packaging": "Viên",
+      "price": "1240",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00001784_cephalexin_500mg_mekophar_7293_5bdd_large_015aa49ef3.JPG"
+    },
+    {
+      "name": "Thuốc Azithromycin 250 Armephaco điều trị nhiễm khuẩn (1 vỉ x 6 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/azithromycin-250mg-h1vi-x6v-armephaco-1x6-22405.html",
+      "packaging": "Hộp",
+      "price": "45000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022063_azithromycin_250mg_h1vi_x6v_armephaco_1x6_6773_60ae_large_e2638ab769.jpg"
+    },
+    {
+      "name": "Thuốc Azithromycin 250 Armephaco điều trị nhiễm khuẩn (1 vỉ x 6 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/azithromycin-250mg-h1vi-x6v-armephaco-1x6-22405.html",
+      "packaging": "Vỉ",
+      "price": "45000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022063_azithromycin_250mg_h1vi_x6v_armephaco_1x6_6773_60ae_large_e2638ab769.jpg"
+    },
+    {
+      "name": "Thuốc Azithromycin 250 Armephaco điều trị nhiễm khuẩn (1 vỉ x 6 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/azithromycin-250mg-h1vi-x6v-armephaco-1x6-22405.html",
+      "packaging": "Viên",
+      "price": "7500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022063_azithromycin_250mg_h1vi_x6v_armephaco_1x6_6773_60ae_large_e2638ab769.jpg"
+    },
+    {
+      "name": "Que thử rụng trứng Safefit test (7 cái) dùng xác định ngày rụng trứng nhanh chóng, đơn giản",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/que-thu-rung-trung-safefit-test-hop-7-cai.html",
+      "packaging": "Hộp",
+      "price": "55000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/QUE_THU_RUNG_TRUNG_SAFEFIT_TEST_HOP_7_CAI_1_5363615347.jpg"
+    },
+    {
+      "name": "Nhiệt kế hồng ngoại đo trán Mediusa TP-336N New",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/nhiet-ke-hong-ngoai-mediusa-tp-336n-34695.html",
+      "packaging": "Hộp",
+      "price": "650000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00500567_nhiet_ke_hong_ngoai_mediusa_tp_336n_3707_6320_large_b0566d26e6.jpg"
+    },
+    {
+      "name": "Dung dịch uống Bonasol Once Weekly 70mg Oral Solution Pinewood điều trị loãng xương (4 chai x 100 ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/bonasol-once-weekly-70-mg-oral-solution-pinewood-4-chai-x-100-ml.html",
+      "packaging": "Hộp",
+      "price": "560000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_07151_0390873248.jpg"
+    },
+    {
+      "name": "Dung dịch uống Bonasol Once Weekly 70mg Oral Solution Pinewood điều trị loãng xương (4 chai x 100 ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/bonasol-once-weekly-70-mg-oral-solution-pinewood-4-chai-x-100-ml.html",
+      "packaging": "Chai",
+      "price": "140000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_07151_0390873248.jpg"
+    },
+    {
+      "name": "Thuốc Hepeverex 5g OPV giúp tăng cường giải độc gan, điều trị xơ gan (10 gói)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/hepeverex-10-goihop-opv-16023.html",
+      "packaging": "Hộp",
+      "price": "350000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00012439_hepeverex_10_goihop_opv_7626_5bb3_large_bd370749a1.png"
+    },
+    {
+      "name": "Thuốc Hepeverex 5g OPV giúp tăng cường giải độc gan, điều trị xơ gan (10 gói)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/hepeverex-10-goihop-opv-16023.html",
+      "packaging": "Gói",
+      "price": "35000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00012439_hepeverex_10_goihop_opv_7626_5bb3_large_bd370749a1.png"
+    },
+    {
+      "name": "Thuốc Lycalci OPV bổ sung lysine, vitamin và khoáng chất (20 ống x 7,5 ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/lycalci-opv-20-ong.html",
+      "packaging": "Hộp",
+      "price": "258000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/lycalci_102403bec3.jpg"
+    },
+    {
+      "name": "Thuốc Lycalci OPV bổ sung lysine, vitamin và khoáng chất (20 ống x 7,5 ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/lycalci-opv-20-ong.html",
+      "packaging": "Ống",
+      "price": "12900",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/lycalci_102403bec3.jpg"
+    },
+    {
+      "name": "Thuốc Phong Tê Thấp PV điều trị phong thấp, thắt lưng, đầu gối đau nhức (100 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/phong-te-thap-pv-239.html",
+      "packaging": "Hộp",
+      "price": "85000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00005922_phong_te_thap_pv_2069_5bb7_large_420e6bbdda.JPG"
+    },
+    {
+      "name": "Thuốc Phong Tê Thấp PV điều trị phong thấp, thắt lưng, đầu gối đau nhức (100 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/phong-te-thap-pv-239.html",
+      "packaging": "Viên",
+      "price": "850",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00005922_phong_te_thap_pv_2069_5bb7_large_420e6bbdda.JPG"
+    },
+    {
+      "name": "Nước Uống Bổ Dưỡng Yến Sào Collagen Greenbird (6 chai x 185ml)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/nuoc-uong-bo-duong-yen-sao-collagen-greenbird-6-chai-x-185ml-38201.html",
+      "packaging": "Lốc",
+      "price": "135000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_07738_9b0a45a755.jpg"
+    },
+    {
+      "name": "Thuốc Ketovin Vinphaco phòng ngừa và điều trị rối loạn chuyển hóa protein trong suy thận mạn (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/ketovin-vinphaco-10-x10.html",
+      "packaging": "Hộp",
+      "price": "950000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_ketovin_vinphaco_10x10_00048397_c1cd3ffe71.png"
+    },
+    {
+      "name": "Thuốc Ketovin Vinphaco phòng ngừa và điều trị rối loạn chuyển hóa protein trong suy thận mạn (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/ketovin-vinphaco-10-x10.html",
+      "packaging": "Vỉ",
+      "price": "95000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_ketovin_vinphaco_10x10_00048397_c1cd3ffe71.png"
+    },
+    {
+      "name": "Thuốc Ketovin Vinphaco phòng ngừa và điều trị rối loạn chuyển hóa protein trong suy thận mạn (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/ketovin-vinphaco-10-x10.html",
+      "packaging": "Viên",
+      "price": "9500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_ketovin_vinphaco_10x10_00048397_c1cd3ffe71.png"
+    },
+    {
+      "name": "Dung dịch Lexvotene-S 0.5mg/mL Kolmar Korea điều trị viêm mũi dị ứng, hắt hơi, chảy nước mũi (30 gói x 10ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/lexvotenes-05mgml-3246.html",
+      "packaging": "Hộp",
+      "price": "190000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00004401_lexvotenes_05mgml_5530_6369_large_c90b72755a.jpg"
+    },
+    {
+      "name": "Dung dịch Lexvotene-S 0.5mg/mL Kolmar Korea điều trị viêm mũi dị ứng, hắt hơi, chảy nước mũi (30 gói x 10ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/lexvotenes-05mgml-3246.html",
+      "packaging": "Gói",
+      "price": "6333",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00004401_lexvotenes_05mgml_5530_6369_large_c90b72755a.jpg"
+    },
+    {
+      "name": "Gel bôi Natureplex Scargel hỗ trợ làm mờ vết sẹo, dưỡng ẩm da (35g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/natureplex-scargel-tri-seo-35g-21669.html",
+      "packaging": "Tuýp",
+      "price": "342000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00021309_natureplex_scargel_tri_seo_35g_4617_62af_large_b0fb154cc5.jpg"
+    },
+    {
+      "name": "Sữa tắm gội cho bé Cetaphil Organic Calendula dịu nhẹ, không kích ứng (400ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/cetaphil-sua-tam-goi-tre-em-tinh-chat-hoa-cuc-baby-wash-and-shampoo-with-organic-calendula-400ml-33921.html",
+      "packaging": "Chai",
+      "price": "297000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/sua_tam_goi_cho_be_cetaphil_organic_calendula_diu_nhe_khong_kich_ung_400ml_00033833_1_deac7f663c.png"
+    },
+    {
+      "name": "Gel bôi Nacurgo Gelpro giảm thâm sẹo (20g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/nacurgo-gelpro-20-g-gel-lam-giam-tham-seo.html",
+      "packaging": "Hộp",
+      "price": "220000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09037_cf4ef5d87c.jpg"
+    },
+    {
+      "name": "Kem dưỡng ẩm cho bé Johnson's milk and rice baby cream (50g)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/kem-duong-am-chua-sua-va-gao-danh-cho-cho-be-johnson-s-milk-and-rice-baby-cream-50-g.html",
+      "packaging": "Tuýp",
+      "price": "65000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_05337_f4373eaa95.jpg"
+    },
+    {
+      "name": "Xà phòng giảm mụn lưng Atids Salicylic Acid 2% + sulfur 80g",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/xa-phong-tam-atids-salicylic-acid-2-sulfur-80-g-1.html",
+      "packaging": "Hộp",
+      "price": "101000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09944_6e07eb6377.jpg"
+    },
+    {
+      "name": "Tăm bông KamiCare vệ sinh tai, mũi (200 que)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/tam-bong-nguoi-lon-kamicare-hop-tron-200-que---1-dau-xoan-1-dau-thuong-37422.html",
+      "packaging": "Hộp",
+      "price": "25600",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00503113_tam_bong_nguoi_lon_kamicare_hop_tron_200_que_1_dau_xoan_1_dau_thuong_3392_642c_large_07148a35bd.jpg"
+    },
+    {
+      "name": "Bột Cần Tây vị táo Datino (3g x 15 gói)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/bot-can-tay-vi-tao-datino-3gx15-goi-31281.html",
+      "packaging": "Hộp",
+      "price": "155000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_07294_fc2a2a4aec.png"
+    },
+    {
+      "name": "Viên uống Tuệ Linh hỗ trợ giải độc gan, bảo vệ gan (60 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/giai-doc-gan-tue-linh-tang-cuong-chuc-nang-gan-538.html",
+      "packaging": "Hộp",
+      "price": "200000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00003324_giai_doc_gan_tue_linh_tang_cuong_chuc_nang_gan_2415_6380_large_a51946e56b.jpg"
+    },
+    {
+      "name": "Trà Gừng Sả Premium Ladophar (20 túi lọc x 2g)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/tra-gung-sa-premium-ladophar-20-tui-loc-x-2g-37130.html",
+      "packaging": "Hộp",
+      "price": "36000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00502818_tra_gung_sa_premium_ladophar_20_tui_loc_x_2g_2228_6389_large_6579f9f32a.jpg"
+    },
+    {
+      "name": "Viên uống giúp giảm rối loại tiêu hóa do viêm đại tràng Đại Tràng Hải Thượng Vương (2 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/dai-trang-hai-thuong-vuong-vesta-2x10-31971.html",
+      "packaging": "Hộp",
+      "price": "128000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00031834_dai_trang_hai_thuong_vuong_vesta_2x10_6583_616d_large_a83f90816b.jpg"
+    },
+    {
+      "name": "Siro bổ sung kẽm tăng sức đề kháng cho trẻBrauer Baby & Kids Liquid Zinc (200ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/brauer-baby-kids-liquid-zinc-200ml-34195.html",
+      "packaging": "Hộp",
+      "price": "380000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_03594_d9d39b4d3f.jpg"
+    },
+    {
+      "name": "Dung dịch vệ sinh phụ nữ Lactacyd Pro Sensitive giảm ngứa, ngăn ngừa viêm nhiễm (150ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/dung-dich-ve-sinh-phu-nu-lactacyd-pro-sensitive-giam-ngua-ngan-ngua-viem-nhiem-150-ml.html",
+      "packaging": "Chai",
+      "price": "67000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/lactacyd_1b733decc8.png"
+    },
+    {
+      "name": "Cốm lợi sữa MumMilk tăng tiết sữa, tăng chất lượng sữa (20 gói)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/com-loi-sua-mum-milk-301.html",
+      "packaging": "Hộp",
+      "price": "43000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/IMG_3609_d833a79a82.jpg"
+    },
+    {
+      "name": "Cốm lợi sữa MumMilk tăng tiết sữa, tăng chất lượng sữa (20 gói)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/com-loi-sua-mum-milk-301.html",
+      "packaging": "Gói",
+      "price": "2150",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/IMG_3609_d833a79a82.jpg"
+    },
+    {
+      "name": "Gel rửa mặt da hỗn hợp Uriage Hyséac Gel Nettoyant 150ml",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/gel-rua-mat-danh-cho-da-dau-mun-uriage-150ml-975.html",
+      "packaging": "Tuýp",
+      "price": "395000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_08187_ded6fae067.jpg"
+    },
+    {
+      "name": "Gel rửa mặt da hỗn hợp Uriage Hyséac Gel Nettoyant 150ml",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/gel-rua-mat-danh-cho-da-dau-mun-uriage-150ml-975.html",
+      "packaging": "Hộp",
+      "price": "464000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_08187_ded6fae067.jpg"
+    },
+    {
+      "name": "Kem bôi viêm da cơ địa, dưỡng ẩm Atopalm I.M. Cream 30ml",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/kem-duong-am-phuc-hoi-da-atopalm-788.html",
+      "packaging": "Tuýp",
+      "price": "265000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00009649_kem_duong_am_phuc_hoi_da_atopalm_5340_5cda_large_a67dd27d13.jpg"
+    },
+    {
+      "name": "Xịt mọc tóc, ngăn ngừa rụng tóc Redenyl Lotion Medimar 80ml",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/chai-xit-redenyl-lotion-medimar-80-ml.html",
+      "packaging": "Hộp",
+      "price": "640000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/xit_moc_toc_ngan_ngua_rung_toc_redenyl_lotion_80ml_medimar_00503259_1_9b351c4213.png"
+    },
+    {
+      "name": "Kem dưỡng thể dưỡng ẩm, sáng da Redwin Sorbolene Vitamin E 100g",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/redwin-sorbolene-moisturiser-with-vitamin-e-100g-18646.html",
+      "packaging": "Chai",
+      "price": "265000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/sorbolene_c64b0f6ffd.jpg"
+    },
+    {
+      "name": "Xịt khử mùi Zuchi Hoa Linh giữ chân khô thoáng, sạch mùi (50ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/khu-mui-hoi-chan-va-giay-dang-xit-zuchi-family-709.html",
+      "packaging": "Chai",
+      "price": "29000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/8289_khu_mui_hoi_chan_va_giay_dang_xit_zuchi_family_4380_599f_large_2e1abad204.jpg"
+    },
+    {
+      "name": "Sữa chống nắng dưỡng ẩm Senka Perfect UV Milk N SPF50+ PA++++ dành cho mặt và toàn thân (40ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/chong-nang-duong-am-dang-sua-cho-mat-va-toan-than-senka-perfect-uv-milk-n-spf50-pa-40ml-37897.html",
+      "packaging": "Tuýp",
+      "price": "209000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00503574_chong_nang_duong_am_dang_sua_cho_mat_va_toan_than_senka_perfect_uv_milk_n_spf50_pa_40ml_1765_6412_large_aeb2e0e160.jpg"
+    },
+    {
+      "name": "Kẹo Ngậm Ho Thanh Họng Giảm Đờm Hotexcol (10 vỉ x 4 viên)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/hotexcol-vien-ngam-giam-ho-thanh-hong-giam-tang-tiet-dom-10x4-34147.html",
+      "packaging": "Hộp",
+      "price": "119000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_03191_4b088ec1f7.jpg"
+    },
+    {
+      "name": "Kẹo Ngậm Ho Thanh Họng Giảm Đờm Hotexcol (10 vỉ x 4 viên)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/hotexcol-vien-ngam-giam-ho-thanh-hong-giam-tang-tiet-dom-10x4-34147.html",
+      "packaging": "Vỉ",
+      "price": "11900",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_03191_4b088ec1f7.jpg"
+    },
+    {
+      "name": "Kem bôi trĩ Proctogel Bimex giúp giảm đau, giảm viêm nhiễm, liền vết thương (20g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/proctogel-20g-17612.html",
+      "packaging": "Tuýp",
+      "price": "73000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/1_873ea72d1f.png"
+    },
+    {
+      "name": "Dung dịch tiêm Lovenox 4000 anti-Xa IU/0.4 ml điều trị dự phòng bệnh thuyên tắc huyết khối tĩnh mạch (2 ống)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/lovenox-4000-3157.html",
+      "packaging": "Hộp",
+      "price": "204000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00004584_lovenox_4000_3824_63ab_large_5b9ea60d24.jpg"
+    },
+    {
+      "name": "Xịt mũi Saltmax spay 100ml Việt Sinh giúp vệ sinh mũi, giữ ẩm niêm mạc mũi",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/dung-dich-rua-mui-saltmax-spay-viet-sinh-100-ml.html",
+      "packaging": "Chai",
+      "price": "98000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/XIT_MUI_SALTMAX_SPAY_100_ML_VIET_SINH_VE_SINH_MUI_GIU_AM_NIEM_MAC_MUI_00502021_4_1c8346736f.png"
+    },
+    {
+      "name": "Bao cao su Okamoto 0.03 Platinum trong suốt, mềm mại, dùng để phòng tránh thai và ngăn ngừa HIV (3 cái)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/bao-cao-su-okamoto-0-03-platinum-trong-suot-mem-mai-hop-3-cai.html",
+      "packaging": "Hộp",
+      "price": "117600",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09679_b3900eaabc.jpg"
+    },
+    {
+      "name": "Men vi sinh bổ sung lợi khuẩn cho hệ tiêu hóa Bifina R Health Aid (20 gói)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/men-vi-sinh-health-aid-bifina-20-goi-16644.html",
+      "packaging": "Hộp",
+      "price": "386000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00009575_men_vi_sinh_health_aid_bifina_20_goi_4391_6327_large_0523b650e8.jpg"
+    },
+    {
+      "name": "Men vi sinh bổ sung lợi khuẩn cho hệ tiêu hóa Bifina R Health Aid (20 gói)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/men-vi-sinh-health-aid-bifina-20-goi-16644.html",
+      "packaging": "Gói",
+      "price": "19300",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00009575_men_vi_sinh_health_aid_bifina_20_goi_4391_6327_large_0523b650e8.jpg"
+    },
+    {
+      "name": "Kem bôi mờ sẹo sau phẫu thuật Cesarin Ointment Lancopharm 30g",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/kem-seo-phau-thuat-cesarin-ointment-lacopharm-30g-35759.html",
+      "packaging": "Tuýp",
+      "price": "325000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00501596_kem_seo_phau_thuat_cesarin_ointment_lacopharm_30g_3835_62f9_large_4980b82bef.jpg"
+    },
+    {
+      "name": "Gel rửa mặt Isis Teen Derm giảm nhờn và ngăn ngừa mụn (150ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/gel-rua-mat-giam-nhon-ngua-mun-teenderm-150ml-985.html",
+      "packaging": "Tuýp",
+      "price": "340000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/isis_teen_derm_8aa3a99ff1.png"
+    },
+    {
+      "name": "Đầu kim 18G Vinahankook vô trùng, dùng một lần (100 cái)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/dau-kim-18-16550.html",
+      "packaging": "Hộp",
+      "price": "45000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00009991_dau_kim_18_2889_62d6_large_d48da16083.jpg"
+    },
+    {
+      "name": "Đầu kim 18G Vinahankook vô trùng, dùng một lần (100 cái)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/dau-kim-18-16550.html",
+      "packaging": "Cái",
+      "price": "450",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00009991_dau_kim_18_2889_62d6_large_d48da16083.jpg"
+    },
+    {
+      "name": "Kem bôi trĩ Proctocare Bimex 25g hỗ trợ điều trị trĩ, nứt hậu môn, co búi trĩ",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/proctocare-bimex-gel-boi-tri-25g-29463.html",
+      "packaging": "Tuýp",
+      "price": "89000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00029197_proctocare_bimex_gel_boi_tri_25g_9009_62b5_large_c1401150dc.jpg"
+    },
+    {
+      "name": "Viên uống hỗ trợ sức khỏe tim mạch, giảm cholesterol máu CoQ10 30mg Pharmekal (30 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/coq10-my-vien-uong-bo-tim-mach-22.html",
+      "packaging": "Hộp",
+      "price": "185000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00345343_coq10_my_vien_uong_bo_tim_mach_2605_5c45_large_985993d8bd.jpg"
+    },
+    {
+      "name": "Xịt mũi Neilmed Nasogel For Dry Noses 30ml giúp làm ẩm và làm dịu mũi khô",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/neilmed-nasogel-for-dry-noses-30ml-15902.html",
+      "packaging": "Hộp",
+      "price": "307000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00013677_neilmed_nasogel_for_dry_noses_30ml_5430_6123_large_991fae1732.jpg"
+    },
+    {
+      "name": "Dung dịch vệ sinh phụ nữ Femfresh Intimate Skin Care Active Wash làm sạch, khử mùi (250ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/dung-dich-ve-sinh-phu-nu-femfresh-intimate-skin-care-active-wash-lam-sach-khu-mui-250-ml.html",
+      "packaging": "Chai",
+      "price": "198000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_07485_41ed3c93e8.png"
+    },
+    {
+      "name": "Xịt mũi Neilmed Nasamist Saline Spray 75ml giúp vệ sinh mũi xoang, làm ẩm và làm trơn mũi khô",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/neilmed-nasamist-75-ml-dung-dich-xit-rua-va-ve-sinh-mui-1247.html",
+      "packaging": "Chai",
+      "price": "138000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00010556_neilmed_nasamist_5193_62b5_large_fa9a91799e.jpg"
+    },
+    {
+      "name": "Gel trị mụn trứng cá, mụn mủ Adalcrem plus 15g Phil Inter",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/adalcrem-plus-phil-inter-15-g.html",
+      "packaging": "Tuýp",
+      "price": "86000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/adalcrem_d26c112382.jpg"
+    },
+    {
+      "name": "Bông gòn Quick Nurse 100g dùng cho vết thương ngoài da, sát trùng, vệ sinh",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/bong-y-te-quick-nurse-100g-34873.html",
+      "packaging": "Gói",
+      "price": "23000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00500738_bong_y_te_quick_nurse_100g_8236_62b3_large_d33677c7ee.jpg"
+    },
+    {
+      "name": "Thuốc Aricept Evess 10mg Eisai điều trị triệu chứng bệnh alzheimer (2 vỉ x 14 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/aricept-evess-10mg-4686.html",
+      "packaging": "Hộp",
+      "price": "1372000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00000870_aricept_evess_10mg_9839_5b71_large_fffaf97083.JPG"
+    },
+    {
+      "name": "Thuốc Aricept Evess 10mg Eisai điều trị triệu chứng bệnh alzheimer (2 vỉ x 14 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/aricept-evess-10mg-4686.html",
+      "packaging": "Vỉ",
+      "price": "686000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00000870_aricept_evess_10mg_9839_5b71_large_fffaf97083.JPG"
+    },
+    {
+      "name": "Thuốc Aricept Evess 10mg Eisai điều trị triệu chứng bệnh alzheimer (2 vỉ x 14 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/aricept-evess-10mg-4686.html",
+      "packaging": "Viên",
+      "price": "49000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00000870_aricept_evess_10mg_9839_5b71_large_fffaf97083.JPG"
+    },
+    {
+      "name": "Xịt họng Otosan Forte 30ml hỗ trợ giảm viêm họng cấp tính, viêm hô hấp, giảm đau rát họng",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/xit-hong-otosan-forte-dieu-tri-viem-hong-cap-tinh-viem-ho-hap-giam-dau-rat-hong-30-ml.html",
+      "packaging": "Hộp",
+      "price": "290000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09131_aa6b76e0bb.jpg"
+    },
+    {
+      "name": "Marial Gel (20 gói x 15ml) chống trào ngược dạ dày thực quản, ợ chua, khó tiêu, bảo vệ và tái tạo phục hồi niêm mạc họng",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/marial-gel-chong-trao-nguoc-da-day-thuc-quan-o-chua-kho-tieu-bao-ve-va-tai-tao-phuc-hoi-niem-mac-hong-20-goi-x-15-ml.html",
+      "packaging": "Hộp",
+      "price": "380000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/1_e712f7afcc.jpg"
+    },
+    {
+      "name": "Marial Gel (20 gói x 15ml) chống trào ngược dạ dày thực quản, ợ chua, khó tiêu, bảo vệ và tái tạo phục hồi niêm mạc họng",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/marial-gel-chong-trao-nguoc-da-day-thuc-quan-o-chua-kho-tieu-bao-ve-va-tai-tao-phuc-hoi-niem-mac-hong-20-goi-x-15-ml.html",
+      "packaging": "Gói",
+      "price": "19000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/1_e712f7afcc.jpg"
+    },
+    {
+      "name": "Kem bôi cho bé Kutieskin giúp dịu da, giảm kích ứng (30g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/kutieskin-kem-boi-diu-da-cho-be-30g-29424.html",
+      "packaging": "Hộp",
+      "price": "96000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00029177_kutieskin_kem_boi_diu_da_cho_be_30g_1911_62cf_large_c68690f485.jpg"
+    },
+    {
+      "name": "Viên nén Natecal D3 Italfarmaco điều trị và phục hồi thiếu vitamin D (60 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/natecal-d3-italfarmaco-60v-19932.html",
+      "packaging": "Hộp",
+      "price": "260000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_00100_abc103f79f.png"
+    },
+    {
+      "name": "Viên nén Natecal D3 Italfarmaco điều trị và phục hồi thiếu vitamin D (60 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/natecal-d3-italfarmaco-60v-19932.html",
+      "packaging": "Viên",
+      "price": "4333",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_00100_abc103f79f.png"
+    },
+    {
+      "name": "Thuốc Mynarac 150mg DHG điều trị triệu chứng co cứng sau đột quỵ (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/mynarac-150mg-dhg-6x10-31081.html",
+      "packaging": "Hộp",
+      "price": "130000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00030887_ab0bc4d873.jpg"
+    },
+    {
+      "name": "Thuốc Mynarac 150mg DHG điều trị triệu chứng co cứng sau đột quỵ (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/mynarac-150mg-dhg-6x10-31081.html",
+      "packaging": "Vỉ",
+      "price": "21667",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00030887_ab0bc4d873.jpg"
+    },
+    {
+      "name": "Thuốc Mynarac 150mg DHG điều trị triệu chứng co cứng sau đột quỵ (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/mynarac-150mg-dhg-6x10-31081.html",
+      "packaging": "Viên",
+      "price": "2166",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00030887_ab0bc4d873.jpg"
+    },
+    {
+      "name": "Viên sủi Hapacol 650 DHG điều trị các cơn đau có cường độ nhẹ đến trung bình và sốt (4 vỉ x 4 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/hapacol-650-mg-dhg-4-x4-sui.html",
+      "packaging": "Hộp",
+      "price": "38400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/vien_sui_hapacol_650mg_dhg_4x4_sui_00047033_06b3a6d239.png"
+    },
+    {
+      "name": "Viên sủi Hapacol 650 DHG điều trị các cơn đau có cường độ nhẹ đến trung bình và sốt (4 vỉ x 4 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/hapacol-650-mg-dhg-4-x4-sui.html",
+      "packaging": "Vỉ",
+      "price": "9600",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/vien_sui_hapacol_650mg_dhg_4x4_sui_00047033_06b3a6d239.png"
+    },
+    {
+      "name": "Viên sủi Hapacol 650 DHG điều trị các cơn đau có cường độ nhẹ đến trung bình và sốt (4 vỉ x 4 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/hapacol-650-mg-dhg-4-x4-sui.html",
+      "packaging": "Viên",
+      "price": "2400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/vien_sui_hapacol_650mg_dhg_4x4_sui_00047033_06b3a6d239.png"
+    },
+    {
+      "name": "Gel tắm gội 3 trong 1 cho trẻ từ 1 ngày tuổi Perfecta Baby Rohto dưỡng ẩm da (150ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/perfecta-baby-150ml-gel-tam-goi-3-trong-1-cho-tre-20736.html",
+      "packaging": "Hộp",
+      "price": "195000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00020488_perfecta_baby_150ml_gel_tam_goi_3_trong_1_cho_tre_4780_5eb0_large_9bdc16ab4d.JPG"
+    },
+    {
+      "name": "Gel Desonide 0,05% Vcp điều trị viêm da cơ địa từ nhẹ đến trung bình (15g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/desonide-0-05-vcp-15-g.html",
+      "packaging": "Hộp",
+      "price": "39000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00503290_ff6a359c26.jpg"
+    },
+    {
+      "name": "Gel Desonide 0,05% Vcp điều trị viêm da cơ địa từ nhẹ đến trung bình (15g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/desonide-0-05-vcp-15-g.html",
+      "packaging": "Tuýp",
+      "price": "39000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00503290_ff6a359c26.jpg"
+    },
+    {
+      "name": "Bộ dây truyền dịch AF/C Great World (10 cái)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/day-truyen-long-an-17395.html",
+      "packaging": "Gói",
+      "price": "58000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00002291_day_truyen_long_an_4525_62b9_large_d7c8d2f660.JPG"
+    },
+    {
+      "name": "Bộ dây truyền dịch AF/C Great World (10 cái)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/day-truyen-long-an-17395.html",
+      "packaging": "Dây",
+      "price": "5800",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00002291_day_truyen_long_an_4525_62b9_large_d7c8d2f660.JPG"
+    },
+    {
+      "name": "Sữa rửa mặt CeraVe Foaming Cleanser làm sạch sâu dành cho da dầu (88ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/sua-rua-mat-cerave-foaming-cleanser-lam-sach-sau-danh-cho-da-dau-chai-88-ml.html",
+      "packaging": "Chai",
+      "price": "149400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_00721_094618d2d8.jpg"
+    },
+    {
+      "name": "Sữa rửa mặt CeraVe Foaming Cleanser làm sạch sâu dành cho da dầu (88ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/sua-rua-mat-cerave-foaming-cleanser-lam-sach-sau-danh-cho-da-dau-chai-88-ml.html",
+      "packaging": "Hộp",
+      "price": "350000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_00721_094618d2d8.jpg"
+    },
+    {
+      "name": "Băng cá nhân vải Plaid Ace Band-S 72x18 mm (10 miếng) Young Chemical",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/bang-keo-ca-nhan-mau-da-ace-band-ssheer-72x18mm-30272.html",
+      "packaging": "Hộp",
+      "price": "11000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/IMG_5296_dae3dc668d.jpg"
+    },
+    {
+      "name": "Cao Sao Vàng Danapha điều trị cảm cúm, nhức đầu (16g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/cao-xoa-sao-vang-danapha-16g-33219.html",
+      "packaging": "Hộp",
+      "price": "29000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00033095_cao_xoa_sao_vang_danapha_16g_6809_61c9_large_799d989e95.jpg"
+    },
+    {
+      "name": "Kem bôi hăm tã, chàm sữa, bỏng, kích ứng da Procream 30g",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/procream-30g-kem-boi-dac-tri-cham-sua-ham-ta-kich-ung-bong-37612.html",
+      "packaging": "Hộp",
+      "price": "107000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/123_9deadf8d8d.jpg"
+    },
+    {
+      "name": "Thuốc nhỏ mắt Sanlein Mini 0.1% Santen hỗ trợ điều trị rối loạn biểu mô kết giác mạc (3 vỉ x 10 lọ x 0.4ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/sanlein-mini-01-santen-3x10-04ml-21169.html",
+      "packaging": "Hộp",
+      "price": "120000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/sanlein_mini_0_1_30_ong_x_0_4ml_santen_00020815_325286fee9.png"
+    },
+    {
+      "name": "Thuốc nhỏ mắt Sanlein Mini 0.1% Santen hỗ trợ điều trị rối loạn biểu mô kết giác mạc (3 vỉ x 10 lọ x 0.4ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/sanlein-mini-01-santen-3x10-04ml-21169.html",
+      "packaging": "Vỉ",
+      "price": "40000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/sanlein_mini_0_1_30_ong_x_0_4ml_santen_00020815_325286fee9.png"
+    },
+    {
+      "name": "Cà phê Đắk Lắk Cocoon làm sạch da chết trên cơ thể (200ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/ca-phe-dak-lak-lam-sach-da-chet-tren-co-the-cocoon-200ml-36691.html",
+      "packaging": "Hũ",
+      "price": "125000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00502437_ca_phe_dak_lak_lam_sach_da_chet_tren_co_the_cocoon_200ml_3750_6375_large_e089d5e367.jpg"
+    },
+    {
+      "name": "Thuốc bôi Tazoretin Adapalene 0.1% Medisun điều trị tại chỗ mụn trứng cá vừa và nhẹ (15g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/tazoretin-adapalene-0-1-medisun-15-g.html",
+      "packaging": "Hộp",
+      "price": "143000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/tazoretin_15g_thumb_1_600x600_5ac586871b.png"
+    },
+    {
+      "name": "Thuốc bôi Tazoretin Adapalene 0.1% Medisun điều trị tại chỗ mụn trứng cá vừa và nhẹ (15g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/tazoretin-adapalene-0-1-medisun-15-g.html",
+      "packaging": "Tuýp",
+      "price": "143000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/tazoretin_15g_thumb_1_600x600_5ac586871b.png"
+    },
+    {
+      "name": "Dung dịch Golistin-Soda CPC1 làm sạch phân trước khi phẫu thuật, chụp X-quang, nội soi (45ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/golistin-soda-cpc1-45ml-21773.html",
+      "packaging": "Hộp",
+      "price": "55000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00021380_golistin_soda_cpc1_45ml_4079_5fdc_large_5d24d27893.jpg"
+    },
+    {
+      "name": "Dung dịch Golistin-Soda CPC1 làm sạch phân trước khi phẫu thuật, chụp X-quang, nội soi (45ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/golistin-soda-cpc1-45ml-21773.html",
+      "packaging": "Chai",
+      "price": "55000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00021380_golistin_soda_cpc1_45ml_4079_5fdc_large_5d24d27893.jpg"
+    },
+    {
+      "name": "Băng cuộn Bảo Thạch 0.07x1.5m (5 cuộn nhỏ)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/bang-cuon-bao-thach-nho-0-07-x-1-5-m-5-cuon.html",
+      "packaging": "Gói",
+      "price": "12500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00038416_8672e043b8.jpg"
+    },
+    {
+      "name": "Băng cuộn Bảo Thạch 0.07x1.5m (5 cuộn nhỏ)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/bang-cuon-bao-thach-nho-0-07-x-1-5-m-5-cuon.html",
+      "packaging": "Cuộn",
+      "price": "2500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00038416_8672e043b8.jpg"
+    },
+    {
+      "name": "Que thử đường huyết Ogcare Biochemical (hộp 25 que)",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/que-thu-duong-huyet-ogcare-25-que-14548.html",
+      "packaging": "Hộp",
+      "price": "200000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00016148_que_thu_duong_huyet_ogcare_25_que_8254_62ba_large_30c9ba5f2e.jpg"
+    },
+    {
+      "name": "Dung dịch vệ sinh phụ nữ Saforelle Soin Lavant Doux Apaisant 100ml",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/dung-dich-ve-sinh-saforelle-soin-lavant-doux-apaisant-100-ml.html",
+      "packaging": "Hộp",
+      "price": "132000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_08466_468a5faadc.png"
+    },
+    {
+      "name": "Thuốc Thenadin 5mg DonaiPharm điều trị tình trạng dị ứng, mất ngủ, ho khan (10 vỉ x 25 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/thenadin-donaipharm-hop-10-vi-x-25-vien-37909.html",
+      "packaging": "Hộp",
+      "price": "29500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00503595_44ecbd0c29.jpg"
+    },
+    {
+      "name": "Thuốc Thenadin 5mg DonaiPharm điều trị tình trạng dị ứng, mất ngủ, ho khan (10 vỉ x 25 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/thenadin-donaipharm-hop-10-vi-x-25-vien-37909.html",
+      "packaging": "Vỉ",
+      "price": "2950",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00503595_44ecbd0c29.jpg"
+    },
+    {
+      "name": "Thuốc Thenadin 5mg DonaiPharm điều trị tình trạng dị ứng, mất ngủ, ho khan (10 vỉ x 25 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/thenadin-donaipharm-hop-10-vi-x-25-vien-37909.html",
+      "packaging": "Viên",
+      "price": "118",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00503595_44ecbd0c29.jpg"
+    },
+    {
+      "name": "Thuốc Agirovastin 10 Agimexpharm điều trị tăng cholesterol máu (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/agirovastin-10-agimexpharm-6-x10.html",
+      "packaging": "Hộp",
+      "price": "102000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_04622_9873a99034.jpg"
+    },
+    {
+      "name": "Thuốc Agirovastin 10 Agimexpharm điều trị tăng cholesterol máu (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/agirovastin-10-agimexpharm-6-x10.html",
+      "packaging": "Vỉ",
+      "price": "17000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_04622_9873a99034.jpg"
+    },
+    {
+      "name": "Thuốc Agirovastin 10 Agimexpharm điều trị tăng cholesterol máu (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/agirovastin-10-agimexpharm-6-x10.html",
+      "packaging": "Viên",
+      "price": "1700",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_04622_9873a99034.jpg"
+    },
+    {
+      "name": "Siro Zinbebe Hataphar bổ sung và dự phòng thiếu kẽm (60ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/siro-zinbebe-ha-tay-60ml-20351.html",
+      "packaging": "Chai",
+      "price": "27000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00020050_siro_zinbebe_ha_tay_60ml_2427_60a3_large_eaa2ff2d5b.JPG"
+    },
+    {
+      "name": "Siro Zinbebe Hataphar bổ sung và dự phòng thiếu kẽm (60ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/siro-zinbebe-ha-tay-60ml-20351.html",
+      "packaging": "Hộp",
+      "price": "27000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00020050_siro_zinbebe_ha_tay_60ml_2427_60a3_large_eaa2ff2d5b.JPG"
+    },
+    {
+      "name": "Valgesic 20mg Medisun liệu pháp thay thế tăng sản lượng thận ở trẻ (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/valgesic-20-mg-medisun-6-x10.html",
+      "packaging": "Hộp",
+      "price": "450000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_valgesic_20mg_medisun_6x10_00048116_2ad6cf9774.png"
+    },
+    {
+      "name": "Valgesic 20mg Medisun liệu pháp thay thế tăng sản lượng thận ở trẻ (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/valgesic-20-mg-medisun-6-x10.html",
+      "packaging": "Vỉ",
+      "price": "75000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_valgesic_20mg_medisun_6x10_00048116_2ad6cf9774.png"
+    },
+    {
+      "name": "Valgesic 20mg Medisun liệu pháp thay thế tăng sản lượng thận ở trẻ (6 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/valgesic-20-mg-medisun-6-x10.html",
+      "packaging": "Viên",
+      "price": "7500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_valgesic_20mg_medisun_6x10_00048116_2ad6cf9774.png"
+    },
+    {
+      "name": "Thuốc Lubicid Suspension Medisun giảm nhẹ các triệu chứng buồn nôn, ăn không tiêu (20 gói x 30ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/lubicid-suspension-medisun-20-goi-x-30ml-37048.html",
+      "packaging": "Hộp",
+      "price": "205000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/44_ccc99e709e.png"
+    },
+    {
+      "name": "Thuốc Lubicid Suspension Medisun giảm nhẹ các triệu chứng buồn nôn, ăn không tiêu (20 gói x 30ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/lubicid-suspension-medisun-20-goi-x-30ml-37048.html",
+      "packaging": "Gói",
+      "price": "10250",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/44_ccc99e709e.png"
+    },
+    {
+      "name": "Thuốc Glucosamin 500mg Armephaco giảm triệu chứng của viêm khớp gối nhẹ và trung bình (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/glucosamin-500mg-armephaco-10x10-22410.html",
+      "packaging": "Hộp",
+      "price": "50000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022068_glucosamin_500mg_armephaco_10x10_3594_6127_large_a7368b1b5e.jpg"
+    },
+    {
+      "name": "Thuốc Glucosamin 500mg Armephaco giảm triệu chứng của viêm khớp gối nhẹ và trung bình (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/glucosamin-500mg-armephaco-10x10-22410.html",
+      "packaging": "Vỉ",
+      "price": "5000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022068_glucosamin_500mg_armephaco_10x10_3594_6127_large_a7368b1b5e.jpg"
+    },
+    {
+      "name": "Thuốc Glucosamin 500mg Armephaco giảm triệu chứng của viêm khớp gối nhẹ và trung bình (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/glucosamin-500mg-armephaco-10x10-22410.html",
+      "packaging": "Viên",
+      "price": "500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022068_glucosamin_500mg_armephaco_10x10_3594_6127_large_a7368b1b5e.jpg"
+    },
+    {
+      "name": "Thuốc Isosorbid 10mg Khapharco phòng và điều trị cơn đau thắt ngực, suy tim sung huyết (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/isosorbid-10-mg-khapharco-10-x10.html",
+      "packaging": "Hộp",
+      "price": "30000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00038394_26ad7f16cd.jpg"
+    },
+    {
+      "name": "Thuốc Isosorbid 10mg Khapharco phòng và điều trị cơn đau thắt ngực, suy tim sung huyết (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/isosorbid-10-mg-khapharco-10-x10.html",
+      "packaging": "Vỉ",
+      "price": "30000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00038394_26ad7f16cd.jpg"
+    },
+    {
+      "name": "Thuốc Isosorbid 10mg Khapharco phòng và điều trị cơn đau thắt ngực, suy tim sung huyết (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/isosorbid-10-mg-khapharco-10-x10.html",
+      "packaging": "Viên",
+      "price": "3000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00038394_26ad7f16cd.jpg"
+    },
+    {
+      "name": "Thuốc cốm Racedagim 30MG Agimexpharm điều trị tiêu chảy cấp ở trẻ em (30 gói x 3g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/racedagim-30-mg-agimexpharm-30-goi-x-3-g.html",
+      "packaging": "Hộp",
+      "price": "60000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/RACEDAGIM_30_MG_AGIMEXPHARM_30_GOI_X_3_G_00050888_1_55f4dc4ca4.png"
+    },
+    {
+      "name": "Thuốc cốm Racedagim 30MG Agimexpharm điều trị tiêu chảy cấp ở trẻ em (30 gói x 3g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/racedagim-30-mg-agimexpharm-30-goi-x-3-g.html",
+      "packaging": "Gói",
+      "price": "2000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/RACEDAGIM_30_MG_AGIMEXPHARM_30_GOI_X_3_G_00050888_1_55f4dc4ca4.png"
+    },
+    {
+      "name": "Thuốc Tadalafil 20mg Cophavina điều trị rối loạn cương dương (1 vỉ x 4 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/tadalafil-20mg-2088.html",
+      "packaging": "Hộp",
+      "price": "160000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00007136_tadalafil_20mg_4353_5b27_large_f1c66e544b.JPG"
+    },
+    {
+      "name": "Thuốc Tadalafil 20mg Cophavina điều trị rối loạn cương dương (1 vỉ x 4 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/tadalafil-20mg-2088.html",
+      "packaging": "Vỉ",
+      "price": "160000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00007136_tadalafil_20mg_4353_5b27_large_f1c66e544b.JPG"
+    },
+    {
+      "name": "Thuốc Tadalafil 20mg Cophavina điều trị rối loạn cương dương (1 vỉ x 4 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/tadalafil-20mg-2088.html",
+      "packaging": "Viên",
+      "price": "40000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00007136_tadalafil_20mg_4353_5b27_large_f1c66e544b.JPG"
+    },
+    {
+      "name": "Thuốc cốm uống Branchamine Becamex cung cấp các acid amin trong suy thận mạn tính (30 gói x 2,6g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/branchamine-hop-30-goi-x-26g-34377.html",
+      "packaging": "Hộp",
+      "price": "480000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/branchamine_949b102aec.jpg"
+    },
+    {
+      "name": "Thuốc cốm uống Branchamine Becamex cung cấp các acid amin trong suy thận mạn tính (30 gói x 2,6g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/branchamine-hop-30-goi-x-26g-34377.html",
+      "packaging": "Gói",
+      "price": "16000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/branchamine_949b102aec.jpg"
+    },
+    {
+      "name": "Kem bôi giảm nám, tàn nhang, thâm mụn Fixderma Skarfix TX Cream 30g",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/fixderma-skarfix-tx-cream-30g-kem-tri-nam-32845.html",
+      "packaging": "Hộp",
+      "price": "506400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00032723_fixderma_skarfix_tx_cream_30g_kem_tri_nam_8784_62ae_large_ef92346591.jpg"
+    },
+    {
+      "name": "Thuốc Liverplant Medisun điều trị bệnh gan mãn tính, gan nhiễm mỡ, xơ gan (12 vỉ x 5 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/liverplant-200mg-medisun-12x5-30110.html",
+      "packaging": "Hộp",
+      "price": "210000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/liverplant_a4a0d30ed1.jpg"
+    },
+    {
+      "name": "Thuốc Liverplant Medisun điều trị bệnh gan mãn tính, gan nhiễm mỡ, xơ gan (12 vỉ x 5 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/liverplant-200mg-medisun-12x5-30110.html",
+      "packaging": "Vỉ",
+      "price": "17500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/liverplant_a4a0d30ed1.jpg"
+    },
+    {
+      "name": "Thuốc Liverplant Medisun điều trị bệnh gan mãn tính, gan nhiễm mỡ, xơ gan (12 vỉ x 5 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/liverplant-200mg-medisun-12x5-30110.html",
+      "packaging": "Viên",
+      "price": "3500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/liverplant_a4a0d30ed1.jpg"
+    },
+    {
+      "name": "Khăn giấy ướt Living Aloe Vera Chok Chok mềm mại, không xơ, an toàn (30 miếng)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/khan-uot-living-aloe-vera-chok-chok-30-to-28610.html",
+      "packaging": "Gói",
+      "price": "19500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00028301_khan_uot_living_aloe_vera_chok_chok_30_to_3853_6007_large_5f131a5c4c.JPG"
+    },
+    {
+      "name": "Tăm bông sơ sinh Niva BHP1 thân giấy 2 đầu tròn vệ sinh tai, mũi, vệ sinh cá nhân (200 que)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/tam-bong-niva-hu-xoay-200-que-giay-bhp1-29835.html",
+      "packaging": "Hộp",
+      "price": "37000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/IMG_5242_6778eca263.jpg"
+    },
+    {
+      "name": "Viên nhai hỗ trợ sức đề kháng Kids Smart Vita Gummies Vitamin C + Zinc Nature's Way (60 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/kids-smart-vita-gummies-vitamin-c-zinc-60v-28949.html",
+      "packaging": "Hộp",
+      "price": "315000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00028646_KIDS_SMART_NATURE_S_WAY_VITA_GUMMIES_VITAMIN_C_ZINC_60_V_c981212923.jpg"
+    },
+    {
+      "name": "Thuốc giảm đau Traulen 4% OP Pharma dạng xịt hỗ trợ điều trị tại chỗ đau và viêm do thấp khớp (25g)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/traulen-4-op-pharma-25g-37784.html",
+      "packaging": "Hộp",
+      "price": "418000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_03460_82fb808451.jpg"
+    },
+    {
+      "name": "Siro uống KIDVita-TDF Hà Nam bổ sung các vitamin và acid amin thiết yếu cho cơ thể (20 ống x 7,5ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/siro-uong-kidvita-tdf-ha-nam-hop-20-ong-x-75-ml-36214.html",
+      "packaging": "Hộp",
+      "price": "275000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/12323_5e5f9a985c.jpg"
+    },
+    {
+      "name": "Siro uống KIDVita-TDF Hà Nam bổ sung các vitamin và acid amin thiết yếu cho cơ thể (20 ống x 7,5ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/siro-uong-kidvita-tdf-ha-nam-hop-20-ong-x-75-ml-36214.html",
+      "packaging": "Ống",
+      "price": "13750",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/12323_5e5f9a985c.jpg"
+    },
+    {
+      "name": "Viên bổ sung vitamin và khoáng chất cho phụ nữ mang thai Pregnacare Max Vitabiotics (84 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/pregnacare-max-omega-3-dha-vitabiotics-hop-84-vien-32256.html",
+      "packaging": "Hộp",
+      "price": "495000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09656_15864f3741.jpg"
+    },
+    {
+      "name": "Viên sủi tăng cường sức đề kháng cho cơ thể Optimax Immunity Booster Vid-Fighter (20 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/vien-uong-tang-suc-khang-optimax-immunity-booster-vid-fighter-20v-33794.html",
+      "packaging": "Tuýp",
+      "price": "129000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00033702_vien_uong_tang_suc_khang_optimax_immunity_booster_vid_fighter_20v_4698_62ae_large_b9fe136dbf.jpg"
+    },
+    {
+      "name": "Viên uống giảm acid dịch vị Bình Vị Thái Minh (80 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/binh-vi-thai-minh-80v-33247.html",
+      "packaging": "Hộp",
+      "price": "640000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09952_b2f2183a56.jpg"
+    },
+    {
+      "name": "Nước tẩy trang Bioderma Sebium H2O dành cho da dầu và hỗn hợp (500ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/nuoc-tay-trang-danh-cho-da-dau-va-hon-hop-bioderma-sebium-h20-500-ml.html",
+      "packaging": "Chai",
+      "price": "448000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/1_30e8244be3.jpg"
+    },
+    {
+      "name": "Thuốc Kutab 10 Levis điều trị tâm thần phân liệt, giai đoạn hưng cảm vừa đến nặng (12 vỉ x 7 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/kutab-10-mg-levis-12-x7.html",
+      "packaging": "Hộp",
+      "price": "604800",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09358_d4c3b3e1fa_cebc2391cd.png"
+    },
+    {
+      "name": "Thuốc Kutab 10 Levis điều trị tâm thần phân liệt, giai đoạn hưng cảm vừa đến nặng (12 vỉ x 7 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/kutab-10-mg-levis-12-x7.html",
+      "packaging": "Vỉ",
+      "price": "50400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09358_d4c3b3e1fa_cebc2391cd.png"
+    },
+    {
+      "name": "Thuốc Kutab 10 Levis điều trị tâm thần phân liệt, giai đoạn hưng cảm vừa đến nặng (12 vỉ x 7 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/kutab-10-mg-levis-12-x7.html",
+      "packaging": "Viên",
+      "price": "7200",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09358_d4c3b3e1fa_cebc2391cd.png"
+    },
+    {
+      "name": "Bông cuộn thấm nước Bạch Tuyết 45g vệ sinh cá nhân và y tế",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/gon-bach-tuyet-45gr-15887.html",
+      "packaging": "Gói",
+      "price": "12000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/IMG_5127_32b3bd99ac.jpg"
+    },
+    {
+      "name": "Kem dưỡng ẩm cho bé Ceradan Ceramide skin barrier repair cream 10g",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/ceradan-ceramide-skin-barrier-repair-cream-10g-kem-duong-am-da-an-toan-cho-be-16618.html",
+      "packaging": "Tuýp",
+      "price": "130000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00009697_ceradan_10g_8665_62af_large_16a4b27202.jpg"
+    },
+    {
+      "name": "Tinh dầu xông vùng kín Xongbame Herbe khử khuẩn diệt nấm (10ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/tinh-dau-xong-vung-kin-xongbame-herbe-khu-khuan-diet-nam-10-ml.html",
+      "packaging": "Hộp",
+      "price": "110000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022541_xongbame_herbe_10ml_7399_5f84_large_3f8c8ef076.JPG"
+    },
+    {
+      "name": "Bao cao su OK Original không mùi, bổ sung chất bôi trơn và không chứa chất diệt tinh trùng (12 cái)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/bcs-ok-original-12s-16685.html",
+      "packaging": "Hộp",
+      "price": "18000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00008408_bcs_ok_original_12s_2305_5c93_large_b7a1627eec.JPG"
+    },
+    {
+      "name": "Kem bôi Yoosun Acnes hỗ trợ ngăn ngừa và cải thiện tình trạng mụn (15g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/kem-ngua-mun-yoosun-acnes-15g-21105.html",
+      "packaging": "Tuýp",
+      "price": "55000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00020747_kem_ngua_mun_yoosun_acnes_15g_4831_5d00_large_0aa5157d79.jpg"
+    },
+    {
+      "name": "Kem bôi Yoosun Acnes hỗ trợ ngăn ngừa và cải thiện tình trạng mụn (15g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/kem-ngua-mun-yoosun-acnes-15g-21105.html",
+      "packaging": "Hộp",
+      "price": "119200",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00020747_kem_ngua_mun_yoosun_acnes_15g_4831_5d00_large_0aa5157d79.jpg"
+    },
+    {
+      "name": "Sữa rửa mặt Cetaphil Gentle Cleanser dành cho da nhạy cảm (250ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/cetaphil-gentle-cleanse-250ml-sua-rua-mat-diu-nhe-34539.html",
+      "packaging": "Chai",
+      "price": "276000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00500424_cetaphil_gentle_cleanse_250ml_sua_rua_mat_diu_nhe_3925_63ab_large_ff5e131079.jpg"
+    },
+    {
+      "name": "Siro giảm ho Niệm Từ Am Hiếu Tử Xuyên Bồi Tỳ Bà Cao (300ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/xuyen-boi-ty-ba-cao-300ml-413.html",
+      "packaging": "Chai",
+      "price": "170000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00008154_xuyen_boi_ty_ba_cao_giam_ho_nhuan_phoi_300ml_7224_62ae_large_f2f08547a6.jpg"
+    },
+    {
+      "name": "Sữa tắm gội em bé Cetaphil Baby Gentle Wash and Shampoo Hair and Body làm dịu da, không gây kích ứng (230ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/cetaphil-baby-gentle-wash-shampoo-hair-body-230ml-15632.html",
+      "packaging": "Chai",
+      "price": "136000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/sua_tam_goi_cetaphil_baby_gentle_wash_and_shampoo_hair_and_body_230ml_00014446_1_e729e487ef.png"
+    },
+    {
+      "name": "Siro bổ não Kids Smart Drops DHA Nature's Way (20ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/kids-smart-nature-s-way-drops-dha-20-ml.html",
+      "packaging": "Lọ",
+      "price": "355500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_03181_eb8225b02a.jpg"
+    },
+    {
+      "name": "Kem bôi cho bé Kutieskin giúp dưỡng ẩm, mềm da (30g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/kutieskin-kem-duong-am-mem-da-cho-be-30g-29423.html",
+      "packaging": "Hộp",
+      "price": "58000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00029176_kutieskin_kem_duong_am_mem_da_cho_be_30g_5514_62cf_large_e521d7d205.jpg"
+    },
+    {
+      "name": "Siro Ambroco United hỗ trợ tan đàm cho trẻ (60ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/ambroco-60ml-4775.html",
+      "packaging": "Chai",
+      "price": "38000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/IMG_3396_62c1f8c53a.jpg"
+    },
+    {
+      "name": "Son dưỡng ẩm Vaseline Rosy Lips giúp làm mềm môi, màu hồng tự nhiên (4.8g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/son-duong-vaseline-rosy-lips-hong-xinh-48g-28657.html",
+      "packaging": "Cây",
+      "price": "70000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00028349_son_duong_vaseline_rosy_lips_hong_xinh_48g_5184_62af_large_03463d3cb6.jpg"
+    },
+    {
+      "name": "Dầu gội dược liệu Thái Dương 3 Hoa Đào làm mềm mượt và bồng bềnh tóc (200ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/dau-goi-duoc-lieu-thai-duong-3-huong-hoa-666.html",
+      "packaging": "Chai",
+      "price": "60000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09994_1f7d38c4eb.jpg"
+    },
+    {
+      "name": "Bột sủi bọt hỗ trợ trung hòa acid dạ dày Edoz DHG (24 gói x 2g)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/edoz-dhg-pharma-24-goi-x-2g-30599.html",
+      "packaging": "Hộp",
+      "price": "36000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00030450_edoz_dhg_pharma_24_goi_x_2g_9067_6073_large_2483658e4d.jpg"
+    },
+    {
+      "name": "Bột sủi bọt hỗ trợ trung hòa acid dạ dày Edoz DHG (24 gói x 2g)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/edoz-dhg-pharma-24-goi-x-2g-30599.html",
+      "packaging": "Gói",
+      "price": "1500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00030450_edoz_dhg_pharma_24_goi_x_2g_9067_6073_large_2483658e4d.jpg"
+    },
+    {
+      "name": "Siro bổ sung các vitamin và kẽm cho trẻ Multi Vitamin Hatro (120ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/siro-tang-de-khang-multi-vitamin-hatro-120-ml.html",
+      "packaging": "Hộp",
+      "price": "150000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_08289_8048425d59.jpg"
+    },
+    {
+      "name": "Bao cao su Okamoto Skinless skin super lubricative siêu mỏng, dẻo dai và mềm mại (10 cái)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/bao-cao-su-okamoto-skinless-skin-sieu-boi-tron-khong-mui-hop-10-cai.html",
+      "packaging": "Hộp",
+      "price": "86400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_02462_cb68b5f857.jpg"
+    },
+    {
+      "name": "Dầu gội Hoa Bưởi La Beauty giảm gãy rụng, kích thích mọc tóc (300ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/dau-goi-hoa-buoi-la-beauty-300-ml-giam-gay-rung-kich-thich-moc-toc.html",
+      "packaging": "Hộp",
+      "price": "115000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09265_8af593f151.png"
+    },
+    {
+      "name": "Kem dưỡng ẩm Ceradan Soothing Gel làm dịu, phục hồi da nhạy cảm 50g",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/ceradan-soothing-gel-hyphens-50g-20559.html",
+      "packaging": "Tuýp",
+      "price": "274000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_04823_b9833148db.jpg"
+    },
+    {
+      "name": "Nước uống Saytauxe (10 chai x 30ml)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/nuoc-uong-thao-duoc-chong-say-tau-xe-saytauxe-10-chai-x-30-ml.html",
+      "packaging": "Lốc",
+      "price": "120000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09644_7babdd3a65.jpg"
+    },
+    {
+      "name": "Nước uống Saytauxe (10 chai x 30ml)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/nuoc-uong-thao-duoc-chong-say-tau-xe-saytauxe-10-chai-x-30-ml.html",
+      "packaging": "Chai",
+      "price": "9000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09644_7babdd3a65.jpg"
+    },
+    {
+      "name": "Sữa tắm Tây Thi Thái Dương giúp làm giảm tình trạng ngứa da, viêm chân lông và mụn trứng cá (200g)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/sua-tam-duong-da-tay-thi-737.html",
+      "packaging": "Tuýp",
+      "price": "70000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_03611_a5c219e464.jpg"
+    },
+    {
+      "name": "Viên uống giảm u xơ tiền liệt tuyến Vương Bảo (80 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/vuong-bao-lo-80v-15106.html",
+      "packaging": "Hộp",
+      "price": "525000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_00015_22159d76d8.jpg"
+    },
+    {
+      "name": "Siro thảo dược Cảm Xuyên Hương Yên Bái điều trị cảm cúm, cảm lạnh (60ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/siro-cam-xuyen-huong-tre-em-yen-bai-60ml-dieu-tri-cam-lanh-ho-co-dom-22696.html",
+      "packaging": "Hộp",
+      "price": "32000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/siro_cam_xuyen_huong_36ab445c65.png"
+    },
+    {
+      "name": "Kem đánh răng Sensodyne Cool Gel mát lạnh, bảo vệ răng ê buốt mỗi ngày (100g)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/sensodyne-coolgel-mat-lanh-100g-16447.html",
+      "packaging": "Tuýp",
+      "price": "53000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00010398_sensodyne_coolgel_mat_lanh_100g_7637_62cb_large_e5d1f3b48e.jpg"
+    },
+    {
+      "name": "Khí dung Seretide Evohaler DC 25/50 Gsk  điều trị hen phế quản, tắc nghẽn phổi mạn tính (120 liều)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/seretide-2550-2280.html",
+      "packaging": "Hộp",
+      "price": "212000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00006658_04de563c55.jpg"
+    },
+    {
+      "name": "Thuốc Vansartan 80mg Stella điều trị tăng huyết áp, suy tim (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/valsartan-80-mg-stella-3-x10-1.html",
+      "packaging": "Hộp",
+      "price": "126000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_valsartan_80mg_stella_3x10_00042422_89a363022a.png"
+    },
+    {
+      "name": "Thuốc Vansartan 80mg Stella điều trị tăng huyết áp, suy tim (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/valsartan-80-mg-stella-3-x10-1.html",
+      "packaging": "Vỉ",
+      "price": "42000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_valsartan_80mg_stella_3x10_00042422_89a363022a.png"
+    },
+    {
+      "name": "Thuốc Vansartan 80mg Stella điều trị tăng huyết áp, suy tim (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/valsartan-80-mg-stella-3-x10-1.html",
+      "packaging": "Viên",
+      "price": "4200",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_valsartan_80mg_stella_3x10_00042422_89a363022a.png"
+    },
+    {
+      "name": "Xịt thơm miệng Aro Mouth 10ml giúp khử mùi hôi miệng, giảm sâu răng, viêm lợi",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/xit-thom-mieng-aro-mouth-10-ml-khu-mui-hoi-mieng-giam-sau-rang-viem-loi.html",
+      "packaging": "Hộp",
+      "price": "60000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09718_8138420421.jpg"
+    },
+    {
+      "name": "Thuốc Dasbrain Pharmametics hỗ trợ các chức năng não bộ (30 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/dasbrain-pharmametics-30v-21066.html",
+      "packaging": "Hộp",
+      "price": "399000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00020710_dasbrain_pharmametics_30v_1177_6065_large_49dd64ad5b.jpg"
+    },
+    {
+      "name": "Thuốc Dasbrain Pharmametics hỗ trợ các chức năng não bộ (30 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/dasbrain-pharmametics-30v-21066.html",
+      "packaging": "Viên",
+      "price": "13300",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00020710_dasbrain_pharmametics_30v_1177_6065_large_49dd64ad5b.jpg"
+    },
+    {
+      "name": "Dầu gội Radical Med Anti Dandruff hỗ trợ giảm gàu, không gây kích ứng (300ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/dau-goi-radical-med-anti-dandruff-300-ml.html",
+      "packaging": "Chai",
+      "price": "425000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_03124_b8ccc4feb8.png"
+    },
+    {
+      "name": "Dung dịch làm mềm vết thương Prontosan Wound-gel Braun 30ml",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/prontosan-wound-gel-bottle-west-gel-dd-lam-mem-vet-thuong-braun-30ml-18333.html",
+      "packaging": "Chai",
+      "price": "430000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00017016_prontosan_wound_gel_bottle_west_gel_dd_lam_mem_vet_thuong_braun_30ml_3684_5b05_large_d9750178b9.JPG"
+    },
+    {
+      "name": "Dung dịch làm mềm vết thương Prontosan Wound-gel Braun 30ml",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/prontosan-wound-gel-bottle-west-gel-dd-lam-mem-vet-thuong-braun-30ml-18333.html",
+      "packaging": "Hộp",
+      "price": "105000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00017016_prontosan_wound_gel_bottle_west_gel_dd_lam_mem_vet_thuong_braun_30ml_3684_5b05_large_d9750178b9.JPG"
+    },
+    {
+      "name": "Thuốc Bisoprolol Stada 5mg điều trị tăng huyết áp, đau thắt ngực mạn tính ổn định (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/bisoprolol-stada-5mg-3x10-33859.html",
+      "packaging": "Hộp",
+      "price": "36000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_bisoprolol_stada_5mg_3x10_00033756_a34d2f921d.png"
+    },
+    {
+      "name": "Thuốc Bisoprolol Stada 5mg điều trị tăng huyết áp, đau thắt ngực mạn tính ổn định (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/bisoprolol-stada-5mg-3x10-33859.html",
+      "packaging": "Vỉ",
+      "price": "12000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_bisoprolol_stada_5mg_3x10_00033756_a34d2f921d.png"
+    },
+    {
+      "name": "Thuốc Bisoprolol Stada 5mg điều trị tăng huyết áp, đau thắt ngực mạn tính ổn định (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/bisoprolol-stada-5mg-3x10-33859.html",
+      "packaging": "Viên",
+      "price": "1200",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_bisoprolol_stada_5mg_3x10_00033756_a34d2f921d.png"
+    },
+    {
+      "name": "Nước Yến Sào Và Sâm Lát Greenbird (4 hũ x 72g)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/nuoc-yen-sao-va-sam-lat-greenbird-4-hu-x-72-g.html",
+      "packaging": "Hộp",
+      "price": "160000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_02725_e03da2ae41.png"
+    },
+    {
+      "name": "Bột Cần Tây nguyên chất Datino (3g x 15 gói)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/bot-can-tay-nguyen-chat-datino-3gx15-goi-31397.html",
+      "packaging": "Hộp",
+      "price": "112000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09764_5b7690d1b8.jpg"
+    },
+    {
+      "name": "Bao cao su Safefit Comfortable S52 không mùi khó chịu, độ bền cao, khả năng co giãn tốt, chất bôi trơn (12 cái)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/bcs-safefit-comfortable-s52-12-cai-nhieu-chat-boi-tron-34284.html",
+      "packaging": "Hộp",
+      "price": "29250",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00500208_bcs_safefit_comfortable_s52_12_cai_nhieu_chat_boi_tron_1111_6287_large_9aa0ded732.jpg"
+    },
+    {
+      "name": "Kem bôi ngừa mụn Fixderma Salyzap Lotion For Acne 20ml",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/salyzap-lotion-for-acne-night-time-20ml-fix-derma-18911.html",
+      "packaging": "Tuýp",
+      "price": "310500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00017549_salyzap_lotion_for_acne_night_time_20ml_fix_derma_1874_5c88_large_bd19f04e1d.jpg"
+    },
+    {
+      "name": "Nước Yến Sào Cao Cấp Nunest Relax - Ngủ Ngon, Giảm Căng Thẳng Mệt Mỏi (6 hũ x 70ml)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/nuoc-yen-sao-cao-cap-nunest-relax-ngu-ngon-giam-cang-thang-met-moi-6-hu-x-70-ml.html",
+      "packaging": "Hộp",
+      "price": "246750",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_08842_314049c2d4.jpg"
+    },
+    {
+      "name": "Viên giảm triệu chứng ruột Tràng Phục Linh Plus (2 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/trang-phuc-linh-plus-ho-tro-hoi-chung-ruot-kich-thich-680.html",
+      "packaging": "Hộp",
+      "price": "200000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/TUK_07206_add5eccb4c.jpg"
+    },
+    {
+      "name": "Khăn giấy ướt cồn Let-Green làm sạch, kháng khuẩn và giữ vệ sinh (90 miếng)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/khan-uot-con-let-green-90-mieng-30965.html",
+      "packaging": "Gói",
+      "price": "44000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00030815_khan_uot_con_let_green_90_mieng_6291_62b9_large_78c18de29c.jpg"
+    },
+    {
+      "name": "Xịt Dobutane Spray Unison giảm đau, chống viêm trong bệnh lý cơ xương và khớp (60ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/dobutane-spray-unison-60ml-21700.html",
+      "packaging": "Chai",
+      "price": "184000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00021344_dobutane_spray_unison_60ml_3437_6066_large_109c66d9ce.jpg"
+    },
+    {
+      "name": "Xịt Dobutane Spray Unison giảm đau, chống viêm trong bệnh lý cơ xương và khớp (60ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/dobutane-spray-unison-60ml-21700.html",
+      "packaging": "Hộp",
+      "price": "184000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00021344_dobutane_spray_unison_60ml_3437_6066_large_109c66d9ce.jpg"
+    },
+    {
+      "name": "Nước tẩy trang cho da dầu, mụn Garnier Skin Naturals Micellar 400ml",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/nuoc-tay-trang-garnier-skin-naturals-micellar-cleansing-water-danh-cho-da-dau-mun-400ml-36404.html",
+      "packaging": "Chai",
+      "price": "156750",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00502181_garnier_skin_naturals_micellar_cleansing_water_400ml_nuoc_tay_trang_danh_cho_da_dau_va_da_mun_6158_63f3_large_b07f937b3e.jpg"
+    },
+    {
+      "name": "Tấm đệm lót người lớn Caryn siêu thấm size L10 - 42 x 72cm (20 miếng)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/tam-diem-lot-cho-nguoi-lon-caryn-loai-sieu-tham-size-l20-goi-20-mieng-42x72cm-31188.html",
+      "packaging": "Gói",
+      "price": "108000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00031054_tam_diem_lot_cho_nguoi_lon_caryn_loai_sieu_tham_size_l20_goi_20_mieng_42x72cm_8706_60c1_large_87bf1dd506.jpg"
+    },
+    {
+      "name": "Bàn chải đánh răng điện Oral-B Vitality D12.513",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/ban-chai-danh-rang-dien-oral-b-vitality-ultrathin-d12-513.html",
+      "packaging": "Hộp",
+      "price": "999000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_00212_075b7f4e1d.jpg"
+    },
+    {
+      "name": "Nước tắm gội thảo dược cho bé Kutieskin làm sạch, dưỡng mềm da và tóc (200ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/nuoc-tam-goi-thao-duoc-cho-be-kutieskin-cvi-chai-200-ml.html",
+      "packaging": "Chai",
+      "price": "130000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_03969_4b9e2b6deb.jpg"
+    },
+    {
+      "name": "Viên uống hỗ trợ tăng tuần hoàn não, tốt cho tim mạch Omexxel Ginkgo 120 (60 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/vien-uong-bo-nao-omexxel-ginkgo-120-60v-37462.html",
+      "packaging": "Hộp",
+      "price": "688000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09493_5c9f6d0911.jpg"
+    },
+    {
+      "name": "Bao cao su Safefit Freezer Max S52 chứa nhiều gel làm mát, kéo dài thời gian quan hệ (3 cái)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/bcs-safefit-freezer-max-s52-3-cai-gel-mat-lanh-sang-khoai-34296.html",
+      "packaging": "Hộp",
+      "price": "14250",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00500213_bcs_safefit_freezer_max_s52_3_cai_gel_mat_lanh_sang_khoai_6230_62c3_large_86dfa6dafe.jpg"
+    },
+    {
+      "name": "Thuốc nhỏ mắt Optive UD Allergan làm trơn mắt, giảm triệu chứng khô mắt (30 ống x 0.4ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/optive-ud-30x04ml-16991.html",
+      "packaging": "Hộp",
+      "price": "205000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00005577_optive_ud_30x04ml_6174_63d7_large_54bac0fdc4.jpg"
+    },
+    {
+      "name": "Thuốc Glotadol 650 Abbott hỗ trợ hạ sốt và giảm đau (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/glotadol-650-abbott-glomed-10x10-ha-sot-giam-dau-19661.html",
+      "packaging": "Hộp",
+      "price": "70000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00018343_glotadol_650_abbott_glomed_10x10_ha_sot_giam_dau_5593_5b97_large_7a7a21d6eb.JPG"
+    },
+    {
+      "name": "Thuốc Glotadol 650 Abbott hỗ trợ hạ sốt và giảm đau (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/glotadol-650-abbott-glomed-10x10-ha-sot-giam-dau-19661.html",
+      "packaging": "Vỉ",
+      "price": "7000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00018343_glotadol_650_abbott_glomed_10x10_ha_sot_giam_dau_5593_5b97_large_7a7a21d6eb.JPG"
+    },
+    {
+      "name": "Thuốc Glotadol 650 Abbott hỗ trợ hạ sốt và giảm đau (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/glotadol-650-abbott-glomed-10x10-ha-sot-giam-dau-19661.html",
+      "packaging": "Viên",
+      "price": "700",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00018343_glotadol_650_abbott_glomed_10x10_ha_sot_giam_dau_5593_5b97_large_7a7a21d6eb.JPG"
+    },
+    {
+      "name": "Cốm hoà tan hỗ trợ an thần Egaruta Hồng Bàng (30 gói)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/egaruta-30-goi-15295.html",
+      "packaging": "Hộp",
+      "price": "180000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00014890_egaruta_30_goi_1375_62af_large_cdca3c5320.jpg"
+    },
+    {
+      "name": "Chai xịt lạnh Voltogel Cold Spray 200ml giúp giảm đau, chống viêm, thúc đẩy tuần hoàn máu",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/chai-xit-lanh-giam-dau-voltogel-cold-spray-200-ml.html",
+      "packaging": "Chai",
+      "price": "156000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_00030_0bb3ea62d1.jpg"
+    },
+    {
+      "name": "Máy đo huyết áp bắp tay Omron JPN750 hỗ trợ đo huyết áp, nhịp tim",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/omron-jpn-750-may-do-huyet-ap-bap-tay-tu-dong-1.html",
+      "packaging": "Hộp",
+      "price": "2299000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_01901_1210de2c2d.jpg"
+    },
+    {
+      "name": "Thuốc AlanBoss XL 10 Hasan điều trị các triệu chứng của phì đại tuyến tiền liệt lành tính (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/alanboss-xl-10-hasan-3-x10.html",
+      "packaging": "Hộp",
+      "price": "269000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_alanboss_xl_10_hasan_3x10_00045394_9455875700.png"
+    },
+    {
+      "name": "Thuốc AlanBoss XL 10 Hasan điều trị các triệu chứng của phì đại tuyến tiền liệt lành tính (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/alanboss-xl-10-hasan-3-x10.html",
+      "packaging": "Vỉ",
+      "price": "89666",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_alanboss_xl_10_hasan_3x10_00045394_9455875700.png"
+    },
+    {
+      "name": "Thuốc AlanBoss XL 10 Hasan điều trị các triệu chứng của phì đại tuyến tiền liệt lành tính (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/alanboss-xl-10-hasan-3-x10.html",
+      "packaging": "Viên",
+      "price": "8966",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/thuoc_alanboss_xl_10_hasan_3x10_00045394_9455875700.png"
+    },
+    {
+      "name": "Chai xịt nhiệt miệng, tay chân miệng Aloclair Plus 15ml hỗ trợ điều trị các vết thương trong khoang miệng",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/aloclair-plus-spray-15ml-chai-xit-nhiet-mieng-tay-chan-mieng-cho-moi-lua-tuoi-37209.html",
+      "packaging": "Hộp",
+      "price": "229000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/chai_xit_nhiet_mieng_tay_chan_mieng_aloclair_plus_15ml_00502899_1_874bd11071.png"
+    },
+    {
+      "name": "Chai xịt nhiệt miệng, tay chân miệng Aloclair Plus 15ml hỗ trợ điều trị các vết thương trong khoang miệng",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/aloclair-plus-spray-15ml-chai-xit-nhiet-mieng-tay-chan-mieng-cho-moi-lua-tuoi-37209.html",
+      "packaging": "Tuýp",
+      "price": "175000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/chai_xit_nhiet_mieng_tay_chan_mieng_aloclair_plus_15ml_00502899_1_874bd11071.png"
+    },
+    {
+      "name": "Găng tay phẫu thuật 6.5 Vglove dùng trong quá trình khám, chẩn đoán điều trị và phẫu thuật",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/gang-phau-thuat-65-vglove-18813.html",
+      "packaging": "Gói",
+      "price": "6000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00017447_gang_phau_thuat_65_vglove_2293_60c8_large_541b982a01.jpg"
+    },
+    {
+      "name": "Thuốc Daiclo 125mg Phil giảm các triệu chứng đau từ nhẹ đến vừa (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/daiclo-125mg-4112.html",
+      "packaging": "Hộp",
+      "price": "380000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00002188_daiclo_125mg_2886_5bdd_large_b5dc9cc665.JPG"
+    },
+    {
+      "name": "Thuốc Daiclo 125mg Phil giảm các triệu chứng đau từ nhẹ đến vừa (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/daiclo-125mg-4112.html",
+      "packaging": "Vỉ",
+      "price": "38000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00002188_daiclo_125mg_2886_5bdd_large_b5dc9cc665.JPG"
+    },
+    {
+      "name": "Thuốc Daiclo 125mg Phil giảm các triệu chứng đau từ nhẹ đến vừa (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/daiclo-125mg-4112.html",
+      "packaging": "Viên",
+      "price": "3800",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00002188_daiclo_125mg_2886_5bdd_large_b5dc9cc665.JPG"
+    },
+    {
+      "name": "Dung dịch dùng ngoài ASA Hóa Dược điều trị nấm, hắc lào, lang ben (20ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/con-asa-viet-nam-20ml-22523.html",
+      "packaging": "Chai",
+      "price": "3500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00022202_con_asa_viet_nam_20ml_2879_6127_large_8d2b7a2f18.jpg"
+    },
+    {
+      "name": "Gel bôi mờ sẹo Fixderma Scar Gel (15ml)",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/fixderma-gel-for-scars-15ml050-floz-16459.html",
+      "packaging": "Tuýp",
+      "price": "323000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/3_88f527b2d5.png"
+    },
+    {
+      "name": "Hỗn dịch uống Gel-Aphos Agimexpharm điều trị viêm dạ dày cấp và mạn (20 gói)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/hon-dich-uong-gel-aphos-agimexpharm-20-goi-x-20g-29321.html",
+      "packaging": "Hộp",
+      "price": "45000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00029056_hon_dich_uong_gel_aphos_agimexpharm_20_goi_x_20g_4758_60af_large_16fbb2358c.jpg"
+    },
+    {
+      "name": "Hỗn dịch uống Gel-Aphos Agimexpharm điều trị viêm dạ dày cấp và mạn (20 gói)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/hon-dich-uong-gel-aphos-agimexpharm-20-goi-x-20g-29321.html",
+      "packaging": "Gói",
+      "price": "2250",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00029056_hon_dich_uong_gel_aphos_agimexpharm_20_goi_x_20g_4758_60af_large_16fbb2358c.jpg"
+    },
+    {
+      "name": "Dịch truyền tĩnh mạch Natri Clorid 0,9% B. Braun làm dung môi pha tiêm truyền (100ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/natriclorid-09-100ml-braun-15248.html",
+      "packaging": "Thùng",
+      "price": "560000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00014941_natriclorid_09_100ml_braun_8077_609b_large_73551c99db.jpg"
+    },
+    {
+      "name": "Dịch truyền tĩnh mạch Natri Clorid 0,9% B. Braun làm dung môi pha tiêm truyền (100ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/natriclorid-09-100ml-braun-15248.html",
+      "packaging": "Chai",
+      "price": "14000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00014941_natriclorid_09_100ml_braun_8077_609b_large_73551c99db.jpg"
+    },
+    {
+      "name": "Dầu gió Nhị Thiên Đường 1.5ml (10 chai) dùng khi cảm mạo phong hàn, sổ mũi, chóng mặt, nhức đầu, say tàu xe",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/dau-nhi-thien-duong-10-chai-x-1-5-ml.html",
+      "packaging": "Hộp",
+      "price": "120000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09721_b934b7d620.jpg"
+    },
+    {
+      "name": "Dầu gió Nhị Thiên Đường 1.5ml (10 chai) dùng khi cảm mạo phong hàn, sổ mũi, chóng mặt, nhức đầu, say tàu xe",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/dau-nhi-thien-duong-10-chai-x-1-5-ml.html",
+      "packaging": "Chai",
+      "price": "12000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09721_b934b7d620.jpg"
+    },
+    {
+      "name": "Kem bôi phục hồi và dịu da La Roche-posay Cicaplast Baume B5+ 100ml",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/kem-duong-la-rocheposay-cicaplast-baume-b5-lam-diu-va-phuc-hoi-da-cho-tre-em-va-tre-so-sinh-hop-100-ml.html",
+      "packaging": "Tuýp",
+      "price": "686400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_00627_8b304d53ac.jpg"
+    },
+    {
+      "name": "Kem bôi ngừa nám, tàn nhang Fixderma Skarfix TX cream 15g",
+      "url": "https://nhathuoclongchau.com.vn/duoc-my-pham/fixderma-skarfix-tx-cream-15g-kem-tri-nam-30190.html",
+      "packaging": "Hộp",
+      "price": "259200",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00029923_fixderma_skarfix_tx_cream_15g_kem_tri_nam_3940_62ae_large_6e5c18b0c0.jpg"
+    },
+    {
+      "name": "Thuốc NadyGenor 5ml Nadyphar điều trị duy trì tăng amoniac máu (20 ống)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/nadygenor-31768.html",
+      "packaging": "Hộp",
+      "price": "160000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/nadygenor_20_ong_nadyphar_00031635_003c321bc6.png"
+    },
+    {
+      "name": "Thuốc NadyGenor 5ml Nadyphar điều trị duy trì tăng amoniac máu (20 ống)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/nadygenor-31768.html",
+      "packaging": "Ống",
+      "price": "8000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/nadygenor_20_ong_nadyphar_00031635_003c321bc6.png"
+    },
+    {
+      "name": "Nước cất tiêm Vinphaco dùng hòa tan, pha loãng  chế phẩm thuốc tiêm (10 vỉ x 5 ống x 5ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/nuoc-cat-tiem-vinphaco-10x5-ong-18918.html",
+      "packaging": "Hộp",
+      "price": "48000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00017556_nuoc_cat_tiem_vinphaco_10x5_ong_2483_609d_large_00f6be6057.png"
+    },
+    {
+      "name": "Nước cất tiêm Vinphaco dùng hòa tan, pha loãng  chế phẩm thuốc tiêm (10 vỉ x 5 ống x 5ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/nuoc-cat-tiem-vinphaco-10x5-ong-18918.html",
+      "packaging": "Vỉ",
+      "price": "4800",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00017556_nuoc_cat_tiem_vinphaco_10x5_ong_2483_609d_large_00f6be6057.png"
+    },
+    {
+      "name": "Nước cất tiêm Vinphaco dùng hòa tan, pha loãng  chế phẩm thuốc tiêm (10 vỉ x 5 ống x 5ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/nuoc-cat-tiem-vinphaco-10x5-ong-18918.html",
+      "packaging": "Ống",
+      "price": "960",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00017556_nuoc_cat_tiem_vinphaco_10x5_ong_2483_609d_large_00f6be6057.png"
+    },
+    {
+      "name": "Dầu gội Nizoral shampoo Janssen điều trị và dự phòng gàu, ngứa da đầu và viêm da tiết bã (50ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/nizoral-shampoo-50ml-17023.html",
+      "packaging": "Chai",
+      "price": "70000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00005341_nizoral_shampoo_50ml_2463_5cb0_large_61506913f5.jpg"
+    },
+    {
+      "name": "Viên sủi giúp bổ sung Vitamin MyVita Multi SPM vị cam (20 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/myvita-cam-2941.html",
+      "packaging": "Tuýp",
+      "price": "25000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00005080_myvita_cam_5153_62ae_large_c867e14221.jpg"
+    },
+    {
+      "name": "Máy đo huyết áp cổ tay AND UB-525 hỗ trợ đo huyết áp, nhịp tim",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/may-do-huyet-ap-co-tay-tu-dong-and-ub-525-32604.html",
+      "packaging": "Hộp",
+      "price": "720000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00032484_may_do_huyet_ap_co_tay_tu_dong_and_ub_525_2336_615f_large_7a1cdd8b93.jpg"
+    },
+    {
+      "name": "Viên uống hỗ trợ tăng tuần hoàn máu não, giảm nguy cơ hình thành cục máu đông Pikolin Ocavill (2 vỉ x 15 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/vien-uong-tang-tuan-hoan-mau-nao-pikolin-ocavill-2-x15.html",
+      "packaging": "Hộp",
+      "price": "671000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_08507_dda074fe01.png"
+    },
+    {
+      "name": "Thuốc Esomeprazol 40-MV US Pharma điều trị trào ngược dạ dày, thực quản, loét dạ dày tá tràng (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/esomeprazol-40-mv-3x10-us-pharma-usa-31707.html",
+      "packaging": "Hộp",
+      "price": "75000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/esome_01496cadb9.jpg"
+    },
+    {
+      "name": "Thuốc Esomeprazol 40-MV US Pharma điều trị trào ngược dạ dày, thực quản, loét dạ dày tá tràng (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/esomeprazol-40-mv-3x10-us-pharma-usa-31707.html",
+      "packaging": "Vỉ",
+      "price": "25000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/esome_01496cadb9.jpg"
+    },
+    {
+      "name": "Thuốc Esomeprazol 40-MV US Pharma điều trị trào ngược dạ dày, thực quản, loét dạ dày tá tràng (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/esomeprazol-40-mv-3x10-us-pharma-usa-31707.html",
+      "packaging": "Viên",
+      "price": "2500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/esome_01496cadb9.jpg"
+    },
+    {
+      "name": "Siro hỗ trợ cải thiện biếng ăn Smartbibi Zinc (30ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuc-pham-chuc-nang/zinc-smartbibi-gricar-30-ml.html",
+      "packaging": "Chai",
+      "price": "275000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/zinc_4_098450ce4b.jpg"
+    },
+    {
+      "name": "Thuốc Varogel Shinpoong Daewoo điều trị viêm loét dạ dày (20 gói x 10ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/varogel-s-shinpoong-daewoo-10ml-x-20-goi-27844.html",
+      "packaging": "Hộp",
+      "price": "57000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_08172_dc842748cb.jpg"
+    },
+    {
+      "name": "Thuốc Varogel Shinpoong Daewoo điều trị viêm loét dạ dày (20 gói x 10ml)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/varogel-s-shinpoong-daewoo-10ml-x-20-goi-27844.html",
+      "packaging": "Gói",
+      "price": "2850",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_08172_dc842748cb.jpg"
+    },
+    {
+      "name": "Xịt giảm đau nhức răng, viêm nướu Tooth Care 20ml",
+      "url": "https://nhathuoclongchau.com.vn/trang-thiet-bi-y-te/xit-giam-dau-nhuc-rang-viem-nuou-tooth-care-20ml-37983.html",
+      "packaging": "Hộp",
+      "price": "89000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/xit_giam_dau_nhuc_rang_viem_nuou_20ml_tooth_care_00503659_1_881b357301.jpg"
+    },
+    {
+      "name": "Thuốc Clanzen 5mg Khapharco làm giảm triệu chứng dị ứng (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/clanzen-5-mg-khapharco-10-x10-1.html",
+      "packaging": "Hộp",
+      "price": "45000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00043766_8b010c8e3e.jpg"
+    },
+    {
+      "name": "Thuốc Clanzen 5mg Khapharco làm giảm triệu chứng dị ứng (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/clanzen-5-mg-khapharco-10-x10-1.html",
+      "packaging": "Vỉ",
+      "price": "4500",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00043766_8b010c8e3e.jpg"
+    },
+    {
+      "name": "Thuốc Clanzen 5mg Khapharco làm giảm triệu chứng dị ứng (10 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/clanzen-5-mg-khapharco-10-x10-1.html",
+      "packaging": "Viên",
+      "price": "450",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00043766_8b010c8e3e.jpg"
+    },
+    {
+      "name": "Thuốc Ramlepsa Krka dùng giảm đau vừa và nặng (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/ramlepsa-krka-3-x10.html",
+      "packaging": "Hộp",
+      "price": "294000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00041074_6623c0a8d1.jpg"
+    },
+    {
+      "name": "Thuốc Ramlepsa Krka dùng giảm đau vừa và nặng (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/ramlepsa-krka-3-x10.html",
+      "packaging": "Vỉ",
+      "price": "98000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00041074_6623c0a8d1.jpg"
+    },
+    {
+      "name": "Thuốc Ramlepsa Krka dùng giảm đau vừa và nặng (3 vỉ x 10 viên)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/ramlepsa-krka-3-x10.html",
+      "packaging": "Viên",
+      "price": "9800",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00041074_6623c0a8d1.jpg"
+    },
+    {
+      "name": "Thuốc Opezimin 1g/5ml OPV hỗ trợ điều trị duy trì tăng amoniac máu, các rối loạn khó tiêu (20 ống)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/opezimin-1g5ml-opv-20-ong-x-5ml-31668.html",
+      "packaging": "Hộp",
+      "price": "208000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00031533_opezimin_1g5ml_opv_20_ong_x_5ml_6289_6124_large_867843dca4.png"
+    },
+    {
+      "name": "Thuốc Opezimin 1g/5ml OPV hỗ trợ điều trị duy trì tăng amoniac máu, các rối loạn khó tiêu (20 ống)",
+      "url": "https://nhathuoclongchau.com.vn/thuoc/opezimin-1g5ml-opv-20-ong-x-5ml-31668.html",
+      "packaging": "Ống",
+      "price": "10400",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/00031533_opezimin_1g5ml_opv_20_ong_x_5ml_6289_6124_large_867843dca4.png"
+    },
+    {
+      "name": "Bao cao su Okamoto Crown kích cỡ nhỏ, siêu mỏng, mềm mại dùng để phòng tránh thai và ngăn ngừa HIV (10 cái)",
+      "url": "https://nhathuoclongchau.com.vn/cham-soc-ca-nhan/bao-cao-su-okamoto-crown-kich-co-nho-sieu-mong-va-mem-mai-hop-10-cai.html",
+      "packaging": "Hộp",
+      "price": "205000",
+      "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/2560x0/filters:quality(90):format(webp)/DSC_09728_0364c338ed.jpg"
+    },
+    {
+      "name": "Mua Gel bôi trơn nam nữ chính hãng 100%, giảm giá lớn tại Pharmacity",
+      "url": "https://www.pharmacity.vn/gel-boi-tron-durex-play-warming-lube-lam-am-mang-den-su-am-ap-nhe-nhang-chai-100ml.html",
+      "packaging": "Hộp",
+      "price": "235000",
+      "image": "https://production-cdn.pharmacity.io/digital/1080x1080/plain/e-com/images/ecommerce/20240618090510-0-P26436_1.jpg"
+    }
+  ]
+}

@@ -6,7 +6,10 @@ C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\Permis
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\SecurityConfig.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\UserPrincipal.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\config\WebConfig.java
+C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\AnalyticsController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\AuthController.java
+C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\BaoCaoDoanhThuController.java
+C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\BaoCaoSuDungThuocController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\BenhNhanController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\CachDungController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\ChucNangController.java
@@ -22,6 +25,7 @@ C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\Nh
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\PatientController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\PhanQuyenController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\PhieuKhamController.java
+C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\PhieuNhapThuocController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\QuiDinhController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\controller\ThuocController.java
 C:\DoAnJava\health_clinics\backend\src\main\java\com\healthclinics\dto\ApiResponse.java

@@ -2,13 +2,14 @@ import { useSearchParams } from 'react-router-dom';
 import { PAGE_SIZE } from '../constants/Global';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/16/solid';
 
-const Pagination = ({ count }) => {
+const Pagination = ({ count, pageSize }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = !searchParams.get('page')
     ? 1
     : Number(searchParams.get('page'));
 
-  const pageCount = Math.ceil(count / PAGE_SIZE);
+  const size = pageSize || PAGE_SIZE;
+  const pageCount = Math.ceil(count / size);
 
   function nextPage() {
     const next = currentPage === pageCount ? currentPage : currentPage + 1;
@@ -29,11 +30,11 @@ const Pagination = ({ count }) => {
       <p className='text-sm ml-2' style={{ color: 'var(--text-secondary)' }}>
         Hiển thị{' '}
         <span className='font-semibold' style={{ color: 'var(--text-primary)' }}>
-          {(currentPage - 1) * PAGE_SIZE + 1}
+          {(currentPage - 1) * size + 1}
         </span>{' '}
         đến{' '}
         <span className='font-semibold' style={{ color: 'var(--text-primary)' }}>
-          {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
+          {currentPage === pageCount ? count : currentPage * size}
         </span>{' '}
         trong{' '}
         <span className='font-semibold' style={{ color: 'var(--text-primary)' }}>

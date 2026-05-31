@@ -21,15 +21,25 @@ const Header = styled.div`
   margin-bottom: 20px;
 `;
 
+import Modal from '../ui/Modal';
+import Button from '../ui/Button';
+import ServiceForm from '../features/services/ServiceForm';
+import { addActivityNotification } from '../hooks/useBusinessNotifications';
+
 function Services() {
   const queryClient = useQueryClient();
   const { isLoading, services } = useServices();
 
   const createMutation = useMutation({
     mutationFn: createService,
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast.success('Tạo dịch vụ thành công');
       queryClient.invalidateQueries({ queryKey: ['services'] });
+      addActivityNotification({
+        title: 'Thêm Dịch Vụ',
+        message: `Dịch vụ "${data?.tenDichVu || data?.TenDichVu || 'mới'}" đã được thêm thành công vào hệ thống.`,
+        actionTo: '/services'
+      });
     },
     onError: (error) => {
       toast.error(error?.response?.data?.message || 'Tạo dịch vụ thất bại');
@@ -38,9 +48,14 @@ function Services() {
 
   const updateMutation = useMutation({
     mutationFn: ({ id, payload }) => updateService(id, payload),
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast.success('Cập nhật dịch vụ thành công');
       queryClient.invalidateQueries({ queryKey: ['services'] });
+      addActivityNotification({
+        title: 'Cập nhật Dịch Vụ',
+        message: `Thông tin dịch vụ "${data?.tenDichVu || data?.TenDichVu || ''}" đã được cập nhật thành công.`,
+        actionTo: '/services'
+      });
     },
     onError: (error) => {
       toast.error(error?.response?.data?.message || 'Cập nhật dịch vụ thất bại');
@@ -49,9 +64,14 @@ function Services() {
 
   const deleteMutation = useMutation({
     mutationFn: deleteService,
-    onSuccess: () => {
+    onSuccess: (_, deletedId) => {
       toast.success('Xoá dịch vụ thành công');
       queryClient.invalidateQueries({ queryKey: ['services'] });
+      addActivityNotification({
+        title: 'Xoá Dịch Vụ',
+        message: `Dịch vụ (Mã: ${deletedId}) đã được loại bỏ khỏi danh mục dịch vụ khám.`,
+        actionTo: '/services'
+      });
     },
     onError: (error) => {
       toast.error(error?.response?.data?.message || 'Xoá dịch vụ thất bại');
@@ -69,12 +89,26 @@ function Services() {
           <h2 className='text-xl font-bold leading-6 text-grey-900'>Dịch vụ khám</h2>
           <p className='text-sm text-grey-500'>Quản lý danh mục dịch vụ và đơn giá</p>
         </div>
+
+        <Modal>
+          <Modal.Open opens='create-service'>
+            <Button className='text-white bg-primary px-[12px] py-[8px] font-medium rounded-lg text-sm transition-all duration-200 hover:bg-opacity-90 shadow-md'>
+              Thêm dịch vụ
+            </Button>
+          </Modal.Open>
+          <Modal.Window name='create-service'>
+            <ServiceForm
+              initialValues={null}
+              isSubmitting={isSubmitting}
+              onSubmit={(payload) => createMutation.mutate(payload)}
+            />
+          </Modal.Window>
+        </Modal>
       </Header>
 
       <ServicesTable
         services={services}
         isSubmitting={isSubmitting}
-        onCreate={(payload) => createMutation.mutate(payload)}
         onUpdate={(id, payload) => updateMutation.mutate({ id, payload })}
         onDelete={(id) => deleteMutation.mutate(id)}
       />

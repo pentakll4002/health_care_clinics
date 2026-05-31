@@ -59,10 +59,8 @@ public class DataInitializer implements CommandLineRunner {
             log.info("Database already initialized, skipping user seeding...");
         }
 
-        if (thuocRepository.count() <= 3) {
-            log.info("Importing drugs from JSON...");
-            thuocService.importFromJson();
-        }
+        log.info("Importing drugs from JSON...");
+        thuocService.importFromJson();
     }
 
     private void seedNhomNguoiDung() {

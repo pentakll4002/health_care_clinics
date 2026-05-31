@@ -16,7 +16,8 @@ public interface ThuocRepository extends JpaRepository<Thuoc, Long> {
     
     List<Thuoc> findByIsDeletedFalse();
     
-    Page<Thuoc> findByIsDeletedFalse(Pageable pageable);
+    @Query("SELECT t FROM Thuoc t WHERE t.isDeleted = false AND t.idThuoc = (SELECT MIN(t2.idThuoc) FROM Thuoc t2 WHERE t2.tenThuoc = t.tenThuoc AND t2.isDeleted = false)")
+    Page<Thuoc> findUniqueDrugsByIsDeletedFalse(Pageable pageable);
     
     Optional<Thuoc> findByIdThuocAndIsDeletedFalse(Long id);
     
@@ -24,6 +25,8 @@ public interface ThuocRepository extends JpaRepository<Thuoc, Long> {
            "(LOWER(t.tenThuoc) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
            "LOWER(t.thanhPhan) LIKE LOWER(CONCAT('%', :keyword, '%')))")
     List<Thuoc> searchByKeyword(@Param("keyword") String keyword);
+
+    List<Thuoc> findByTenThuocIgnoreCaseAndIsDeletedFalse(String tenThuoc);
     
     @Query("SELECT t FROM Thuoc t WHERE t.isDeleted = false AND t.soLuongTon <= :minQuantity")
     List<Thuoc> findBySoLuongTonLessThanEqual(@Param("minQuantity") Integer minQuantity);

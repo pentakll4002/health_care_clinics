@@ -1,3 +1,4 @@
+com\healthclinics\controller\AnalyticsController.class
 com\healthclinics\controller\PatientController.class
 com\healthclinics\repository\ChiTietPhieuNhapThuocRepository.class
 com\healthclinics\security\JwtAuthenticationEntryPoint.class
@@ -6,9 +7,11 @@ com\healthclinics\config\JwtAuthenticationFilter.class
 com\healthclinics\controller\QuiDinhController.class
 com\healthclinics\entity\ChiTietPhieuNhapThuoc$ChiTietPhieuNhapThuocBuilder.class
 com\healthclinics\entity\PhieuKham$PhieuKhamBuilder.class
+com\healthclinics\controller\PhieuNhapThuocController.class
 com\healthclinics\dto\DanhSachTiepNhanDTO.class
 com\healthclinics\entity\DichVu.class
 com\healthclinics\repository\NhanVienRepository.class
+com\healthclinics\service\ThuocService.class
 com\healthclinics\dto\PhanQuyenDTO$PhanQuyenDTOBuilder.class
 com\healthclinics\dto\ThuocDTO.class
 com\healthclinics\entity\QuiDinh$QuiDinhBuilder.class
@@ -43,6 +46,7 @@ com\healthclinics\controller\CachDungController.class
 com\healthclinics\repository\DVTRepository.class
 com\healthclinics\repository\UserRepository.class
 com\healthclinics\dto\QuiDinhDTO$QuiDinhDTOBuilder.class
+com\healthclinics\config\PermissionFixer.class
 com\healthclinics\repository\PhieuNhapThuocRepository.class
 com\healthclinics\entity\NhomNguoiDung$NhomNguoiDungBuilder.class
 com\healthclinics\dto\ToaThuocDTO$ToaThuocDTOBuilder.class
@@ -70,6 +74,7 @@ com\healthclinics\entity\ChucNang$ChucNangBuilder.class
 com\healthclinics\service\NhomNguoiDungService.class
 com\healthclinics\dto\BenhNhanDTO$BenhNhanDTOBuilder.class
 com\healthclinics\dto\ToaThuocDTO.class
+com\healthclinics\controller\BaoCaoDoanhThuController.class
 com\healthclinics\dto\LoginRequest$LoginRequestBuilder.class
 com\healthclinics\entity\GioiTinh.class
 com\healthclinics\service\DichVuService.class
@@ -113,9 +118,11 @@ com\healthclinics\entity\BenhNhan.class
 com\healthclinics\service\HoaDonService.class
 com\healthclinics\HealthClinicsApplication.class
 com\healthclinics\entity\ChiTietBaoCaoDoanhThu$ChiTietBaoCaoDoanhThuBuilder.class
+com\healthclinics\config\WebConfig.class
 com\healthclinics\entity\BaoCaoDoanhThu.class
 com\healthclinics\service\QuiDinhService.class
 com\healthclinics\entity\NhanVien.class
+com\healthclinics\controller\ThuocController.class
 com\healthclinics\dto\ApiResponse$ApiResponseBuilder.class
 com\healthclinics\dto\QuiDinhDTO.class
 com\healthclinics\dto\LichKhamDTO.class
@@ -124,6 +131,7 @@ com\healthclinics\repository\BaoCaoDoanhThuRepository.class
 com\healthclinics\dto\NhanVienDTO.class
 com\healthclinics\entity\CachDung$CachDungBuilder.class
 com\healthclinics\dto\ThuocDTO$ThuocDTOBuilder.class
+com\healthclinics\controller\BaoCaoSuDungThuocController.class
 com\healthclinics\entity\CtPhieuKhamDichVu.class
 com\healthclinics\repository\PendingRegisterRepository.class
 com\healthclinics\dto\NhomNguoiDungDTO$NhomNguoiDungDTOBuilder.class
