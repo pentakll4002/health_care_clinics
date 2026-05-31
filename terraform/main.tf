@@ -246,7 +246,7 @@ resource "azurerm_container_app" "ai_service" {
       }
       env {
         name  = "BACKEND_URL"
-        value = "https://${azurerm_container_app.backend.ingress[0].fqdn}/api"
+        value = "http://${azurerm_container_app.backend.name}/api"
       }
     }
   }
@@ -291,6 +291,15 @@ resource "azurerm_container_app" "frontend" {
       image  = "${azurerm_container_registry.acr.login_server}/health-clinics-frontend:latest"
       cpu    = var.frontend_cpu
       memory = var.frontend_memory
+
+      env {
+        name  = "BACKEND_HOST"
+        value = azurerm_container_app.backend.name
+      }
+      env {
+        name  = "AI_SERVICE_HOST"
+        value = azurerm_container_app.ai_service.name
+      }
     }
   }
 

@@ -133,7 +133,8 @@ public class ThuocService {
                 jsonFile = new java.io.File("c:/Dự án công ty/crawl/crawl_test_final_with_price.json");
             }
             if (!jsonFile.exists()) {
-                throw new RuntimeException("JSON file not found.");
+                log.warn("JSON drug seed file not found at local paths. Skipping JSON drug import. Default seeds will be used.");
+                return;
             }
 
             ObjectMapper mapper = new ObjectMapper();

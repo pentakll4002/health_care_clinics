@@ -1,25 +1,30 @@
 // ============================================================
 // Jenkinsfile - Health Clinics CI/CD Pipeline
-// Build Docker images → Push to ACR → Deploy via Terraform
+// Flow: Checkout → Test → Infra (Terraform) → Build Images → Push ACR → Deploy → Smoke Test
 // ============================================================
 
 pipeline {
     agent any
 
+    // ── Environment variables ─────────────────────────────────
     environment {
-        // Azure Service Principal credentials (configure in Jenkins)
+        // Azure Service Principal (JSON credential stored in Jenkins)
         AZURE_CREDENTIALS    = credentials('azure-service-principal')
         ARM_CLIENT_ID        = "${AZURE_CREDENTIALS_CLIENT_ID}"
         ARM_CLIENT_SECRET    = "${AZURE_CREDENTIALS_CLIENT_SECRET}"
         ARM_TENANT_ID        = "${AZURE_CREDENTIALS_TENANT_ID}"
         ARM_SUBSCRIPTION_ID  = "${AZURE_CREDENTIALS_SUBSCRIPTION_ID}"
 
-        // Project settings
-        PROJECT_NAME     = 'health-clinics'
-        ENVIRONMENT      = "${params.ENVIRONMENT ?: 'dev'}"
-        IMAGE_TAG        = "${env.BUILD_NUMBER}-${env.GIT_COMMIT?.take(7) ?: 'latest'}"
+        // Project
+        PROJECT_NAME = 'health-clinics'
+        ACR_NAME     = 'healthclinicsdevacr'             // alphanumeric only
+        ACR_SERVER   = 'healthclinicsdevacr.azurecr.io'
+        RG_NAME      = 'health-clinics-dev-rg'
 
-        // Terraform
+        // Image tag: buildNumber + short commit hash
+        IMAGE_TAG = "${env.BUILD_NUMBER}-${env.GIT_COMMIT?.take(7) ?: 'latest'}"
+
+        // Terraform sensitive vars (stored as Jenkins secret text)
         TF_VAR_postgres_password = credentials('hc-postgres-password')
         TF_VAR_jwt_secret        = credentials('hc-jwt-secret')
         TF_VAR_groq_api_key      = credentials('hc-groq-api-key')
@@ -27,6 +32,7 @@ pipeline {
         TF_VAR_mail_password     = credentials('hc-mail-password')
     }
 
+    // ── Build parameters ──────────────────────────────────────
     parameters {
         choice(
             name: 'ENVIRONMENT',
@@ -35,43 +41,55 @@ pipeline {
         )
         booleanParam(
             name: 'SKIP_TESTS',
-            defaultValue: false,
-            description: 'Skip test stage'
+            defaultValue: true,
+            description: 'Skip test stage (faster pipeline)'
         )
         booleanParam(
             name: 'DEPLOY_INFRA',
-            defaultValue: false,
-            description: 'Run Terraform to create/update infrastructure'
+            defaultValue: true,
+            description: 'Run Terraform to create/update Azure infrastructure'
         )
         booleanParam(
             name: 'DEPLOY_APPS',
             defaultValue: true,
-            description: 'Build and deploy Docker images'
+            description: 'Build Docker images, push to ACR and deploy to Container Apps'
+        )
+        booleanParam(
+            name: 'FORCE_REBUILD',
+            defaultValue: false,
+            description: 'Force rebuild all images (ignore Docker cache)'
         )
     }
 
+    // ── Pipeline options ──────────────────────────────────────
     options {
-        timeout(time: 45, unit: 'MINUTES')
+        timeout(time: 90, unit: 'MINUTES')
         disableConcurrentBuilds()
         buildDiscarder(logRotator(numToKeepStr: '10'))
         timestamps()
+        ansiColor('xterm')
     }
 
     stages {
-        // ---- Stage 1: Checkout ----
+
+        // ── 1. Checkout ───────────────────────────────────────
         stage('Checkout') {
             steps {
                 checkout scm
                 script {
-                    echo "🏥 Health Clinics CI/CD Pipeline"
-                    echo "Environment: ${ENVIRONMENT}"
-                    echo "Image Tag: ${IMAGE_TAG}"
-                    echo "Branch: ${env.GIT_BRANCH}"
+                    def env_label = params.ENVIRONMENT.toUpperCase()
+                    echo "╔══════════════════════════════════════╗"
+                    echo "║  Health Clinics CI/CD Pipeline       ║"
+                    echo "╠══════════════════════════════════════╣"
+                    echo "║  Environment : ${env_label.padRight(22)}║"
+                    echo "║  Image Tag   : ${IMAGE_TAG.padRight(22)}║"
+                    echo "║  Branch      : ${(env.GIT_BRANCH ?: 'unknown').take(22).padRight(22)}║"
+                    echo "╚══════════════════════════════════════╝"
                 }
             }
         }
 
-        // ---- Stage 2: Test (parallel) ----
+        // ── 2. Tests (parallel, skippable) ───────────────────
         stage('Test') {
             when {
                 expression { return !params.SKIP_TESTS }
@@ -80,7 +98,7 @@ pipeline {
                 stage('Backend Tests') {
                     steps {
                         dir('backend') {
-                            bat 'mvn test -B'
+                            sh 'mvn test -B -q'
                         }
                     }
                     post {
@@ -93,8 +111,10 @@ pipeline {
                 stage('AI Service Tests') {
                     steps {
                         dir('ai-service') {
-                            bat 'pip install -r requirements.txt'
-                            bat 'python -m pytest tests/ --junitxml=test-results.xml || true'
+                            sh '''
+                                pip install -q -r requirements.txt
+                                python -m pytest tests/ --junitxml=test-results.xml -q || true
+                            '''
                         }
                     }
                     post {
@@ -107,7 +127,38 @@ pipeline {
             }
         }
 
-        // ---- Stage 3: Terraform Infrastructure ----
+        // ── 3. Azure Provider Registration ───────────────────
+        stage('Register Azure Providers') {
+            when {
+                expression { return params.DEPLOY_INFRA || params.DEPLOY_APPS }
+            }
+            steps {
+                script {
+                    echo "📦 Registering required Azure resource providers..."
+                    sh '''
+                        az login --service-principal \
+                            --username  $ARM_CLIENT_ID \
+                            --password  $ARM_CLIENT_SECRET \
+                            --tenant    $ARM_TENANT_ID
+                        az account set --subscription $ARM_SUBSCRIPTION_ID
+
+                        for ns in Microsoft.App Microsoft.OperationalInsights \
+                                  Microsoft.ContainerRegistry Microsoft.DBforPostgreSQL; do
+                            state=$(az provider show --namespace $ns --query registrationState -o tsv 2>/dev/null || echo "NotRegistered")
+                            if [ "$state" != "Registered" ]; then
+                                echo "  → Registering $ns ..."
+                                az provider register --namespace $ns --wait
+                            else
+                                echo "  ✅ $ns already registered"
+                            fi
+                        done
+                        echo "All Azure providers are registered."
+                    '''
+                }
+            }
+        }
+
+        // ── 4. Terraform – Provision Infrastructure ───────────
         stage('Infrastructure') {
             when {
                 expression { return params.DEPLOY_INFRA }
@@ -115,220 +166,308 @@ pipeline {
             steps {
                 dir('terraform') {
                     script {
-                        // Initialize Terraform
-                        bat 'terraform init -input=false'
+                        echo "🏗️  Provisioning Azure infrastructure with Terraform..."
 
-                        // Plan changes
-                        bat "terraform plan -var-file=environments/${ENVIRONMENT}.tfvars -out=tfplan -input=false"
+                        sh 'terraform init -input=false -reconfigure'
 
-                        // Apply (auto-approve for dev, manual for prod)
-                        if (ENVIRONMENT == 'prod') {
-                            input message: '⚠️ Apply Terraform changes to PRODUCTION?',
-                                  ok: 'Apply'
+                        sh """
+                            terraform plan \
+                                -var-file=environments/${params.ENVIRONMENT}.tfvars \
+                                -out=tfplan \
+                                -input=false
+                        """
+
+                        // Manual approval gate for production
+                        if (params.ENVIRONMENT == 'prod') {
+                            input message: '⚠️  Apply Terraform to PRODUCTION?', ok: 'Apply'
                         }
 
-                        bat 'terraform apply -auto-approve tfplan'
+                        sh 'terraform apply -auto-approve tfplan'
 
-                        // Capture outputs for later stages
-                        env.ACR_LOGIN_SERVER = bat(
+                        // Capture outputs
+                        env.ACR_LOGIN_SERVER = sh(
                             script: 'terraform output -raw acr_login_server',
                             returnStdout: true
                         ).trim()
-                        env.ACR_USERNAME = bat(
-                            script: 'terraform output -raw acr_admin_username',
+                        env.FRONTEND_URL = sh(
+                            script: 'terraform output -raw frontend_url',
                             returnStdout: true
                         ).trim()
+                        env.BACKEND_FQDN = sh(
+                            script: 'terraform output -raw backend_fqdn',
+                            returnStdout: true
+                        ).trim()
+                        env.AI_FQDN = sh(
+                            script: 'terraform output -raw ai_service_fqdn',
+                            returnStdout: true
+                        ).trim()
+
+                        echo "✅ Infrastructure ready!"
+                        echo "   ACR        : ${env.ACR_LOGIN_SERVER}"
+                        echo "   Frontend   : ${env.FRONTEND_URL}"
+                        echo "   Backend    : ${env.BACKEND_FQDN}"
+                        echo "   AI Service : ${env.AI_FQDN}"
                     }
                 }
             }
         }
 
-        // ---- Stage 4: Get ACR Credentials ----
+        // ── 5. Load Terraform Outputs (when infra was pre-existing) ──
+        stage('Load Infra Outputs') {
+            when {
+                expression { return params.DEPLOY_APPS && !params.DEPLOY_INFRA }
+            }
+            steps {
+                dir('terraform') {
+                    script {
+                        echo "📋 Loading existing infrastructure outputs..."
+                        sh 'terraform init -input=false -reconfigure'
+
+                        env.ACR_LOGIN_SERVER = sh(
+                            script: 'terraform output -raw acr_login_server',
+                            returnStdout: true
+                        ).trim()
+                        env.FRONTEND_URL = sh(
+                            script: 'terraform output -raw frontend_url',
+                            returnStdout: true
+                        ).trim()
+                        env.BACKEND_FQDN = sh(
+                            script: 'terraform output -raw backend_fqdn',
+                            returnStdout: true
+                        ).trim()
+                        env.AI_FQDN = sh(
+                            script: 'terraform output -raw ai_service_fqdn',
+                            returnStdout: true
+                        ).trim()
+
+                        echo "   ACR        : ${env.ACR_LOGIN_SERVER}"
+                        echo "   Frontend   : ${env.FRONTEND_URL}"
+                    }
+                }
+            }
+        }
+
+        // ── 6. Login to Azure Container Registry ─────────────
         stage('ACR Login') {
             when {
                 expression { return params.DEPLOY_APPS }
             }
             steps {
                 script {
-                    // Get ACR credentials from Terraform state or Azure CLI
-                    if (!env.ACR_LOGIN_SERVER) {
-                        dir('terraform') {
-                            bat 'terraform init -input=false'
-                            env.ACR_LOGIN_SERVER = bat(
-                                script: 'terraform output -raw acr_login_server',
-                                returnStdout: true
-                            ).trim()
-                            env.ACR_USERNAME = bat(
-                                script: 'terraform output -raw acr_admin_username',
-                                returnStdout: true
-                            ).trim()
-                        }
-                    }
-
-                    // Login to ACR
-                    bat "az acr login --name ${env.ACR_LOGIN_SERVER.split('\\.')[0]}"
-
-                    echo "✅ Logged in to ACR: ${env.ACR_LOGIN_SERVER}"
+                    def acrName = (env.ACR_LOGIN_SERVER ?: ACR_SERVER).split('\\.')[0]
+                    echo "🔐 Logging in to ACR: ${acrName}..."
+                    sh "az acr login --name ${acrName}"
+                    echo "✅ ACR login successful"
                 }
             }
         }
 
-        // ---- Stage 5: Build & Push Docker Images (parallel) ----
+        // ── 7. Build & Push Docker Images (parallel) ─────────
         stage('Build & Push Images') {
             when {
                 expression { return params.DEPLOY_APPS }
             }
             parallel {
+
                 stage('Backend Image') {
                     steps {
                         script {
-                            def imageName = "${env.ACR_LOGIN_SERVER}/${PROJECT_NAME}-backend"
+                            def server    = env.ACR_LOGIN_SERVER ?: ACR_SERVER
+                            def imageName = "${server}/${PROJECT_NAME}-backend"
+                            def cacheFlag = params.FORCE_REBUILD ? '--no-cache' : ''
 
-                            bat """
-                                docker build -f docker/dockerfiles/backend.Dockerfile ^
-                                    -t ${imageName}:${IMAGE_TAG} ^
-                                    -t ${imageName}:latest .
+                            sh """
+                                docker build ${cacheFlag} \
+                                    -f docker/dockerfiles/backend.Dockerfile \
+                                    -t ${imageName}:${IMAGE_TAG} \
+                                    -t ${imageName}:latest \
+                                    .
+                                docker push ${imageName}:${IMAGE_TAG}
+                                docker push ${imageName}:latest
                             """
-                            bat "docker push ${imageName}:${IMAGE_TAG}"
-                            bat "docker push ${imageName}:latest"
-
-                            echo "✅ Backend image pushed: ${imageName}:${IMAGE_TAG}"
+                            echo "✅ Backend pushed → ${imageName}:${IMAGE_TAG}"
                         }
                     }
                 }
+
                 stage('AI Service Image') {
                     steps {
                         script {
-                            def imageName = "${env.ACR_LOGIN_SERVER}/${PROJECT_NAME}-ai-service"
+                            def server    = env.ACR_LOGIN_SERVER ?: ACR_SERVER
+                            def imageName = "${server}/${PROJECT_NAME}-ai-service"
+                            def cacheFlag = params.FORCE_REBUILD ? '--no-cache' : ''
 
-                            bat """
-                                docker build -f docker/dockerfiles/ai-service.Dockerfile ^
-                                    -t ${imageName}:${IMAGE_TAG} ^
-                                    -t ${imageName}:latest .
+                            sh """
+                                docker build ${cacheFlag} \
+                                    -f docker/dockerfiles/ai-service.Dockerfile \
+                                    -t ${imageName}:${IMAGE_TAG} \
+                                    -t ${imageName}:latest \
+                                    .
+                                docker push ${imageName}:${IMAGE_TAG}
+                                docker push ${imageName}:latest
                             """
-                            bat "docker push ${imageName}:${IMAGE_TAG}"
-                            bat "docker push ${imageName}:latest"
-
-                            echo "✅ AI Service image pushed: ${imageName}:${IMAGE_TAG}"
+                            echo "✅ AI Service pushed → ${imageName}:${IMAGE_TAG}"
                         }
                     }
                 }
+
                 stage('Frontend Image') {
                     steps {
                         script {
-                            def imageName = "${env.ACR_LOGIN_SERVER}/${PROJECT_NAME}-frontend"
+                            def server    = env.ACR_LOGIN_SERVER ?: ACR_SERVER
+                            def imageName = "${server}/${PROJECT_NAME}-frontend"
+                            def cacheFlag = params.FORCE_REBUILD ? '--no-cache' : ''
 
-                            bat """
-                                docker build -f docker/dockerfiles/frontend.Dockerfile ^
-                                    --build-arg VITE_API_URL=/api ^
-                                    --build-arg VITE_AI_SERVICE_URL=/ai ^
-                                    -t ${imageName}:${IMAGE_TAG} ^
-                                    -t ${imageName}:latest .
+                            sh """
+                                docker build ${cacheFlag} \
+                                    -f docker/dockerfiles/frontend.Dockerfile \
+                                    --build-arg VITE_API_URL=/api \
+                                    --build-arg VITE_AI_SERVICE_URL=/ai \
+                                    -t ${imageName}:${IMAGE_TAG} \
+                                    -t ${imageName}:latest \
+                                    .
+                                docker push ${imageName}:${IMAGE_TAG}
+                                docker push ${imageName}:latest
                             """
-                            bat "docker push ${imageName}:${IMAGE_TAG}"
-                            bat "docker push ${imageName}:latest"
-
-                            echo "✅ Frontend image pushed: ${imageName}:${IMAGE_TAG}"
+                            echo "✅ Frontend pushed → ${imageName}:${IMAGE_TAG}"
                         }
                     }
                 }
             }
         }
 
-        // ---- Stage 6: Deploy to Azure Container Apps ----
-        stage('Deploy') {
+        // ── 8. Deploy to Azure Container Apps ────────────────
+        stage('Deploy to Azure') {
             when {
                 expression { return params.DEPLOY_APPS }
             }
             steps {
                 script {
-                    def rgName = "${PROJECT_NAME}-${ENVIRONMENT}-rg"
-                    def acrName = env.ACR_LOGIN_SERVER.split('\\.')[0]
+                    def server = env.ACR_LOGIN_SERVER ?: ACR_SERVER
+                    def rg     = RG_NAME
+                    def env_   = params.ENVIRONMENT
 
-                    echo "🚀 Deploying to Azure Container Apps..."
+                    echo "🚀 Deploying all services to Azure Container Apps..."
 
-                    // Update backend
-                    bat """
-                        az containerapp update ^
-                            --name ${PROJECT_NAME}-${ENVIRONMENT}-backend ^
-                            --resource-group ${rgName} ^
-                            --image ${env.ACR_LOGIN_SERVER}/${PROJECT_NAME}-backend:${IMAGE_TAG}
+                    // --- Backend ---
+                    sh """
+                        az containerapp update \
+                            --name    ${PROJECT_NAME}-${env_}-backend \
+                            --resource-group ${rg} \
+                            --image   ${server}/${PROJECT_NAME}-backend:${IMAGE_TAG} \
+                            --output  none
                     """
+                    echo "  ✅ Backend deployed"
 
-                    // Update AI service
-                    bat """
-                        az containerapp update ^
-                            --name ${PROJECT_NAME}-${ENVIRONMENT}-ai-service ^
-                            --resource-group ${rgName} ^
-                            --image ${env.ACR_LOGIN_SERVER}/${PROJECT_NAME}-ai-service:${IMAGE_TAG}
+                    // --- AI Service ---
+                    sh """
+                        az containerapp update \
+                            --name    ${PROJECT_NAME}-${env_}-ai-service \
+                            --resource-group ${rg} \
+                            --image   ${server}/${PROJECT_NAME}-ai-service:${IMAGE_TAG} \
+                            --output  none
                     """
+                    echo "  ✅ AI Service deployed"
 
-                    // Update frontend
-                    bat """
-                        az containerapp update ^
-                            --name ${PROJECT_NAME}-${ENVIRONMENT}-frontend ^
-                            --resource-group ${rgName} ^
-                            --image ${env.ACR_LOGIN_SERVER}/${PROJECT_NAME}-frontend:${IMAGE_TAG}
+                    // --- Frontend ---
+                    sh """
+                        az containerapp update \
+                            --name    ${PROJECT_NAME}-${env_}-frontend \
+                            --resource-group ${rg} \
+                            --image   ${server}/${PROJECT_NAME}-frontend:${IMAGE_TAG} \
+                            --output  none
                     """
+                    echo "  ✅ Frontend deployed"
 
-                    echo "✅ All services deployed successfully!"
+                    // Get the live domain from Azure (works even if terraform wasn't run this build)
+                    def frontendFqdn = sh(
+                        script: """
+                            az containerapp show \
+                                --name    ${PROJECT_NAME}-${env_}-frontend \
+                                --resource-group ${rg} \
+                                --query   properties.configuration.ingress.fqdn \
+                                --output  tsv
+                        """,
+                        returnStdout: true
+                    ).trim()
+
+                    env.LIVE_URL = "https://${frontendFqdn}"
+                    echo "🌐 Live URL: ${env.LIVE_URL}"
                 }
             }
         }
 
-        // ---- Stage 7: Smoke Test ----
+        // ── 9. Smoke Test ─────────────────────────────────────
         stage('Smoke Test') {
             when {
                 expression { return params.DEPLOY_APPS }
             }
             steps {
                 script {
-                    dir('terraform') {
-                        def frontendUrl = bat(
-                            script: 'terraform output -raw frontend_url',
-                            returnStdout: true
-                        ).trim()
+                    def url = env.LIVE_URL ?: env.FRONTEND_URL
+                    echo "🔍 Waiting 45s for container apps to stabilise..."
+                    sleep(time: 45, unit: 'SECONDS')
 
-                        echo "🔍 Running smoke tests on: ${frontendUrl}"
+                    echo "🔍 Smoke testing: ${url}"
 
-                        // Wait for deployment to stabilize
-                        sleep(time: 30, unit: 'SECONDS')
+                    // Health check – retry 5× with 15s gap
+                    sh """
+                        for i in 1 2 3 4 5; do
+                            if curl -sf --max-time 15 "${url}/health"; then
+                                echo "✅ Health check passed on attempt \$i"
+                                exit 0
+                            fi
+                            echo "  attempt \$i failed, retrying in 15s..."
+                            sleep 15
+                        done
+                        echo "❌ Smoke test failed after 5 attempts"
+                        exit 1
+                    """
 
-                        // Test frontend
-                        bat "curl -sf ${frontendUrl}/health || exit 1"
-
-                        echo "✅ Smoke tests passed!"
-                        echo "🌐 Application URL: ${frontendUrl}"
-                    }
+                    // Backend API reachable through nginx proxy?
+                    sh """
+                        if curl -sf --max-time 15 "${url}/api/actuator/health" | grep -q '"status":"UP"'; then
+                            echo "✅ Backend API healthy"
+                        else
+                            echo "⚠️  Backend API not responding yet (may still be warming up)"
+                        fi
+                    """
                 }
             }
         }
     }
 
+    // ── Post actions ──────────────────────────────────────────
     post {
         success {
-            echo """
-            ✅ ====================================
-            ✅ Pipeline completed successfully!
-            ✅ Environment: ${ENVIRONMENT}
-            ✅ Image Tag: ${IMAGE_TAG}
-            ✅ ====================================
-            """
+            script {
+                def url = env.LIVE_URL ?: env.FRONTEND_URL ?: '(check Azure Portal)'
+                echo """
+╔══════════════════════════════════════════════════╗
+║   ✅  PIPELINE SUCCEEDED                         ║
+╠══════════════════════════════════════════════════╣
+║  Environment : ${params.ENVIRONMENT.padRight(34)}║
+║  Image Tag   : ${IMAGE_TAG.take(34).padRight(34)}║
+╠══════════════════════════════════════════════════╣
+║  🌐 Live URL:                                    ║
+║  ${url.take(50).padRight(50)}║
+╚══════════════════════════════════════════════════╝
+                """
+            }
         }
         failure {
             echo """
-            ❌ ====================================
-            ❌ Pipeline FAILED!
-            ❌ Environment: ${ENVIRONMENT}
-            ❌ Check the logs above for details.
-            ❌ ====================================
+╔══════════════════════════════════════════════════╗
+║   ❌  PIPELINE FAILED                            ║
+╠══════════════════════════════════════════════════╣
+║  Environment : ${params.ENVIRONMENT.padRight(34)}║
+║  Check the stage logs above for details.         ║
+╚══════════════════════════════════════════════════╝
             """
         }
         always {
-            // Clean up Docker images to save space
-            script {
-                bat 'docker image prune -f || true'
-            }
+            // Remove dangling images to reclaim disk space on agent
+            sh 'docker image prune -f || true'
         }
     }
 }

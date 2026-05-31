@@ -25,7 +25,7 @@ FROM nginx:1.27-alpine AS production
 
 RUN rm /etc/nginx/conf.d/default.conf
 
-COPY docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY docker/nginx/nginx.conf.template /etc/nginx/templates/default.conf.template
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
