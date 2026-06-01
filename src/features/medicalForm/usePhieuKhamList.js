@@ -9,7 +9,7 @@ export function usePhieuKhamList() {
 
   const { isLoading, data } = useQuery({
     queryKey: ['phieukham-list'],
-    queryFn: getPhieuKhamList,
+    queryFn: () => getPhieuKhamList(),
   });
 
   // Backend returns either a flat array or {data, totalCount}

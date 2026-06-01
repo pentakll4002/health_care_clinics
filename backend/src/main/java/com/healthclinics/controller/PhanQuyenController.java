@@ -33,9 +33,31 @@ public class PhanQuyenController {
     }
 
     @PostMapping
-    public ResponseEntity<PhanQuyenDTO> create(@RequestBody Map<String, Long> body) {
-        Long idNhom = body.get("idNhom");
-        Long idChucNang = body.get("idChucNang");
+    public ResponseEntity<PhanQuyenDTO> create(@RequestBody Map<String, Object> body) {
+        Object nhomVal = body.get("idNhom");
+        if (nhomVal == null) {
+            nhomVal = body.get("ID_Nhom");
+        }
+        if (nhomVal == null) {
+            nhomVal = body.get("id_nhom");
+        }
+        if (nhomVal == null) {
+            throw new IllegalArgumentException("idNhom is required");
+        }
+        Long idNhom = Long.valueOf(nhomVal.toString());
+
+        Object cnVal = body.get("idChucNang");
+        if (cnVal == null) {
+            cnVal = body.get("ID_ChucNang");
+        }
+        if (cnVal == null) {
+            cnVal = body.get("id_chuc_nang");
+        }
+        if (cnVal == null) {
+            throw new IllegalArgumentException("idChucNang is required");
+        }
+        Long idChucNang = Long.valueOf(cnVal.toString());
+
         return ResponseEntity.ok(phanQuyenService.create(idNhom, idChucNang));
     }
 

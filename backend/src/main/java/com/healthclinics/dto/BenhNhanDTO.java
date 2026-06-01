@@ -24,4 +24,44 @@ public class BenhNhanDTO {
     private Boolean isDeleted;
     private LocalDateTime ngayDK;
     private Long userId;
+
+    @com.fasterxml.jackson.annotation.JsonProperty("ID_BenhNhan")
+    public Long getID_BenhNhan() {
+        return idBenhNhan;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("HoTenBN")
+    public String getHoTenBN() {
+        return hoTenBN;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("NgaySinh")
+    public LocalDate getNgaySinhVal() {
+        return ngaySinh;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("GioiTinh")
+    public String getGioiTinhVal() {
+        return gioiTinh;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("CCCD")
+    public String getCCCDVal() {
+        return cccd;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("DienThoai")
+    public String getDienThoaiVal() {
+        return dienThoai;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("DiaChi")
+    public String getDiaChiVal() {
+        return diaChi;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("NgayDK")
+    public LocalDateTime getNgayDKVal() {
+        return ngayDK;
+    }
 }

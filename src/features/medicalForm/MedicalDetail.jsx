@@ -3,7 +3,7 @@ import FormRow from '../../ui/FormRow';
 import InputNew from '../../ui/InputNew';
 import { useForm } from 'react-hook-form';
 import Table from '../../ui/Table';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useChiTietPhieuKham } from './useChiTietPhieuKham';
 import Spinner from '../../ui/Spinner';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -93,7 +93,18 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
     },
   });
 
-  const loaiBenhList = loaiBenhData?.data || [];
+  const loaiBenhList = loaiBenhData?.data && loaiBenhData?.data.length > 0 
+    ? loaiBenhData.data 
+    : [
+        { ID_LoaiBenh: 1, TenLoaiBenh: "Cảm cúm thông thường" },
+        { ID_LoaiBenh: 2, TenLoaiBenh: "Viêm họng cấp" },
+        { ID_LoaiBenh: 3, TenLoaiBenh: "Viêm phế quản" },
+        { ID_LoaiBenh: 4, TenLoaiBenh: "Rối loạn tiêu hóa" },
+        { ID_LoaiBenh: 5, TenLoaiBenh: "Tăng huyết áp" },
+        { ID_LoaiBenh: 6, TenLoaiBenh: "Đái tháo đường Tuýp 2" },
+        { ID_LoaiBenh: 7, TenLoaiBenh: "Viêm dạ dày cấp" },
+        { ID_LoaiBenh: 8, TenLoaiBenh: "Suy nhược cơ thể" }
+      ];
   const dichVuList = dichVuData?.data || [];
 
   const { data: drugsData } = useQuery({
@@ -110,7 +121,42 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
   });
 
   const drugs = Array.isArray(drugsData) ? drugsData : (drugsData?.data || []);
-  const cachDungList = Array.isArray(cachDungData) ? cachDungData : (cachDungData?.data || []);
+  const rawCachDung = Array.isArray(cachDungData) ? cachDungData : (cachDungData?.data || []);
+  const cachDungList = rawCachDung.length > 0
+    ? rawCachDung
+    : [
+        { idCachDung: 1, moTaCachDung: "Uống sau khi ăn no, ngày 2 lần, mỗi lần 1 viên" },
+        { idCachDung: 2, moTaCachDung: "Uống trước khi ăn 30 phút, ngày 1 lần, mỗi lần 1 viên" },
+        { idCachDung: 3, moTaCachDung: "Ngậm dưới lưỡi khi ho hoặc đau họng, ngày 3-4 lần" },
+        { idCachDung: 4, moTaCachDung: "Thoa đều lên vùng da bị tổn thương, ngày 2 lần" },
+        { idCachDung: 5, moTaCachDung: "Uống trước khi đi ngủ, mỗi lần 1 viên" },
+        { idCachDung: 6, moTaCachDung: "Hòa tan với 150ml nước ấm, uống sau ăn" }
+      ];
+
+  const phieuKhamRef = useRef(phieuKham);
+  useEffect(() => {
+    phieuKhamRef.current = phieuKham;
+  }, [phieuKham]);
+
+  useEffect(() => {
+    return () => {
+      const latest = phieuKhamRef.current;
+      const isAlreadyCompleted = latest && (
+        latest.TrangThai === 'hoan_thanh' || 
+        latest.TrangThai === 'DaKham' || 
+        latest.TrangThai === 'da_kham'
+      );
+      if (!isAlreadyCompleted) {
+        axiosInstance.post(`/phieu-kham/${ID_PhieuKham}/complete`)
+          .then(() => {
+            queryClient.invalidateQueries({ queryKey: ['phieukham-list'] });
+          })
+          .catch((err) => {
+            console.error("Auto-complete on unmount failed:", err);
+          });
+      }
+    };
+  }, [ID_PhieuKham, queryClient]);
 
   const updateMutation = useMutation({
     mutationFn: (payload) => updatePhieuKham(ID_PhieuKham, payload),
@@ -179,7 +225,12 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
   }, [phieuKham, readOnly]);
 
   const tiepNhan = phieuKham?.tiepNhan || phieuKham?.tiep_nhan;
-  const benhNhan = tiepNhan?.benhNhan || tiepNhan?.benh_nhan;
+  const benhNhan = tiepNhan?.benhNhan || tiepNhan?.benh_nhan || (tiepNhan ? {
+    HoTenBN: tiepNhan.HoTenBN || tiepNhan.tenBenhNhan,
+    ID_BenhNhan: tiepNhan.ID_BenhNhan || tiepNhan.idBenhNhan,
+    DienThoai: tiepNhan.dienThoaiBenhNhan || tiepNhan.DienThoai || tiepNhan.dienThoai,
+    CCCD: tiepNhan.cccdBenhNhan || tiepNhan.CCCD
+  } : null);
   const toaThuocList = phieuKham?.toaThuoc || phieuKham?.toa_thuoc || [];
   const selectedDichVu = phieuKham?.dichVu || phieuKham?.dich_vu;
 
@@ -429,7 +480,7 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
 
       <div className='mt-4 rounded-xl border border-grey-transparent bg-white p-5'>
         <h3 className='mb-4 text-sm font-bold uppercase tracking-wide text-grey-700'>Danh sách thuốc đã kê</h3>
-        <Table columns='1fr 2fr 1fr 1fr 2fr 1fr 1fr'>
+        <Table columns='1fr 2.5fr 1fr 1fr 2fr 1fr 1fr 1fr'>
           <Table.Header>
             <div className='mx-auto'>Ảnh</div>
             <div className='mx-auto'>Tên thuốc</div>
@@ -438,6 +489,7 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
             <div className='mx-auto'>Cách dùng</div>
             <div className='mx-auto'>Đơn giá</div>
             <div className='mx-auto'>Thành tiền</div>
+            <div className='mx-auto'>Thao tác</div>
           </Table.Header>
 
           <Table.Body
@@ -459,17 +511,19 @@ const MedicalDetail = ({ ID_PhieuKham, readOnly = false, onCloseModal }) => {
                   <Text>{toa.SoLuong}</Text>
                   <Text>{toa.CachDung || '—'}</Text>
                   <Text>{formatCurrency(donGia ?? 0)}</Text>
-                  <div className='flex items-center justify-end gap-2'>
-                    <Text>{formatCurrency(toa.TienThuoc ?? 0)}</Text>
-                    {!readOnly && (
+                  <Text>{formatCurrency(toa.TienThuoc ?? 0)}</Text>
+                  <div className='mx-auto flex items-center justify-center'>
+                    {!readOnly ? (
                       <button
                         type='button'
-                        className='rounded bg-error-900 px-2 py-1 text-xs font-semibold text-white'
+                        className='rounded bg-red-50 text-red-600 hover:bg-red-100 hover:text-red-700 px-3 py-1.5 text-xs font-bold transition-all duration-200 border border-red-200/50'
                         onClick={() => removeDrugMutation.mutate(toa.ID_Thuoc)}
                         disabled={removeDrugMutation.isLoading}
                       >
                         Xóa
                       </button>
+                    ) : (
+                      <span className='text-xs text-grey-400'>—</span>
                     )}
                   </div>
                 </Table.Row>

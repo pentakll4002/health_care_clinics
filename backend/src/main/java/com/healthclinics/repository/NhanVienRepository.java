@@ -23,6 +23,9 @@ public interface NhanVienRepository extends JpaRepository<NhanVien, Long> {
     
     Optional<NhanVien> findByEmail(String email);
     
+    @Query("SELECT nv FROM NhanVien nv JOIN nv.user u WHERE u.email = :email")
+    Optional<NhanVien> findByUserEmail(@Param("email") String email);
+    
     @Query("SELECT nv FROM NhanVien nv WHERE " +
            "(LOWER(nv.hoTenNV) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +
            "nv.dienThoai LIKE CONCAT('%', :keyword, '%') OR " +

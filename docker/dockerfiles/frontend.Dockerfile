@@ -31,7 +31,7 @@ COPY docker/nginx/nginx.conf.template /etc/nginx/templates/default.conf.template
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD wget -qO- http://localhost:80/health || exit 1
+CMD wget -qO- http://localhost:80/health || exit 1
 
 EXPOSE 80
 

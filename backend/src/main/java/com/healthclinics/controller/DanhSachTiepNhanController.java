@@ -22,19 +22,43 @@ public class DanhSachTiepNhanController {
     private final DanhSachTiepNhanService danhSachTiepNhanService;
 
     @GetMapping
-    public ResponseEntity<List<DanhSachTiepNhanDTO>> getAll(
+    public ResponseEntity<?> getAll(
+            @RequestParam(required = false) String ngay,
+            @RequestParam(required = false) Boolean chua_kham,
+            @RequestParam(required = false) Long idBenhNhan,
+            @RequestParam(required = false) Long ID_BenhNhan,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "idTiepNhan") String sortBy,
             @RequestParam(defaultValue = "desc") String direction) {
         
+        Long targetBenhNhanId = idBenhNhan != null ? idBenhNhan : ID_BenhNhan;
+        
+        if (ngay != null || chua_kham != null || targetBenhNhanId != null) {
+            List<DanhSachTiepNhanDTO> filteredList = 
+                danhSachTiepNhanService.getAppointmentsFiltered(ngay, chua_kham, targetBenhNhanId);
+            
+            java.util.Map<String, Object> res = new java.util.HashMap<>();
+            res.put("data", filteredList);
+            res.put("totalCount", filteredList.size());
+            return ResponseEntity.ok(res);
+        }
+        
         if (page == 0 && size == 10) {
-            return ResponseEntity.ok(danhSachTiepNhanService.getAll());
+            List<DanhSachTiepNhanDTO> all = danhSachTiepNhanService.getAll();
+            java.util.Map<String, Object> res = new java.util.HashMap<>();
+            res.put("data", all);
+            res.put("totalCount", all.size());
+            return ResponseEntity.ok(res);
         }
         
         Sort.Direction dir = direction.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
         Page<DanhSachTiepNhanDTO> result = danhSachTiepNhanService.getAll(PageRequest.of(page, size, Sort.by(dir, sortBy)));
-        return ResponseEntity.ok(result.getContent());
+        
+        java.util.Map<String, Object> res = new java.util.HashMap<>();
+        res.put("data", result.getContent());
+        res.put("totalCount", result.getTotalElements());
+        return ResponseEntity.ok(res);
     }
 
     @GetMapping("/{id}")

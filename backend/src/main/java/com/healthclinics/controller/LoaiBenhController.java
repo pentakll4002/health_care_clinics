@@ -17,8 +17,8 @@ public class LoaiBenhController {
     private final LoaiBenhService loaiBenhService;
 
     @GetMapping
-    public ResponseEntity<List<LoaiBenhDTO>> getAll() {
-        return ResponseEntity.ok(loaiBenhService.getAll());
+    public ResponseEntity<ApiResponse<List<LoaiBenhDTO>>> getAll() {
+        return ResponseEntity.ok(ApiResponse.success(loaiBenhService.getAll()));
     }
 
     @GetMapping("/{id}")
@@ -27,8 +27,8 @@ public class LoaiBenhController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<LoaiBenhDTO>> search(@RequestParam String keyword) {
-        return ResponseEntity.ok(loaiBenhService.search(keyword));
+    public ResponseEntity<ApiResponse<List<LoaiBenhDTO>>> search(@RequestParam String keyword) {
+        return ResponseEntity.ok(ApiResponse.success(loaiBenhService.search(keyword)));
     }
 
     @PostMapping

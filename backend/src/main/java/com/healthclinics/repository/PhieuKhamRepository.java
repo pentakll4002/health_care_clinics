@@ -15,15 +15,51 @@ import java.util.Optional;
 @Repository
 public interface PhieuKhamRepository extends JpaRepository<PhieuKham, Long> {
     
+    @Query("SELECT DISTINCT pk FROM PhieuKham pk " +
+           "LEFT JOIN FETCH pk.tiepNhan tn " +
+           "LEFT JOIN FETCH tn.benhNhan " +
+           "LEFT JOIN FETCH pk.bacSi " +
+           "LEFT JOIN FETCH pk.loaiBenh " +
+           "LEFT JOIN FETCH pk.dichVu " +
+           "WHERE pk.isDeleted = false")
     List<PhieuKham> findByIsDeletedFalse();
     
+    @Query(value = "SELECT DISTINCT pk FROM PhieuKham pk " +
+           "LEFT JOIN FETCH pk.tiepNhan tn " +
+           "LEFT JOIN FETCH tn.benhNhan " +
+           "LEFT JOIN FETCH pk.bacSi " +
+           "LEFT JOIN FETCH pk.loaiBenh " +
+           "LEFT JOIN FETCH pk.dichVu " +
+           "WHERE pk.isDeleted = false",
+           countQuery = "SELECT count(pk) FROM PhieuKham pk WHERE pk.isDeleted = false")
     Page<PhieuKham> findByIsDeletedFalse(Pageable pageable);
     
-    List<PhieuKham> findByIdTiepNhan(Long idTiepNhan);
+    @Query("SELECT DISTINCT pk FROM PhieuKham pk " +
+           "LEFT JOIN FETCH pk.tiepNhan tn " +
+           "LEFT JOIN FETCH tn.benhNhan " +
+           "LEFT JOIN FETCH pk.bacSi " +
+           "LEFT JOIN FETCH pk.loaiBenh " +
+           "LEFT JOIN FETCH pk.dichVu " +
+           "WHERE pk.idTiepNhan = :idTiepNhan AND pk.isDeleted = false")
+    List<PhieuKham> findByIdTiepNhan(@Param("idTiepNhan") Long idTiepNhan);
     
-    List<PhieuKham> findByIdBacSi(Long idBacSi);
+    @Query("SELECT DISTINCT pk FROM PhieuKham pk " +
+           "LEFT JOIN FETCH pk.tiepNhan tn " +
+           "LEFT JOIN FETCH tn.benhNhan " +
+           "LEFT JOIN FETCH pk.bacSi " +
+           "LEFT JOIN FETCH pk.loaiBenh " +
+           "LEFT JOIN FETCH pk.dichVu " +
+           "WHERE pk.idBacSi = :idBacSi AND pk.isDeleted = false")
+    List<PhieuKham> findByIdBacSi(@Param("idBacSi") Long idBacSi);
     
-    List<PhieuKham> findByTrangThai(String trangThai);
+    @Query("SELECT DISTINCT pk FROM PhieuKham pk " +
+           "LEFT JOIN FETCH pk.tiepNhan tn " +
+           "LEFT JOIN FETCH tn.benhNhan " +
+           "LEFT JOIN FETCH pk.bacSi " +
+           "LEFT JOIN FETCH pk.loaiBenh " +
+           "LEFT JOIN FETCH pk.dichVu " +
+           "WHERE pk.trangThai = :trangThai AND pk.isDeleted = false")
+    List<PhieuKham> findByTrangThai(@Param("trangThai") String trangThai);
     
     @Query("SELECT pk FROM PhieuKham pk WHERE pk.isDeleted = false AND pk.createdAt BETWEEN :startDate AND :endDate")
     List<PhieuKham> findByDateRange(@Param("startDate") LocalDateTime startDate, 
@@ -36,8 +72,11 @@ public interface PhieuKhamRepository extends JpaRepository<PhieuKham, Long> {
     Optional<PhieuKham> findByIdWithDichVuPhu(@Param("id") Long id);
     
     @Query("SELECT pk FROM PhieuKham pk " +
-           "JOIN FETCH pk.tiepNhan tn " +
-           "JOIN FETCH tn.benhNhan " +
+           "LEFT JOIN FETCH pk.tiepNhan tn " +
+           "LEFT JOIN FETCH tn.benhNhan " +
+           "LEFT JOIN FETCH pk.bacSi " +
+           "LEFT JOIN FETCH pk.loaiBenh " +
+           "LEFT JOIN FETCH pk.dichVu " +
            "WHERE pk.idPhieuKham = :id")
     Optional<PhieuKham> findByIdWithDetails(@Param("id") Long id);
 }

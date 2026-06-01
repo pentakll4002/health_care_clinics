@@ -13,7 +13,20 @@ import java.util.Optional;
 @Repository
 public interface HoaDonRepository extends JpaRepository<HoaDon, Long> {
     
-    Optional<HoaDon> findByIdPhieuKham(Long idPhieuKham);
+    @Query("SELECT DISTINCT hd FROM HoaDon hd " +
+           "LEFT JOIN FETCH hd.nhanVien nv " +
+           "LEFT JOIN FETCH hd.phieuKham pk " +
+           "LEFT JOIN FETCH pk.tiepNhan tn " +
+           "LEFT JOIN FETCH tn.benhNhan bn")
+    List<HoaDon> findAll();
+
+    @Query("SELECT hd FROM HoaDon hd " +
+           "LEFT JOIN FETCH hd.nhanVien nv " +
+           "LEFT JOIN FETCH hd.phieuKham pk " +
+           "LEFT JOIN FETCH pk.tiepNhan tn " +
+           "LEFT JOIN FETCH tn.benhNhan bn " +
+           "WHERE hd.idPhieuKham = :idPhieuKham")
+    Optional<HoaDon> findByIdPhieuKham(@Param("idPhieuKham") Long idPhieuKham);
     
     List<HoaDon> findByNgayHoaDon(LocalDate ngayHoaDon);
     

@@ -56,9 +56,9 @@ const DoctorExam = () => {
       return;
     }
 
-    // Chưa có phiếu khám -> chỉ tạo khi tiếp nhận đang CHO_KHAM
+    // Chưa có phiếu khám -> chỉ tạo khi tiếp nhận đang CHO_KHAM hoặc DANG_KHAM
     const trangThai = tiepNhan?.TrangThaiTiepNhan;
-    if (trangThai !== 'CHO_KHAM') {
+    if (trangThai !== 'CHO_KHAM' && trangThai !== 'DANG_KHAM') {
       toast.error('Tiếp nhận này chưa ở trạng thái chờ khám hoặc đã được xử lý.');
       return;
     }
@@ -68,13 +68,14 @@ const DoctorExam = () => {
     (async () => {
       try {
         const can = await checkMutation.mutateAsync();
-        if (!can?.canCreate) {
+        const isAllowed = can?.canCreate === true || can?.data === true || (can?.canCreate !== false && can?.data !== false);
+        if (!isAllowed) {
           toast.error('Không thể tạo phiếu khám cho tiếp nhận này.');
           return;
         }
 
         const created = await createMutation.mutateAsync();
-        const newId = created?.data?.ID_PhieuKham;
+        const newId = created?.ID_PhieuKham || created?.idPhieuKham || created?.data?.ID_PhieuKham || created?.data?.idPhieuKham;
         if (!newId) {
           toast.error('Tạo phiếu khám thất bại (không nhận được ID).');
           return;

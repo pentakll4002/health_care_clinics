@@ -34,11 +34,40 @@ public class HoaDonController {
         return ResponseEntity.ok(hoaDonService.preview(phieuKhamId));
     }
 
+    private final com.healthclinics.repository.UserRepository userRepository;
+
     @PostMapping
-    public ResponseEntity<HoaDonDTO> create(@RequestBody Map<String, Long> body,
+    public ResponseEntity<HoaDonDTO> create(@RequestBody Map<String, Object> body,
                                             @AuthenticationPrincipal UserDetails userDetails) {
-        Long phieuKhamId = body.get("phieuKhamId");
-        Long nhanVienId = body.get("nhanVienId");
+        Object pkVal = body.get("phieuKhamId");
+        if (pkVal == null) {
+            pkVal = body.get("ID_PhieuKham");
+        }
+        if (pkVal == null) {
+            pkVal = body.get("idPhieuKham");
+        }
+        if (pkVal == null) {
+            throw new IllegalArgumentException("phieuKhamId is required");
+        }
+        Long phieuKhamId = Long.valueOf(pkVal.toString());
+
+        Long nhanVienId = null;
+        Object nvVal = body.get("nhanVienId");
+        if (nvVal == null) {
+            nvVal = body.get("ID_NhanVien");
+        }
+        if (nvVal == null) {
+            nvVal = body.get("idNhanVien");
+        }
+        if (nvVal != null) {
+            nhanVienId = Long.valueOf(nvVal.toString());
+        } else if (userDetails != null) {
+            java.util.Optional<com.healthclinics.entity.User> uOpt = userRepository.findByEmailWithNhanVien(userDetails.getUsername());
+            if (uOpt.isPresent() && uOpt.get().getNhanVien() != null) {
+                nhanVienId = uOpt.get().getNhanVien().getIdNhanVien();
+            }
+        }
+        
         return ResponseEntity.ok(hoaDonService.create(phieuKhamId, nhanVienId));
     }
 

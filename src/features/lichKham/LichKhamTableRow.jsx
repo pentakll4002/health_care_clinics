@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Table from '../../ui/Table';
+import toast from 'react-hot-toast';
 import ModalCenter from '../../ui/ModalCenter';
 import Menus from '../../ui/Menus';
 import { useConfirmLichKham } from './useConfirmLichKham';
@@ -15,6 +16,7 @@ import Select from '../../ui/Select';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../../utils/axiosInstance';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Text = styled.span`
   color: #0a1b39;
@@ -89,6 +91,7 @@ function ConfirmLichKhamModal({
 }
 
 const LichKhamTableRow = ({ lichKham }) => {
+  const navigate = useNavigate();
   const { mutate: confirmLichKham, isLoading: isConfirming } = useConfirmLichKham();
   const { mutate: deleteLichKham, isLoading: isDeleting } = useDeleteLichKham();
   const { mutate: updateLichKham, isLoading: isUpdating } = useUpdateLichKham();
@@ -97,11 +100,31 @@ const LichKhamTableRow = ({ lichKham }) => {
 
   // Support both camelCase (DTO) and PascalCase (legacy) field names
   const lkId = lichKham.idLichKham || lichKham.ID_LichKham;
+  const lkIdBenhNhan = lichKham.idBenhNhan || lichKham.ID_BenhNhan;
+
+  const handleStartExam = async () => {
+    try {
+      const res = await axiosInstance.get('/appointments', { params: { idBenhNhan: lkIdBenhNhan } });
+      const list = res.data?.data || res.data || [];
+      const active = list.find((tn) => {
+        const st = tn.TrangThaiTiepNhan || tn.trangThaiTiepNhan;
+        return st === 'CHO_KHAM' || st === 'DANG_KHAM';
+      });
+      if (active) {
+        const activeId = active.ID_TiepNhan || active.idTiepNhan;
+        navigate(`/doctor/exam/${activeId}`);
+      } else {
+        toast.error('Không tìm thấy lượt tiếp nhận đang chờ khám cho bệnh nhân này.');
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error('Không thể tải thông tin lượt tiếp nhận.');
+    }
+  };
   const lkNgayKham = lichKham.ngayKhamDuKien || lichKham.NgayKhamDuKien;
   const lkCaKham = lichKham.caKham || lichKham.CaKham;
   const lkTrangThai = lichKham.trangThai || lichKham.TrangThai;
   const lkGhiChu = lichKham.ghiChu || lichKham.GhiChu;
-  const lkIdBenhNhan = lichKham.idBenhNhan || lichKham.ID_BenhNhan;
   const lkIdBacSi = lichKham.idBacSi || lichKham.ID_BacSi;
   const lkTenBenhNhan = lichKham.tenBenhNhan || lichKham.benhNhan?.HoTenBN || lichKham.benh_nhan?.HoTenBN;
   const lkTenBacSi = lichKham.tenBacSi;
@@ -135,6 +158,12 @@ const LichKhamTableRow = ({ lichKham }) => {
         return (
           <StatusBadge className='bg-success-100 text-success-900'>
             Đã xác nhận
+          </StatusBadge>
+        );
+      case 'da_tiep_nhan':
+        return (
+          <StatusBadge className='bg-blue-100 text-blue-900'>
+            Đã tiếp nhận
           </StatusBadge>
         );
       case 'Huy':
@@ -216,9 +245,18 @@ const LichKhamTableRow = ({ lichKham }) => {
       <div className='flex justify-center'>{getStatusBadge(lkTrangThai)}</div>
       <Text className='text-center'>{lkGhiChu || '—'}</Text>
       
-      {/* Cột thao tác - ẨN NỘI DUNG NẾU ROLE LÀ BÁC SĨ */}
+      {/* Cột thao tác */}
       <div className='flex items-center justify-center'>
-        {window.localStorage.getItem('user_role') !== '@doctors' && (
+        {window.localStorage.getItem('user_role') === '@doctors' ? (
+          (lkTrangThai === 'da_tiep_nhan' || lkTrangThai === 'DaXacNhan') && (
+            <button
+              onClick={handleStartExam}
+              className='rounded bg-primary text-white hover:bg-primary-dark px-3 py-1.5 text-xs font-bold transition-all duration-200 shadow-sm'
+            >
+              Vào khám
+            </button>
+          )
+        ) : (
           <ModalCenter>
             <Menus>
               <Menus.Menu>
@@ -266,18 +304,6 @@ const LichKhamTableRow = ({ lichKham }) => {
                       disabled={isConfirming || isUpdating || isDeleting}
                     >
                       {isUpdating ? 'Đang xử lý...' : 'Không xác nhận'}
-                    </Menus.Button>
-                  )}
-
-                  {/* Tiếp nhận button - ẨN vì đã tự động tạo khi xác nhận lịch khám */}
-                  {/* Khi lễ tân xác nhận lịch khám, hệ thống TỰ ĐỘNG tạo record trong danh sách tiếp nhận */}
-                  {/* Chỉ hiển thị nếu cần tiếp nhận lại (trường hợp đặc biệt) */}
-                  {false && lkTrangThai === 'DaXacNhan' && (
-                    <Menus.Button
-                      icon={<UserPlusIcon className='w-4 h-4' />}
-                      onClick={handleCreateReception}
-                    >
-                      {isCreatingReception ? 'Đang tiếp nhận...' : 'Tiếp nhận lại'}
                     </Menus.Button>
                   )}
 

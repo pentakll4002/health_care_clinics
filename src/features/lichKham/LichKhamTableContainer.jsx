@@ -21,18 +21,32 @@ const LichKhamTableContainer = ({ filterStatus, filterDate, filterRange }) => {
   const { isLoading, lichKhams: rawLichKhams } = useAllLichKhams(params);
 
   const lichKhams = useMemo(() => {
+    let list = rawLichKhams || [];
+
+    // Filter by status if filterStatus is provided
+    if (filterStatus) {
+      list = list.filter((lk) => {
+        const status = lk.trangThai || lk.TrangThai;
+        if (filterStatus === 'DaXacNhan') {
+          // Allow both 'DaXacNhan' and checked-in ('da_tiep_nhan') statuses
+          return status === 'DaXacNhan' || status === 'da_tiep_nhan';
+        }
+        return status === filterStatus;
+      });
+    }
+
     if (!filterRange || !filterRange.from || !filterRange.to) {
-      return rawLichKhams || [];
+      return list;
     }
     const from = new Date(filterRange.from);
     const to = new Date(filterRange.to);
-    return (rawLichKhams || []).filter((lk) => {
+    return list.filter((lk) => {
       const ngay = lk.ngayKhamDuKien || lk.NgayKhamDuKien;
       if (!ngay) return false;
       const d = new Date(ngay);
       return d >= from && d <= to;
     });
-  }, [rawLichKhams, filterRange]);
+  }, [rawLichKhams, filterStatus, filterRange]);
 
   if (isLoading) return <Spinner />;
 

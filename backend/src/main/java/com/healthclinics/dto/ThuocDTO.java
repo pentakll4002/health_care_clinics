@@ -27,4 +27,34 @@ public class ThuocDTO {
     private Boolean isDeleted;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    @com.fasterxml.jackson.annotation.JsonProperty("ID_Thuoc")
+    public Long getID_Thuoc() {
+        return idThuoc;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("TenThuoc")
+    public String getTenThuocVal() {
+        return tenThuoc;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("DonGiaBan")
+    public BigDecimal getDonGiaBanVal() {
+        return donGiaBan;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("HinhAnh")
+    public String getHinhAnhVal() {
+        return hinhAnh;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("TenDvt")
+    public String getTenDvtVal() {
+        return tenDvt;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("TenDVT")
+    public String getTenDvtVal2() {
+        return tenDvt;
+    }
 }

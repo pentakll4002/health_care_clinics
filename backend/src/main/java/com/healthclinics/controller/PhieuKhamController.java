@@ -61,8 +61,15 @@ public class PhieuKhamController {
     }
 
     @PostMapping
-    public ResponseEntity<PhieuKhamDTO> create(@RequestBody Map<String, Long> body) {
-        Long idTiepNhan = body.get("idTiepNhan");
+    public ResponseEntity<PhieuKhamDTO> create(@RequestBody Map<String, Object> body) {
+        Object val = body.get("idTiepNhan");
+        if (val == null) {
+            val = body.get("ID_TiepNhan");
+        }
+        if (val == null) {
+            throw new IllegalArgumentException("idTiepNhan is required");
+        }
+        Long idTiepNhan = Long.valueOf(val.toString());
         return ResponseEntity.ok(phieuKhamService.create(idTiepNhan));
     }
 
@@ -111,8 +118,26 @@ public class PhieuKhamController {
     }
 
     @PostMapping("/check-can-create")
-    public ResponseEntity<ApiResponse<?>> checkCanCreate(@RequestBody Map<String, Long> body) {
-        // TODO: Implement check logic
-        return ResponseEntity.ok(ApiResponse.success("Can create", true));
+    public ResponseEntity<Map<String, Object>> checkCanCreate(@RequestBody Map<String, Object> body) {
+        Object rawId = body.get("ID_TiepNhan");
+        if (rawId == null) rawId = body.get("idTiepNhan");
+        
+        Long idTiepNhan = null;
+        if (rawId instanceof Number) {
+            idTiepNhan = ((Number) rawId).longValue();
+        } else if (rawId instanceof String) {
+            idTiepNhan = Long.parseLong((String) rawId);
+        }
+        
+        boolean canCreate = false;
+        if (idTiepNhan != null) {
+            canCreate = phieuKhamService.getByTiepNhan(idTiepNhan).isEmpty();
+        }
+        
+        Map<String, Object> response = new java.util.HashMap<>();
+        response.put("success", true);
+        response.put("canCreate", canCreate);
+        response.put("data", canCreate);
+        return ResponseEntity.ok(response);
     }
 }

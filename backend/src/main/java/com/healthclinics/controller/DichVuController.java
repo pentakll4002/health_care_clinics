@@ -20,16 +20,16 @@ public class DichVuController {
     private final DichVuService dichVuService;
 
     @GetMapping
-    public ResponseEntity<List<DichVuDTO>> getAll(
+    public ResponseEntity<ApiResponse<List<DichVuDTO>>> getAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         
         if (page == 0 && size == 10) {
-            return ResponseEntity.ok(dichVuService.getAll());
+            return ResponseEntity.ok(ApiResponse.success(dichVuService.getAll()));
         }
         
         Page<DichVuDTO> result = dichVuService.getAll(PageRequest.of(page, size));
-        return ResponseEntity.ok(result.getContent());
+        return ResponseEntity.ok(ApiResponse.success(result.getContent()));
     }
 
     @GetMapping("/{id}")
@@ -38,8 +38,8 @@ public class DichVuController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<DichVuDTO>> search(@RequestParam String keyword) {
-        return ResponseEntity.ok(dichVuService.search(keyword));
+    public ResponseEntity<ApiResponse<List<DichVuDTO>>> search(@RequestParam String keyword) {
+        return ResponseEntity.ok(ApiResponse.success(dichVuService.search(keyword)));
     }
 
     @PostMapping

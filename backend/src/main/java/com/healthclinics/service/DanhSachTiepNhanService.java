@@ -22,11 +22,41 @@ public class DanhSachTiepNhanService {
     private final DanhSachTiepNhanRepository danhSachTiepNhanRepository;
     private final BenhNhanRepository benhNhanRepository;
     private final LichKhamRepository lichKhamRepository;
+    
+    @org.springframework.context.annotation.Lazy
+    @org.springframework.beans.factory.annotation.Autowired
+    private PhieuKhamService phieuKhamService;
 
     public List<DanhSachTiepNhanDTO> getAll() {
         return danhSachTiepNhanRepository.findByIsDeletedFalse().stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
+    }
+
+    public List<DanhSachTiepNhanDTO> getAppointmentsFiltered(String ngay, Boolean chuaKham, Long idBenhNhan) {
+        List<DanhSachTiepNhan> list = danhSachTiepNhanRepository.findByIsDeletedFalse();
+        
+        return list.stream()
+            .filter(dstn -> {
+                if (idBenhNhan != null && !dstn.getIdBenhNhan().equals(idBenhNhan)) {
+                    return false;
+                }
+                if (ngay != null && dstn.getNgayTN() != null) {
+                    String dateStr = dstn.getNgayTN().toLocalDate().toString();
+                    if (!dateStr.equals(ngay)) {
+                        return false;
+                    }
+                }
+                if (chuaKham != null && chuaKham) {
+                    String status = dstn.getTrangThaiTiepNhan();
+                    if (status != null && (status.equalsIgnoreCase("DA_KHAM") || status.equalsIgnoreCase("da_kham") || status.equalsIgnoreCase("DANG_KHAM") || status.equalsIgnoreCase("dang_kham"))) {
+                        return false;
+                    }
+                }
+                return true;
+            })
+            .map(this::mapToDTO)
+            .collect(Collectors.toList());
     }
 
     public Page<DanhSachTiepNhanDTO> getAll(Pageable pageable) {
@@ -130,6 +160,12 @@ public class DanhSachTiepNhanService {
         }
         if (dstn.getLeTanDuyet() != null) {
             dto.setTenLeTanDuyet(dstn.getLeTanDuyet().getHoTenNV());
+        }
+        
+        if (dstn.getPhieuKhams() != null) {
+            dto.setPhieuKhams(dstn.getPhieuKhams().stream()
+                .map(phieuKhamService::mapToDTO)
+                .collect(Collectors.toList()));
         }
         
         return dto;

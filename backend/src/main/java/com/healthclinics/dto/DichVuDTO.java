@@ -26,4 +26,19 @@ public class DichVuDTO {
     private BigDecimal donGia;
 
     private Boolean isDeleted;
+
+    @JsonProperty("ID_DichVu")
+    public Long getID_DichVuVal() {
+        return idDichVu;
+    }
+
+    @JsonProperty("TenDichVu")
+    public String getTenDichVuVal() {
+        return tenDichVu;
+    }
+
+    @JsonProperty("DonGia")
+    public BigDecimal getDonGiaVal() {
+        return donGia;
+    }
 }

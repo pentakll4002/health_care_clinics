@@ -126,7 +126,12 @@ const CreateInvoiceForm = ({ onCloseModal }) => {
               <option key={p.ID_PhieuKham} value={p.ID_PhieuKham}>
                 {(() => {
                   const tiepNhan = p.tiepNhan || p.tiep_nhan;
-                  const benhNhan = tiepNhan?.benhNhan || tiepNhan?.benh_nhan;
+                  const benhNhan = tiepNhan?.benhNhan || tiepNhan?.benh_nhan || (tiepNhan ? {
+                    HoTenBN: tiepNhan.HoTenBN || tiepNhan.tenBenhNhan,
+                    ID_BenhNhan: tiepNhan.ID_BenhNhan || tiepNhan.idBenhNhan,
+                    DienThoai: tiepNhan.dienThoaiBenhNhan || tiepNhan.DienThoai || tiepNhan.dienThoai,
+                    CCCD: tiepNhan.cccdBenhNhan || tiepNhan.CCCD
+                  } : null);
                   const ten = benhNhan?.HoTenBN || 'N/A';
                   const idBN = benhNhan?.ID_BenhNhan;
                   return `#${p.ID_PhieuKham} - ${ten}${idBN ? ` (BN#${idBN})` : ''}`;

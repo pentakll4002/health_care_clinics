@@ -39,7 +39,12 @@ const CreatePhieuKhamForm = ({ tiepNhan, onCloseModal, onSuccess }) => {
     );
   }
 
-  const benhNhan = tiepNhan.benhNhan || tiepNhan.benh_nhan;
+  const benhNhan = tiepNhan.benhNhan || tiepNhan.benh_nhan || {
+    HoTenBN: tiepNhan.HoTenBN || tiepNhan.tenBenhNhan,
+    ID_BenhNhan: tiepNhan.ID_BenhNhan || tiepNhan.idBenhNhan,
+    DienThoai: tiepNhan.dienThoaiBenhNhan || tiepNhan.DienThoai || tiepNhan.dienThoai,
+    CCCD: tiepNhan.cccdBenhNhan || tiepNhan.CCCD
+  };
 
   return (
     <div>

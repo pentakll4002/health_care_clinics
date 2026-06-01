@@ -332,7 +332,13 @@ const InvoicePrintPage = () => {
     const staff = invoice.nhanVien || invoice.nhan_vien;
     const medicalForm = invoice.phieuKham || invoice.phieu_kham;
     const tiepNhan = medicalForm?.tiepNhan || medicalForm?.tiep_nhan;
-    const benhNhan = tiepNhan?.benhNhan || tiepNhan?.benh_nhan;
+    const benhNhan = tiepNhan?.benhNhan || tiepNhan?.benh_nhan || (tiepNhan ? {
+      HoTenBN: tiepNhan.HoTenBN || tiepNhan.tenBenhNhan,
+      ID_BenhNhan: tiepNhan.ID_BenhNhan || tiepNhan.idBenhNhan,
+      DienThoai: tiepNhan.dienThoaiBenhNhan || tiepNhan.DienThoai || tiepNhan.dienThoai,
+      CCCD: tiepNhan.cccdBenhNhan || tiepNhan.CCCD,
+      DiaChi: tiepNhan.diaChiBenhNhan || tiepNhan.DiaChi
+    } : null);
     const mainService = medicalForm?.dichVu || medicalForm?.dich_vu;
     const extraServices = medicalForm?.ctDichVuPhu || medicalForm?.ct_dich_vu_phu || [];
     const prescriptions = medicalForm?.toaThuoc || medicalForm?.toa_thuoc || [];

@@ -27,7 +27,12 @@ const InvoiceRow = ({ invoice }) => {
   const staff = nhanVien || nhan_vien;
   const medicalForm = phieuKham || phieu_kham;
   const tiepNhan = medicalForm?.tiepNhan || medicalForm?.tiep_nhan;
-  const benhNhan = tiepNhan?.benhNhan || tiepNhan?.benh_nhan;
+  const benhNhan = tiepNhan?.benhNhan || tiepNhan?.benh_nhan || (tiepNhan ? {
+    HoTenBN: tiepNhan.HoTenBN || tiepNhan.tenBenhNhan,
+    ID_BenhNhan: tiepNhan.ID_BenhNhan || tiepNhan.idBenhNhan,
+    DienThoai: tiepNhan.dienThoaiBenhNhan || tiepNhan.DienThoai || tiepNhan.dienThoai,
+    CCCD: tiepNhan.cccdBenhNhan || tiepNhan.CCCD
+  } : null);
 
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';

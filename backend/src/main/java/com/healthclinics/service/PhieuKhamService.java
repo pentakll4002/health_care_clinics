@@ -1,9 +1,6 @@
 package com.healthclinics.service;
 
-import com.healthclinics.dto.DanhSachTiepNhanDTO;
-import com.healthclinics.dto.PhieuKhamDTO;
-import com.healthclinics.dto.ToaThuocDTO;
-import com.healthclinics.dto.CtPhieuKhamDichVuDTO;
+import com.healthclinics.dto.*;
 import com.healthclinics.entity.*;
 import com.healthclinics.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class PhieuKhamService {
 
     private final PhieuKhamRepository phieuKhamRepository;
@@ -28,6 +26,8 @@ public class PhieuKhamService {
     private final ToaThuocRepository toaThuocRepository;
     private final CtPhieuKhamDichVuRepository ctPhieuKhamDichVuRepository;
     private final QuiDinhRepository quiDinhRepository;
+    private final NhanVienRepository nhanVienRepository;
+    private final LoaiBenhRepository loaiBenhRepository;
 
     public List<PhieuKhamDTO> getAll() {
         return phieuKhamRepository.findByIsDeletedFalse().stream()
@@ -36,8 +36,11 @@ public class PhieuKhamService {
     }
 
     public Page<PhieuKhamDTO> getAll(Pageable pageable) {
-        return phieuKhamRepository.findByIsDeletedFalse(pageable)
-                .map(this::mapToDTO);
+        Page<PhieuKham> page = phieuKhamRepository.findByIsDeletedFalse(pageable);
+        List<PhieuKhamDTO> list = page.getContent().stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
+        return new org.springframework.data.domain.PageImpl<>(list, pageable, page.getTotalElements());
     }
 
     public PhieuKhamDTO getById(Long id) {
@@ -81,6 +84,14 @@ public class PhieuKhamService {
         DanhSachTiepNhan tiepNhan = danhSachTiepNhanRepository.findById(idTiepNhan)
                 .orElseThrow(() -> new RuntimeException("TiepNhan not found"));
 
+        if (!phieuKhamRepository.findByIdTiepNhan(idTiepNhan).isEmpty()) {
+            throw new RuntimeException("Phiếu khám đã tồn tại cho tiếp nhận này");
+        }
+
+        // Transition reception status to DANG_KHAM
+        tiepNhan.setTrangThaiTiepNhan("DANG_KHAM");
+        danhSachTiepNhanRepository.save(tiepNhan);
+
         // Get default examination fee
         BigDecimal tienKham = quiDinhRepository.findByTenQuyDinh("TienKham")
                 .map(QuiDinh::getGiaTri)
@@ -102,14 +113,44 @@ public class PhieuKhamService {
         PhieuKham pk = phieuKhamRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("PhieuKham not found"));
         
-        pk.setIdBacSi(dto.getIdBacSi());
+        if (dto.getIdBacSi() != null) {
+            pk.setIdBacSi(dto.getIdBacSi());
+            nhanVienRepository.findById(dto.getIdBacSi()).ifPresent(pk::setBacSi);
+        } else if (pk.getIdBacSi() == null) {
+            org.springframework.security.core.Authentication auth = 
+                org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
+            if (auth != null && auth.isAuthenticated() && !auth.getName().equals("anonymousUser")) {
+                nhanVienRepository.findByUserEmail(auth.getName()).ifPresent(nv -> {
+                    pk.setIdBacSi(nv.getIdNhanVien());
+                    pk.setBacSi(nv);
+                });
+            }
+        }
         pk.setCaKham(dto.getCaKham());
         pk.setTrieuChung(dto.getTrieuChung());
         pk.setChanDoan(dto.getChanDoan());
-        pk.setIdLoaiBenh(dto.getIdLoaiBenh());
-        pk.setIdDichVu(dto.getIdDichVu());
+
+        if (dto.getIdLoaiBenh() != null) {
+            pk.setIdLoaiBenh(dto.getIdLoaiBenh());
+            loaiBenhRepository.findById(dto.getIdLoaiBenh()).ifPresent(pk::setLoaiBenh);
+        } else {
+            pk.setIdLoaiBenh(null);
+            pk.setLoaiBenh(null);
+        }
+
+        if (dto.getIdDichVu() != null) {
+            pk.setIdDichVu(dto.getIdDichVu());
+            dichVuRepository.findById(dto.getIdDichVu()).ifPresent(dv -> {
+                pk.setDichVu(dv);
+                pk.setTienKham(dv.getDonGia());
+            });
+        } else {
+            pk.setIdDichVu(null);
+            pk.setDichVu(null);
+            pk.setTienKham(BigDecimal.ZERO);
+        }
         
-        if (pk.getTrangThai().equals("cho_kham")) {
+        if (pk.getTrangThai() != null && (pk.getTrangThai().equalsIgnoreCase("cho_kham") || pk.getTrangThai().equalsIgnoreCase("ChoKham"))) {
             pk.setTrangThai("dang_kham");
         }
         
@@ -130,6 +171,7 @@ public class PhieuKhamService {
                 .cachDung(dto.getCachDung())
                 .donGiaBanLuocMua(thuoc.getDonGiaBan())
                 .tienThuoc(tienThuoc)
+                .thuoc(thuoc)
                 .build();
         
         toaThuocRepository.save(toaThuoc);
@@ -174,6 +216,14 @@ public class PhieuKhamService {
                 .orElseThrow(() -> new RuntimeException("PhieuKham not found"));
         
         pk.setTrangThai("hoan_thanh");
+
+        // Transition reception status to DA_KHAM
+        if (pk.getIdTiepNhan() != null) {
+            danhSachTiepNhanRepository.findById(pk.getIdTiepNhan()).ifPresent(tn -> {
+                tn.setTrangThaiTiepNhan("DA_KHAM");
+                danhSachTiepNhanRepository.save(tn);
+            });
+        }
         
         // Update drug quantities
         List<ToaThuoc> toaThuocs = toaThuocRepository.findByIdPhieuKham(id);
@@ -198,7 +248,7 @@ public class PhieuKhamService {
         phieuKhamRepository.save(pk);
     }
 
-    private PhieuKhamDTO mapToDTO(PhieuKham pk) {
+    public PhieuKhamDTO mapToDTO(PhieuKham pk) {
         PhieuKhamDTO dto = PhieuKhamDTO.builder()
                 .idPhieuKham(pk.getIdPhieuKham())
                 .idTiepNhan(pk.getIdTiepNhan())
@@ -221,9 +271,22 @@ public class PhieuKhamService {
         }
         if (pk.getLoaiBenh() != null) {
             dto.setTenLoaiBenh(pk.getLoaiBenh().getTenLoaiBenh());
+            dto.setLoaiBenh(LoaiBenhDTO.builder()
+                .idLoaiBenh(pk.getLoaiBenh().getIdLoaiBenh())
+                .tenLoaiBenh(pk.getLoaiBenh().getTenLoaiBenh())
+                .trieuChung(pk.getLoaiBenh().getTrieuChung())
+                .huongDieuTri(pk.getLoaiBenh().getHuongDieuTri())
+                .moTa(pk.getLoaiBenh().getMoTa())
+                .build());
         }
         if (pk.getDichVu() != null) {
             dto.setTenDichVu(pk.getDichVu().getTenDichVu());
+            dto.setDichVu(DichVuDTO.builder()
+                .idDichVu(pk.getDichVu().getIdDichVu())
+                .tenDichVu(pk.getDichVu().getTenDichVu())
+                .donGia(pk.getDichVu().getDonGia())
+                .isDeleted(pk.getDichVu().getIsDeleted())
+                .build());
         }
         if (pk.getTiepNhan() != null) {
             DanhSachTiepNhan tn = pk.getTiepNhan();
@@ -252,6 +315,15 @@ public class PhieuKhamService {
             if (tt.getThuoc().getDvt() != null) {
                 dto.setTenDvt(tt.getThuoc().getDvt().getTenDvt());
             }
+            
+            ThuocDTO thuocDTO = ThuocDTO.builder()
+                .idThuoc(tt.getThuoc().getIdThuoc())
+                .tenThuoc(tt.getThuoc().getTenThuoc())
+                .donGiaBan(tt.getThuoc().getDonGiaBan())
+                .hinhAnh(tt.getThuoc().getHinhAnh())
+                .tenDvt(tt.getThuoc().getDvt() != null ? tt.getThuoc().getDvt().getTenDvt() : null)
+                .build();
+            dto.setThuoc(thuocDTO);
         }
         
         return dto;

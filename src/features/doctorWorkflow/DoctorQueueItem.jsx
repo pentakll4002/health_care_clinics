@@ -26,7 +26,12 @@ const Image = styled.img`
 const DoctorQueueItem = ({ tiepNhan }) => {
   const navigate = useNavigate();
 
-  const benhNhan = tiepNhan?.benhNhan || tiepNhan?.benh_nhan;
+  const benhNhan = tiepNhan?.benhNhan || tiepNhan?.benh_nhan || {
+    HoTenBN: tiepNhan?.HoTenBN || tiepNhan?.tenBenhNhan,
+    ID_BenhNhan: tiepNhan?.ID_BenhNhan || tiepNhan?.idBenhNhan,
+    DienThoai: tiepNhan?.dienThoaiBenhNhan || tiepNhan?.DienThoai || tiepNhan?.dienThoai,
+    CCCD: tiepNhan?.cccdBenhNhan || tiepNhan?.CCCD
+  };
 
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
@@ -49,9 +54,28 @@ const DoctorQueueItem = ({ tiepNhan }) => {
           </div>
         </div>
 
-        <span className='px-2 py-1 rounded-full text-xs font-medium bg-warning-100 text-warning-900'>
-          Chờ khám
-        </span>
+        {(() => {
+          const status = tiepNhan?.TrangThaiTiepNhan || tiepNhan?.trangThaiTiepNhan || 'CHO_KHAM';
+          if (status === 'DANG_KHAM') {
+            return (
+              <span className='px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-900'>
+                Đang khám
+              </span>
+            );
+          }
+          if (status === 'DA_KHAM') {
+            return (
+              <span className='px-2 py-1 rounded-full text-xs font-medium bg-success-100 text-success-900'>
+                Đã khám
+              </span>
+            );
+          }
+          return (
+            <span className='px-2 py-1 rounded-full text-xs font-medium bg-warning-100 text-warning-900'>
+              Chờ khám
+            </span>
+          );
+        })()}
       </div>
 
       <div className='text-sm text-grey-600'>
